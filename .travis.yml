@@ -12,5 +12,5 @@ cache:
 script:
   - npm test
   - npm run build
-after_script:
+after_success:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
