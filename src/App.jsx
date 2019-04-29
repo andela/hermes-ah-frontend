@@ -7,7 +7,15 @@ class App extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     return <React.Fragment />;
+=======
+    return (
+      <div>
+        <h1>Welcome to Ah</h1>
+      </div>
+    );
+>>>>>>> 04391e6... 164797968-chore(setup): setup redux
   }
 }
 
