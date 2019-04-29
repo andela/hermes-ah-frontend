@@ -18,6 +18,7 @@ module.exports = {
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
+        exclude: /node_modules/,
         use: [
           {
             loader: 'file-loader',
@@ -26,6 +27,11 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
     ],
   },
