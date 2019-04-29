@@ -9,9 +9,6 @@ class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    return <React.Fragment />;
-=======
     return (
       <Provider store={store}>
         <div>
@@ -19,7 +16,6 @@ class App extends Component {
         </div>
       </Provider>
     );
->>>>>>> 04391e6... 164797968-chore(setup): setup redux
   }
 }
 
