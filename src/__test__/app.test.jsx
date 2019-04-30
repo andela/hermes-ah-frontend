@@ -8,6 +8,7 @@ describe('Home component', () => {
   it('should match snapshot', () => {
     const wrapper = shallow(<App />);
     expect(wrapper).toMatchSnapshot();
+    expect(wrapper.find('div'));
   });
 
   it('renders correctly', () => {
