@@ -39,10 +39,4 @@ module.exports = {
     filename: 'bundle.js',
     chunkFilename: '[name].bundle.js',
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
-  devServer: {
-    contentBase: './public',
-    hot: true,
-    historyApiFallback: true,
-  },
 };
