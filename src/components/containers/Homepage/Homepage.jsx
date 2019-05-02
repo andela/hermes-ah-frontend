@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Grid } from 'semantic-ui-react';
-import ArticleCard from '../../presentations/Article-Card/Article';
+import ArticleCard from '../../presentations/ArticleCard/Article';
 import PopularArticleCard from '../../presentations/PopularArticleCard/PopularArticleCard';
 
 const article = [
