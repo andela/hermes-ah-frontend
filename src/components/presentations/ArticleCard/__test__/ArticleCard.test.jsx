@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ArticleCard from '../../components/presentations/ArticleCard/Article';
+import ArticleCard from '../Article';
 
 const article = {
   id: 1,
