@@ -14,7 +14,9 @@ class NavBar extends Component {
       <Menu>
         <Menu.Menu className="logo-cont">
           <Menu.Item>
-            <img className="logo" src={logo} alt="logo" size="small" />
+            <Link to="/">
+              <img className="logo" src={logo} alt="logo" size="small" />
+            </Link>
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu className="nav-cont">
