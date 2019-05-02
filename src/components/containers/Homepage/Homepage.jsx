@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Header } from 'semantic-ui-react';
+import { Container, Grid } from 'semantic-ui-react';
 import ArticleCard from '../../presentations/Article-Card/Article';
 import PopularArticleCard from '../../presentations/PopularArticleCard/PopularArticleCard';
 
 const article = [
   {
     id: 1,
+    category: 'Health',
     title: 'World’s Smallest Biggest Killer',
     author: 'Andrew Moffins',
     date: 'March 26 2019',
@@ -17,6 +18,7 @@ const article = [
   },
   {
     id: 2,
+    category: 'Chemistry',
     title: 'Building Realtime Android Chat Room With Firebase ',
     author: 'Peter Emmanuel',
     date: 'March 13 2019',
@@ -53,33 +55,42 @@ class Homepage extends Component {
 
   render() {
     return (
-      <Container>
-        <Header as="h2">Welcome to Authors Haven</Header>
-        <Container text>
-          {article.map(item => (
-            <ArticleCard
-              key={item.id}
-              title={item.title}
-              author={item.author}
-              date={item.date}
-              read={item.read}
-              paragraph={item.paragraph}
-              image={item.image}
-            />
-          ))}
-        </Container>
-        <Container text className="popular-articles-card">
-          {popularArticle.map(elem => (
-            <PopularArticleCard
-              key={elem.id}
-              title={elem.title}
-              author={elem.author}
-              date={elem.date}
-              likes={elem.likes}
-            />
-          ))}
-        </Container>
-      </Container>
+      <div className="article-section-hmp">
+        <Grid>
+          <Grid.Row>
+            <Grid.Column computer={12} mobile={16}>
+              <Container className="display-article-card">
+                {article.map(item => (
+                  <ArticleCard
+                    key={item.id}
+                    category={item.category}
+                    title={item.title}
+                    author={item.author}
+                    date={item.date}
+                    read={item.read}
+                    paragraph={item.paragraph}
+                    image={item.image}
+                  />
+                ))}
+              </Container>
+            </Grid.Column>
+            <Grid.Column computer={4} mobile={16}>
+              <h1 className="custom-center">POPULAR POST</h1>
+              <Container className="popular-articles-card">
+                {popularArticle.map(elem => (
+                  <PopularArticleCard
+                    key={elem.id}
+                    title={elem.title}
+                    author={elem.author}
+                    date={elem.date}
+                    likes={elem.likes}
+                  />
+                ))}
+              </Container>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </div>
     );
   }
 }

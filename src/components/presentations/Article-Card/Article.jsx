@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Item } from 'semantic-ui-react';
+import { Item, Header } from 'semantic-ui-react';
 import './article-card.scss';
 
-const ArticleCard = ({ title, author, date, read, paragraph, image }) => (
-  <Item.Group>
+const ArticleCard = ({
+  category,
+  title,
+  author,
+  date,
+  read,
+  paragraph,
+  image,
+}) => (
+  <Item.Group className="article-card-item">
+    <Header as="h3" className="category">
+      {category}
+    </Header>
     <Item>
       <Item.Content>
+        <br />
         <Item.Header as="a">{title}</Item.Header>
         <Item.Description>{paragraph}</Item.Description>
         <Item.Extra>
@@ -32,6 +44,7 @@ ArticleCard.propTypes = {
   read: PropTypes.string.isRequired,
   paragraph: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
 };
 
 export default ArticleCard;

@@ -1,8 +1,23 @@
-.popular-articles-card {
-    margin-top: 10px;
+
+.article-section-hmp {
+    .popular-articles-card {
+        margin-top: 10px;
+    }
     
     .author-name {
         color: black;
         font-weight: 600
+    }
+    
+    .display-article-card {
+        margin-top: 10px;
+     
+    }
+    .ui.grid {
+        margin: 0;
+    }
+    .ui.small.image{
+        width: 300px;
+        margin: 0 10px;
     }
 }
