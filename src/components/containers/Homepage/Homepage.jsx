@@ -3,6 +3,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import HeroView from '../../presentations/Hero-view/Heroview-presentations';
 import ArticleCard from '../../presentations/ArticleCard/Article';
 import PopularArticleCard from '../../presentations/PopularArticleCard/PopularArticleCard';
+import './homepage.scss';
 
 const article = [
   {
@@ -78,7 +79,7 @@ class Homepage extends Component {
                 </Container>
               </Grid.Column>
               <Grid.Column computer={4} mobile={16}>
-                <h1 className="custom-center">POPULAR POST</h1>
+                <h2 className="custom-center">POPULAR POST</h2>
                 <Container className="popular-articles-card">
                   {popularArticle.map(elem => (
                     <PopularArticleCard
@@ -89,6 +90,11 @@ class Homepage extends Component {
                       likes={elem.likes}
                     />
                   ))}
+                  <img
+                    className="advert"
+                    src="https://res.cloudinary.com/duzpmyphv/image/upload/v1556812752/medical2.jpg"
+                    alt="advert"
+                  />
                 </Container>
               </Grid.Column>
             </Grid.Row>

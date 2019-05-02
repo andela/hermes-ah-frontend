@@ -1,23 +1,30 @@
  .heroAll{
      text-align: center;
      align-items: center;
+     background: #ffffff url("https://res.cloudinary.com/walsam/image/upload/v1556808780/books.jpg") no-repeat right top;
+     height: 600px;
+
+     .overlay {
+        background-color: rgba(0, 0, 0, 0.3);
+        width: 100%;
+        height: 600px;
+
+        .siteTexts{
+            width: 70%;
+            margin: 0 auto;
+            padding: 137px 0;
+            text-align: center;
+            position: relative;
+            z-index: 999;
+            color: white;
+        }
+
+        h1, p {
+            text-shadow: 2px 2px #313131;
+        }
+     }
  }
- .heroImage {
-position: absolute;
-width: 100%;
-height: 800px;
-left: 0px;
-right: 0px;
-top: 7vw;
-filter: brightness(70%);
-}
-.siteTexts{
- text-align: center;
- position: relative;
- z-index: 999;
- color: white;
- top: 16vw;
-}
+
 .siteName{
     font-size: 600%;
     text-align: center;

@@ -15,6 +15,8 @@ const ArticleCard = ({ title, author, date, likes }) => (
           <p>
             {date}
             &nbsp; &nbsp; &nbsp;
+            <i className="far fa-thumbs-up" />
+            &nbsp;
             {likes}
           </p>
         </Item.Extra>

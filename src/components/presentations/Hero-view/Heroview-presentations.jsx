@@ -1,13 +1,11 @@
 import React from 'react';
-import { Container, Button } from 'semantic-ui-react';
-
-import bookImage from './books.jpg';
+import { Button } from 'semantic-ui-react';
 import './heroView.scss';
 
 const HeroView = () => {
   return (
-    <Container>
-      <div className="heroAll">
+    <div className="heroAll">
+      <div className="overlay">
         <div className="siteTexts">
           <h1 className="siteName">Authors Haven</h1>
           <p className="siteTitle">Be part of a solution</p>
@@ -19,9 +17,8 @@ const HeroView = () => {
             <Button primary>Explore</Button>
           </div>
         </div>
-        <img alt="bookimage" className="heroImage" src={bookImage} />
       </div>
-    </Container>
+    </div>
   );
 };
 

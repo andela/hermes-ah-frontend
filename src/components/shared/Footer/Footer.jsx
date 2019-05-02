@@ -28,9 +28,11 @@ const Footer = () => (
       </ul>
     </div>
     <div className="copyright">
-      Copyright &copy; &nbsp;
-      {new Date().getFullYear()}
-      &nbsp;Authors Haven
+      <p>
+        Copyright &copy; &nbsp;
+        {new Date().getFullYear()}
+        &nbsp;Authors Haven
+      </p>
     </div>
   </footer>
 );
