@@ -30,5 +30,6 @@ describe('<ArticleCard />', () => {
       />
     );
     expect(wrapper.find('div'));
+    expect(wrapper.toJSON).toMatchSnapshot();
   });
 });
