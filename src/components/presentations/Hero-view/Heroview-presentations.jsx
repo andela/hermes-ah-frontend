@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
+import { Container, Button } from 'semantic-ui-react';
 
 import bookImage from './books.jpg';
 import './heroView.scss';
@@ -15,6 +15,9 @@ const HeroView = () => {
             A home for bright minds to make their contributions to the world and
             profer solutions
           </p>
+          <div>
+            <Button primary>Explore</Button>
+          </div>
         </div>
         <img alt="bookimage" className="heroImage" src={bookImage} />
       </div>

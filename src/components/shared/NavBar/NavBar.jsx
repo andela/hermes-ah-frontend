@@ -13,12 +13,12 @@ class NavBar extends Component {
     const { children } = this.props;
     return (
       <Menu>
-        <Menu.Menu>
+        <Menu.Menu className="logo-cont">
           <Menu.Item>
             <img className="logo" src={logo} alt="logo" size="small" />
           </Menu.Item>
         </Menu.Menu>
-        <Menu.Menu position="right">{children}</Menu.Menu>
+        <Menu.Menu className="nav-cont">{children}</Menu.Menu>
       </Menu>
     );
   }

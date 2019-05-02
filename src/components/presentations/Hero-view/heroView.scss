@@ -4,26 +4,26 @@
  }
  .heroImage {
 position: absolute;
-width: 1440px;
+width: 100%;
 height: 800px;
 left: 0px;
 right: 0px;
-top: 5vw;
+top: 7vw;
 filter: brightness(70%);
 }
 .siteTexts{
  text-align: center;
- position: absolute;
+ position: relative;
  z-index: 999;
  color: white;
- top: 10vw;
+ top: 16vw;
 }
 .siteName{
     font-size: 600%;
     text-align: center;
 }
 .siteTitle{
-    font-size: 50px;
+    font-size: 24px;
 }
 .siteTitle:last-child{
     position: absolute;
@@ -32,4 +32,21 @@ filter: brightness(70%);
     right: 50px;
     max-width: 500px;
     
+}
+@media (max-width: 918px){
+    .heroImage{
+        top: 8vw;
+    }
+}
+
+@media (max-width: 800px){
+    .heroImage{
+        top: 10vw;
+    }
+}
+
+@media (max-width: 590px){
+    .heroImage{
+        top: 12vw;
+    }
 }
