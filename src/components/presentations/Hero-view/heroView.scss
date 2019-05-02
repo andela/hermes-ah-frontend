@@ -1,0 +1,35 @@
+ .heroAll{
+     text-align: center;
+     align-items: center;
+ }
+ .heroImage {
+position: absolute;
+width: 1440px;
+height: 800px;
+left: 0px;
+right: 0px;
+top: 5vw;
+filter: brightness(70%);
+}
+.siteTexts{
+ text-align: center;
+ position: absolute;
+ z-index: 999;
+ color: white;
+ top: 10vw;
+}
+.siteName{
+    font-size: 600%;
+    text-align: center;
+}
+.siteTitle{
+    font-size: 50px;
+}
+.siteTitle:last-child{
+    position: absolute;
+    font-size: 30px;
+    left: 87px;
+    right: 50px;
+    max-width: 500px;
+    
+}
