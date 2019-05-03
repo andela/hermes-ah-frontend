@@ -5,17 +5,16 @@ const AboutPage = () => {
   return (
     <React.Fragment>
       <div>
-        <span className="circle" />
         <div className="title">
           <h1>Welcome to Authors Haven</h1>
-          <div className="image" />
+          <div className="top-image" />
           <hr />
-          <p className="desc">
+          <p className="top-content">
             A home for bright minds to make their contributions
             <br />
             to the world profer solutions
           </p>
-          <p className="desc">
+          <p className="top-content">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi
             voluptatum dolorem et odio
             <br />
@@ -26,28 +25,25 @@ const AboutPage = () => {
           </p>
         </div>
         <br />
-        <div>
-          <div className="typewriter" />
-        </div>
-        <div className="holder">
+        <div className="card-holder">
           <div>
-            <p className="textHeader">Biology</p>
-            <p className="textHeader">Genetic Mutation fills the space</p>
+            <p className="text-header">Biology</p>
+            <p className="text-header">Genetic Mutation fills the space</p>
             <div className="cards" id="left" />
           </div>
           <div>
-            <p className="textHeader">Chemistry</p>
-            <p className="textHeader">Why Kinetic motivates the nitro</p>
+            <p className="text-header">Chemistry</p>
+            <p className="text-header">Why Kinetic motivates the nitro</p>
             <div className="cards" id="middle" />
           </div>
           <div>
-            <p className="textHeader">Neurology</p>
-            <p className="textHeader">The power of the brain</p>
+            <p className="text-header">Neurology</p>
+            <p className="text-header">The power of the brain</p>
             <div className="cards" id="right" />
           </div>
         </div>
         <section className="bottom-section">
-          <div className="img" />
+          <div className="bottom-image" />
           <div className="text-container">
             <p className="text">
               A CUSTOMIZABLE READING EXPERIENCE MADE JUST FOR YOU
