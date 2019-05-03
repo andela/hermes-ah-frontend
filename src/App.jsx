@@ -7,9 +7,9 @@ import {
   Redirect,
 } from 'react-router-dom';
 import store from './store/store';
-import Homepage from './components/containers/Homepage/Homepage';
-import Login from './components/containers/Login/Login';
-import Notfound from './components/containers/Notfound/Notfound';
+import Homepage from './components/presentations/Homepage/Homepage';
+import Login from './components/presentations/Login/Login';
+import Notfound from './components/presentations/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
 
