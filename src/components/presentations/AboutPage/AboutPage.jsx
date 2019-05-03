@@ -5,7 +5,12 @@ const AboutPage = () => {
   return (
     <React.Fragment>
       <div>
-        <section />
+        <section>
+          <div>
+            <div className="typewriter" />
+            <h1>HELLO</h1>
+          </div>
+        </section>
         <section className="bottom-section">
           <div className="img" />
           <div className="text-container">

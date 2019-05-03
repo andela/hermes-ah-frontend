@@ -1,26 +1,33 @@
+.typewriter {
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
+}
 .bottom-section {
+border:1px solid black;
 width: 1440px;
 height: 658px;
 background-color: #65AAFF;
 display: flex;
 justify-content: space-around;
-padding-top: 227px;
+padding-top: 195px;
 }
 
 .img {
-width: 555px;
-height: 359px;
-background-color: black;
+    width: 555px;
+    height: 339px;
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821936/39444439254_9566a41625_b.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .text-container {
 width: 555px;
 height: 359px;
-background-color: red;
+// background-color: red;
 }
 
 .text {
-font-size: 64px;
+font-family: 'Roboto', sans-serif;;
+font-size: 62px;
 font-weight: bold;
 text-align: center;
 }
