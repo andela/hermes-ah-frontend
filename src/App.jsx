@@ -7,9 +7,11 @@ import {
   Redirect,
 } from 'react-router-dom';
 import store from './store/store';
-import Homepage from './components/containers/Homepage/Homepage';
-import Login from './components/containers/Login/Login';
-import Notfound from './components/containers/Notfound/Notfound';
+import Homepage from './components/presentations/Homepage/Homepage';
+import Login from './components/presentations/Login/Login';
+import Notfound from './components/presentations/Notfound/Notfound';
+import Footer from './components/shared/Footer/Footer';
+import NavBar from './components/shared/NavBar/NavBar';
 
 class App extends Component {
   constructor(props) {
@@ -18,15 +20,38 @@ class App extends Component {
   }
 
   render() {
+    const navLinks = [
+      {
+        link: '/about',
+        text: 'About',
+      },
+      {
+        link: '/categories',
+        text: 'Categories',
+      },
+      {
+        link: '/login',
+        text: 'Login',
+      },
+      {
+        link: '/signup',
+        text: 'Signup',
+        className: 'active',
+      },
+    ];
     return (
       <Provider store={store}>
         <Router>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/not-found" component={Notfound} />
-            <Route path="/" exact component={Homepage} />
-            <Redirect to="/not-found" />
-          </Switch>
+          <React.Fragment>
+            <NavBar navLinks={navLinks} />
+            <Switch>
+              <Route path="/login" component={Login} />
+              <Route path="/not-found" component={Notfound} />
+              <Route path="/" exact component={Homepage} />
+              <Redirect to="/not-found" />
+            </Switch>
+            <Footer />
+          </React.Fragment>
         </Router>
       </Provider>
     );
