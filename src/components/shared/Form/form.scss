@@ -5,6 +5,7 @@
 .wrap-cont-login-signup {
   display: flex;
   margin-bottom: 60px;
+  height: 55px;
   .signup, .login {
     width: 50%;
     text-align: center;
@@ -17,11 +18,12 @@
     background: #0E71EB;
     color: #fff;
     border-radius: 3px 0 0 0;
-
+    font-size: 20px;
   }
   button.ui.button.signup {
     background: #fff;
     color: #000;
+    font-size: 20px;
   }
   button.ui.button.signup:hover {
     background: #FFF;
@@ -41,7 +43,7 @@
 .form-cont {
   background: #fff;
   box-shadow: 0 2px 5px #ccc;
-  width: 50%;
+  width: 40%;
   border-radius: 3px;
 }
 form.ui.unstackable.form {
@@ -57,12 +59,18 @@ form.ui.unstackable.form {
     flex-direction: column !important;
     .ui.input {
       margin: 8px 0;
+      height: 50px;
+      font-weight: bold;
+      font-size: 20px;
     }
   }
   button.ui.button.submit {
     width: 100%;
     background: #0E71EB;
     color: #fff;
+    height: 55px;
+    box-shadow: 0 4px 4px #00000040;
+    font-size: 20px;
   }
   .forgot-password {
     color: #0e71eb;
@@ -71,6 +79,7 @@ form.ui.unstackable.form {
     text-decoration: none;
     display: flex;
     justify-content: flex-end;
+    font-size: 15px;
   }
   input:focus {
     border-color: #0e71eb;
@@ -114,4 +123,9 @@ form.ui.unstackable.form {
     background: #1B4A97 !important;
     padding: 8px 16px !important;
   }
+}
+
+::placeholder {
+  font-size: 20px;
+  color: #857e7e !important;
 }

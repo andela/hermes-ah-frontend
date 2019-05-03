@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Label } from 'semantic-ui-react';
-import Joi from 'joi-browser';
+import { Form } from 'semantic-ui-react';
 import './form.scss';
 
 class FormComponent extends Component {
@@ -9,37 +8,11 @@ class FormComponent extends Component {
     this.state = { data: {} };
   }
 
-  validate = () => {
-    const options = { abortEarly: false };
-    const { data } = this.state;
-    const { error } = Joi.validate(data, this.schema, options);
-    if (!error) return null;
-    const errors = {};
-    error.details.map(item => {
-      errors[item.path[0]] = item.message.split('"').join('');
-      return null;
-    });
-    return errors;
-  };
-
   handleChange = ({ currentTarget: input }) => {
     const { data } = this.state;
     const account = { ...data };
     account[input.id] = input.value;
-    const errors = this.validate();
-    this.setState({ data: account, errors: errors || {} });
-  };
-
-  renderError = id => {
-    const { errors } = this.state;
-    if (errors[id]) {
-      return (
-        <Label basic color="red" pointing="below">
-          {errors[id]}
-        </Label>
-      );
-    }
-    return null;
+    this.setState({ data: account });
   };
 
   renderInput = (id, placeholder, type = 'text') => {
@@ -52,6 +25,7 @@ class FormComponent extends Component {
           placeholder={placeholder}
           type={type}
           onChange={this.handleChange}
+          required
         />
       </Form.Group>
     );

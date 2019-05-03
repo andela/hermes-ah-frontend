@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import {
@@ -9,7 +11,6 @@ import {
 import store from './store/store';
 import Homepage from './components/containers/Homepage/Homepage';
 import Login from './components/containers/Login/Login';
-import Signup from './components/containers/Signup/Signup';
 import Notfound from './components/containers/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
 
@@ -26,7 +27,6 @@ class App extends Component {
           <React.Fragment>
             <Switch>
               <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
               <Route path="/" exact component={Homepage} />
               <Route path="/not-found" component={Notfound} />
               <Redirect to="/not-found" />
