@@ -1,135 +1,108 @@
-.title{
-    text-align:center;
-    align-items: center;
-    position: relative;
-    width: 80%;
-    height: 999px;
-    margin: 0 auto;
-    top: 50px;
-    background: rgba(6, 99, 212, 0.02);
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 40px;
- }
- .image {
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 50vh;
+.title {
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  height: 999px;
+  margin: 0 auto;
+  top: 50px;
+  background: rgba(6, 99, 212, 0.02);
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 40px;
 }
-hr{
-    width: 55%;
+
+.image {
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 50vh;
 }
-.desc{
-    font-weight: bold;
-    font-size: 5vh;
+
+hr {
+  width: 55%;
 }
-.desc:last-child{
-    font-weight:normal;
-    font-size: 3vh;
+
+.desc {
+  font-weight: bold;
+  font-size: 5vh;
+}
+
+.desc:last-child {
+  font-weight: normal;
+  font-size: 3vh;
 }
 
 .typewriter {
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
+}
+
+.holder {
+  position: absolute;
+  top: 919px;
+  left: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 74px;
+  align-items: center;
 }
 .cards {
-position: absolute;
-width: 395px;
-height: 484px;
-top: 950px;
-}
-.textHeader{
-position: absolute;
-height: 42px;
-font-family: Roboto;
-font-style: normal;
-font-weight: bold;
-font-size: 24px;
-line-height: 28px;
-display: flex;
-align-items: center;
-color: #535353;
-}
-#first-category{
-width: 97px;
-left: 71px;
-top: 820px;
+  width: 395px;
+  height: 484px;
+  top: 1050px;
 }
 
-#first-article {
-width: 362px;
-left: 87px;
-top: 885px;
-color: #000000;
+.textHeader {
+  height: 42px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 28px;
+  color: #535353;
 }
-
-#second-category {
-width: 131px;
-left: 523px;
-top: 820px;
-}
-
-#third-category{
-width: 133px;
-left: 975px;
-top: 820px;
-}
-
-#second-article {
-width: 362px;
-left: 539px;
-top: 885px;
-color: #000000;
-}
-
-#third-article {
-width: 272px;
-left: 1044px;
-top: 885px;
+.holder div p:nth-child(2) {
 color: #000000;
 }
 
 #left {
-    left: 71px;
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821938/dna-163466_960_720.jpg);
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821938/dna-163466_960_720.jpg);
 }
 #middle {
-    left: 523px;
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556822016/ilts-science-chemistry-test_119059_large.jpg);
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556822016/ilts-science-chemistry-test_119059_large.jpg);
 }
+
 #right {
-    left: 977px;
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821917/3d-rendering-human-brain-technology-background_34663-72.jpg);
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821917/3d-rendering-human-brain-technology-background_34663-72.jpg);
 }
+
 .bottom-section {
-border:1px solid black;
-width: 1440px;
-height: 658px;
-background-color: #65AAFF;
-display: flex;
-justify-content: space-around;
-padding-top: 195px;
-margin-top: 300px;
+  border: 1px solid black;
+  width: 1440px;
+  height: 658px;
+  background-color: #65aaff;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 195px;
+  margin-top: 300px;
 }
 
 .img {
-    width: 555px;
-    height: 339px;
-    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821936/39444439254_9566a41625_b.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
+  width: 555px;
+  height: 339px;
+  background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821936/39444439254_9566a41625_b.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .text-container {
-width: 555px;
-height: 359px;
-// background-color: red;
+  width: 555px;
+  height: 359px;
 }
 
 .text {
-font-family: 'Roboto', sans-serif;
-font-size: 62px;
-font-weight: bold;
-text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 62px;
+  font-weight: bold;
+  text-align: center;
 }

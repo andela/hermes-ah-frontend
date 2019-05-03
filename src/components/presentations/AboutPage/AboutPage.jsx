@@ -5,10 +5,6 @@ const AboutPage = () => {
   return (
     <React.Fragment>
       <div>
-        {/* <div>
-          <h1>HELLO</h1>
-          <h1>HELLO</h1>
-        </div> */}
         <span className="circle" />
         <div className="title">
           <h1>Welcome to Authors Haven</h1>
@@ -33,28 +29,22 @@ const AboutPage = () => {
         <div>
           <div className="typewriter" />
         </div>
-        <div>
-          <p className="textHeader" id="first-category">
-            Biology
-          </p>
-          <p className="textHeader" id="first-article">
-            Genetic Mutation fills the space
-          </p>
-          <div className="cards" id="left" />
-          <p className="textHeader" id="second-category">
-            Chemistry
-          </p>
-          <p className="textHeader" id="second-article">
-            Why Kinetic motivates the nitro
-          </p>
-          <div className="cards" id="middle" />
-          <p className="textHeader" id="third-category">
-            Neurology
-          </p>
-          <p className="textHeader" id="third-article">
-            The power of the brain
-          </p>
-          <div className="cards" id="right" />
+        <div className="holder">
+          <div>
+            <p className="textHeader">Biology</p>
+            <p className="textHeader">Genetic Mutation fills the space</p>
+            <div className="cards" id="left" />
+          </div>
+          <div>
+            <p className="textHeader">Chemistry</p>
+            <p className="textHeader">Why Kinetic motivates the nitro</p>
+            <div className="cards" id="middle" />
+          </div>
+          <div>
+            <p className="textHeader">Neurology</p>
+            <p className="textHeader">The power of the brain</p>
+            <div className="cards" id="right" />
+          </div>
         </div>
         <section className="bottom-section">
           <div className="img" />
