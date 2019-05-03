@@ -59,4 +59,9 @@ module.exports = {
       // branches: 80,
     },
   },
+
+  coveragePathIgnorePatterns: [
+    '<rootDir>/src/index.js',
+    '<rootDir>/src/__test__/end2end',
+  ],
 };

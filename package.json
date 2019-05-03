@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/andela/hermes-ah-frontend#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "jest-css-modules-transform": "^2.1.1",

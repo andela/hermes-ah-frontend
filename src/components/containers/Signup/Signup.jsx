@@ -18,25 +18,27 @@ const navLinks = [
 ];
 
 const form = [
+  { placeholder: 'Firstname', type: 'text' },
+  { placeholder: 'Lastname', type: 'text' },
   { placeholder: 'Email', type: 'text' },
   { placeholder: 'Password', type: 'password' },
+  { placeholder: 'Confirm Password', type: 'password' },
 ];
-const Login = () => {
+const Signup = () => {
   return (
     <div>
       <NavBar navLinks={navLinks} />
       <div className="form-wrap">
         <Form
           form={form}
-          forgotPassword
-          loginValue="LOGIN"
-          signupValue="SIGNUP"
-          submitValue="LOGIN"
-          spanValue="or login with"
+          loginValue="SIGNUP"
+          signupValue="LOGIN"
+          submitValue="REGISTER"
+          spanValue="or sign up with"
         />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;
