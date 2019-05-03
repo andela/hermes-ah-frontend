@@ -47,11 +47,6 @@
 form.ui.unstackable.form {
   width: 95%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  .ui.red.pointing.below.basic.label {
-    margin: 0 auto;
-  }
   .fields {
     display: flex;
     flex-direction: column !important;
@@ -65,12 +60,11 @@ form.ui.unstackable.form {
     color: #fff;
   }
   .forgot-password {
+    float: right;
     color: #0e71eb;
     font-weight: 600;
     margin-bottom: 2px;
     text-decoration: none;
-    display: flex;
-    justify-content: flex-end;
   }
   input:focus {
     border-color: #0e71eb;

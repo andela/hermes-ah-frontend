@@ -1,46 +1,74 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
+import { Form, Label } from 'semantic-ui-react';
+import Joi from 'joi-browser';
 import './form.scss';
 
-const FormField = props => {
-  const {
-    form,
-    forgotPassword,
-    loginValue,
-    signupValue,
-    submitValue,
-    spanValue,
-  } = props;
-  return (
-    <div className="form-cont">
-      <div className="wrap-cont-login-signup">
-        <Button className="login">{loginValue}</Button>
-        <Button className="signup">{signupValue}</Button>
+class FormComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { data: {} };
+  }
+
+  validate = () => {
+    const options = { abortEarly: false };
+    const { data } = this.state;
+    const { error } = Joi.validate(data, this.schema, options);
+    if (!error) return null;
+    const errors = {};
+    error.details.map(item => {
+      errors[item.path[0]] = item.message.split('"').join('');
+      return null;
+    });
+    return errors;
+  };
+
+  handleChange = ({ currentTarget: input }) => {
+    const { data } = this.state;
+    const account = { ...data };
+    account[input.id] = input.value;
+    const errors = this.validate();
+    this.setState({ data: account, errors: errors || {} });
+  };
+
+  renderError = id => {
+    const { errors } = this.state;
+    if (errors[id]) {
+      return (
+        <Label basic color="red" pointing="below">
+          {errors[id]}
+        </Label>
+      );
+    }
+    return null;
+  };
+
+  renderInput = (id, placeholder, type = 'text') => {
+    const { data } = this.state;
+    return (
+      <Form.Group>
+        <Form.Input
+          value={data[id]}
+          id={id}
+          placeholder={placeholder}
+          type={type}
+          onChange={this.handleChange}
+        />
+      </Form.Group>
+    );
+  };
+
+  renderRuler = () => {
+    return (
+      <div className="hr-bar">
+        <hr className="bar" />
+        <span className="span-text">or login with</span>
+        <hr className="bar" />
       </div>
-      <Form unstackable>
-        <Form.Group widths>
-          {form.map(formInput => (
-            <Form.Input
-              key={formInput.label}
-              placeholder={formInput.placeholder}
-              type={formInput.type}
-            />
-          ))}
-        </Form.Group>
-        <Link to="/password-rest" className="forgot-password">
-          {forgotPassword}
-        </Link>
-        <Button className="submit" type="submit">
-          {submitValue}
-        </Button>
-        <div className="hr-bar">
-          <hr className="bar" />
-          <span className="span-text">{spanValue}</span>
-          <hr className="bar" />
-        </div>
-      </Form>
+    );
+  };
+
+  renderSocialLogin = () => {
+    return (
       <div className="social-login">
         <a href="htttwitter.com">
           <i className="fab fa-twitter" />
@@ -52,25 +80,12 @@ const FormField = props => {
           <i className="fab fa-facebook-f" />
         </a>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
-FormField.defaultProps = {
-  // forgotPassword: (propTypes.string = ''),
-  loginValue: (propTypes.string = ''),
-  signupValue: (propTypes.string = ''),
-  submitValue: (propTypes.string = ''),
-  spanValue: (propTypes.string = ''),
-};
+  render() {
+    return null;
+  }
+}
 
-FormField.propTypes = {
-  form: propTypes.arrayOf(propTypes.shape).isRequired,
-  forgotPassword: propTypes.string.isRequired,
-  loginValue: propTypes.string,
-  signupValue: propTypes.string,
-  submitValue: propTypes.string,
-  spanValue: propTypes.string,
-};
-
-export default FormField;
+export default FormComponent;
