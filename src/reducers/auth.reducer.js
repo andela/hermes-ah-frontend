@@ -2,6 +2,7 @@ import actiontype from '../constants/auth.constants';
 
 const initialState = {
   isLoading: false,
+  network: true,
 };
 
 const auth = (state = initialState, action) => {

@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
@@ -22,19 +21,22 @@ class App extends Component {
 
   render() {
     return (
-      <Provider store={store}>
-        <Router>
-          <React.Fragment>
-            <Switch>
-              <Route path="/login" component={Login} />
-              <Route path="/" exact component={Homepage} />
-              <Route path="/not-found" component={Notfound} />
-              <Redirect to="/not-found" />
-            </Switch>
-            <Footer />
-          </React.Fragment>
-        </Router>
-      </Provider>
+      <React.Fragment>
+        <ToastContainer />
+        <Provider store={store}>
+          <Router>
+            <React.Fragment>
+              <Switch>
+                <Route path="/login" component={Login} />
+                <Route path="/" exact component={Homepage} />
+                <Route path="/not-found" component={Notfound} />
+                <Redirect to="/not-found" />
+              </Switch>
+              <Footer />
+            </React.Fragment>
+          </Router>
+        </Provider>
+      </React.Fragment>
     );
   }
 }
