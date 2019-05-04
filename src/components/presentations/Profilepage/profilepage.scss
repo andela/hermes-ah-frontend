@@ -1,0 +1,25 @@
+.profile-header{
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1{
+        margin: 0;
+    }
+
+    .profile-img-container img {
+        border-radius: 50%;
+        height: 150px;
+        width: 150px;
+    }
+}
+
+.profile-content{
+    height: 600px;
+    text-align: center;
+    font-size: 2rem;
+    padding: 10px 0;
+}
