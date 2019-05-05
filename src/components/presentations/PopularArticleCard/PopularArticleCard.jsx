@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
 import './popular-article-card.scss';
 
-const ArticleCard = ({ title, author, date, likes }) => (
+const ArticleCard = ({ title, author, date, likes, num }) => (
   <Item.Group>
     <Item>
+      <Item.Header className="header-num" as="h1">
+        {num}
+      </Item.Header>
       <Item.Content>
         <Item.Header as="a">{title}</Item.Header>
         <Item.Extra>
@@ -13,7 +16,7 @@ const ArticleCard = ({ title, author, date, likes }) => (
         </Item.Extra>
         <Item.Extra>
           <p>
-            {date}
+            {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
             <i className="far fa-thumbs-up" />
             &nbsp;
@@ -26,6 +29,7 @@ const ArticleCard = ({ title, author, date, likes }) => (
 );
 
 ArticleCard.propTypes = {
+  num: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
