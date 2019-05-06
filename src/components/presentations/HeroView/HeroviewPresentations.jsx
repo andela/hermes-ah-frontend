@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
-import './heroView.scss';
+import './hero-view.scss';
 
 const HeroView = () => {
   return (

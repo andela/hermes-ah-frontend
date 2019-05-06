@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Grid } from 'semantic-ui-react';
-import HeroView from '../Hero-view/Heroview-presentations';
+import HeroView from '../HeroView/HeroviewPresentations';
 import ArticleCard from '../ArticleCard/Article';
 import PopularArticleCard from '../PopularArticleCard/PopularArticleCard';
 import './homepage.scss';

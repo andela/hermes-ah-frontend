@@ -1,0 +1,159 @@
+@import '../../../assets/stylesheets/index.scss'; 
+
+.title {
+  text-align: center;
+  align-items: center;
+  width: 80%;
+  height: 999px;
+  margin: 0 auto;
+  top: 50px;
+  background: rgba(6, 99, 212, 0.02);
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 40px;
+  
+  .top-image {
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556825503/typewriter.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 50vh;
+  }
+  
+  .top-content {
+    font-weight: bold;
+    font-size: 5vh;
+  }
+  
+  .top-content:last-child {
+    font-weight: normal;
+    font-size: 3vh;
+  }
+  
+  hr {
+    width: 55%;
+  }
+}
+
+.card-holder {
+  position: absolute;
+  top: 919px;
+  left: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 74px;
+  align-items: center;
+
+  .text-header {
+    height: 42px;
+    font-family: $font-stack;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    color: #535353;
+  }
+
+.card-holder div p:nth-child(2) {
+  color: #000000;
+  }
+  
+  .cards {
+    width: 395px;
+    height: 484px;
+    top: 1050px;
+  }
+  
+  #left {
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821938/dna-163466_960_720.jpg);
+  }
+  #middle {
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556822016/ilts-science-chemistry-test_119059_large.jpg);
+  }
+  
+  #right {
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821917/3d-rendering-human-brain-technology-background_34663-72.jpg);
+  }
+}
+
+.bottom-section {
+  border: 1px solid black;
+  width: 100%;
+  height: 658px;
+  background-color: #65aaff;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding-top: 195px;
+  margin-top: 300px;
+
+  .bottom-image {
+    width: 555px;
+    height: 339px;
+    background-image: url(https://res.cloudinary.com/dnch08bzc/image/upload/v1556821936/39444439254_9566a41625_b.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .text-container {
+    width: 555px;
+    height: 359px;
+  }
+
+  .text {
+    font-family: $font-stack;
+    font-size: 62px;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+
+@media screen and (max-width: 480px) {
+    .card-holder {
+        position: relative;
+        top: -65px;
+        left: 0;
+        display: grid;
+        height: 1550px;
+        grid-template-columns: 300px;
+        grid-template-rows: repeat(3, 1fr);
+        grid-gap: 30px;
+        align-items: center;
+      }
+
+      .cards {
+        width: 120%;
+        height: 400px;
+        top: 1026px;
+    }
+
+      .bottom-section {
+        background-color: #ffffff;
+        border: none;
+        height: 900px;
+        margin-top: -30px;
+      }
+
+      .bottom-image {
+        width: 500px;
+        height: 250px;
+      }
+
+      .text-container {
+        width: 500px;
+        height: 359px;
+      }
+
+      .text {
+        font-size: 42px;
+      }
+      
+      .text-header {
+        padding-left: 10px;
+    }
+      p:first-child {
+        padding-top: 30px;
+    }
+ 
+}

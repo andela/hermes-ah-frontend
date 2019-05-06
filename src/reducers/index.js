@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import example from './example.reducer';
 import articles from './article.reducers';
+import userProfile from './profile.reducers';
+import auth from './auth.reducer';
 
-const reducers = combineReducers({ example, articles });
+const reducers = combineReducers({ auth, userProfile, articles });
+
 export default reducers;

@@ -5,6 +5,7 @@
   border: none;
   box-shadow: none;
   justify-content: space-between;
+  margin: 0;
   img.logo {
     width: 184px !important;
   }
@@ -15,7 +16,7 @@
   .menu.logo-cont {
     width: 20%;
   }
-
+ 
   .navbar-item {
       text-transform: uppercase;
       font-size: 18px;
@@ -38,8 +39,8 @@
       background-color: #0E71EB !important;
       transition: 0.5s;
     }
-    
+ 
     .active.item:hover {
       background-color: #2185d0 !important;
     }
-}
+ }

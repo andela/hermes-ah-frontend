@@ -3,27 +3,26 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import HomePage from '../Homepage';
-import HeroView from '../../HeroView/HeroviewPresentations';
+import Login from '../Login';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
-const HomePageComponent = (
+const LoginComponent = (
   <Provider store={store}>
-    <HomePage />
+    <Login auth={{ isLoading: false }} />
   </Provider>
 );
 
-describe('HomePage component', () => {
+describe('Login component', () => {
   it('should match snapshot', () => {
-    const wrap = <HomePage />;
+    const wrap = <Login />;
     expect(wrap).toMatchSnapshot();
   });
 
-  it('should render without crashing', () => {
-    const wrapper = shallow(HomePageComponent);
-    expect(wrapper.find(<HeroView />));
+  it('always renders a div', () => {
+    const wrapper = shallow(LoginComponent);
+    expect(wrapper.find('div'));
   });
 });
