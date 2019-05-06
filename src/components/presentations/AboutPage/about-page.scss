@@ -1,3 +1,5 @@
+@import '../../../assets/stylesheets/index.scss'; 
+
 .title {
   text-align: center;
   align-items: center;
@@ -45,7 +47,7 @@ hr {
 
 .text-header {
   height: 42px;
-  font-family: Roboto;
+  font-family: $font-stack;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -100,7 +102,7 @@ color: #000000;
 }
 
 .text {
-  font-family: 'Roboto', sans-serif;
+  font-family: $font-stack;
   font-size: 62px;
   font-weight: bold;
   text-align: center;
