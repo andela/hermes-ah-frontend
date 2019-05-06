@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -23,36 +25,16 @@ class App extends Component {
   }
 
   render() {
-    const navLinks = [
-      {
-        link: '/about',
-        text: 'About',
-      },
-      {
-        link: '/categories',
-        text: 'Categories',
-      },
-      {
-        link: '/login',
-        text: 'Login',
-      },
-      {
-        link: '/signup',
-        text: 'Signup',
-        className: 'active',
-      },
-    ];
     return (
       <Provider store={store}>
         <Router>
           <React.Fragment>
-            <NavBar navLinks={navLinks} />
             <Switch>
               <Route path="/profile" component={Profilepage} />
               <Route path="/login" component={Login} />
-              <Route path="/not-found" component={Notfound} />
               <Route path="/" exact component={Homepage} />
               <Route path="/about" component={AboutPage} />
+              <Route path="/not-found" component={Notfound} />
               <Redirect to="/not-found" />
             </Switch>
             <Footer />

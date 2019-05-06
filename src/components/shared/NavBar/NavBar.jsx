@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/images/logo_transparent.png';
 import './navbar.scss';
 
 class NavBar extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     const { navLinks } = this.props;
@@ -15,7 +17,12 @@ class NavBar extends Component {
         <Menu.Menu className="logo-cont">
           <Menu.Item>
             <Link to="/">
-              <img className="logo" src={logo} alt="logo" size="small" />
+              <img
+                className="logo"
+                src="https://res.cloudinary.com/mchardex/image/upload/v1556818629/logo_transparent.png"
+                alt="logo"
+                size="small"
+              />
             </Link>
           </Menu.Item>
         </Menu.Menu>
