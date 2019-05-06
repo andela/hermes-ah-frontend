@@ -1,13 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { create } from 'react-test-renderer';
 import HomePage from '../Homepage';
 import HeroView from '../../HeroView/HeroviewPresentations';
 
 describe('HomePage component', () => {
   it('should match snapshot', () => {
-    const wrapper = create(<HomePage />);
-    expect(wrapper.toJSON).toMatchSnapshot();
+    const wrapper = <HomePage />;
+    expect(wrapper).toMatchSnapshot();
   });
 
   it('should render without crashing', () => {
