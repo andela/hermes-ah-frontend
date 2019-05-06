@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
-// import { Form } from 'semantic-ui-react';
 import thunk from 'redux-thunk';
 import Login from '../Login';
 
@@ -24,12 +23,6 @@ describe('Login component', () => {
 
   it('always renders a div', () => {
     const wrapper = shallow(LoginComponent);
-    // expect(wrapper.find(<Form />));
     expect(wrapper.find('div'));
-    // expect(wrapper.length).toBeGreaterThan(0);
   });
-
-  // it('always renders a form', () => {
-  //   expect(wrapper.find(<Form />));
-  // });
 });
