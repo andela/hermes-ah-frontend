@@ -1,10 +1,8 @@
 import { Form, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import React from 'react';
-import NavBar from '../../shared/NavBar/NavBar';
 import FormComponent from '../../shared/Form/Form';
-import navLinks from '../../../utils/headers';
 import { login } from '../../../actions/auth.actions';
 import Loader from '../../shared/Loader/Loader';
 
@@ -24,12 +22,12 @@ class Login extends FormComponent {
   };
 
   render() {
-    const { auth } = this.props;
+    const { auth, user } = this.props;
+    if (user) return <Redirect to="/" />;
     return (
       <div>
         {auth.isLoading && <Loader />}
         <React.Fragment>
-          <NavBar navLinks={navLinks.auth} />
           <div className="form-wrap">
             <div className="form-cont">
               <div className="wrap-cont-login-signup">

@@ -1,5 +1,5 @@
 const navLinks = {
-  homepage: [
+  anonymous: [
     {
       link: '/about',
       text: 'About',

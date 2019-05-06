@@ -12,6 +12,7 @@
     "check:lint-prettier": "npm run eslint:check && npm run prettier:check",
     "pretest": "npm run check:lint-prettier",
     "test": "jest --coverage",
+    "update-snapshot": "jest --coverage -u",
     "test:watch": "jest --watch",
     "nightwatch": "nightwatch -e chrome"
   },
