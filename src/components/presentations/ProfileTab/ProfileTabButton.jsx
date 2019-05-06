@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 const ProfileButton = ({ value, number, className, ...rest }) => {
   return (
-    <button type="button" className={className} {...rest}>
-      <span className="text">{value}</span>
+    <div className={className}>
+      <button type="button" {...rest}>
+        <span className="text">{value}</span>
+      </button>
       {number ? <span className="num-icon">{number}</span> : null}
-    </button>
+    </div>
   );
 };
 
