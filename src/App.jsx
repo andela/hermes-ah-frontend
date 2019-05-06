@@ -71,6 +71,11 @@ class App extends Component {
               <Route path="/logout/" exact component={Logout} />
               <Route path="/" exact component={HomePageContainer} />
               <Route path="*" component={Notfound} />
+              <Route
+                path="/"
+                exact
+                render={props => <HomePageContainer {...props} user={user} />}
+              />
             </Switch>
             <Footer />
           </React.Fragment>

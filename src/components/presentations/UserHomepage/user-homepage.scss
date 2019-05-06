@@ -1,0 +1,83 @@
+.ui.items.section-2 {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .c-sectn {
+    width: 30%;
+  }
+  .b-cont-wrap {
+    width: 32%;
+  }
+
+  .a-cont-wrap {
+    width: 30%;
+  }
+
+  .c-sectn {
+    display: flex;
+    flex-direction: column;
+  }
+  .a-sectn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 40px;
+    .a-image {
+      width: 100%;
+      img {
+        width: 100%;
+        height: 223px !important;
+      }
+    }
+  }
+  .author {
+    color: #000;
+    font-weight: 600;
+  }
+  .date-start {
+    display: flex;
+    .stats {
+      margin-left: 15px;
+    }
+  }
+  .description, .date, .stats {
+    color: #555454;
+  }
+  .c-image {
+    width: 100%;
+    img {
+      height: 210px !important;
+    }
+  }
+  .b-image {
+    float: right;
+    img {
+      width: 100%;
+      height: 130px !important;
+    }
+  }
+  .b-sectn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+.art-title {
+  font-size: 20px;
+  margin: 10px 0;
+}
+.content.b-content {
+  width: 100%;
+}
+.b-art-title {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+p.desc-txt {
+  margin-bottom: 10px;
+}
