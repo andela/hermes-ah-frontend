@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
 import './hero-view.scss';
-import './heroView.scss';
+// import './heroView.scss';
 import NavBar from '../../shared/NavBar/NavBar';
 import navLinks from '../../../utils/headers';
 

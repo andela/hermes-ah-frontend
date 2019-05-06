@@ -14,9 +14,11 @@ import Homepage from './components/presentations/Homepage/Homepage';
 import Login from './components/presentations/Login/Login';
 import Notfound from './components/presentations/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
-import NavBar from './components/shared/NavBar/NavBar';
+// import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
+import ForgotPassword from './components/presentations/PasswordReset/ForgotPassword';
+import ResetPassword from './components/presentations/PasswordReset/ResetPassword';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +36,9 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/" exact component={Homepage} />
               <Route path="/about" component={AboutPage} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/reset-password" component={ResetPassword} />
               <Route path="/not-found" component={Notfound} />
               <Redirect to="/not-found" />
             </Switch>
