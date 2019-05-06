@@ -1,0 +1,25 @@
+import React from 'react';
+import { shallow } from 'enzyme';
+import ProfileTab from '../ProfileTab';
+import ProfileTabButton from '../ProfileTabButton';
+
+describe('ProfileTab and ProfileButton component', () => {
+  it('should render profile tab component', () => {
+    const wrapper = shallow(
+      <ProfileTab changeTab={() => 'tabCahnged'} currentTab="profile-tab" />
+    );
+    expect(wrapper.find('div'));
+  });
+
+  it('should render profile tab button component', () => {
+    const wrapper = shallow(
+      <ProfileTabButton
+        value="profile"
+        onClick={() => 'clicked'}
+        className="profile-tab"
+        number="10"
+      />
+    );
+    expect(wrapper.find('div'));
+  });
+});
