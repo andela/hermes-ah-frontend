@@ -1,3 +1,5 @@
+@import '../../../assets/stylesheets/index.scss';
+
 .form-wrap {
   height: 86vh;
 }
@@ -15,7 +17,7 @@
     font-weight: 400;
   }
   button.ui.button.login {
-    background: #0E71EB;
+    background: $primary-color;
     color: #fff;
     border-radius: 3px 0 0 0;
     font-size: 20px;
@@ -27,7 +29,7 @@
   }
   button.ui.button.signup:hover {
     background: #FFF;
-    color: #0E71EB;
+    color: $primary-color;
     transition: 0.5s;
   }
 }
@@ -66,14 +68,14 @@ form.ui.unstackable.form {
   }
   button.ui.button.submit {
     width: 100%;
-    background: #0E71EB;
+    background: $primary-color;
     color: #fff;
     height: 55px;
     box-shadow: 0 4px 4px #00000040;
     font-size: 20px;
   }
   .forgot-password {
-    color: #0e71eb;
+    color: $primary-color;
     font-weight: 600;
     margin-bottom: 2px;
     text-decoration: none;
@@ -82,7 +84,7 @@ form.ui.unstackable.form {
     font-size: 15px;
   }
   input:focus {
-    border-color: #0e71eb;
+    border-color: $primary-color;
   }
 }
 .hr-bar {
