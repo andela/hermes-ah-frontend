@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import HomePage from '../Homepage';
-import HeroView from '../../../presentations/Hero-view/Heroview-presentations';
+import HeroView from '../../HeroView/HeroviewPresentations';
 
 describe('HomePage component', () => {
   it('should match snapshot', () => {

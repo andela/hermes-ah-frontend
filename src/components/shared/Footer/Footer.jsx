@@ -17,7 +17,7 @@ const Footer = () => (
           <Link to="/authors">Authors</Link>
         </li>
         <li>
-          <Link to="/policy">Platform policy</Link>
+          <Link to="/policy">Policy</Link>
         </li>
         <li>
           <Link to="/privacy">Privacy</Link>

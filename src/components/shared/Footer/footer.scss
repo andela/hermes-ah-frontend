@@ -1,3 +1,5 @@
+@import '../../../assets/stylesheets/index.scss'; 
+
 footer {
     border-top: solid 1px #D7D7D7;
     height: 100px;
@@ -18,12 +20,11 @@ footer {
                 margin: 5px;
                 display: inline;
                 justify-content: center;
-                font-family: Roboto;
               }
             
               li a {
                 font-size: 16px;
-                color: #959595;
+                color: $secondary-color;
                 display: inline;
                 text-align: center;
                 padding: 14px 16px;
@@ -31,7 +32,7 @@ footer {
               }
 
               li a:hover {
-                color: #0E71EB;
+                color: $primary-color;
               }
           }
     }    
@@ -39,11 +40,10 @@ footer {
         width: 80%;
         margin: 20px auto;
         text-align: center;
-        font-family: Roboto;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
         line-height: 23px;
-        color: #959595
+        color: $secondary-color;
       }
 }

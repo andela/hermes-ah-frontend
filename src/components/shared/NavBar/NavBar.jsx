@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import navLinks from '../../../utils/headers';
 import './navbar.scss';
 
 class NavBar extends Component {
@@ -11,7 +12,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { navLinks } = this.props;
+    const { user } = this.props;
     return (
       <Menu>
         <Menu.Menu className="logo-cont">
@@ -27,21 +28,34 @@ class NavBar extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu className="nav-cont">
-          {navLinks.map(child => (
-            <Link key={child.text} to={child.link}>
-              <Menu.Item className={`navbar-item ${child.className}`}>
-                {child.text}
-              </Menu.Item>
-            </Link>
-          ))}
+          {user &&
+            navLinks.auth.map(child => (
+              <Link key={child.text} to={child.link}>
+                <Menu.Item className={`navbar-item ${child.className}`}>
+                  {child.text}
+                </Menu.Item>
+              </Link>
+            ))}
+          {!user &&
+            navLinks.anonymous.map(child => (
+              <Link key={child.text} to={child.link}>
+                <Menu.Item className={`navbar-item ${child.className}`}>
+                  {child.text}
+                </Menu.Item>
+              </Link>
+            ))}
         </Menu.Menu>
       </Menu>
     );
   }
 }
 
+NavBar.defaultProps = {
+  user: (propTypes.defaultProps = null),
+};
+
 NavBar.propTypes = {
-  navLinks: propTypes.arrayOf(propTypes.shape).isRequired,
+  user: propTypes.shape(Object),
 };
 
 export default NavBar;
