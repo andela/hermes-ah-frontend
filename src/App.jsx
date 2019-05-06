@@ -13,6 +13,7 @@ import Login from './components/presentations/Login/Login';
 import Notfound from './components/presentations/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
+import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
 
 class App extends Component {
@@ -51,6 +52,7 @@ class App extends Component {
               <Route path="/login" component={Login} />
               <Route path="/not-found" component={Notfound} />
               <Route path="/" exact component={Homepage} />
+              <Route path="/about" component={AboutPage} />
               <Redirect to="/not-found" />
             </Switch>
             <Footer />
