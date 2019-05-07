@@ -24,7 +24,7 @@ class Profilepage extends Component {
   componentDidUpdate = prevProps => {
     const { userProfile: userProps } = this.props;
     const { userProfile } = userProps;
-    if (prevProps !== this.props) {
+    if (prevProps.userProfile !== userProps) {
       const { profile } = userProfile;
       this.setState({
         firstname: profile.first_name,
@@ -60,7 +60,7 @@ class Profilepage extends Component {
                   type="file"
                   id="file-upload"
                   name="file"
-                  onChange={this.handleChange.bind(this)}
+                  onChange={this.handleChange}
                 />
               </label>
             </form>

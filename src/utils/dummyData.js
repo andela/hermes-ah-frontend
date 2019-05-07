@@ -50,6 +50,7 @@ const user = {
 };
 
 const loginUser = async () => {
+  localStorage.clear();
   const { data } = await http.post('/auth/login', user);
   localStorage.setItem('token', data.user.token);
 };
