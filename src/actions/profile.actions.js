@@ -2,6 +2,7 @@ import actions from '../constants/profile.constants';
 import http from '../utils/httpService';
 import dummyData from '../utils/dummyData';
 import { decodeToken } from '../utils/authService';
+import contentLoading from './loading.action';
 
 const { loginUser } = dummyData;
 
@@ -26,6 +27,7 @@ export const getProfileFailure = () => {
 
 const getProfile = () => {
   return async dispatch => {
+    dispatch(contentLoading());
     try {
       await loginUser();
       const user = decodeToken();

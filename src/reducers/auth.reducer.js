@@ -1,15 +1,9 @@
 import actiontype from '../constants/auth.constants';
 
-const initialState = {
-  isLoading: false,
-};
+const initialState = {};
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case actiontype.CONTENT_LOADING:
-      return {
-        ...state,
-      };
     case actiontype.LOGIN_FAILURE:
       return {
         ...state,
