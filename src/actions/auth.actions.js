@@ -3,15 +3,16 @@ import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import { setToken } from '../utils/authService';
 import actionTypes from '../constants/auth.constants';
+import loadingConstant from '../constants/loading.constants';
 
 const url = '/auth';
 
 export const contentLoading = () => ({
-  type: actionTypes.CONTENT_LOADING,
+  type: loadingConstant.CONTENT_LOADING,
 });
 
 export const loginError = () => ({
-  type: actionTypes.LOGIN_ERROR,
+  type: actionTypes.LOGIN_FAILURE,
 });
 
 const redirect = redirectUrl => {

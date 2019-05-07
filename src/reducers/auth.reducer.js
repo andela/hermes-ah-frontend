@@ -9,12 +9,10 @@ const auth = (state = initialState, action) => {
     case actiontype.CONTENT_LOADING:
       return {
         ...state,
-        isLoading: true,
       };
-    case actiontype.LOGIN_ERROR:
+    case actiontype.LOGIN_FAILURE:
       return {
         ...state,
-        isLoading: false,
       };
     default:
       return state;
