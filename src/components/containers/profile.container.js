@@ -4,10 +4,7 @@ import profileAction from '../../actions/profile.actions';
 
 const { getProfile } = profileAction;
 
-const mapStateToProps = ({ userProfile, isLoadingReducer }) => ({
-  userProfile,
-  isLoadingReducer,
-});
+const mapStateToProps = ({ userProfile }) => ({ userProfile });
 
 const ProfilepageContainer = connect(
   mapStateToProps,

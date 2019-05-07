@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
-import Loader from '../../shared/Loader/Loader';
 import './profilepage.scss';
 
 class Profilepage extends Component {
@@ -49,11 +48,8 @@ class Profilepage extends Component {
 
   render() {
     const { currentTab, firstname, lastname, profilePic } = this.state;
-    const { isLoadingReducer } = this.props;
-    const { loader } = isLoadingReducer;
     return (
       <React.Fragment>
-        {loader && <Loader />}
         <div className="profile-header">
           <div className="profile-img-container">
             <img src={profilePic} alt="avatar" />
@@ -101,7 +97,6 @@ class Profilepage extends Component {
 Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
-  isLoadingReducer: PropTypes.shape().isRequired,
 };
 
 export default Profilepage;
