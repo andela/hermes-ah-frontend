@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast, Zoom } from 'react-toastify';
 import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
@@ -18,17 +18,28 @@ import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
 import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/presentations/PasswordReset/ResetPassword';
+import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { user: null };
   }
 
   componentDidMount() {
     const user = decodeToken();
     this.setState({ user });
+    if (user) {
+      if (!user.isActivated) {
+        toast.info('Please confirm your email address', {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
   }
 
   render() {
@@ -37,22 +48,23 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <React.Fragment>
-            <ToastContainer />
+            <ToastContainer autoClose={false} />
             <NavBar user={user} />
             <Switch>
               <Route path="/profile" component={Profilepage} />
               <Route path="/about" component={AboutPage} />
               <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/about" component={AboutPage} />
               <Route path="/reset-password" component={ResetPassword} />
               <Route path="/not-found" component={Notfound} />
               <Route
                 path="/login"
                 render={props => <LoginContainer {...props} user={user} />}
               />
-              <Route path="/not-found" component={Notfound} />
+              <Route
+                path="/signup"
+                render={props => <SignupContainer {...props} user={user} />}
+              />
               <Route path="/" exact component={HomePageContainer} />
-              <Route path="/about" component={AboutPage} />
               <Redirect to="/not-found" />
             </Switch>
             <Footer />
