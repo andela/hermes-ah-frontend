@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
+import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import './profilepage.scss';
 
 class Profilepage extends Component {
@@ -10,6 +11,8 @@ class Profilepage extends Component {
       currentTab: 'following-section',
       firstname: '',
       lastname: '',
+      profilePic:
+        'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
     };
   }
 
@@ -26,6 +29,7 @@ class Profilepage extends Component {
       this.setState({
         firstname: profile.first_name,
         lastname: profile.last_name,
+        profilePic: profile.image_url,
       });
     }
   };
@@ -34,16 +38,32 @@ class Profilepage extends Component {
     this.setState({ currentTab: tab });
   };
 
+  handleChange = async () => {
+    const form = new FormData();
+    const imageData = document.querySelector('input[type="file"]').files[0];
+    form.append('file', imageData);
+    const res = await uploadToCloudnary(form);
+    this.setState({ profilePic: res.url });
+  };
+
   render() {
-    const { currentTab, firstname, lastname } = this.state;
+    const { currentTab, firstname, lastname, profilePic } = this.state;
     return (
       <React.Fragment>
         <div className="profile-header">
           <div className="profile-img-container">
-            <img
-              src="https://res.cloudinary.com/dcn7hu7wo/image/upload/v1556979121/IMG_1763.jpg"
-              alt="avatar"
-            />
+            <img src={profilePic} alt="avatar" />
+            <form className="custom-file-upload" encType="multipart/form-data">
+              <label htmlFor="file-upload">
+                <i className="fa fa-upload" />
+                <input
+                  type="file"
+                  id="file-upload"
+                  name="file"
+                  onChange={this.handleChange.bind(this)}
+                />
+              </label>
+            </form>
           </div>
           <h1>
             {firstname}
