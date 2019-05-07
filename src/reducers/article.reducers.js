@@ -1,4 +1,4 @@
-import actionType from '../constants/action-types.constants';
+import actionType from '../constants/article.constants';
 
 const initialState = {
   isLoading: false,

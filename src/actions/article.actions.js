@@ -1,7 +1,7 @@
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import contentLoading from './loading.actions';
-import actionTypes from '../constants/action-types.constants';
+import actionTypes from '../constants/article.constants';
 
 const url = '/articles';
 

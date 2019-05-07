@@ -1,4 +1,4 @@
-import actionTypes from '../constants/action-types.constants';
+import actionTypes from '../constants/article.constants';
 
 const contentLoading = () => ({
   type: actionTypes.CONTENT_LOADING,

@@ -9,7 +9,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import store from './store/store';
-import Homepage from './components/presentations/Homepage/Homepage';
+import HomePageContainer from './components/containers/homepage.container';
 import LoginContainer from './components/containers/login.container';
 import Notfound from './components/presentations/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
@@ -44,7 +44,7 @@ class App extends Component {
                 render={props => <LoginContainer {...props} user={user} />}
               />
               <Route path="/not-found" component={Notfound} />
-              <Route path="/" exact component={Homepage} />
+              <Route path="/" exact component={HomePageContainer} />
               <Route path="/about" component={AboutPage} />
               <Redirect to="/not-found" />
             </Switch>
