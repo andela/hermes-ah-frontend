@@ -22,11 +22,12 @@ class Login extends FormComponent {
   };
 
   render() {
-    const { auth, user } = this.props;
+    const { user, isLoadingReducer } = this.props;
+    const { loader } = isLoadingReducer;
     if (user) return <Redirect to="/" />;
     return (
       <div>
-        {auth.isLoading && <Loader />}
+        {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">
