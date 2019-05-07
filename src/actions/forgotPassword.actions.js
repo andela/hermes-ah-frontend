@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify';
+import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import actionTypes from '../constants/forgotPassword.constants';
 
@@ -19,11 +21,16 @@ export const forgotPassword = userObj => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
+      if (!navigator.onLine) {
+        return toast.error('Please check your internet connection');
+      }
       const { data } = await http.post(`${url}/reset`, userObj);
       const messageDispatch = data.data[0].message;
-      return dispatch(forgotPasswordSuccess(messageDispatch));
+      return toast.success(messageDispatch);
     } catch (ex) {
-      return ex;
+      return exceptionHandler(ex);
+    } finally {
+      dispatch(forgotPasswordFailure());
     }
   };
 };

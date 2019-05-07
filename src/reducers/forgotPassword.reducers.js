@@ -4,7 +4,7 @@ const initialState = {
   isLoading: false,
 };
 
-const forgotPassword = (state = initialState, action) => {
+const passwordReset = (state = initialState, action) => {
   switch (action.type) {
     case actiontype.CONTENT_LOADING:
       return {
@@ -19,11 +19,11 @@ const forgotPassword = (state = initialState, action) => {
     case actiontype.FORGOT_PASSWORD_SUCCESS:
       return {
         ...state,
-        isLoading: true,
+        isLoading: false,
       };
     default:
       return state;
   }
 };
 
-export default forgotPassword;
+export default passwordReset;

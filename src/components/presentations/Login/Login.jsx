@@ -44,7 +44,7 @@ class Login extends FormComponent {
               <Form unstackable onSubmit={this.handelClick}>
                 {this.renderInput('email', 'Email', 'email')}
                 {this.renderInput('password', 'Password', 'password')}
-                <Link to="/password-rest" className="forgot-password">
+                <Link to="/forgot-password" className="forgot-password">
                   Forgot password?
                 </Link>
                 <Button className="submit" type="submit">

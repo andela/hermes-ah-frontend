@@ -32,20 +32,6 @@ const navLinks = {
       text: 'Categories',
     },
   ],
-  reset: [
-    {
-      link: '/about',
-      text: 'About',
-    },
-    {
-      link: '/categories',
-      text: 'Categories',
-    },
-    {
-      link: '/login',
-      text: 'Login',
-    },
-  ],
 };
 
 export default navLinks;

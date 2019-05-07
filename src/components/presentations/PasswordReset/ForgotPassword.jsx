@@ -1,13 +1,16 @@
 import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import React from 'react';
-import NavBar from '../../shared/NavBar/NavBar';
 import FormComponent from '../../shared/Form/Form';
-import navLinks from '../../../utils/headers';
 import Loader from '../../shared/Loader/Loader';
 import { forgotPassword } from '../../../actions/forgotPassword.actions';
 import './forgotpassword.scss';
 
+/**
+ * @description ForgotPasswordPage view method
+ * @returns {HTMLDivElement} profile
+ * @param {object} e event object
+ */
 class ForgotPassword extends FormComponent {
   constructor(props) {
     super(props);
@@ -16,6 +19,11 @@ class ForgotPassword extends FormComponent {
     };
   }
 
+  /**
+   * @param {object} str event object
+   * @returns {object} state
+   */
+
   handelClick = async e => {
     e.preventDefault();
     const { data } = this.state;
@@ -23,13 +31,15 @@ class ForgotPassword extends FormComponent {
     await userForgotPassword(data);
   };
 
+  /**
+   * @returns {HTMLElement} div
+   */
   render() {
-    const { auth } = this.props;
+    const { passwordReset } = this.props;
     return (
       <div>
-        {auth && <Loader />}
+        {passwordReset.isLoading && <Loader />}
         <React.Fragment>
-          <NavBar navLinks={navLinks.reset} />
           <div className="form-wrap">
             <div className="form-cont">
               <Form unstackable onSubmit={this.handelClick}>
@@ -46,7 +56,7 @@ class ForgotPassword extends FormComponent {
     );
   }
 }
-const mapStateToProps = auth => auth;
+const mapStateToProps = passwordReset => passwordReset;
 
 export default connect(
   mapStateToProps,

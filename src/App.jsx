@@ -16,7 +16,7 @@ import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
-import ForgotPassword from './components/presentations/PasswordReset/ForgotPassword';
+import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/presentations/PasswordReset/ResetPassword';
 import { decodeToken } from './utils/authService';
 
