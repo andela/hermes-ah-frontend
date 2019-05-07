@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000/api/v1';
+axios.defaults.baseURL =
+  'https://hermes-ah-backend-staging.herokuapp.com/api/v1';
 
 const setDefaultToken = token => {
   axios.defaults.headers.common.token = token;
