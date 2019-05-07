@@ -34,13 +34,32 @@ h3, p {
             border: solid 1px #20A100;
         }
 
+        .success:hover {
+            background: #20A100;
+            color: #fff;
+            border: solid 1px #20A100;
+        }
+
         .failure {
             background: #fff;
             color: #D90000;
             border: solid 1px #D90000;
         }
 
+        .failure:hover {
+            background: #D90000;
+            color: #fff;
+            border: solid 1px #D90000;
+        }
+
         .unpublish {
+            background: #857E7E;
+            color: #fff;
+            text-transform: capitalize;
+            border: solid 1px #857E7E;
+        }
+
+        .unpublish:hover {
             background: #fff;
             color: #857E7E;
             text-transform: capitalize;
@@ -50,6 +69,13 @@ h3, p {
         .publish {
             background: #fff;
             color: $primary-color;
+            text-transform: capitalize;
+            border: solid 1px $primary-color;
+        }
+
+        .publish:hover {
+            background: $primary-color;
+            color: #fff;
             text-transform: capitalize;
             border: solid 1px $primary-color;
         }

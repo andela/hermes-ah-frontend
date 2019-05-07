@@ -1,7 +1,7 @@
 import http from '../utils/httpService';
 import exceptionHandler from '../utils/exceptionHandler';
 
-const url = '/articles';
+const url = '/myArticles';
 
 const fetchArticles = () => {
   return async dispatch => {
