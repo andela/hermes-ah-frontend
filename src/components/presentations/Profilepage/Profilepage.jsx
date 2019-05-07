@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import './profilepage.scss';
+import Articles from '../../containers/article-update.container';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -60,7 +61,9 @@ class Profilepage extends Component {
             <div>This is the follower section</div>
           ) : null}
           {currentTab === 'article-section' ? (
-            <div>This is the article section</div>
+            <div>
+              <Articles />
+            </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
             <div>This is the bookmark section</div>

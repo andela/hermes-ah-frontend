@@ -1,0 +1,58 @@
+@import '../../../assets/stylesheets/index.scss';
+h3, p {
+    font-family: $font-stack;
+}
+.profile-article-list {
+    text-align: left;
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px 20px;
+    overflow: auto;
+    border: solid 1px $article-border-color;
+    border-radius: 4px;
+    box-shadow: 0px 3px #888888;
+    
+    .article-list {
+        width: 60%;
+        float: left;
+        h3 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 16px;
+        }
+    }
+    .update-buttons {
+        width: 35%;
+        margin: 10px auto;
+        float: right;
+        text-align: right;
+
+        .success {
+            background: #fff;
+            color: #20A100;
+            border: solid 1px #20A100;
+        }
+
+        .failure {
+            background: #fff;
+            color: #D90000;
+            border: solid 1px #D90000;
+        }
+
+        .unpublish {
+            background: #fff;
+            color: #857E7E;
+            text-transform: capitalize;
+            border: solid 1px #857E7E;
+        }
+
+        .publish {
+            background: #fff;
+            color: $primary-color;
+            text-transform: capitalize;
+            border: solid 1px $primary-color;
+        }
+
+    } 
+}
