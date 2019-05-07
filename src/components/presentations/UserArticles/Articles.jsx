@@ -22,15 +22,15 @@ const ArticleList = ({ articlesUpdate }) => {
   return (
     <div>
       {articles.map(article => {
-        const myDate = new Date(article.updatedAt);
-        const myMonth = monthNames[myDate.getMonth()];
-        const myDay = myDate.getDate();
-        const myYear = myDate.getFullYear();
+        const updateDate = new Date(article.updatedAt);
+        const updateMonth = monthNames[updateDate.getMonth()];
+        const updateDay = updateDate.getDate();
+        const updateYear = updateDate.getFullYear();
         return (
           <Article
             key={article.id}
             title={article.title}
-            date={`Updated ${myDay} ${myMonth} ${myYear}`}
+            date={`Updated ${updateDay} ${updateMonth} ${updateYear}`}
             isDraft={article.is_draft}
           />
         );
