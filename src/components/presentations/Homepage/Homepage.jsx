@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Grid } from 'semantic-ui-react';
-import HeroView from '../Hero-view/Heroview-presentations';
+import HeroView from '../HeroView/HeroviewPresentations';
 import ArticleCard from '../ArticleCard/Article';
 import PopularArticleCard from '../PopularArticleCard/PopularArticleCard';
 import dummyData from '../../../utils/dummyData';

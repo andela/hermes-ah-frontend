@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import {
   BrowserRouter as Router,
@@ -9,11 +10,13 @@ import {
 } from 'react-router-dom';
 import store from './store/store';
 import Homepage from './components/presentations/Homepage/Homepage';
-import Login from './components/presentations/Login/Login';
+import LoginContainer from './components/containers/login.container';
 import Notfound from './components/presentations/Notfound/Notfound';
 import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
+import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
+import { decodeToken } from './utils/authService';
 
 class App extends Component {
   constructor(props) {
@@ -21,36 +24,28 @@ class App extends Component {
     this.state = {};
   }
 
+  componentDidMount() {
+    const user = decodeToken();
+    this.setState({ user });
+  }
+
   render() {
-    const navLinks = [
-      {
-        link: '/about',
-        text: 'About',
-      },
-      {
-        link: '/categories',
-        text: 'Categories',
-      },
-      {
-        link: '/login',
-        text: 'Login',
-      },
-      {
-        link: '/signup',
-        text: 'Signup',
-        className: 'active',
-      },
-    ];
+    const { user } = this.state;
     return (
       <Provider store={store}>
         <Router>
           <React.Fragment>
-            <NavBar navLinks={navLinks} />
+            <ToastContainer />
+            <NavBar user={user} />
             <Switch>
               <Route path="/profile" component={Profilepage} />
-              <Route path="/login" component={Login} />
+              <Route
+                path="/login"
+                render={props => <LoginContainer {...props} user={user} />}
+              />
               <Route path="/not-found" component={Notfound} />
               <Route path="/" exact component={Homepage} />
+              <Route path="/about" component={AboutPage} />
               <Redirect to="/not-found" />
             </Switch>
             <Footer />
