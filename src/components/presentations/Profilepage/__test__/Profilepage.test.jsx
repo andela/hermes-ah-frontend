@@ -14,13 +14,22 @@ const userProfile = {
   },
 };
 
+const articleObj = {
+  articles: [],
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
 
 const ProfilepageComponent = (
   <Provider store={store}>
-    <Profilpage getProfile={() => 'profile'} userProfile={{ profile: 'me' }} />
+    <Profilpage
+      getProfile={() => 'profile'}
+      userProfile={{ profile: 'me' }}
+      fetchArticles={() => 'articles'}
+      articlesUpdate={articleObj}
+    />
   </Provider>
 );
 
@@ -35,6 +44,8 @@ describe('ProfilePage component', () => {
       <Profilpage
         getProfile={() => 'profile'}
         userProfile={{ profile: 'dummy profile' }}
+        articlesUpdate={articleObj}
+        fetchArticles={() => 'articles'}
       />
     );
 
