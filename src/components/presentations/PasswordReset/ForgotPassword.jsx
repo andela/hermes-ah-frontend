@@ -1,9 +1,7 @@
 import { Form, Button } from 'semantic-ui-react';
-import { connect } from 'react-redux';
 import React from 'react';
 import FormComponent from '../../shared/Form/Form';
 import Loader from '../../shared/Loader/Loader';
-import { forgotPassword } from '../../../actions/forgotPassword.actions';
 import './forgotpassword.scss';
 
 /**
@@ -56,9 +54,4 @@ class ForgotPassword extends FormComponent {
     );
   }
 }
-const mapStateToProps = passwordReset => passwordReset;
-
-export default connect(
-  mapStateToProps,
-  { forgotPassword }
-)(ForgotPassword);
+export default ForgotPassword;
