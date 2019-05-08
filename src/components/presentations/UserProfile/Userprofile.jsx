@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Grid, Button, Checkbox } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Headercard from '../HeaderCard/Headercard';
-import Profilecard from './Profilecard';
-import Reportcard from './Reportedcard';
-import SuggestedArticleCard from './Suggestedarticlecard';
+import Profilecard from './ProfileCard';
+import Reportcard from './ReportedCard';
+import SuggestedArticleCard from './SuggestedArticleCard';
 import dummyData from '../../../utils/dummyData';
 
 const { profileReport, suggestedArticle } = dummyData;

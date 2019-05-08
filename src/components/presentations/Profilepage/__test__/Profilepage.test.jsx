@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Profilpage from '../Profilepage';
+import Imagepic from '../Imagepic';
 
 const userProfile = {
   userProfile: {
@@ -31,6 +32,13 @@ const ProfilepageComponent = (
 describe('ProfilePage component', () => {
   it('should render profile page', () => {
     const wrapper = shallow(ProfilepageComponent);
+    expect(wrapper.find('div'));
+  });
+
+  it('should render image component', () => {
+    const wrapper = shallow(
+      <Imagepic profilePic="" handleChange={() => 'changed'} />
+    );
     expect(wrapper.find('div'));
   });
 

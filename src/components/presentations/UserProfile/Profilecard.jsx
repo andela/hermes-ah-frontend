@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './userprofile.scss';
 
-const Profilecard = ({ profile }) => {
+const ProfileCard = ({ profile }) => {
   return (
     <div className="profile-card">
       {profile ? (
@@ -45,12 +45,12 @@ const Profilecard = ({ profile }) => {
   );
 };
 
-Profilecard.defaultProps = {
+ProfileCard.defaultProps = {
   profile: undefined,
 };
 
-Profilecard.propTypes = {
+ProfileCard.propTypes = {
   profile: PropTypes.shape(),
 };
 
-export default Profilecard;
+export default ProfileCard;

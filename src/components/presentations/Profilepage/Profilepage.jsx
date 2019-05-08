@@ -4,6 +4,7 @@ import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import Userprofile from '../../containers/userprofile.container';
 import Loader from '../../shared/Loader/Loader';
+import Imagepic from './ImagePic';
 import './profilepage.scss';
 
 class Profilepage extends Component {
@@ -42,9 +43,9 @@ class Profilepage extends Component {
     this.setState({ currentTab: tab });
   };
 
-  handleChange = async () => {
+  handleChange = async e => {
     const form = new FormData();
-    const imageData = document.querySelector('input[type="file"]').files[0];
+    const imageData = e.target.files[0];
     form.append('file', imageData);
     const res = await uploadToCloudnary(form);
     this.setState({ profilePic: res.url });
@@ -64,20 +65,7 @@ class Profilepage extends Component {
       <React.Fragment>
         {loader && <Loader />}
         <div className="profile-header">
-          <div className="profile-img-container">
-            <img src={profilePic} alt="avatar" />
-            <form className="custom-file-upload" encType="multipart/form-data">
-              <label htmlFor="file-upload">
-                <i className="fa fa-upload" />
-                <input
-                  type="file"
-                  id="file-upload"
-                  name="file"
-                  onChange={this.handleChange}
-                />
-              </label>
-            </form>
-          </div>
+          <Imagepic profilePic={profilePic} handleChange={this.handleChange} />
           <h1>
             {firstname}
             &nbsp;
