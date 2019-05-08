@@ -11,7 +11,7 @@ const store = mockStore({});
 
 const LoginComponent = (
   <Provider store={store}>
-    <Login auth={{ isLoading: false }} />
+    <Login auth={{ isLoading: true }} />
   </Provider>
 );
 

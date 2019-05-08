@@ -10,13 +10,12 @@ describe('ForgotPssword component', () => {
 
   it('should change state', () => {
     const wrapper = shallow(
-      <ResetPassword userResetPassword={{ isLoading: false }} />
+      <ResetPassword isLoadingReducer={{ loader: true }} />
     );
     expect(wrapper.find('div'));
     expect(wrapper.state('data')).toEqual({
       password: '',
       confirmPassword: '',
     });
-    wrapper.setProps({ isLoading: true });
   });
 });

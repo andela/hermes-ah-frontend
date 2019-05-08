@@ -20,11 +20,12 @@ class ResetPassword extends FormComponent {
   };
 
   render() {
-    const { userResetPassword } = this.props;
+    const { isLoadingReducer } = this.props;
+    const { loader } = isLoadingReducer;
     const { handleSubmit } = this;
     return (
       <div className="forgot-password">
-        {userResetPassword.isLoading && <Loader />}
+        {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">

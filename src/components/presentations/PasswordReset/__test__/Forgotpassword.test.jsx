@@ -1,19 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import ForgotPassword from '../ForgotPassword';
-
-const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
-const store = mockStore({});
-
-const password = (
-  <Provider store={store}>
-    <ForgotPassword passwordReset={{ isLoading: false }} />
-  </Provider>
-);
 
 describe('ForgotPssword component', () => {
   it('should match snapshot', () => {
@@ -22,7 +9,13 @@ describe('ForgotPssword component', () => {
   });
 
   it('should change state', () => {
-    const wrapper = shallow(password);
+    const wrapper = shallow(
+      <ForgotPassword isLoadingReducer={{ loader: true }} />
+    );
     expect(wrapper.find('div'));
+    expect(wrapper.state('data')).toEqual({
+      email: '',
+    });
+    wrapper.setProps({ isLoading: true });
   });
 });
