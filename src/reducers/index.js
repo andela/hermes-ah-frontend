@@ -5,6 +5,7 @@ import passwordReset from './forgotPassword.reducers';
 import auth from './auth.reducer';
 import articlesUpdate from './articles-update.reducer';
 import isLoadingReducer from './loading.reducer';
+import bookmarkedArticles from './bookmarked.reducer';
 
 const reducers = combineReducers({
   auth,
@@ -13,6 +14,7 @@ const reducers = combineReducers({
   passwordReset,
   isLoadingReducer,
   articlesUpdate,
+  bookmarkedArticles,
 });
 
 export default reducers;

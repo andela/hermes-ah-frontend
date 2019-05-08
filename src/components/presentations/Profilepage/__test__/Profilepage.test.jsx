@@ -46,6 +46,7 @@ describe('ProfilePage component', () => {
         userProfile={{ profile: 'dummy profile' }}
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
+        fetchBookmarks={() => 'bookmarked'}
       />
     );
 

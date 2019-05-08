@@ -10,7 +10,7 @@ const fetchBookmarks = () => {
       const articles = await http.get(url);
       dispatch({
         type: 'BOOKMARKS_RETURNED',
-        payload: articles.data.articles,
+        payload: articles.data.data,
       });
     } catch (err) {
       exceptionHandler(err);

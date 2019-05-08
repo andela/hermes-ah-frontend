@@ -2,7 +2,6 @@ const initialState = {
   fetching: false,
   fetched: false,
   articles: [],
-  error: null,
 };
 
 export default (state = initialState, action) => {
@@ -17,9 +16,6 @@ export default (state = initialState, action) => {
         fetched: true,
         articles: action.payload,
       };
-    }
-    case 'GET_BOOKMARKS_ERROR': {
-      return { ...state, fetching: false, error: action.payload };
     }
     default:
       return state;

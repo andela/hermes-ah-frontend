@@ -4,6 +4,7 @@ import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
+import Bookmarked from '../Bookmarked/Bookmaked';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -18,9 +19,10 @@ class Profilepage extends Component {
   }
 
   componentDidMount = () => {
-    const { getProfile, fetchArticles } = this.props;
+    const { getProfile, fetchArticles, fetchBookmarks } = this.props;
     getProfile();
     fetchArticles();
+    fetchBookmarks();
   };
 
   componentDidUpdate = prevProps => {
@@ -52,6 +54,7 @@ class Profilepage extends Component {
     const { currentTab, firstname, lastname, profilePic } = this.state;
     const { articlesUpdate } = this.props;
     const { articles } = articlesUpdate;
+    const { bookmarkedArticles } = this.props;
     return (
       <React.Fragment>
         <div className="profile-header">
@@ -93,7 +96,9 @@ class Profilepage extends Component {
             </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
-            <div>This is the bookmark section</div>
+            <div>
+              <Bookmarked bookmarkedArticles={bookmarkedArticles} />
+            </div>
           ) : null}
           {currentTab === 'profile-section' ? (
             <div>This is the profile section</div>
@@ -108,7 +113,9 @@ Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
+  bookmarkedArticles: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
+  fetchBookmarks: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
