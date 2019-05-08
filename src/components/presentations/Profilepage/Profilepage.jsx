@@ -1,9 +1,11 @@
+/* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
+import FollowCard from '../FollwCard/Follow-card';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -18,9 +20,11 @@ class Profilepage extends Component {
   }
 
   componentDidMount = () => {
-    const { getProfile, fetchArticles } = this.props;
+    const { getProfile, fetchArticles, getFollowee, getFollowing } = this.props;
     getProfile();
     fetchArticles();
+    getFollowee();
+    getFollowing();
   };
 
   componentDidUpdate = prevProps => {
@@ -50,8 +54,13 @@ class Profilepage extends Component {
 
   render() {
     const { currentTab, firstname, lastname, profilePic } = this.state;
-    const { articlesUpdate } = this.props;
+    const { articlesUpdate, userFollowee, userFollowing } = this.props;
     const { articles } = articlesUpdate;
+    const { userFollowee: followee } = userFollowee;
+    const { userFollowing: following } = userFollowing;
+
+    console.log(followee, '----------');
+    console.log(following, '================');
     return (
       <React.Fragment>
         <div className="profile-header">
@@ -81,12 +90,32 @@ class Profilepage extends Component {
           totalArticle={`${articles.length}`}
         />
         <div className="profile-content">
-          {currentTab === 'following-section' ? (
-            <div>This is the following section</div>
-          ) : null}
-          {currentTab === 'followers-section' ? (
-            <div>This is the follower section</div>
-          ) : null}
+          {currentTab === 'following-section'
+            ? followee.map(user => (
+                <FollowCard
+                  key={user.id}
+                  initials="JD"
+                  name={`${user.follower.first_name} ${
+                    user.follower.last_name
+                  }`}
+                  bio={`${user.follower.bio}`}
+                  button="following"
+                />
+              ))
+            : null}
+          {currentTab === 'followers-section'
+            ? following.map(user => (
+                <FollowCard
+                  key={user.id}
+                  initials="JD"
+                  name={`${user.followee.first_name} ${
+                    user.followee.last_name
+                  }`}
+                  bio={`${user.followee.bio}`}
+                  button="follow"
+                />
+              ))
+            : null}
           {currentTab === 'article-section' ? (
             <div>
               <Articles articlesUpdate={articlesUpdate} />
@@ -108,7 +137,11 @@ Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
+  userFollowee: PropTypes.shape().isRequired,
+  userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
+  getFollowee: PropTypes.func.isRequired,
+  getFollowing: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

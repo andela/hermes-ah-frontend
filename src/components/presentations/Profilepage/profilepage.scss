@@ -65,8 +65,9 @@
 .profile-content{
     width: 95%;
     margin: 0 auto;
-    min-height: 600px;
     text-align: center;
     font-size: 2rem;
-    padding: 10px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 19px;
 }
