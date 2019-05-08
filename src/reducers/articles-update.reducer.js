@@ -18,9 +18,6 @@ export default (state = initialState, action) => {
         articles: action.payload,
       };
     }
-    case 'GET_ARTICLES_ERROR': {
-      return { ...state, fetching: false, error: action.payload };
-    }
     default:
       return state;
   }

@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import userProfile from './profile.reducers';
 import passwordReset from './forgotPassword.reducers';
 import auth from './auth.reducer';
-import articlesUpdate from './articles-update.reducers';
+import articlesUpdate from './articles-update.reducer';
 import isLoadingReducer from './loading.reducer';
 
 const reducers = combineReducers({
