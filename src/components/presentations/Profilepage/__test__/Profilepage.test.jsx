@@ -56,6 +56,7 @@ describe('ProfilePage component', () => {
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
+        fetchBookmarks={() => 'bookmarked'}
       />
     );
 

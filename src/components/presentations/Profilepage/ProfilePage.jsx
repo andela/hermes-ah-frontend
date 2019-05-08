@@ -7,6 +7,7 @@ import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
+import Bookmarked from '../Bookmarked/Bookmaked';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -22,9 +23,10 @@ class Profilepage extends Component {
   }
 
   componentDidMount = () => {
-    const { getProfile, fetchArticles } = this.props;
+    const { getProfile, fetchArticles, fetchBookmarks } = this.props;
     getProfile();
     fetchArticles();
+    fetchBookmarks();
   };
 
   componentDidUpdate = prevProps => {
@@ -64,6 +66,7 @@ class Profilepage extends Component {
     const { isLoadingReducer, articlesUpdate } = this.props;
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
+    const { bookmarkedArticles } = this.props;
     return (
       <React.Fragment>
         {loader && <Loader />}
@@ -93,7 +96,9 @@ class Profilepage extends Component {
             </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
-            <div>This is the bookmark section</div>
+            <div>
+              <Bookmarked bookmarkedArticles={bookmarkedArticles} />
+            </div>
           ) : null}
           {currentTab === 'profile-section' ? (
             <Userprofile isReviewer={isReviewer} />
@@ -109,7 +114,9 @@ Profilepage.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
+  bookmarkedArticles: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
+  fetchBookmarks: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
