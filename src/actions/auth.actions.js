@@ -35,6 +35,27 @@ export const login = userObj => {
   };
 };
 
+export const signup = userObj => {
+  return async dispatch => {
+    if (!navigator.onLine) {
+      return toast.error('Please check your internet connection');
+    }
+    dispatch(contentLoading());
+    try {
+      const { data } = await http.post(`${url}/signup`, userObj);
+      const { user } = data;
+      const { token } = user;
+      setToken(token);
+      return redirect('/');
+    } catch (ex) {
+      return exceptionHandler(ex);
+    } finally {
+      dispatch(loginError());
+    }
+  };
+};
+
 export default {
   login,
+  signup,
 };
