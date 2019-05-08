@@ -1,4 +1,5 @@
 import { Form, Button } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 import React from 'react';
 import FormComponent from '../../shared/Form/Form';
 import Loader from '../../shared/Loader/Loader';
@@ -33,10 +34,11 @@ class ForgotPassword extends FormComponent {
    * @returns {HTMLElement} div
    */
   render() {
-    const { isLoadingReducer } = this.props;
+    const { isLoadingReducer, user } = this.props;
     const { loader } = isLoadingReducer;
+    if (user) return <Redirect to="/" />;
     return (
-      <div>
+      <div className="forgot-password">
         {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">

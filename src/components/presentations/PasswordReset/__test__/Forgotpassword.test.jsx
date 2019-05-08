@@ -1,21 +1,21 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ResetPassword from '../ResetPassword';
+import ForgotPassword from '../ForgotPassword';
 
 describe('ForgotPssword component', () => {
   it('should match snapshot', () => {
-    const wrap = <ResetPassword />;
+    const wrap = <ForgotPassword />;
     expect(wrap).toMatchSnapshot();
   });
 
   it('should change state', () => {
     const wrapper = shallow(
-      <ResetPassword isLoadingReducer={{ loader: true }} />
+      <ForgotPassword isLoadingReducer={{ loader: true }} />
     );
     expect(wrapper.find('div'));
     expect(wrapper.state('data')).toEqual({
-      password: '',
-      confirmPassword: '',
+      email: '',
     });
+    wrapper.setProps({ isLoading: true });
   });
 });
