@@ -1,9 +1,7 @@
 import { Form, Button } from 'semantic-ui-react';
 import { Link, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 import React from 'react';
 import FormComponent from '../../shared/Form/Form';
-import { login } from '../../../actions/auth.actions';
 import Loader from '../../shared/Loader/Loader';
 
 class Login extends FormComponent {
@@ -22,29 +20,37 @@ class Login extends FormComponent {
   };
 
   render() {
-    const { auth, user } = this.props;
+    const emailIdType = 'email';
+    const emailPlaceHolder = 'Email';
+    const passwordIdType = 'password';
+    const passwordPlaceHolder = 'Password';
+    const { user, isLoadingReducer } = this.props;
+    const { loader } = isLoadingReducer;
     if (user) return <Redirect to="/" />;
     return (
       <div>
-        {auth.isLoading && <Loader />}
+        {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">
               <div className="wrap-cont-login-signup">
-                <Button className="login">LOGIN</Button>
-                <Button
-                  className="signup"
-                  onClick={() => {
-                    window.location = '/signup';
-                  }}
-                >
-                  SIGNUP
-                </Button>
+                <div className="button-container">
+                  <Button className="login current-login">LOGIN</Button>
+                </div>
+                <div className="button-container">
+                  <Link to="/signup">
+                    <Button className="signup">SIGNUP</Button>
+                  </Link>
+                </div>
               </div>
               <Form unstackable onSubmit={this.handelClick}>
-                {this.renderInput('email', 'Email', 'email')}
-                {this.renderInput('password', 'Password', 'password')}
-                <Link to="/password-rest" className="forgot-password">
+                {this.renderInput(emailIdType, emailPlaceHolder, emailIdType)}
+                {this.renderInput(
+                  passwordIdType,
+                  passwordPlaceHolder,
+                  passwordIdType
+                )}
+                <Link to="/forgot-password" className="forgot-password">
                   Forgot password?
                 </Link>
                 <Button className="submit" type="submit">
@@ -61,9 +67,4 @@ class Login extends FormComponent {
   }
 }
 
-const mapStateToProps = auth => auth;
-
-export default connect(
-  mapStateToProps,
-  { login }
-)(Login);
+export default Login;

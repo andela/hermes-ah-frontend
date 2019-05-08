@@ -37,14 +37,14 @@
         outline: none;
         border-bottom: 2px solid $primary-color;
     }
-
-    .num-icon{
-        background: #fff;
-        border-radius: 50%;
-        color: $primary-color;
-        padding: 5px;
-    }
     margin: auto 5px;
+}
+
+.num-icon{
+    background: #fff;
+    border-radius: 50%;
+    color: $primary-color;
+    padding: 5px;
 }
 
 .profile-btn-active{
@@ -60,12 +60,7 @@
         border-bottom: 2px solid #fff;
     }
 
-    .num-icon{
-        background: #fff;
-        border-radius: 50%;
-        color: $primary-color;
-        padding: 5px;
-    }
+    
     margin: auto 5px;
 }
 
