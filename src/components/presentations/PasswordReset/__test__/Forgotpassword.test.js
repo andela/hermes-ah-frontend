@@ -5,8 +5,8 @@ import {
   forgotPasswordSuccess,
   forgotPasswordFailure,
   forgotPassword,
-  contentLoading,
 } from '../../../../actions/forgotPassword.actions';
+import loadingConstant from '../../../../constants/loading.constants';
 import types from '../../../../constants/forgotPassword.constants';
 
 const middlewares = [thunk];
@@ -46,18 +46,6 @@ describe('auth actions', () => {
     expect(store.getActions()).toEqual(expectedAction);
   });
 
-  it('should create an action for failure', async () => {
-    const expectedAction = [
-      {
-        type: types.CONTENT_LOADING,
-      },
-    ];
-    const store = mockStore({});
-
-    store.dispatch(contentLoading());
-    expect(store.getActions()).toEqual(expectedAction);
-  });
-
   it('should create an action for a post request', async () => {
     fetchMock.mock('/api/v1/auth/reset', {
       method: 'POST',
@@ -67,7 +55,7 @@ describe('auth actions', () => {
     });
     const expectedAction = [
       {
-        type: types.CONTENT_LOADING,
+        type: loadingConstant.CONTENT_LOADING,
       },
     ];
 

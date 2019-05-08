@@ -2,12 +2,9 @@ import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import actionTypes from '../constants/forgotPassword.constants';
+import contentLoading from './loading.action';
 
 const url = '/auth';
-
-export const contentLoading = () => ({
-  type: actionTypes.CONTENT_LOADING,
-});
 
 export const forgotPasswordSuccess = () => ({
   type: actionTypes.FORGOT_PASSWORD_SUCCESS,
