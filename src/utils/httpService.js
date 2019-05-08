@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://hermes-ah-backend.herokuapp.com/api/v1';
 
 const setDefaultToken = token => {
-  axios.defaults.headers.common.token = token;
+  axios.defaults.headers.common.Authorization = token;
 };
 
 export default {

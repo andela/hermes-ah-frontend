@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import './profilepage.scss';
+import Articles from '../UserArticles/Articles';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -17,8 +18,9 @@ class Profilepage extends Component {
   }
 
   componentDidMount = () => {
-    const { getProfile } = this.props;
+    const { getProfile, fetchArticles } = this.props;
     getProfile();
+    fetchArticles();
   };
 
   componentDidUpdate = prevProps => {
@@ -48,6 +50,8 @@ class Profilepage extends Component {
 
   render() {
     const { currentTab, firstname, lastname, profilePic } = this.state;
+    const { articlesUpdate } = this.props;
+    const { articles } = articlesUpdate;
     return (
       <React.Fragment>
         <div className="profile-header">
@@ -71,7 +75,11 @@ class Profilepage extends Component {
             {lastname}
           </h1>
         </div>
-        <ProfileTab changeTab={this.changeTab} currentTab={currentTab} />
+        <ProfileTab
+          changeTab={this.changeTab}
+          currentTab={currentTab}
+          totalArticle={`${articles.length}`}
+        />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
             <div>This is the following section</div>
@@ -80,7 +88,9 @@ class Profilepage extends Component {
             <div>This is the follower section</div>
           ) : null}
           {currentTab === 'article-section' ? (
-            <div>This is the article section</div>
+            <div>
+              <Articles articlesUpdate={articlesUpdate} />
+            </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
             <div>This is the bookmark section</div>
@@ -97,6 +107,8 @@ class Profilepage extends Component {
 Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
+  articlesUpdate: PropTypes.shape().isRequired,
+  fetchArticles: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

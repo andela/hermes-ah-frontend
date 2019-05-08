@@ -3,6 +3,7 @@ import articles from './article.reducers';
 import userProfile from './profile.reducers';
 import passwordReset from './forgotPassword.reducers';
 import auth from './auth.reducer';
+import articlesUpdate from './articles-update.reducer';
 import isLoadingReducer from './loading.reducer';
 
 const reducers = combineReducers({
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   articles,
   passwordReset,
   isLoadingReducer,
+  articlesUpdate,
 });
 
 export default reducers;

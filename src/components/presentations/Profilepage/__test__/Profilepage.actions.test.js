@@ -70,7 +70,7 @@ describe('auth actions', () => {
     });
 
     // This will be empty expected action util we have a loader
-    const expectedAction = [];
+    const expectedAction = [{ type: 'FETCH_PROFILE_FAILURE' }];
 
     const store = mockStore({});
 
