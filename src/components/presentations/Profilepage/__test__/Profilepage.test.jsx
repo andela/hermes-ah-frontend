@@ -18,6 +18,14 @@ const articleObj = {
   articles: [],
 };
 
+const userFollowingObj = {
+  userFollowing: [],
+};
+
+const userFolloweeObj = {
+  userFollowee: [],
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
@@ -29,6 +37,10 @@ const ProfilepageComponent = (
       userProfile={{ profile: 'me' }}
       fetchArticles={() => 'articles'}
       articlesUpdate={articleObj}
+      getFollowee={() => 'user'}
+      getFollowing={() => 'user'}
+      userFollowee={userFolloweeObj}
+      userFollowing={userFollowingObj}
     />
   </Provider>
 );
@@ -46,6 +58,10 @@ describe('ProfilePage component', () => {
         userProfile={{ profile: 'dummy profile' }}
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
+        getFollowee={() => 'user'}
+        getFollowing={() => 'user'}
+        userFollowee={userFolloweeObj}
+        userFollowing={userFollowingObj}
       />
     );
 
