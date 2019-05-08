@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import '../author-articles.scss';
 
 const Article = ({ title, date, isDraft }) => {
-  let a;
+  let draftStatus;
   if (isDraft) {
-    a = 'unpublish';
+    draftStatus = 'unpublish';
   } else {
-    a = 'publish';
+    draftStatus = 'publish';
   }
   return (
     <div className="profile-article-list">
@@ -18,7 +18,7 @@ const Article = ({ title, date, isDraft }) => {
       </div>
       <div className="update-buttons">
         <Button className="success">Edit</Button>
-        <Button className={a}>{a}</Button>
+        <Button className={draftStatus}>{draftStatus}</Button>
         <Button className="failure">Delete</Button>
       </div>
     </div>

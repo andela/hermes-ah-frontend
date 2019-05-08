@@ -4,29 +4,30 @@ h3, p {
 }
 .profile-article-list {
     text-align: left;
-    width: 100%;
-    margin: 20px auto;
+    width: 47%;
+    margin: 10px;
     padding: 10px 20px;
+    float: left;
     overflow: auto;
     border: solid 1px $article-border-color;
     border-radius: 4px;
     box-shadow: 0px 3px #888888;
     
     .article-list {
-        width: 60%;
+        width: 100%;
         float: left;
         h3 {
             font-size: 18px;
         }
         p {
             font-size: 16px;
+            color: #868686;
         }
     }
     .update-buttons {
-        width: 35%;
+        width: 100%;
         margin: 10px auto;
-        float: right;
-        text-align: right;
+        float: left;
 
         .success {
             background: #fff;
