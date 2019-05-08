@@ -6,7 +6,13 @@ import ProfileTabButton from '../ProfileTabButton';
 describe('ProfileTab and ProfileButton component', () => {
   it('should render profile tab component', () => {
     const wrapper = shallow(
-      <ProfileTab changeTab={() => 'tabCahnged'} currentTab="profile-tab" />
+      <ProfileTab
+        changeTab={() => 'tabCahnged'}
+        currentTab="profile-tab"
+        totalArticle=""
+        totalFollowee=""
+        totalFollowing=""
+      />
     );
     expect(wrapper.find('div'));
   });
