@@ -1,5 +1,6 @@
 import actions from '../constants/followee.constants';
 import http from '../utils/httpService';
+import exceptionHandler from '../utils/exceptionHandler';
 
 const url = '/followers';
 
@@ -20,8 +21,10 @@ const getFollowee = () => {
   return async dispatch => {
     try {
       const followee = await http.get(`${url}`);
-      dispatch(getFolloweeSuccess(followee.data.followers));
+      return dispatch(getFolloweeSuccess(followee.data.followers));
     } catch (error) {
+      return exceptionHandler(error);
+    } finally {
       dispatch(getFolloweeFailure());
     }
   };

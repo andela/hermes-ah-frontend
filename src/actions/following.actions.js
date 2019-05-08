@@ -1,5 +1,6 @@
 import actions from '../constants/following.constants';
 import http from '../utils/httpService';
+import exceptionHandler from '../utils/exceptionHandler';
 
 const url = '/following';
 
@@ -20,8 +21,10 @@ const getFollowing = () => {
   return async dispatch => {
     try {
       const following = await http.get(`${url}`);
-      dispatch(getFollowingSuccess(following.data.following));
+      return dispatch(getFollowingSuccess(following.data.following));
     } catch (error) {
+      return exceptionHandler(error);
+    } finally {
       dispatch(getFollowingFailure());
     }
   };
