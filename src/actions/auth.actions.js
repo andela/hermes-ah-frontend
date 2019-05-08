@@ -26,7 +26,7 @@ export const login = userObj => {
       const { user } = data;
       const { token } = user;
       setToken(token);
-      return redirect('/home');
+      return redirect('/');
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {
