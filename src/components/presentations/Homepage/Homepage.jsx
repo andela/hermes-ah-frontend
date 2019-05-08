@@ -5,7 +5,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import HeroView from '../HeroView/HeroviewPresentations';
 import ArticleCard from '../ArticleCard/Article';
 import PopularArticleCard from '../PopularArticleCard/PopularArticleCard';
-import UserHomepageContainer from '../../containers/userHomepage.container';
+import UserHomepageContainer from '../../containers/user-homepage.container';
 import Loader from '../../shared/Loader/Loader';
 import './homepage.scss';
 
@@ -43,6 +43,7 @@ class Homepage extends Component {
 
   render() {
     const { articles, isLoadingReducer, user } = this.props;
+    console.log(user, '---');
     const { loader } = isLoadingReducer;
     const { articleData } = articles;
     const sortedArticle = articleData.sort(
