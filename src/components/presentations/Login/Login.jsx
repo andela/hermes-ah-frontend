@@ -22,11 +22,12 @@ class Login extends FormComponent {
   };
 
   render() {
-    const { auth, user } = this.props;
+    const { user, isLoadingReducer } = this.props;
+    const { loader } = isLoadingReducer;
     if (user) return <Redirect to="/" />;
     return (
       <div>
-        {auth.isLoading && <Loader />}
+        {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">
@@ -44,7 +45,7 @@ class Login extends FormComponent {
               <Form unstackable onSubmit={this.handelClick}>
                 {this.renderInput('email', 'Email', 'email')}
                 {this.renderInput('password', 'Password', 'password')}
-                <Link to="/password-rest" className="forgot-password">
+                <Link to="/forgot-password" className="forgot-password">
                   Forgot password?
                 </Link>
                 <Button className="submit" type="submit">
