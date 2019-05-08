@@ -17,6 +17,8 @@ import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
 import { decodeToken } from './utils/authService';
+// import NewArticle from './components/containers/newarticle.container';
+import NewArticle from './components/presentations/NewArticle/NewArticle';
 
 class App extends Component {
   constructor(props) {
@@ -46,6 +48,7 @@ class App extends Component {
               <Route path="/not-found" component={Notfound} />
               <Route path="/" exact component={Homepage} />
               <Route path="/about" component={AboutPage} />
+              <Route path="/new-article" component={NewArticle} />
               <Redirect to="/not-found" />
             </Switch>
             <Footer />

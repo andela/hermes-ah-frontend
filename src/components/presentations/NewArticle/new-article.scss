@@ -1,0 +1,88 @@
+@import '../../../assets/stylesheets/index.scss';
+
+p{
+    text-align: left;
+}
+.title{
+    background-color: black;
+    height: 300px;
+}
+
+.editor{
+    border: 3px solid #0000;
+}
+
+.DraftEditor-root {
+    background-color: #ffffff;
+    border: 1px solid rgb(192, 192, 192);
+    width:100%;
+    height:400px;
+    overflow-y: scroll;
+    font-size: 18px;
+    font-family: 'calibri', sans-serif;
+    border-radius: 5px;
+  }
+
+//   .DraftEditor-editorContainer {
+//     //   border: black solid 1px;
+//     //   height: 80px;
+//   }
+
+  .keywordTitle {
+      color: #857E7E;
+  }
+
+  .labels {
+    font-size: 2vh;
+    font-weight: bold;
+  }
+
+  .inputBox {
+      width: 90%;
+  }
+  .inputBox:nth-child(2) {
+    width: 60%;
+  }
+  .whole-text {
+      margin: 0 10% 0 8%;
+  }
+
+  .image-upload {
+    padding: 1% 0 0 2%;
+    width: 35%;
+    height: 130px;
+    border: 1px solid #e7e6e6;
+  }
+
+  .image-upload p {
+    margin: 0;
+  }
+
+  .image-upload-box {
+    background-color: #EBEBEB;
+    padding: 0 auto;
+    width: 80%;
+    height: 50px;
+    border: 1px solid #c0bfbf;
+}
+
+.image-upload-box input[type="file"] {
+    margin: 14px 16% 0;
+}
+
+.ui.button{
+   background-color: $primary-color;
+   color: #ffffff;
+}
+
+.ui.basic.blue.button {
+    color: #2F80ED!important; 
+}
+button{
+    padding: 1%;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+button:hover{
+    background-color: #e7e6e6;
+}
