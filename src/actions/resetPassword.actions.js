@@ -30,9 +30,21 @@ export const resetPassword = newPassword => {
         `/new-password?token=${token}`,
         newPassword
       );
-      window.location.replace('/login');
       const messageDispatch = data.message;
-      return toast.success(messageDispatch);
+      if (messageDispatch) {
+        toast.info(
+          'You have successfully reset your password. You will be redirected to the login page in 5 seconds',
+          {
+            type: toast.TYPE.INFO,
+            closeButton: false,
+            position: toast.POSITION.TOP_CENTER,
+          }
+        );
+        setTimeout(() => {
+          window.location = '/login';
+        }, 5000);
+      }
+      return null;
     } catch (error) {
       return exceptionHandler(error);
     } finally {

@@ -23,7 +23,14 @@ export const forgotPassword = userObj => {
       }
       const { data } = await http.post(`${url}/reset`, userObj);
       const messageDispatch = data.data[0].message;
-      return toast.success(messageDispatch);
+      if (messageDispatch) {
+        toast.info(`${messageDispatch}`, {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+      return null;
     } catch (error) {
       return exceptionHandler(error);
     } finally {
