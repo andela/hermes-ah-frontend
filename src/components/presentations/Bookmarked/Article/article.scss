@@ -1,0 +1,26 @@
+@import '../../../../assets/stylesheets/index.scss';
+h3, p {
+    font-family: $font-stack;
+}
+.bookmark-articles-list {
+    text-align: left;
+    width: 97%;
+    margin: 10px;
+    padding: 0;
+    float: left;
+    overflow: auto;
+    border-bottom: solid 1px $article-border-color;
+
+    .ui.items>.item .meta {
+        color: #868686;
+        font-size: 14px;
+    }
+    
+    .ui.items>.item>.content>a.header {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
