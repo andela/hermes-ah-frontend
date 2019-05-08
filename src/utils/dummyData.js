@@ -1,5 +1,3 @@
-import http from './httpService';
-
 const article = [
   {
     id: 1,
@@ -43,17 +41,6 @@ const popularArticle = [
     likes: 11,
   },
 ];
-
-const user = {
-  email: 'ameachichuks@gmail.com',
-  password: '12345678',
-};
-
-const loginUser = async () => {
-  localStorage.clear();
-  const { data } = await http.post('/auth/login', user);
-  localStorage.setItem('token', data.user.token);
-};
 
 const profileReport = [
   {
@@ -115,7 +102,6 @@ const suggestedArticle = [
 const data = {
   article,
   popularArticle,
-  loginUser,
   profileReport,
   suggestedArticle,
 };

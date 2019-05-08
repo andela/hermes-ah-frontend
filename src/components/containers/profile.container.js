@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
 import Profilepage from '../presentations/Profilepage/Profilepage';
-import profileAction from '../../actions/profile.actions';
+import profileAction from '../../actions/profile.action';
 
 const { getProfile } = profileAction;
 
-const mapStateToProps = ({ userProfile }) => ({ userProfile });
+const mapStateToProps = ({ userProfile, isLoadingReducer }) => ({
+  userProfile,
+  isLoadingReducer,
+});
 
 const ProfilepageContainer = connect(
   mapStateToProps,

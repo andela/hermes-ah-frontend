@@ -67,7 +67,7 @@ class Userprofile extends Component {
 
               {isReviewer ? (
                 <div>
-                  <Headercard icon="fa fa-user" value="Reported Articles" />
+                  <Headercard icon="far fa-flag" value="Reported Articles" />
                   <div>{reportList}</div>
                 </div>
               ) : null}
