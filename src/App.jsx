@@ -41,7 +41,6 @@ class App extends Component {
             <NavBar user={user} />
             <Switch>
               <Route path="/profile" component={Profilepage} />
-              <Route path="/" exact component={Homepage} />
               <Route path="/about" component={AboutPage} />
               <Route path="/forgot-password" component={ForgotPassword} />
               <Route path="/about" component={AboutPage} />
