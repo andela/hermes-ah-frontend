@@ -29,7 +29,7 @@ const ArticleCard = ({ title, author, date, likes, num }) => (
 );
 
 ArticleCard.propTypes = {
-  num: PropTypes.number.isRequired,
+  num: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,

@@ -12,13 +12,16 @@ const store = mockStore({});
 
 const HomePageComponent = (
   <Provider store={store}>
-    <HomePage />
+    <HomePage
+      articles={{ articleData: [{}] }}
+      isLoadingReducer={{ loader: false }}
+    />
   </Provider>
 );
 
 describe('HomePage component', () => {
   it('should match snapshot', () => {
-    const wrap = <HomePage />;
+    const wrap = HomePageComponent;
     expect(wrap).toMatchSnapshot();
   });
 
