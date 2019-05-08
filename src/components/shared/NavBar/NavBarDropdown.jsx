@@ -18,10 +18,9 @@ class NavDropdown extends Component {
   }
 
   componentDidUpdate = prevProps => {
-    const { user } = this.state;
     const { userProfile: userProps } = this.props;
     const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps && user) {
+    if (prevProps.userProfile !== userProps) {
       const { profile } = userProfile;
       this.setState({ userPic: profile.image_url });
     }
