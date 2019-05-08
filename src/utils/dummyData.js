@@ -1,5 +1,3 @@
-import http from './httpService';
-
 const article = [
   {
     id: 1,
@@ -44,21 +42,68 @@ const popularArticle = [
   },
 ];
 
-const user = {
-  email: 'ameachichuks@gmail.com',
-  password: '12345678',
-};
+const profileReport = [
+  {
+    id: 'asdfjn',
+    title: 'Title',
+    reason: 'Too much typos',
+    status: 'pending',
+  },
+  {
+    id: 'ajsfhiuhn',
+    title: 'Title',
+    reason: 'Too much typos',
+    status: 'pending',
+  },
+  {
+    id: 'dmkfm',
+    title: 'Title',
+    reason: 'Too much typos',
+    status: 'pending',
+  },
+  {
+    id: 'skfnajsk',
+    title: 'Title',
+    reason: 'Too much typos',
+    status: 'pending',
+  },
+];
 
-const loginUser = async () => {
-  localStorage.clear();
-  const { data } = await http.post('/auth/login', user);
-  localStorage.setItem('token', data.user.token);
-};
+const suggestedArticle = [
+  {
+    id: 'ksjfksnf',
+    title: 'Article of the year',
+    firstname: 'Adebisi',
+    lastname: 'Bukunmi',
+    readingTime: '3',
+    body:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+  },
+  {
+    id: 'ksjfsjnjksnf',
+    title: 'Article of the year',
+    firstname: 'Adebisi',
+    lastname: 'Bukunmi',
+    readingTime: '3',
+    body:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+  },
+  {
+    id: 'ksjsdnfjafksnf',
+    title: 'Article of the year',
+    firstname: 'Adebisi',
+    lastname: 'Bukunmi',
+    readingTime: '3',
+    body:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+  },
+];
 
 const data = {
   article,
   popularArticle,
-  loginUser,
+  profileReport,
+  suggestedArticle,
 };
 
 export default data;
