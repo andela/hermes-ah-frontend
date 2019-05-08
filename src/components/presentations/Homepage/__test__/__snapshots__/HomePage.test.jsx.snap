@@ -21,6 +21,7 @@ exports[`HomePage component should match snapshot 1`] = `
         ],
       }
     }
+    getAllArticles={[Function]}
     isLoadingReducer={
       Object {
         "loader": false,

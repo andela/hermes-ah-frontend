@@ -13,6 +13,7 @@ const store = mockStore({});
 const HomePageComponent = (
   <Provider store={store}>
     <HomePage
+      getAllArticles={() => 'articles'}
       articles={{ articleData: [{}] }}
       isLoadingReducer={{ loader: false }}
     />
