@@ -1,0 +1,23 @@
+@import '../../../assets/stylesheets/index.scss'; 
+
+.header-card{
+    display: flex;
+    border: 1px solid lightgrey;
+    text-align: left;
+    width: 100%;
+    margin: 20px auto;
+    padding: 10px 20px;
+    overflow: auto;
+    border-radius: 4px;
+    box-shadow: 0px 3px #888888;
+    align-content: end; 
+}
+
+.header-card-icon{
+    margin: auto 10px;
+    color: $primary-color
+}
+
+.header-card-title{
+    margin: auto 10px;
+}

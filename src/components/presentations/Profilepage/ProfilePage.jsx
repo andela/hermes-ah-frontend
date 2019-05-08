@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
+import Userprofile from '../../containers/userprofile.container';
+import Loader from '../../shared/Loader/Loader';
+import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
 
@@ -13,7 +16,8 @@ class Profilepage extends Component {
       firstname: '',
       lastname: '',
       profilePic:
-        'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
+        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
+      isReviewer: false,
     };
   }
 
@@ -32,6 +36,7 @@ class Profilepage extends Component {
         firstname: profile.first_name,
         lastname: profile.last_name,
         profilePic: profile.image_url,
+        isReviewer: profile.is_reviewer,
       });
     }
   };
@@ -40,35 +45,30 @@ class Profilepage extends Component {
     this.setState({ currentTab: tab });
   };
 
-  handleChange = async () => {
+  handleChange = async e => {
     const form = new FormData();
-    const imageData = document.querySelector('input[type="file"]').files[0];
+    const imageData = e.target.files[0];
     form.append('file', imageData);
     const res = await uploadToCloudnary(form);
     this.setState({ profilePic: res.url });
   };
 
   render() {
-    const { currentTab, firstname, lastname, profilePic } = this.state;
-    const { articlesUpdate } = this.props;
+    const {
+      currentTab,
+      firstname,
+      lastname,
+      profilePic,
+      isReviewer,
+    } = this.state;
+    const { isLoadingReducer, articlesUpdate } = this.props;
+    const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     return (
       <React.Fragment>
+        {loader && <Loader />}
         <div className="profile-header">
-          <div className="profile-img-container">
-            <img src={profilePic} alt="avatar" />
-            <form className="custom-file-upload" encType="multipart/form-data">
-              <label htmlFor="file-upload">
-                <i className="fa fa-upload" />
-                <input
-                  type="file"
-                  id="file-upload"
-                  name="file"
-                  onChange={this.handleChange}
-                />
-              </label>
-            </form>
-          </div>
+          <Imagepic profilePic={profilePic} handleChange={this.handleChange} />
           <h1>
             {firstname}
             &nbsp;
@@ -96,7 +96,7 @@ class Profilepage extends Component {
             <div>This is the bookmark section</div>
           ) : null}
           {currentTab === 'profile-section' ? (
-            <div>This is the profile section</div>
+            <Userprofile isReviewer={isReviewer} />
           ) : null}
         </div>
       </React.Fragment>
@@ -107,6 +107,7 @@ class Profilepage extends Component {
 Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
+  isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
 };
