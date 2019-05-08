@@ -21,30 +21,27 @@ export const resetPassword = newPassword => {
     dispatch(contentLoading());
     try {
       if (!navigator.onLine) {
-        return toast.error('Please check your internet connection');
+        return toast.error('Please check your internet connection', {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          position: toast.POSITION.TOP_CENTER,
+        });
       }
       const params = new URLSearchParams(document.location.search.substring(1));
       const token = params.get('token');
       setToken(token);
-      const { data } = await http.patch(
-        `/new-password?token=${token}`,
-        newPassword
+      await http.patch(`/new-password?token=${token}`, newPassword);
+      toast.info(
+        'You have successfully reset your password. You will be redirected to the login page in 5 seconds',
+        {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          position: toast.POSITION.TOP_CENTER,
+        }
       );
-      const messageDispatch = data.message;
-      if (messageDispatch) {
-        toast.info(
-          'You have successfully reset your password. You will be redirected to the login page in 5 seconds',
-          {
-            type: toast.TYPE.INFO,
-            closeButton: false,
-            position: toast.POSITION.TOP_CENTER,
-          }
-        );
-        setTimeout(() => {
-          window.location = '/login';
-        }, 5000);
-      }
-      return null;
+      return setTimeout(() => {
+        window.location = '/login';
+      }, 5000);
     } catch (error) {
       return exceptionHandler(error);
     } finally {

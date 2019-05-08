@@ -19,18 +19,19 @@ export const forgotPassword = userObj => {
     dispatch(contentLoading());
     try {
       if (!navigator.onLine) {
-        return toast.error('Please check your internet connection');
-      }
-      const { data } = await http.post(`${url}/reset`, userObj);
-      const messageDispatch = data.data[0].message;
-      if (messageDispatch) {
-        toast.info(`${messageDispatch}`, {
+        return toast.error('Please check your internet connection', {
           type: toast.TYPE.INFO,
           closeButton: false,
           position: toast.POSITION.TOP_CENTER,
         });
       }
-      return null;
+      const { data } = await http.post(`${url}/reset`, userObj);
+      const messageDispatch = data.data[0].message;
+      return toast.info(`${messageDispatch}`, {
+        type: toast.TYPE.INFO,
+        closeButton: false,
+        position: toast.POSITION.TOP_CENTER,
+      });
     } catch (error) {
       return exceptionHandler(error);
     } finally {
