@@ -1,11 +1,11 @@
-/* eslint-disable react/jsx-indent */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
-import FollowCard from '../FollwCard/Follow-card';
+import Following from '../UserFollwing/Following/Following';
+import Followee from '../UserFollwing/Followee/Followee';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -56,11 +56,7 @@ class Profilepage extends Component {
     const { currentTab, firstname, lastname, profilePic } = this.state;
     const { articlesUpdate, userFollowee, userFollowing } = this.props;
     const { articles } = articlesUpdate;
-    const { userFollowee: followee } = userFollowee;
-    const { userFollowing: following } = userFollowing;
 
-    console.log(followee, '----------');
-    console.log(following, '================');
     return (
       <React.Fragment>
         <div className="profile-header">
@@ -90,32 +86,12 @@ class Profilepage extends Component {
           totalArticle={`${articles.length}`}
         />
         <div className="profile-content">
-          {currentTab === 'following-section'
-            ? followee.map(user => (
-                <FollowCard
-                  key={user.id}
-                  initials="JD"
-                  name={`${user.follower.first_name} ${
-                    user.follower.last_name
-                  }`}
-                  bio={`${user.follower.bio}`}
-                  button="following"
-                />
-              ))
-            : null}
-          {currentTab === 'followers-section'
-            ? following.map(user => (
-                <FollowCard
-                  key={user.id}
-                  initials="JD"
-                  name={`${user.followee.first_name} ${
-                    user.followee.last_name
-                  }`}
-                  bio={`${user.followee.bio}`}
-                  button="follow"
-                />
-              ))
-            : null}
+          {currentTab === 'following-section' ? (
+            <Following userFollowing={userFollowing} />
+          ) : null}
+          {currentTab === 'followers-section' ? (
+            <Followee userFollowee={userFollowee} />
+          ) : null}
           {currentTab === 'article-section' ? (
             <div>
               <Articles articlesUpdate={articlesUpdate} />
