@@ -63,8 +63,10 @@
 }
 
 .profile-content{
-    height: 600px;
+    width: 95%;
+    margin: 0 auto;
+    min-height: 600px;
     text-align: center;
     font-size: 2rem;
-    padding: 10px 0;
+    padding: 10px 20px;
 }

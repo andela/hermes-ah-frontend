@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
+import Userprofile from '../../containers/userprofile.container';
 import './profilepage.scss';
 
 class Profilepage extends Component {
@@ -13,6 +14,7 @@ class Profilepage extends Component {
       lastname: '',
       profilePic:
         'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
+      isReviewer: false,
     };
   }
 
@@ -30,6 +32,7 @@ class Profilepage extends Component {
         firstname: profile.first_name,
         lastname: profile.last_name,
         profilePic: profile.image_url,
+        isReviewer: profile.is_reviewer,
       });
     }
   };
@@ -47,7 +50,13 @@ class Profilepage extends Component {
   };
 
   render() {
-    const { currentTab, firstname, lastname, profilePic } = this.state;
+    const {
+      currentTab,
+      firstname,
+      lastname,
+      profilePic,
+      isReviewer,
+    } = this.state;
     return (
       <React.Fragment>
         <div className="profile-header">
@@ -86,7 +95,7 @@ class Profilepage extends Component {
             <div>This is the bookmark section</div>
           ) : null}
           {currentTab === 'profile-section' ? (
-            <div>This is the profile section</div>
+            <Userprofile isReviewer={isReviewer} />
           ) : null}
         </div>
       </React.Fragment>
