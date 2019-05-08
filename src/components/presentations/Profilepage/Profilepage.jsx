@@ -84,6 +84,8 @@ class Profilepage extends Component {
           changeTab={this.changeTab}
           currentTab={currentTab}
           totalArticle={`${articles.length}`}
+          totalFollowee={`${userFollowee.userFollowee.length}`}
+          totalFollowing={`${userFollowing.userFollowing.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (

@@ -10,18 +10,24 @@ class ProfileTab extends Component {
   }
 
   render() {
-    const { changeTab, currentTab, totalArticle } = this.props;
+    const {
+      changeTab,
+      currentTab,
+      totalArticle,
+      totalFollowee,
+      totalFollowing,
+    } = this.props;
     const ProfileTabItems = [
       {
         id: 1,
         value: 'Following',
-        valueNum: '10',
+        valueNum: totalFollowing,
         section: 'following-section',
       },
       {
         id: 2,
         value: 'Followers',
-        valueNum: '10',
+        valueNum: totalFollowee,
         section: 'followers-section',
       },
       {
@@ -78,6 +84,8 @@ ProfileTab.propTypes = {
   changeTab: PropTypes.func.isRequired,
   currentTab: PropTypes.string.isRequired,
   totalArticle: PropTypes.string.isRequired,
+  totalFollowee: PropTypes.string.isRequired,
+  totalFollowing: PropTypes.string.isRequired,
 };
 
 export default ProfileTab;
