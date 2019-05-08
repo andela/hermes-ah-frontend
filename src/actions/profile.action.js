@@ -1,6 +1,9 @@
+import { toast } from 'react-toastify';
 import actions from '../constants/profile.constants';
 import http from '../utils/httpService';
 import { decodeToken } from '../utils/authService';
+import contentLoading from './loading.action';
+import exceptionHandler from '../utils/exceptionHandler';
 
 export const getProfileSuccess = profile => {
   return {
@@ -17,11 +20,17 @@ export const getProfileFailure = () => {
 
 const getProfile = () => {
   return async dispatch => {
+    dispatch(contentLoading());
     try {
+      if (!navigator.onLine) {
+        return toast.error('Please check your internet connection');
+      }
       const user = decodeToken();
       const { data } = await http.get(`/profile/${user.id}`);
-      dispatch(getProfileSuccess(data));
+      return dispatch(getProfileSuccess(data));
     } catch (error) {
+      return exceptionHandler(error);
+    } finally {
       dispatch(getProfileFailure());
     }
   };

@@ -18,7 +18,7 @@ const store = mockStore({ updateArticle });
 
 const UserArticleComponent = (
   <Provider store={store}>
-    <Articles updateArticle={updateArticle} />
+    <Articles articlesUpdate={updateArticle} />
   </Provider>
 );
 

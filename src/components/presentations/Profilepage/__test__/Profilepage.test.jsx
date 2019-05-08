@@ -3,7 +3,8 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Profilpage from '../Profilepage';
+import Profilpage from '../ProfilePage';
+import Imagepic from '../ImagePic';
 
 const userProfile = {
   userProfile: {
@@ -35,6 +36,7 @@ const ProfilepageComponent = (
     <Profilpage
       getProfile={() => 'profile'}
       userProfile={{ profile: 'me' }}
+      isLoadingReducer={{ loader: true }}
       fetchArticles={() => 'articles'}
       articlesUpdate={articleObj}
       getFollowee={() => 'user'}
@@ -51,17 +53,26 @@ describe('ProfilePage component', () => {
     expect(wrapper.find('div'));
   });
 
+  it('should render image component', () => {
+    const wrapper = shallow(
+      <Imagepic profilePic="" handleChange={() => 'changed'} />
+    );
+    expect(wrapper.find('div'));
+  });
+
   it('should change state', () => {
     const wrapper = shallow(
       <Profilpage
         getProfile={() => 'profile'}
         userProfile={{ profile: 'dummy profile' }}
+        isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
         getFollowee={() => 'user'}
         getFollowing={() => 'user'}
         userFollowee={userFolloweeObj}
         userFollowing={userFollowingObj}
+        fetchBookmarks={() => 'bookmarked'}
       />
     );
 

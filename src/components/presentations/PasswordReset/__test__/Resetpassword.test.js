@@ -1,11 +1,13 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import actions, {
-  getProfileFailure,
-  getProfileSuccess,
-} from '../../../../actions/profile.action';
-import types from '../../../../constants/profile.constants';
+import {
+  resetPasswordSuccess,
+  resetPasswordFailure,
+  resetPassword,
+} from '../../../../actions/resetPassword.actions';
+import loadingConstant from '../../../../constants/loading.constants';
+import types from '../../../../constants/resetPassword.contants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -16,44 +18,43 @@ describe('auth actions', () => {
     fetchMock.config.fallbackToNetwork = false;
   });
 
-  it('should create an action to fetch profile success', async () => {
+  it('should create an action for success', async () => {
     const expectedAction = [
       {
-        type: types.FETCH_PROFILE_SUCCESS,
-        profile: { firstname: 'sam', lastname: 'peter' },
+        type: types.RESET_PASSWORD_SUCCESS,
       },
     ];
     const store = mockStore({});
 
-    const dummyProfile = {
-      firstname: 'sam',
-      lastname: 'peter',
+    const dummyUser = {
+      password: '1123@chuks',
+      confirmPassword: '1123@chuks',
     };
 
-    store.dispatch(getProfileSuccess(dummyProfile));
+    store.dispatch(resetPasswordSuccess(dummyUser));
     expect(store.getActions()).toEqual(expectedAction);
   });
 
-  it('should create an action to fetch profile failure', async () => {
+  it('should create an action for failure', async () => {
     const expectedAction = [
       {
-        type: types.FETCH_PROFILE_FAILURE,
+        type: types.RESET_PASSWORD_FAILURE,
       },
     ];
     const store = mockStore({});
 
-    store.dispatch(getProfileFailure());
+    store.dispatch(resetPasswordFailure());
     expect(store.getActions()).toEqual(expectedAction);
   });
 
-  it('should create an action for get profile', async () => {
+  it('should create an action for a post request', async () => {
     fetchMock.mock(
-      '/api/v1/profile/12345',
+      '/api/v1/auth/new-password',
       {
-        status: 200,
+        status: 201,
       },
       {
-        method: 'GET',
+        method: 'POST',
         headers: {
           Authorization: 'faketoken',
           'Content-Type': 'application/json',
@@ -61,26 +62,21 @@ describe('auth actions', () => {
       }
     );
 
-    await fetch('/api/v1/profile/12345', {
-      method: 'GET',
+    await fetch('/api/v1/auth/new-password', {
+      method: 'POST',
       headers: {
         Authorization: 'faketoken',
         'Content-Type': 'application/json',
       },
     });
-
     const expectedAction = [
       {
-        type: 'CONTENT_LOADING',
-      },
-      {
-        type: 'FETCH_PROFILE_FAILURE',
+        type: loadingConstant.CONTENT_LOADING,
       },
     ];
 
     const store = mockStore({});
-
-    store.dispatch(actions.getProfile());
+    store.dispatch(resetPassword());
     expect(store.getActions()).toEqual(expectedAction);
   });
 });

@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
+import Userprofile from '../../containers/userprofile.container';
+import Loader from '../../shared/Loader/Loader';
+import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
 import Following from '../UserFollwing/Following/Following';
 import Followee from '../UserFollwing/Followee/Followee';
+import Bookmarked from '../Bookmarked/Bookmaked';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -15,16 +19,26 @@ class Profilepage extends Component {
       firstname: '',
       lastname: '',
       profilePic:
-        'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
+        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
+      isReviewer: false,
     };
   }
 
   componentDidMount = () => {
-    const { getProfile, fetchArticles, getFollowee, getFollowing } = this.props;
+    const {
+      getProfile,
+      fetchArticles,
+      getFollowee,
+      getFollowing,
+      fetchBookmarks,
+    } = this.props;
     getProfile();
     fetchArticles();
     getFollowee();
     getFollowing();
+    getProfile();
+    fetchArticles();
+    fetchBookmarks();
   };
 
   componentDidUpdate = prevProps => {
@@ -36,6 +50,7 @@ class Profilepage extends Component {
         firstname: profile.first_name,
         lastname: profile.last_name,
         profilePic: profile.image_url,
+        isReviewer: profile.is_reviewer,
       });
     }
   };
@@ -44,36 +59,36 @@ class Profilepage extends Component {
     this.setState({ currentTab: tab });
   };
 
-  handleChange = async () => {
+  handleChange = async e => {
     const form = new FormData();
-    const imageData = document.querySelector('input[type="file"]').files[0];
+    const imageData = e.target.files[0];
     form.append('file', imageData);
     const res = await uploadToCloudnary(form);
     this.setState({ profilePic: res.url });
   };
 
   render() {
-    const { currentTab, firstname, lastname, profilePic } = this.state;
-    const { articlesUpdate, userFollowee, userFollowing } = this.props;
+    const {
+      currentTab,
+      firstname,
+      lastname,
+      profilePic,
+      isReviewer,
+    } = this.state;
+    const {
+      articlesUpdate,
+      userFollowee,
+      userFollowing,
+      isLoadingReducer,
+    } = this.props;
     const { articles } = articlesUpdate;
-
+    const { loader } = isLoadingReducer;
+    const { bookmarkedArticles } = this.props;
     return (
       <React.Fragment>
+        {loader && <Loader />}
         <div className="profile-header">
-          <div className="profile-img-container">
-            <img src={profilePic} alt="avatar" />
-            <form className="custom-file-upload" encType="multipart/form-data">
-              <label htmlFor="file-upload">
-                <i className="fa fa-upload" />
-                <input
-                  type="file"
-                  id="file-upload"
-                  name="file"
-                  onChange={this.handleChange}
-                />
-              </label>
-            </form>
-          </div>
+          <Imagepic profilePic={profilePic} handleChange={this.handleChange} />
           <h1>
             {firstname}
             &nbsp;
@@ -100,10 +115,12 @@ class Profilepage extends Component {
             </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
-            <div>This is the bookmark section</div>
+            <div>
+              <Bookmarked bookmarkedArticles={bookmarkedArticles} />
+            </div>
           ) : null}
           {currentTab === 'profile-section' ? (
-            <div>This is the profile section</div>
+            <Userprofile isReviewer={isReviewer} />
           ) : null}
         </div>
       </React.Fragment>
@@ -114,12 +131,15 @@ class Profilepage extends Component {
 Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
+  isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
   getFollowee: PropTypes.func.isRequired,
   getFollowing: PropTypes.func.isRequired,
+  bookmarkedArticles: PropTypes.shape().isRequired,
+  fetchBookmarks: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
