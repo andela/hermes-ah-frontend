@@ -30,13 +30,18 @@ class App extends Component {
   componentDidMount() {
     const user = decodeToken();
     this.setState({ user });
-    if (user && !user.isActivated) {
-      toast.info('Please confirm your email address', {
-        type: toast.TYPE.INFO,
-        closeButton: false,
-        transition: Zoom,
-        position: toast.POSITION.TOP_CENTER,
-      });
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
+    if (!token) {
+      if (user && !user.isActivated) {
+        toast.info('Please confirm your email address', {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     }
   }
 
