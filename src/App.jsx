@@ -16,6 +16,8 @@ import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
+import ForgotPassword from './components/containers/passwordReset.containers';
+import ResetPassword from './components/presentations/PasswordReset/ResetPassword';
 import { decodeToken } from './utils/authService';
 
 class App extends Component {
@@ -39,6 +41,12 @@ class App extends Component {
             <NavBar user={user} />
             <Switch>
               <Route path="/profile" component={Profilepage} />
+              <Route path="/" exact component={Homepage} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/reset-password" component={ResetPassword} />
+              <Route path="/not-found" component={Notfound} />
               <Route
                 path="/login"
                 render={props => <LoginContainer {...props} user={user} />}
