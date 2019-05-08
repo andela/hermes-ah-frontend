@@ -12,17 +12,25 @@ class ResetPassword extends FormComponent {
     };
   }
 
+  handleSubmit = async e => {
+    e.preventDefault();
+    const { data } = this.state;
+    const { resetPassword: userForgotPassword } = this.props;
+    await userForgotPassword(data);
+  };
+
   render() {
-    const { passwordReset } = this.props;
+    const { userResetPassword } = this.props;
+    const { handleSubmit } = this;
     return (
-      <div>
-        {passwordReset && <Loader />}
+      <div className="forgot-password">
+        {userResetPassword.isLoading && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">
-              <Form unstackable>
+              <Form unstackable onSubmit={handleSubmit}>
                 <p>Reset Password</p>
-                {this.renderInput('password', 'NewPassword', 'password')}
+                {this.renderInput('password', 'New password', 'password')}
                 {this.renderInput(
                   'confirmPassword',
                   'confirmPassword',

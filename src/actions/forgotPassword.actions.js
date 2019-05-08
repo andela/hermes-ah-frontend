@@ -27,8 +27,8 @@ export const forgotPassword = userObj => {
       const { data } = await http.post(`${url}/reset`, userObj);
       const messageDispatch = data.data[0].message;
       return toast.success(messageDispatch);
-    } catch (ex) {
-      return exceptionHandler(ex);
+    } catch (error) {
+      return exceptionHandler(error);
     } finally {
       dispatch(forgotPasswordFailure());
     }

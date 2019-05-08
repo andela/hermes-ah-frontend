@@ -17,7 +17,7 @@ import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
 import ForgotPassword from './components/containers/passwordReset.containers';
-import ResetPassword from './components/presentations/PasswordReset/ResetPassword';
+import ResetPassword from './components/containers/resetPassword.containers';
 import { decodeToken } from './utils/authService';
 
 class App extends Component {

@@ -35,7 +35,7 @@ class ForgotPassword extends FormComponent {
   render() {
     const { passwordReset } = this.props;
     return (
-      <div>
+      <div className="forgot-password">
         {passwordReset.isLoading && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
