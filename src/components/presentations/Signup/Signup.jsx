@@ -26,6 +26,16 @@ class Signup extends FormComponent {
   };
 
   render() {
+    const emailIdType = 'email';
+    const emailPlaceHolder = 'Email';
+    const passwordIdType = 'password';
+    const passwordPlaceHolder = 'Password';
+    const firstnameId = 'firstname';
+    const firstnamePlaceholder = 'First Name';
+    const lastnameId = 'lastname';
+    const lastnamePlaceholder = 'Last Name';
+    const confirmPasswordId = 'confirmPassword';
+    const confirmPasswordPlaceHolder = 'Confirm Password';
     const { auth, user } = this.props;
     if (user) return <Redirect to="/" />;
     return (
@@ -45,14 +55,18 @@ class Signup extends FormComponent {
                 </div>
               </div>
               <Form unstackable onSubmit={this.handelClick}>
-                {this.renderInput('firstname', 'First Name', 'John Doe')}
-                {this.renderInput('lastname', 'Last Name', 'John Doe')}
-                {this.renderInput('email', 'Email', 'email')}
-                {this.renderInput('password', 'Password', 'password')}
+                {this.renderInput(firstnameId, firstnamePlaceholder)}
+                {this.renderInput(lastnameId, lastnamePlaceholder)}
+                {this.renderInput(emailIdType, emailPlaceHolder, emailIdType)}
                 {this.renderInput(
-                  'confirmPassword',
-                  'Confirm Password',
-                  'password'
+                  passwordIdType,
+                  passwordPlaceHolder,
+                  passwordIdType
+                )}
+                {this.renderInput(
+                  confirmPasswordId,
+                  confirmPasswordPlaceHolder,
+                  passwordIdType
                 )}
                 <Button className="submit" type="submit">
                   LOGIN

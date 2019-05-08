@@ -20,6 +20,10 @@ class Login extends FormComponent {
   };
 
   render() {
+    const emailIdType = 'email';
+    const emailPlaceHolder = 'Email';
+    const passwordIdType = 'password';
+    const passwordPlaceHolder = 'Password';
     const { user, isLoadingReducer } = this.props;
     const { loader } = isLoadingReducer;
     if (user) return <Redirect to="/" />;
@@ -40,8 +44,12 @@ class Login extends FormComponent {
                 </div>
               </div>
               <Form unstackable onSubmit={this.handelClick}>
-                {this.renderInput('email', 'Email', 'email')}
-                {this.renderInput('password', 'Password', 'password')}
+                {this.renderInput(emailIdType, emailPlaceHolder, emailIdType)}
+                {this.renderInput(
+                  passwordIdType,
+                  passwordPlaceHolder,
+                  passwordIdType
+                )}
                 <Link to="/forgot-password" className="forgot-password">
                   Forgot password?
                 </Link>
