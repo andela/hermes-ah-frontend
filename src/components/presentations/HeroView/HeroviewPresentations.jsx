@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import './hero-view.scss';
 
@@ -14,7 +15,9 @@ const HeroView = () => {
             profer solutions
           </p>
           <div>
-            <Button primary>Explore</Button>
+            <Link to="login">
+              <Button primary>Explore</Button>
+            </Link>
           </div>
         </div>
       </div>

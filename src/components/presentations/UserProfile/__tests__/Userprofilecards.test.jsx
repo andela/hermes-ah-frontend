@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProfileCard from '../Profilecard';
-import ReportedCard from '../Reportedcard';
-import SuggestesArticleCard from '../Suggestedarticlecard';
+import ProfileCard from '../ProfileCard';
+import ReportedCard from '../ReportedCard';
+import SuggestesArticleCard from '../SuggestedArticleCard';
 
 describe('ProfilePage component', () => {
   it('should render profile page', () => {

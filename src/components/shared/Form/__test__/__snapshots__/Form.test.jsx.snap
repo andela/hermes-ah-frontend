@@ -1,3 +1,91 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomePage component should match snapshot 1`] = `<FormComponent />`;
+
+exports[`HomePage component should match snapshot renderInput 1`] = `
+<FormGroup>
+  <FormInput
+    as={[Function]}
+    control={[Function]}
+    id="text"
+    onChange={[Function]}
+    placeholder="text"
+    required={true}
+    type="text"
+  />
+</FormGroup>
+`;
+
+exports[`HomePage component should match snapshot renderInput 2`] = `
+<FormGroup>
+  <FormInput
+    as={[Function]}
+    control={[Function]}
+    id="test1"
+    onChange={[Function]}
+    placeholder="test1"
+    required={true}
+    type="password"
+  />
+</FormGroup>
+`;
+
+exports[`HomePage component should match snapshot renderInput 3`] = `
+<FormGroup>
+  <FormInput
+    as={[Function]}
+    control={[Function]}
+    id="test2"
+    onChange={[Function]}
+    placeholder="test2"
+    required={true}
+    type="email"
+  />
+</FormGroup>
+`;
+
+exports[`HomePage component should match snapshot renderRuler 1`] = `
+<div
+  className="hr-bar"
+>
+  <hr
+    className="bar"
+  />
+  <span
+    className="span-text"
+  >
+    or login with
+  </span>
+  <hr
+    className="bar"
+  />
+</div>
+`;
+
+exports[`HomePage component should match snapshot renderSocialLogin 1`] = `
+<div
+  className="social-login"
+>
+  <a
+    href="htttwitter.com"
+  >
+    <i
+      className="fab fa-twitter"
+    />
+  </a>
+  <a
+    href="google.com.com"
+  >
+    <i
+      className="fab fa-google"
+    />
+  </a>
+  <a
+    href="facebook.com"
+  >
+    <i
+      className="fab fa-facebook-f"
+    />
+  </a>
+</div>
+`;

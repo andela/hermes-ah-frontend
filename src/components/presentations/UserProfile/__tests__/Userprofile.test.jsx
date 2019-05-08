@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Userprofile from '../Userprofile';
+import Userprofile from '../UserProfile';
 
 const userProfile = {
   userProfile: {

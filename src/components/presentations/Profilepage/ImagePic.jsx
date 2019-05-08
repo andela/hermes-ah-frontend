@@ -22,7 +22,7 @@ const Imagepic = ({ handleChange, profilePic }) => (
 
 Imagepic.defaultProps = {
   profilePic:
-    'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
+    'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
 };
 
 Imagepic.propTypes = {

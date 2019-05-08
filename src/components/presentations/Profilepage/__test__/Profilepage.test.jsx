@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Profilpage from '../Profilepage';
-import Imagepic from '../Imagepic';
+import Profilpage from '../ProfilePage';
+import Imagepic from '../ImagePic';
 
 const userProfile = {
   userProfile: {
@@ -13,6 +13,10 @@ const userProfile = {
       last_name: 'enzyme',
     },
   },
+};
+
+const articleObj = {
+  articles: [],
 };
 
 const middlewares = [thunk];
@@ -25,6 +29,8 @@ const ProfilepageComponent = (
       getProfile={() => 'profile'}
       userProfile={{ profile: 'me' }}
       isLoadingReducer={{ loader: true }}
+      fetchArticles={() => 'articles'}
+      articlesUpdate={articleObj}
     />
   </Provider>
 );
@@ -48,6 +54,8 @@ describe('ProfilePage component', () => {
         getProfile={() => 'profile'}
         userProfile={{ profile: 'dummy profile' }}
         isLoadingReducer={{ loader: true }}
+        articlesUpdate={articleObj}
+        fetchArticles={() => 'articles'}
       />
     );
 

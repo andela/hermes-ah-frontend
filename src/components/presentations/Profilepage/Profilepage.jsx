@@ -6,6 +6,7 @@ import Userprofile from '../../containers/userprofile.container';
 import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
+import Articles from '../UserArticles/Articles';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -15,14 +16,15 @@ class Profilepage extends Component {
       firstname: '',
       lastname: '',
       profilePic:
-        'https://res.cloudinary.com/dcn7hu7wo/image/upload/v1557149927/avatar.png',
+        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
       isReviewer: false,
     };
   }
 
   componentDidMount = () => {
-    const { getProfile } = this.props;
+    const { getProfile, fetchArticles } = this.props;
     getProfile();
+    fetchArticles();
   };
 
   componentDidUpdate = prevProps => {
@@ -59,8 +61,9 @@ class Profilepage extends Component {
       profilePic,
       isReviewer,
     } = this.state;
-    const { isLoadingReducer } = this.props;
+    const { isLoadingReducer, articlesUpdate } = this.props;
     const { loader } = isLoadingReducer;
+    const { articles } = articlesUpdate;
     return (
       <React.Fragment>
         {loader && <Loader />}
@@ -72,7 +75,11 @@ class Profilepage extends Component {
             {lastname}
           </h1>
         </div>
-        <ProfileTab changeTab={this.changeTab} currentTab={currentTab} />
+        <ProfileTab
+          changeTab={this.changeTab}
+          currentTab={currentTab}
+          totalArticle={`${articles.length}`}
+        />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
             <div>This is the following section</div>
@@ -81,7 +88,9 @@ class Profilepage extends Component {
             <div>This is the follower section</div>
           ) : null}
           {currentTab === 'article-section' ? (
-            <div>This is the article section</div>
+            <div>
+              <Articles articlesUpdate={articlesUpdate} />
+            </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
             <div>This is the bookmark section</div>
@@ -99,6 +108,8 @@ Profilepage.propTypes = {
   getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
   isLoadingReducer: PropTypes.shape().isRequired,
+  articlesUpdate: PropTypes.shape().isRequired,
+  fetchArticles: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
