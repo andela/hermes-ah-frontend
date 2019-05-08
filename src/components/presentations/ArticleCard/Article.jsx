@@ -26,16 +26,27 @@ const ArticleCard = ({
         </Item.Extra>
         <Item.Extra>
           <p>
-            {date}
+            {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
             {read}
           </p>
         </Item.Extra>
       </Item.Content>
-      <Item.Image size="small" src={image} />
+      <Item.Image
+        size="small"
+        src={
+          image ||
+          'https://res.cloudinary.com/dnch08bzc/image/upload/v1557150721/science-1182713_1280.jpg'
+        }
+      />
     </Item>
   </Item.Group>
 );
+
+ArticleCard.defaultProps = {
+  image:
+    'https://res.cloudinary.com/dnch08bzc/image/upload/v1557150721/science-1182713_1280.jpg',
+};
 
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
@@ -43,7 +54,7 @@ ArticleCard.propTypes = {
   date: PropTypes.string.isRequired,
   read: PropTypes.string.isRequired,
   paragraph: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
   category: PropTypes.string.isRequired,
 };
 
