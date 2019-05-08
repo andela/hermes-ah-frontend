@@ -4,23 +4,13 @@ import { create } from 'react-test-renderer';
 import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from '../NavBar';
 
-const navLinks = [
-  {
-    link: '/login',
-    text: 'Login',
-  },
-  {
-    link: '/signup',
-    text: 'Signup',
-    className: 'active',
-  },
-];
+const user = { name: null };
 
 describe('NavBar component', () => {
   it('should match snapshot', () => {
     const wrapper = create(
       <Router>
-        <NavBar navLinks={navLinks} />
+        <NavBar user={user} />
       </Router>
     );
     expect(wrapper.toJSON).toMatchSnapshot();
@@ -29,7 +19,7 @@ describe('NavBar component', () => {
   it('should render tags', () => {
     const wrapper = shallow(
       <Router>
-        <NavBar navLinks={navLinks} />
+        <NavBar user={user} />
       </Router>
     );
     expect(wrapper.find('menu'));

@@ -1,4 +1,5 @@
 import React from 'react';
+import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Form from '../Form';
 
@@ -13,6 +14,7 @@ describe('HomePage component', () => {
     const inst = wrapper.getInstance();
     expect(inst.renderInput('text', 'text')).toMatchSnapshot();
     expect(inst.renderInput('test1', 'test1', 'password')).toMatchSnapshot();
+    expect(inst.renderInput('test2', 'test2', 'email')).toMatchSnapshot();
   });
 
   it('should match snapshot renderSocialLogin', () => {
@@ -25,5 +27,10 @@ describe('HomePage component', () => {
     const wrapper = renderer.create(<Form />);
     const inst = wrapper.getInstance();
     expect(inst.renderRuler()).toMatchSnapshot();
+  });
+
+  it('always renders a div', () => {
+    const wrapper = shallow(<Form />);
+    expect(wrapper.find('div'));
   });
 });

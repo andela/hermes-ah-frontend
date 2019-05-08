@@ -30,6 +30,20 @@ exports[`HomePage component should match snapshot renderInput 2`] = `
 </FormGroup>
 `;
 
+exports[`HomePage component should match snapshot renderInput 3`] = `
+<FormGroup>
+  <FormInput
+    as={[Function]}
+    control={[Function]}
+    id="test2"
+    onChange={[Function]}
+    placeholder="test2"
+    required={true}
+    type="email"
+  />
+</FormGroup>
+`;
+
 exports[`HomePage component should match snapshot renderRuler 1`] = `
 <div
   className="hr-bar"
