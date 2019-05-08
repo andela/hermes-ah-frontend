@@ -4,7 +4,7 @@ import fetchMock from 'fetch-mock';
 import actions, {
   getProfileFailure,
   getProfileSuccess,
-} from '../../../../actions/profile.actions';
+} from '../../../../actions/profile.action';
 import types from '../../../../constants/profile.constants';
 
 const middlewares = [thunk];
@@ -69,8 +69,14 @@ describe('auth actions', () => {
       },
     });
 
-    // This will be empty expected action util we have a loader
-    const expectedAction = [];
+    const expectedAction = [
+      {
+        type: 'CONTENT_LOADING',
+      },
+      {
+        type: 'FETCH_PROFILE_FAILURE',
+      },
+    ];
 
     const store = mockStore({});
 

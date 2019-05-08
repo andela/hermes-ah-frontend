@@ -20,7 +20,11 @@ const store = mockStore({ userProfile });
 
 const ProfilepageComponent = (
   <Provider store={store}>
-    <Profilpage getProfile={() => 'profile'} userProfile={{ profile: 'me' }} />
+    <Profilpage
+      getProfile={() => 'profile'}
+      userProfile={{ profile: 'me' }}
+      isLoadingReducer={{ loader: true }}
+    />
   </Provider>
 );
 
@@ -35,6 +39,7 @@ describe('ProfilePage component', () => {
       <Profilpage
         getProfile={() => 'profile'}
         userProfile={{ profile: 'dummy profile' }}
+        isLoadingReducer={{ loader: true }}
       />
     );
 
