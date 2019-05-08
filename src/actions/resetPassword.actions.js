@@ -30,8 +30,8 @@ export const resetPassword = newPassword => {
         `/new-password?token=${token}`,
         newPassword
       );
-      const messageDispatch = data.message;
       window.location.replace('/login');
+      const messageDispatch = data.message;
       return toast.success(messageDispatch);
     } catch (error) {
       return exceptionHandler(error);
