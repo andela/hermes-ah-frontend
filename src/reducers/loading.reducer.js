@@ -12,7 +12,7 @@ const isLoadingReducer = (state = initialState, action) => {
   return {
     ...state,
     loader: requestState === 'LOADING',
-    [requestName]: null,
+    [requestName]: requestState,
   };
 };
 

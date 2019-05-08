@@ -3,13 +3,9 @@ import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import { setToken } from '../utils/authService';
 import actionTypes from '../constants/auth.constants';
-import loadingConstant from '../constants/loading.constants';
+import contentLoading from './loading.action';
 
 const url = '/auth';
-
-export const contentLoading = () => ({
-  type: loadingConstant.CONTENT_LOADING,
-});
 
 export const loginError = () => ({
   type: actionTypes.LOGIN_FAILURE,
