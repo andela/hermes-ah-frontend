@@ -20,13 +20,6 @@ export const resetPassword = newPassword => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      if (!navigator.onLine) {
-        return toast.error('Please check your internet connection', {
-          type: toast.TYPE.INFO,
-          closeButton: false,
-          position: toast.POSITION.TOP_CENTER,
-        });
-      }
       const params = new URLSearchParams(document.location.search.substring(1));
       const token = params.get('token');
       setToken(token);
