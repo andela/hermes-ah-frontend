@@ -40,7 +40,15 @@ class NavDropdown extends Component {
           onClick={this.toggleDropdown}
         >
           <div className="nav-drp-btn-ctn">
-            <img className="nav-drp-pic" src={userPic} alt="" />
+            <img
+              className="nav-drp-pic"
+              src={
+                !userPic
+                  ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
+                  : userPic
+              }
+              alt=""
+            />
             <i className="fas fa-caret-down" />
             {openDropdown ? (
               <div className="dropdown-content">
