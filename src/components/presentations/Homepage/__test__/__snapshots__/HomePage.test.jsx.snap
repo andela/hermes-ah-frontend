@@ -27,6 +27,7 @@ exports[`HomePage component should match snapshot 1`] = `
         "loader": false,
       }
     }
+    user={null}
   />
 </Provider>
 `;

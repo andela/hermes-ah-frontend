@@ -11,7 +11,7 @@ export const getAllArticlesSuccess = articles => ({
 });
 
 export const getAllArticlesError = error => ({
-  type: actionTypes.FETCH_ARTICLES_ERROR,
+  type: actionTypes.FETCH_ARTICLES_FAILURE,
   error,
 });
 
