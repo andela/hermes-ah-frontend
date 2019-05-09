@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
-import { setToken } from '../utils/authService';
+import { setToken, removeToken } from '../utils/authService';
 import actionTypes from '../constants/auth.constants';
 import contentLoading from './loading.action';
 
@@ -70,8 +70,14 @@ export const confirmAccount = token => {
   };
 };
 
+export const logout = () => {
+  removeToken();
+  window.location = '/';
+};
+
 export default {
   login,
   signup,
   confirmAccount,
+  logout,
 };
