@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
 import './form.scss';
 
@@ -41,18 +43,33 @@ class FormComponent extends Component {
     );
   };
 
+  onFacebookButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/facebook';
+  };
+
+  onTwitterButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/twitter';
+  };
+
+  onGoogleButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/google';
+  };
+
   renderSocialLogin = () => {
     return (
       <div className="social-login">
-        <a href="htttwitter.com">
+        <Link onClick={this.onTwitterButtonClick}>
           <i className="fab fa-twitter" />
-        </a>
-        <a href="google.com.com">
+        </Link>
+        <Link onClick={this.onGoogleButtonClick}>
           <i className="fab fa-google" />
-        </a>
-        <a href="facebook.com">
+        </Link>
+        <Link onClick={this.onFacebookButtonClick}>
           <i className="fab fa-facebook-f" />
-        </a>
+        </Link>
       </div>
     );
   };
