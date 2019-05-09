@@ -19,6 +19,14 @@ const articleObj = {
   articles: [],
 };
 
+const userFollowingObj = {
+  userFollowing: [],
+};
+
+const userFolloweeObj = {
+  userFollowee: [],
+};
+
 const bookmarkObj = {
   articles: [],
 };
@@ -35,6 +43,10 @@ const ProfilepageComponent = (
       isLoadingReducer={{ loader: true }}
       fetchArticles={() => 'articles'}
       articlesUpdate={articleObj}
+      getFollowee={() => 'user'}
+      getFollowing={() => 'user'}
+      userFollowee={userFolloweeObj}
+      userFollowing={userFollowingObj}
       bookmarkedArticles={bookmarkObj}
     />
   </Provider>
@@ -61,6 +73,10 @@ describe('ProfilePage component', () => {
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
+        getFollowee={() => 'user'}
+        getFollowing={() => 'user'}
+        userFollowee={userFolloweeObj}
+        userFollowing={userFollowingObj}
         fetchBookmarks={() => 'bookmarked'}
         bookmarkedArticles={bookmarkObj}
       />
