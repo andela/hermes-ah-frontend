@@ -124,7 +124,7 @@ Homepage.propTypes = {
   isLoadingReducer: PropTypes.shape({}).isRequired,
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
-  user: PropTypes.shape(Object).isRequired,
+  user: PropTypes.shape(Object),
 };
 
 export default Homepage;
