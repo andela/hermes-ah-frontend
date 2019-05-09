@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast, Zoom } from 'react-toastify';
 import { Container, Grid } from 'semantic-ui-react';
 import HeroView from '../HeroView/HeroviewPresentations';
 import ArticleCard from '../ArticleCard/Article';
@@ -13,9 +14,30 @@ class Homepage extends Component {
     this.state = {};
   }
 
-  componentDidMount = () => {
-    const { getAllArticles: articles } = this.props;
+  componentDidMount = async () => {
+    const { getAllArticles: articles, confirmAccount } = this.props;
     articles();
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
+    if (token) {
+      const message = await confirmAccount(token);
+      if (message === 'Account verification was successful') {
+        toast.info(
+          `${message}, You will be redirected to the login page in 5 seconds`,
+          {
+            type: toast.TYPE.INFO,
+            closeButton: false,
+            transition: Zoom,
+            position: toast.POSITION.TOP_CENTER,
+          }
+        );
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          window.location = '/login';
+        }, 5000);
+      }
+    }
   };
 
   render() {
@@ -90,6 +112,7 @@ Homepage.propTypes = {
   }).isRequired,
   isLoadingReducer: PropTypes.shape({}).isRequired,
   getAllArticles: PropTypes.func.isRequired,
+  confirmAccount: PropTypes.func.isRequired,
 };
 
 export default Homepage;
