@@ -58,7 +58,13 @@ const updateProfile = obj => {
       }
       const user = decodeToken();
       const { data } = await http.patch(`/profile/${user.id}`, obj);
-      return dispatch(updateProfileSuccess(data));
+      dispatch(updateProfileSuccess(data));
+      toast.info('You have successfully update your profile.', {
+        type: toast.TYPE.INFO,
+        closeButton: false,
+        position: toast.POSITION.TOP_CENTER,
+      });
+      return 'success';
     } catch (error) {
       dispatch(updateProfileFailure());
       return exceptionHandler(error);

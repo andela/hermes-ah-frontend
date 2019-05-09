@@ -77,11 +77,6 @@ class Profilepage extends Component {
       this.setState({ profilePic: res.url });
       updateProfile({ image_url: res.url });
       toast.dismiss();
-      toast.info('You have successfully update your profile.', {
-        type: toast.TYPE.INFO,
-        closeButton: false,
-        position: toast.POSITION.TOP_CENTER,
-      });
     } else {
       toast.error(validFormat.message);
     }
