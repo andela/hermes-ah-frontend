@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, Button, Dropdown } from 'semantic-ui-react';
+import { Input, Button, Dropdown, TextArea } from 'semantic-ui-react';
 import {
   Editor,
   EditorState,
@@ -175,10 +175,10 @@ class NewArticle extends Component {
             <br />
             <br />
             <p className="labels">Abstract</p>
-            <Input
+            <TextArea
               name="abstract"
               value={abstract}
-              className="inputBox"
+              className="abstract"
               id="another-one"
             />
             <br />
