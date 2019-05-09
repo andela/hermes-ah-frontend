@@ -11,7 +11,7 @@ const articles = (state = initialState, action) => {
         ...state,
         articleData: action.articles,
       };
-    case actionType.FETCH_ARTICLES_ERROR:
+    case actionType.FETCH_ARTICLES_FAILURE:
       return {
         ...state,
       };

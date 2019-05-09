@@ -8,16 +8,29 @@ h3, p {
     margin: 10px;
     padding: 0;
     float: left;
-    overflow: auto;
     border-bottom: solid 1px $article-border-color;
 
-    .ui.items>.item .meta {
-        color: #868686;
-        font-size: 14px;
+    .article-details {
+        width: 90%;
+        float: left;
+
+        .meta {
+            color: $secondary-color;
+        }
+
+        p, h3 {
+            padding: 0 10px;
+        }
     }
-    
-    .ui.items>.item>.content>a.header {
-        font-size: 20px;
+
+    .article-img {
+        width: 10%;
+        float: left;
+        text-align: right;
+
+        img {
+            width: 100%;
+        }
     }
 
     p {
