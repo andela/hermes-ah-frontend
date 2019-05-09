@@ -7,7 +7,7 @@ const ProfileCard = ({ profile, updateProfile }) => {
     <div className="profile-card">
       {profile ? (
         <div>
-          <p className="profile-card-item">
+          <p className="profile-card-item editable">
             <b>Title:</b>
             <span
               contentEditable
@@ -17,7 +17,7 @@ const ProfileCard = ({ profile, updateProfile }) => {
               {profile.title}
             </span>
           </p>
-          <p className="profile-card-item">
+          <p className="profile-card-item editable">
             <b>Research Field:</b>
             <span
               contentEditable
@@ -33,7 +33,7 @@ const ProfileCard = ({ profile, updateProfile }) => {
             <b>Email:</b>
             <span>{profile.email}</span>
           </p>
-          <p className="profile-card-item">
+          <p className="profile-card-item editable">
             <b>Phone Number:</b>
             <span
               contentEditable
@@ -45,7 +45,7 @@ const ProfileCard = ({ profile, updateProfile }) => {
               {profile.phone_number}
             </span>
           </p>
-          <p className="profile-card-item">
+          <p className="profile-card-item editable">
             <b>About Me:</b>
             <span
               contentEditable
