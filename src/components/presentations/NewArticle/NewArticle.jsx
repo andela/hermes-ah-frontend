@@ -11,7 +11,6 @@ import { stateToHTML } from 'draft-js-export-html';
 import PropTypes from 'prop-types';
 import uploadToCloudinary from '../../../utils/uploadToCloudnary';
 import './new-article.scss';
-// import { mediaBlockRenderer } from './Entities/MediaBlockRenderer';
 import BlockStyleToolbar from './BlockStyles/BlockStyleToolbar';
 
 class NewArticle extends Component {
