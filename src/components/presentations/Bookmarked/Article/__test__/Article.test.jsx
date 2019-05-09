@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import Article from '../Article';
 
-const bookmarkedArticles = [
+const articles = [
   {
     id: 1,
     title: 'This is a cat',
@@ -29,9 +29,9 @@ const bookmarkedArticles = [
   },
 ];
 
-const BookmakedComponent = (
+const ArticleComponent = (
   <div>
-    {bookmarkedArticles.map(item => (
+    {articles.map(item => (
       <Article
         key={item.id}
         title={item.title}
@@ -45,7 +45,7 @@ const BookmakedComponent = (
 
 describe('<ArticleCard />', () => {
   it('should render bookmark component', () => {
-    const wrapper = shallow(BookmakedComponent);
+    const wrapper = shallow(ArticleComponent);
     expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('div'));
   });

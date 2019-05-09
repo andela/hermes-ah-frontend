@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
+// import jest from 'jest';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Profilpage from '../ProfilePage';
+import Profilepage from '../ProfilePage';
 import Imagepic from '../ImagePic';
 
 const userProfile = {
@@ -37,15 +38,15 @@ const store = mockStore({ userProfile });
 
 const ProfilepageComponent = (
   <Provider store={store}>
-    <Profilpage
-      getProfile={() => 'profile'}
+    <Profilepage
+      getProfile={jest.fn()}
       userProfile={{ profile: 'me' }}
       isLoadingReducer={{ loader: true }}
-      fetchArticles={() => 'articles'}
-      fetchBookmarks={() => 'bookmarked'}
+      fetchArticles={jest.fn()}
+      fetchBookmarks={jest.fn()}
       articlesUpdate={articleObj}
-      getFollowee={() => 'user'}
-      getFollowing={() => 'user'}
+      getFollowee={jest.fn()}
+      getFollowing={jest.fn()}
       userFollowee={userFolloweeObj}
       userFollowing={userFollowingObj}
       bookmarkedArticles={bookmarkObj}
@@ -68,17 +69,17 @@ describe('ProfilePage component', () => {
 
   it('should change state', () => {
     const wrapper = shallow(
-      <Profilpage
-        getProfile={() => 'profile'}
+      <Profilepage
+        getProfile={jest.fn()}
         userProfile={{ profile: 'dummy profile' }}
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
-        fetchArticles={() => 'articles'}
-        getFollowee={() => 'user'}
-        getFollowing={() => 'user'}
+        fetchArticles={jest.fn()}
+        getFollowee={jest.fn()}
+        getFollowing={jest.fn()}
         userFollowee={userFolloweeObj}
         userFollowing={userFollowingObj}
-        fetchBookmarks={() => 'bookmarked'}
+        fetchBookmarks={jest.fn()}
         bookmarkedArticles={bookmarkObj}
       />
     );
