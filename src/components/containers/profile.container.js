@@ -6,7 +6,7 @@ import followeeAction from '../../actions/followee.actions';
 import followingAction from '../../actions/following.actions';
 import fetchBookmarks from '../../actions/bookmarked.action';
 
-const { getProfile } = profileAction;
+const { getProfile, updateProfile } = profileAction;
 const { getFollowee } = followeeAction;
 const { getFollowing } = followingAction;
 
@@ -28,7 +28,14 @@ const mapStateToProps = ({
 
 const ProfilepageContainer = connect(
   mapStateToProps,
-  { getProfile, fetchArticles, getFollowee, getFollowing, fetchBookmarks }
+  {
+    getProfile,
+    fetchArticles,
+    getFollowee,
+    getFollowing,
+    fetchBookmarks,
+    updateProfile,
+  }
 )(Profilepage);
 
 export default ProfilepageContainer;

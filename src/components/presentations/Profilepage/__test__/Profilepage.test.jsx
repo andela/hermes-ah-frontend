@@ -84,9 +84,9 @@ describe('ProfilePage component', () => {
       />
     );
 
-    expect(wrapper.state('currentTab')).toBe('following-section');
-    wrapper.instance().changeTab('profile-section');
     expect(wrapper.state('currentTab')).toBe('profile-section');
+    wrapper.instance().changeTab('following-section');
+    expect(wrapper.state('currentTab')).toBe('following-section');
     wrapper.instance().changeTab('followers-section');
     expect(wrapper.state('currentTab')).toBe('followers-section');
     wrapper.instance().changeTab('article-section');
