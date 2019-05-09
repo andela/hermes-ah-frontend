@@ -81,18 +81,22 @@ class UserHomepage extends Component {
             <div className="a-cont-wrap">
               {sectionBdivA.map(article => (
                 <Item className="a-sectn" key={article.id}>
-                  <Item.Image
-                    className="a-image"
-                    size="small"
-                    src={article.image_url}
-                  />
+                  {article.image_url ? (
+                    <Item.Image
+                      className="a-image"
+                      size="small"
+                      src={article.image_url}
+                    />
+                  ) : null}
 
                   <Item.Content className="a-content">
                     <Item.Header className="art-title">
                       {article.title}
                     </Item.Header>
                     <Item.Description>
-                      <p className="description">{`${article.abstract}...`}</p>
+                      <p className="description">
+                        {`${article.abstract.substring(0, 200)}...`}
+                      </p>
                       <p className="author">
                         {`${article.author.first_name} ${
                           article.author.last_name
@@ -116,11 +120,13 @@ class UserHomepage extends Component {
                     </Item.Header>
                     <Item.Description>
                       <div className="description">
-                        <Item.Image
-                          className="b-image"
-                          size="small"
-                          src={article.image_url}
-                        />
+                        {article.image_url ? (
+                          <Item.Image
+                            className="b-image"
+                            size="small"
+                            src={article.image_url}
+                          />
+                        ) : null}
                         <p className="desc-txt">
                           {`${article.abstract.substring(0, 100)}...`}
                         </p>
@@ -147,11 +153,13 @@ class UserHomepage extends Component {
           <div className="c-cont-wrap">
             {sectionBdivC.map(article => (
               <Item className="c-sectn" key={article.id}>
-                <Item.Image
-                  className="c-image"
-                  size="small"
-                  src={article.image_url}
-                />
+                {article.image_url ? (
+                  <Item.Image
+                    className="c-image"
+                    size="small"
+                    src={article.image_url}
+                  />
+                ) : null}
 
                 <Item.Content className="a-content">
                   <Item.Header className="art-title">
