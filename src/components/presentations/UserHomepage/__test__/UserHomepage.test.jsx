@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import UserHomepage from '../UserHomepage';
-// import ArticleCard from '../../ArticleCard/Article';
 import PopularArticleCard from '../../PopularArticleCard/PopularArticleCard';
 
 const middleware = [thunk];
@@ -42,26 +41,8 @@ describe('userHomePage component', () => {
 
   it('should render without crashing', () => {
     const wrapper = shallow(<UserHomepage {...props} />);
-    // expect(wrapper.find(<ArticleCard key="title" date="date" />));
     expect(wrapper.find('Item'));
   });
-
-  // it('should render articleCard without crashing', () => {
-  //   const wrapper = shallow(
-  //     <ArticleCard
-  //       paragraph="ghjhgsd"
-  //       title="ndksjfkn"
-  //       author="ghksf"
-  //       date="kjfjdkds"
-  //       read="jcksf"
-  //       category="jkdfsf"
-  //       image="jdfdfsf"
-  //       key="1"
-  //       num={3}
-  //     />
-  //   );
-  //   expect(wrapper.find('Header'));
-  // });
 
   it('should render PopularArticleCard without crashing', () => {
     const wrapper = shallow(
