@@ -1,0 +1,101 @@
+@import "../../../../assets/stylesheets/index.scss";
+
+p {
+  font-family: $font-stack;
+}
+.main-card {
+  text-align: left;
+  width: 95%;
+  margin: 20px auto;
+  padding: 10px 20px;
+  float: left;
+  overflow: auto;
+  border: solid 1px $secondary-color;
+  border: solid 1px #959595;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px 0 #888888;
+
+  .img-section {
+    width: 13%;
+    height: 80px;
+    margin: 0 10px;
+    background-color: grey;
+    border-radius: 66px;
+    float: left;
+    text-align: center;
+    color: white;
+
+    .initials {
+      margin-top: 8px;
+      font-size: 41px;
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 80px;
+      border-radius: 50%;
+    }
+  }
+
+  .highlights {
+    width: 50%;
+    margin: 0 10px;
+    padding: 0 10px;
+    float: left;
+
+    .name {
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+  }
+
+  .button-div {
+    width: 15%;
+    float: right;
+    text-align: right;
+
+    .btn-following {
+      background: #fff;
+      text-transform: capitalize;
+      margin-top: 20px;
+      padding: 4px;
+      border-radius: 10px;
+      width: 104%;
+      border: solid 1px $primary-color;
+      color: $primary-color;
+      font-size: 19px;
+    }
+
+    .btn-follower {
+      background: $primary-color;
+      text-transform: capitalize;
+      margin-top: 20px;
+      padding: 4px;
+      border-radius: 10px;
+      width: 104%;
+      border: solid 1px #fff;
+      color: #fff;
+      font-size: 19px;
+    }
+
+    .btn-following:hover{
+      background: $primary-color;
+      color: #fff;
+    }
+
+    .btn-follower:hover{
+      background: #fff;
+      color: $primary-color;
+      border: solid 1px $primary-color;
+    }
+  }
+}
+
+.grid-render {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 19px;
+}

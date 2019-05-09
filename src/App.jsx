@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import PropTypes from 'prop-types';
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import store from './store/store';
 import HomePageContainer from './components/containers/homepage.container';
 import LoginContainer from './components/containers/login.container';
@@ -30,13 +25,18 @@ class App extends Component {
   componentDidMount() {
     const user = decodeToken();
     this.setState({ user });
-    if (user && !user.isActivated) {
-      toast.info('Please confirm your email address', {
-        type: toast.TYPE.INFO,
-        closeButton: false,
-        transition: Zoom,
-        position: toast.POSITION.TOP_CENTER,
-      });
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
+    if (!token) {
+      if (user && !user.isActivated) {
+        toast.info('Please confirm your email address', {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
     }
   }
 
@@ -49,21 +49,26 @@ class App extends Component {
             <ToastContainer autoClose={false} />
             <NavBar user={user} />
             <Switch>
-              <Route path="/profile" component={Profilepage} />
-              <Route path="/about" component={AboutPage} />
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/reset-password" component={ResetPassword} />
-              <Route path="/not-found" component={Notfound} />
+              <Route path="/profile/" exact component={Profilepage} />
+              <Route path="/about/" exact component={AboutPage} />
               <Route
-                path="/login"
+                path="/forgot-password/"
+                exact
+                component={ForgotPassword}
+              />
+              <Route path="/reset-password/" exact component={ResetPassword} />
+              <Route
+                path="/login/"
+                exact
                 render={props => <LoginContainer {...props} user={user} />}
               />
               <Route
-                path="/signup"
+                path="/signup/"
+                exact
                 render={props => <SignupContainer {...props} user={user} />}
               />
               <Route path="/" exact component={HomePageContainer} />
-              <Redirect to="/not-found" />
+              <Route path="*" component={Notfound} />
             </Switch>
             <Footer />
           </React.Fragment>

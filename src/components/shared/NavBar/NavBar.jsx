@@ -3,7 +3,10 @@ import { Menu } from 'semantic-ui-react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import navLinks from '../../../utils/headers';
+import AuthNavBar from './AuthNavBar';
 import './navbar.scss';
+
+const { auth } = navLinks;
 
 class NavBar extends Component {
   constructor(props) {
@@ -28,14 +31,7 @@ class NavBar extends Component {
           </Menu.Item>
         </Menu.Menu>
         <Menu.Menu className="nav-cont">
-          {user &&
-            navLinks.auth.map(child => (
-              <Link key={child.text} to={child.link}>
-                <Menu.Item className={`navbar-item ${child.className}`}>
-                  {child.text}
-                </Menu.Item>
-              </Link>
-            ))}
+          {user && <AuthNavBar navItems={auth} />}
           {!user &&
             navLinks.anonymous.map(child => (
               <Link key={child.text} to={child.link}>

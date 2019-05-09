@@ -69,7 +69,7 @@ class Signup extends FormComponent {
                   passwordIdType
                 )}
                 <Button className="submit" type="submit">
-                  LOGIN
+                  SIGNUP
                 </Button>
                 {this.renderRuler()}
               </Form>

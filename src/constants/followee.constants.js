@@ -1,0 +1,6 @@
+const actionTypes = {
+  FETCH_FOLLOWEE_SUCCESS: 'FETCH_FOLLOWEE_SUCCESS',
+  FETCH_FOLLOWEE_FAILURE: 'FETCH_FOLLOWEE_FAILURE',
+};
+
+export default actionTypes;
