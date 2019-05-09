@@ -19,7 +19,7 @@ export const decodeToken = () => {
 
 export const setToken = token => localStorage.setItem(tokenKey, token);
 
-export const removeToken = token => localStorage.removeItem(token);
+export const removeToken = () => localStorage.removeItem(tokenKey);
 
 export default {
   setToken,
