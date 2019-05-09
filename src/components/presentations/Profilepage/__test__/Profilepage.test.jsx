@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
-// import jest from 'jest';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Profilepage from '../ProfilePage';
