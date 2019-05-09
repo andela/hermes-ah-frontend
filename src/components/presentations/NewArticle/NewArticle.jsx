@@ -27,7 +27,6 @@ class NewArticle extends Component {
       const converted = (convertToRaw(contentState), html);
       this.setState({ body: converted, editorState });
     };
-    this.toggleBlockType = this.toggleBlockType.bind(this);
   }
 
   toggleBlockType = blockType => {

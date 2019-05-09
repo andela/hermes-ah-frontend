@@ -51,12 +51,12 @@ class App extends Component {
             <ToastContainer autoClose={false} />
             <NavBar user={user} />
             <Switch>
-              <Route path="/forgot-password" component={ForgotPassword} />
-              <Route path="/reset-password" component={ResetPassword} />
-              <Route path="/not-found" component={Notfound} />
               <Route path="/new-article" component={NewArticle} />
               <Route path="/profile/" exact component={Profilepage} />
               <Route path="/about/" exact component={AboutPage} />
+              <Route path="/forgot-password" component={ForgotPassword} />
+              <Route path="/reset-password" component={ResetPassword} />
+              <Route path="/not-found" component={Notfound} />
               <Route
                 path="/forgot-password/"
                 exact
