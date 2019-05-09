@@ -28,14 +28,11 @@ class UserHomepage extends Component {
 
     const popularArticlesLimit = popularArticles.slice(0, 3);
 
-    // const { loader } = isLoadingReducer;
     const sectionBrandomArticle = articleData.sort(() => Math.random() - 0.5);
 
     const sectionBdivA = sectionBrandomArticle.slice(0, 1);
     const sectionBdivB = sectionBrandomArticle.slice(1, 4);
     const sectionBdivC = sectionBrandomArticle.slice(4, 5);
-
-    // const limit = randomArticle.sort(() => Math.random() - 10).slice(0, 1);
 
     return (
       <div className="article-section-hmp cont">
@@ -53,7 +50,7 @@ class UserHomepage extends Component {
                     }`}
                     date={item.createdAt}
                     read={`${item.reading_time} min read`}
-                    paragraph={item.abstract.substring(0, 200)}
+                    paragraph={item.abstract}
                     image={item.image_url}
                   />
                 ))}
@@ -74,11 +71,6 @@ class UserHomepage extends Component {
                     likes={elem.likes_count}
                   />
                 ))}
-                {/* <img
-                  className="advert"
-                  src="https://res.cloudinary.com/duzpmyphv/image/upload/v1556812752/medical2.jpg"
-                  alt="advert"
-                /> */}
               </Container>
             </Grid.Column>
           </Grid.Row>
@@ -100,9 +92,7 @@ class UserHomepage extends Component {
                       {article.title}
                     </Item.Header>
                     <Item.Description>
-                      <p className="description">
-                        {`${article.abstract.substring(0, 200)}...`}
-                      </p>
+                      <p className="description">{`${article.abstract}...`}</p>
                       <p className="author">
                         {`${article.author.first_name} ${
                           article.author.last_name
@@ -192,10 +182,7 @@ class UserHomepage extends Component {
 }
 
 UserHomepage.propTypes = {
-  articles: PropTypes.shape({
-    // isLoading: PropTypes.bool,
-    // articleData: PropTypes.arrayOf(PropTypes.shape),
-  }).isRequired,
+  articles: PropTypes.shape({}).isRequired,
   getAllArticles: PropTypes.func.isRequired,
 };
 

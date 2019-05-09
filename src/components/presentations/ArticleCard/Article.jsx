@@ -20,7 +20,9 @@ const ArticleCard = ({
       <Item.Content>
         <br />
         <Item.Header as="a">{title}</Item.Header>
-        <Item.Description>{paragraph}</Item.Description>
+        <Item.Description>
+          {`${paragraph.substring(0, 200)}...`}
+        </Item.Description>
         <Item.Extra>
           <p className="author-name">{author}</p>
         </Item.Extra>

@@ -43,7 +43,6 @@ class Homepage extends Component {
 
   render() {
     const { articles, isLoadingReducer, user } = this.props;
-    console.log(user, '---');
     const { loader } = isLoadingReducer;
     const { articleData } = articles;
     const sortedArticle = articleData.sort(
@@ -112,6 +111,10 @@ class Homepage extends Component {
     );
   }
 }
+
+Homepage.defaultProps = {
+  user: null,
+};
 
 Homepage.propTypes = {
   articles: PropTypes.shape({
