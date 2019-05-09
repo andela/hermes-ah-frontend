@@ -10,6 +10,7 @@ describe('ProfileTab and ProfileButton component', () => {
         changeTab={() => 'tabCahnged'}
         currentTab="profile-tab"
         totalArticle="10"
+        totalBookmarkArticle="10"
       />
     );
     expect(wrapper.find('div'));

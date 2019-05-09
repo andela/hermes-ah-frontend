@@ -34,6 +34,7 @@ const ProfilepageComponent = (
       userProfile={{ profile: 'me' }}
       isLoadingReducer={{ loader: true }}
       fetchArticles={() => 'articles'}
+      fetchBookmarks={() => 'bookmarked'}
       articlesUpdate={articleObj}
       bookmarkedArticles={bookmarkObj}
     />
