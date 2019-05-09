@@ -55,7 +55,23 @@ export const signup = userObj => {
   };
 };
 
+export const confirmAccount = token => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data } = await http.patch(`${url}/verification/${token}`);
+      const { message } = data;
+      return message;
+    } catch (ex) {
+      return exceptionHandler(ex);
+    } finally {
+      dispatch(loginError());
+    }
+  };
+};
+
 export default {
   login,
   signup,
+  confirmAccount,
 };
