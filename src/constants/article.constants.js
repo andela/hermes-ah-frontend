@@ -2,6 +2,8 @@ const actionType = {
   // fetch all articles action types
   FETCH_ARTICLES_SUCCESS: 'FETCH_ARTICLES_SUCCESS',
   FETCH_ARTICLES_ERROR: 'FETCH_ARTICLES_ERROR',
+  POST_ARTICLE_SUCCESS: 'POST_ARTICLE_SUCCESS',
+  POST_ARTICLE_ERROR: 'POST_ARTICLE_ERROR',
 };
 
 export default actionType;

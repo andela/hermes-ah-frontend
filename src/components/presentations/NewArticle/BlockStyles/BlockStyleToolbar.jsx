@@ -1,6 +1,5 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/prefer-stateless-function */
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import BlockStyleButton from './BlockStyleButton';
 import HeaderStyleDropdown from './HeaderStyleDropdown';
 
@@ -28,10 +27,15 @@ export function getBlockStyle(block) {
   }
 }
 
-class BlockStyleToolbar extends React.Component {
+class BlockStyleToolbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
   render() {
-    // eslint-disable-next-line react/prop-types
     const { editorState } = this.props;
+    const { onToggle } = this.props;
     const selection = editorState.getSelection();
     const blockType = editorState
       .getCurrentContent()
@@ -43,9 +47,7 @@ class BlockStyleToolbar extends React.Component {
         <HeaderStyleDropdown
           headerOptions={HEADER_TYPES}
           active={blockType}
-          // eslint-disable-next-line react/destructuring-assignment
-          // eslint-disable-next-line react/prop-types
-          onToggle={this.props.onToggle}
+          onToggle={onToggle}
         />
 
         {BLOCK_TYPES.map(type => {
@@ -53,9 +55,7 @@ class BlockStyleToolbar extends React.Component {
             <BlockStyleButton
               active={type.style === blockType}
               label={type.label}
-              // eslint-disable-next-line react/destructuring-assignment
-              // eslint-disable-next-line react/prop-types
-              onToggle={this.props.onToggle}
+              onToggle={onToggle}
               style={type.style}
               key={type.label}
               type={type}
@@ -66,5 +66,10 @@ class BlockStyleToolbar extends React.Component {
     );
   }
 }
+
+BlockStyleToolbar.propTypes = {
+  editorState: PropTypes.string.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
 
 export default BlockStyleToolbar;

@@ -1,4 +1,3 @@
-/* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
 import { Input, Button, Dropdown } from 'semantic-ui-react';
 import {
@@ -9,45 +8,38 @@ import {
   convertToRaw,
 } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-import http from '../../../utils/httpService';
+import PropTypes from 'prop-types';
+import uploadToCloudinary from '../../../utils/uploadToCloudnary';
 import './new-article.scss';
-import { mediaBlockRenderer } from './Entities/MediaBlockRenderer';
+// import { mediaBlockRenderer } from './Entities/MediaBlockRenderer';
 import BlockStyleToolbar from './BlockStyles/BlockStyleToolbar';
 
 class NewArticle extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      abstract: '',
-      body: '',
-      keywords: '',
-      //   category: '',
-      //   image: '',
-      // is_draft: false,
+      data: { title: '', abstract: '', body: '', keywords: '', category: '' },
+      headerpic: '',
       editorState: EditorState.createEmpty(),
     };
     this.onChange = editorState => {
       const contentState = editorState.getCurrentContent();
       const html = stateToHTML(contentState);
-      console.log('content state', convertToRaw(contentState), html);
-      this.setState({ editorState });
+      const converted = (convertToRaw(contentState), html);
+      this.setState({ body: converted, editorState });
     };
     this.toggleBlockType = this.toggleBlockType.bind(this);
   }
 
   toggleBlockType = blockType => {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleBlockType(editorState, blockType));
   };
 
-  // eslint-disable-next-line react/sort-comp
+  //   handlers
   handleKeyCommand = command => {
-    const newState = RichUtils.handleKeyCommand(
-      // eslint-disable-next-line react/destructuring-assignment
-      this.state.editorState,
-      command
-    );
+    const { editorState } = this.state;
+    const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
       this.onChange(newState);
       return 'handled';
@@ -56,75 +48,60 @@ class NewArticle extends Component {
   };
 
   onClick = e => {
-    this.onChange(
-      // eslint-disable-next-line react/destructuring-assignment
-      RichUtils.toggleInlineStyle(this.state.editorState, e.target.name)
-    );
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleInlineStyle(editorState, e.target.name));
   };
 
-  // eslint-disable-next-line react/sort-comp
-  toggleBlockType(blockType) {
-    // eslint-disable-next-line react/destructuring-assignment
-    this.onChange(RichUtils.toggleBlockType(this.state.editorState, blockType));
-  }
-
-  onItalicClick = () => {
-    this.onChange(
-      // eslint-disable-next-line react/destructuring-assignment
-      RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC')
-    );
+  // handler for Article header
+  handleImageChange = async e => {
+    const form = new FormData();
+    const imageData = e.target.files[0];
+    form.append('file', imageData);
+    const res = await uploadToCloudinary(form);
+    this.setState({ headerpic: res.url });
   };
 
-  onBoldClick = () => {
-    this.onChange(
-      // eslint-disable-next-line react/destructuring-assignment
-      RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD')
-    );
+  handleChange = (e, { value }) => {
+    this.setState({ category: value });
   };
 
-  onUnderlineClick = () => {
-    this.onChange(
-      // eslint-disable-next-line react/destructuring-assignment
-      RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE')
-    );
+  // handler for save to draft button
+  handleDraftClick = async e => {
+    e.preventDefault();
+    const { data } = this.state;
+    const { createNewArticle: article } = this.props;
+    await article(data);
+
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  onStrikethroughClick = () => {
-    this.onChange(
-      // eslint-disable-next-line react/destructuring-assignment
-      RichUtils.toggleInlineStyle(this.state.editorState, 'STRIKETHROUGH')
-    );
+  // handler for
+  handleClick = async e => {
+    e.preventDefault();
+    const { data } = this.state;
+    const { createNewArticle: article } = this.props;
+    await article(data);
+
+    this.setState({ [e.target.name]: e.target.value });
   };
 
-  // eslint-disable-next-line react/no-string-refs
-  focus = () => this.refs.editor.focus();
-
-  // add image function
+  // function for adding images to the editor's body
   onAddImage = e => {
     e.preventDefault();
     const { editorState } = this.state;
-    // eslint-disable-next-line no-alert
     const urlValue = window.prompt('Paste Image Link');
-    // eslint-disable-next-line no-console
     const contentState = editorState.getCurrentContent();
-    // eslint-disable-next-line no-console
-    // eslint-disable-next-line no-console
     const contentStateWithEntity = contentState.createEntity(
       'image',
       'IMMUTABLE',
       { src: urlValue }
     );
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-    // eslint-disable-next-line no-console
-    console.log(contentStateWithEntity, 'nothing changed');
     const newEditorState = EditorState.set(
       editorState,
       { currentContent: contentStateWithEntity },
       'create-entity'
     );
-    // eslint-disable-next-line no-console
-    console.log(newEditorState, 'new state');
-    // eslint-disable-next-line no-console
     this.setState(
       {
         editorState: AtomicBlockUtils.insertAtomicBlock(
@@ -139,63 +116,53 @@ class NewArticle extends Component {
     );
   };
 
-  handleClick = async e => {
-    e.preventDefault();
-
-    this.setState({ [e.target.name]: e.target.value });
-    const newArticle = this.state;
-
-    // eslint-disable-next-line no-console
-    console.log(newArticle, 'data');
-    const response = await http.post(
-      'https://hermes-ah-backend.herokuapp.com/api/v1/new-article'
-    );
-    const { message } = response.data;
-    return message;
+  // handler for inline draft editor styles
+  onItalicClick = () => {
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleInlineStyle(editorState, 'ITALIC'));
   };
 
+  onBoldClick = () => {
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleInlineStyle(editorState, 'BOLD'));
+  };
+
+  onUnderlineClick = () => {
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleInlineStyle(editorState, 'UNDERLINE'));
+  };
+
+  onStrikethroughClick = () => {
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleInlineStyle(editorState, 'STRIKETHROUGH'));
+  };
+
+  toggleBlockType(blockType) {
+    const { editorState } = this.state;
+    this.onChange(RichUtils.toggleBlockType(editorState, blockType));
+  }
+
   render() {
-    const { title, abstract, keywords, body } = this.state;
-    console.log({ body });
-    // const styles = ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH'];
-    // const styles = [
-    //   { label: 'B', style: 'BOLD' },
-    //   { label: 'I', style: 'ITALIC' },
-    //   { label: 'U', style: 'UNDERLINE' },
-    //   { label: 'S', style: 'STRIKETHROUGH' },
-    // ];
-    // const buttons = styles.map(style => {
-    //   // change this to switch case
-    //   let Style;
-    //   let bold;
-    //   let styled;
-    //   let italic;
-    //   let underline;
-    //   let strikethrough;
-    //   if (style.label === 'B') {
-    //     bold = <i className="fas fa-bold" />;
-    //     Style = bold;
-    //     styled = 'BOLD';
-    //   }
-    //   if (style.label === 'I') {
-    //     italic = <i className="fas fa-italic" />;
-    //     Style = italic;
-    //   }
-    //   if (style.label === 'U') {
-    //     underline = <i className="fas fa-underline" />;
-    //     Style = underline;
-    //   }
-    //   if (style.label === 'S') {
-    //     strikethrough = <i className="fas fa-strikethrough" />;
-    //     Style = strikethrough;
-    //   }
-    //   return (
-    //     // eslint-disable-next-line react/button-has-type
-    //     <button key={styled} onClick={this.onClick} name={styled}>
-    //       {Style}
-    //     </button>
-    //   );
-    // });
+    const {
+      title,
+      abstract,
+      keywords,
+      body,
+      category,
+      headerpic,
+      editorState,
+    } = this.state;
+
+    const options = [
+      { key: 1, text: 'Health', value: 'Health', name: 'Health' },
+      { key: 2, text: 'Engineering', value: 'Engineering', name: 'Enginnerin' },
+      { key: 3, text: 'Chemistry', value: 'Chemistry', name: 'sdssd' },
+      { key: 4, text: 'Ecology', value: 'Ecology', name: 'ddds' },
+      { key: 5, text: 'Genetics', value: 'Genetics', name: 'hjkh' },
+      { key: 6, text: 'Physiology', value: 'Physiology' },
+      { key: 7, text: 'Developement', value: 'Developement' },
+      { key: 8, text: 'Nutrition', value: 'Nutrition' },
+    ];
 
     return (
       <div>
@@ -220,21 +187,20 @@ class NewArticle extends Component {
             <p className="labels">Body</p>
             <div className="editor">
               <BlockStyleToolbar
-                // eslint-disable-next-line react/destructuring-assignment
-                editorState={this.state.editorState}
+                editorState={editorState}
                 onToggle={this.toggleBlockType}
               />
-              {/* {buttons} */}
-              <button onClick={this.onBoldClick}>
+              {/* Inline buttons */}
+              <button type="button" onClick={this.onBoldClick}>
                 <i className="fas fa-bold" />
               </button>
-              <button onClick={this.onItalicClick}>
+              <button type="button" onClick={this.onItalicClick}>
                 <i className="fas fa-italic" />
               </button>
-              <button onClick={this.onUnderlineClick}>
+              <button type="button" onClick={this.onUnderlineClick}>
                 <i className="fas fa-underline" />
               </button>
-              <button onClick={this.onStrikethroughClick}>
+              <button type="button" onClick={this.onStrikethroughClick}>
                 <i className="fas fa-strikethrough" />
               </button>
               <button
@@ -245,17 +211,11 @@ class NewArticle extends Component {
                 <i className="fas fa-image" />
               </button>
               <Editor
-                // eslint-disable-next-line react/destructuring-assignment
-                blockRendererFn={mediaBlockRenderer}
-                // eslint-disable-next-line react/destructuring-assignment
-                editorState={this.state.editorState}
+                editorState={editorState}
                 handleKeyCommand={this.handleKeyCommand}
                 onChange={this.onChange}
                 name="body"
                 value={body}
-                // name="body"
-                // eslint-disable-next-line react/no-string-refs
-                ref="editor"
               />
             </div>
             <br />
@@ -266,14 +226,30 @@ class NewArticle extends Component {
             </p>
             <br />
             <p className="labels">Category</p>
-            <Dropdown placeholder="pick category" search selection />
+            <Dropdown
+              id="dropdown"
+              placeholder="pick category"
+              name={options}
+              options={options}
+              multiple
+              value={category}
+              onChange={this.handleChange}
+              search
+              selection
+            />
             <br />
             <br />
             <br />
             <p className="labels">Article Header image</p>
             <div className="image-upload">
               <div className="image-upload-box">
-                <input type="file" />
+                <input
+                  type="file"
+                  handleChange={this.handleImageChange}
+                  headerPic={headerpic}
+                  name="file"
+                  value={headerpic}
+                />
               </div>
               <p>One file only</p>
               <p>2 MB limit</p>
@@ -281,7 +257,7 @@ class NewArticle extends Component {
             </div>
             <br />
             <div>
-              <Button>Save as draft</Button>
+              <Button onClick={this.handleDraftClick}>Save as draft</Button>
               <Button onClick={this.handleClick}>Save & Publish</Button>
               <Button basic color="blue" content="Cancel" />
             </div>
@@ -294,5 +270,9 @@ class NewArticle extends Component {
     );
   }
 }
+
+NewArticle.propTypes = {
+  createNewArticle: PropTypes.string.isRequired,
+};
 
 export default NewArticle;

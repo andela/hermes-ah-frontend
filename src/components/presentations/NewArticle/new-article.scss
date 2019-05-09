@@ -1,12 +1,9 @@
 @import '../../../assets/stylesheets/index.scss';
 
-p{
-    text-align: left;
-}
-.title{
-    background-color: black;
-    height: 300px;
-}
+// .title{
+//     background-color: black;
+//     height: 300px;
+// }
 
 .editor{
     border: 3px solid #0000;
@@ -22,11 +19,6 @@ p{
     font-family: 'calibri', sans-serif;
     border-radius: 5px;
   }
-
-//   .DraftEditor-editorContainer {
-//     //   border: black solid 1px;
-//     //   height: 80px;
-//   }
 
   .keywordTitle {
       color: #857E7E;
@@ -76,7 +68,7 @@ p{
 }
 
 .ui.basic.blue.button {
-    color: #2F80ED!important; 
+    color: $primary-color!important; 
 }
 button{
     padding: 1%;

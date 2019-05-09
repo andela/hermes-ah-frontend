@@ -1,30 +1,33 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class BlockStyleButton extends React.Component {
   onToggle = e => {
     e.preventDefault();
-    // eslint-disable-next-line react/prop-types
-    this.props.onToggle(this.props.style);
+    const { onToggle, style } = this.props;
+    onToggle(style);
   };
 
   render() {
+    const { active, label } = this.props;
     let className = 'RichEditor-styleButton';
-    // eslint-disable-next-line react/prop-types
-    if (this.props.active) {
+    if (active) {
       className += ' RichEditor-activeButton';
     }
 
     return (
-      // eslint-disable-next-line jsx-a11y/no-static-element-interactions
-      // eslint-disable-next-line react/button-has-type
-      <button className={className} onClick={this.onToggle}>
-        {this.props.label}
+      <button type="button" className={className} onClick={this.onToggle}>
+        {label}
       </button>
     );
   }
 }
+
+BlockStyleButton.propTypes = {
+  style: PropTypes.string.isRequired,
+  onToggle: PropTypes.func.isRequired,
+  label: PropTypes.func.isRequired,
+  active: PropTypes.func.isRequired,
+};
 
 export default BlockStyleButton;
