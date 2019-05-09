@@ -27,6 +27,10 @@ const userFolloweeObj = {
   userFollowee: [],
 };
 
+const bookmarkObj = {
+  articles: [],
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
@@ -43,6 +47,7 @@ const ProfilepageComponent = (
       getFollowing={() => 'user'}
       userFollowee={userFolloweeObj}
       userFollowing={userFollowingObj}
+      bookmarkedArticles={bookmarkObj}
     />
   </Provider>
 );
@@ -73,6 +78,7 @@ describe('ProfilePage component', () => {
         userFollowee={userFolloweeObj}
         userFollowing={userFollowingObj}
         fetchBookmarks={() => 'bookmarked'}
+        bookmarkedArticles={bookmarkObj}
       />
     );
 

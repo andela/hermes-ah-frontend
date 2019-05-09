@@ -80,10 +80,11 @@ class Profilepage extends Component {
       userFollowee,
       userFollowing,
       isLoadingReducer,
+      bookmarkedArticles,
     } = this.props;
     const { articles } = articlesUpdate;
     const { loader } = isLoadingReducer;
-    const { bookmarkedArticles } = this.props;
+    const bookmarkList = bookmarkedArticles.articles;
     return (
       <React.Fragment>
         {loader && <Loader />}
@@ -101,6 +102,7 @@ class Profilepage extends Component {
           totalArticle={`${articles.length}`}
           totalFollowee={`${userFollowee.userFollowee.length}`}
           totalFollowing={`${userFollowing.userFollowing.length}`}
+          totalBookmarkArticle={`${bookmarkList.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (

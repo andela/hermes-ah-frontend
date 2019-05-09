@@ -16,6 +16,7 @@ class ProfileTab extends Component {
       totalArticle,
       totalFollowee,
       totalFollowing,
+      totalBookmarkArticle,
     } = this.props;
     const ProfileTabItems = [
       {
@@ -39,7 +40,7 @@ class ProfileTab extends Component {
       {
         id: 4,
         value: 'Bookmarked',
-        valueNum: '10',
+        valueNum: totalBookmarkArticle,
         section: 'bookmark-section',
       },
     ];
@@ -86,6 +87,7 @@ ProfileTab.propTypes = {
   totalArticle: PropTypes.string.isRequired,
   totalFollowee: PropTypes.string.isRequired,
   totalFollowing: PropTypes.string.isRequired,
+  totalBookmarkArticle: PropTypes.string.isRequired,
 };
 
 export default ProfileTab;
