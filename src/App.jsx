@@ -15,9 +15,10 @@ import Profilepage from './components/containers/profile.container';
 import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
-import { decodeToken, setToken } from './utils/authService';
+import { decodeToken } from './utils/authService';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
+import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
 
 class App extends Component {
   constructor(props) {
@@ -44,13 +45,6 @@ class App extends Component {
   }
 
   render() {
-    const socialLoginToken = window.location.href.split('?')[1];
-    console.log(socialLoginToken, 'token');
-    if (socialLoginToken) {
-      setToken(socialLoginToken);
-      window.location = '/';
-      // console.log(socialLoginToken);
-    }
     const { user } = this.state;
     return (
       <Provider store={store}>
@@ -79,12 +73,12 @@ class App extends Component {
                 render={props => <SignupContainer {...props} user={user} />}
               />
               <Route path="/logout/" exact component={Logout} />
+              <Route path="/auth/social" exact component={SocialLogin} />
               <Route
                 path="/"
                 exact
                 render={props => <HomePageContainer {...props} user={user} />}
               />
-              <Route path="/auth/social/" exact component={HomePageContainer} />
               <Route path="*" component={Notfound} />
             </Switch>
             <Footer />
