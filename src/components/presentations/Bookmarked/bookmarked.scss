@@ -1,0 +1,19 @@
+@import '../../../assets/stylesheets/index.scss';
+h3, p {
+    font-family: $font-stack;
+}
+
+.bookmark-articles {
+    width: 70%;
+    overflow: auto;
+    margin: 0 auto;
+
+    .header-card {
+        width: 80%;
+        margin: 20px 0;
+    }
+    .icon {
+        color: $primary-color;
+        padding: 0 10px;
+    }
+}

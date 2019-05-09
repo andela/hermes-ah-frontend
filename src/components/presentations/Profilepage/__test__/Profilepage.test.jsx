@@ -19,6 +19,10 @@ const articleObj = {
   articles: [],
 };
 
+const bookmarkObj = {
+  articles: [],
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
@@ -31,6 +35,7 @@ const ProfilepageComponent = (
       isLoadingReducer={{ loader: true }}
       fetchArticles={() => 'articles'}
       articlesUpdate={articleObj}
+      bookmarkedArticles={bookmarkObj}
     />
   </Provider>
 );
@@ -57,6 +62,7 @@ describe('ProfilePage component', () => {
         articlesUpdate={articleObj}
         fetchArticles={() => 'articles'}
         fetchBookmarks={() => 'bookmarked'}
+        bookmarkedArticles={bookmarkObj}
       />
     );
 
