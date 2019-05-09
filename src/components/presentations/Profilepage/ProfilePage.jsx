@@ -17,7 +17,7 @@ class Profilepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'following-section',
+      currentTab: 'profile-section',
       firstname: '',
       lastname: '',
       profilePic:
