@@ -4,7 +4,7 @@ import profileAction from '../../actions/profile.action';
 import fetchArticles from '../../actions/articles-update.actions';
 import fetchBookmarks from '../../actions/bookmarked.action';
 
-const { getProfile } = profileAction;
+const { getProfile, updateProfile } = profileAction;
 
 const mapStateToProps = ({
   userProfile,
@@ -20,7 +20,7 @@ const mapStateToProps = ({
 
 const ProfilepageContainer = connect(
   mapStateToProps,
-  { getProfile, fetchArticles, fetchBookmarks }
+  { getProfile, fetchArticles, fetchBookmarks, updateProfile }
 )(Profilepage);
 
 export default ProfilepageContainer;

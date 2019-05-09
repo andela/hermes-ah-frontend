@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
+import validateImage from '../../../utils/validateImage';
 import Userprofile from '../../containers/userprofile.container';
 import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
@@ -48,11 +50,20 @@ class Profilepage extends Component {
   };
 
   handleChange = async e => {
+    const { updateProfile } = this.props;
     const form = new FormData();
     const imageData = e.target.files[0];
-    form.append('file', imageData);
-    const res = await uploadToCloudnary(form);
-    this.setState({ profilePic: res.url });
+    const validFormat = validateImage(imageData);
+    if (validFormat.valid) {
+      toast.info(validFormat.message);
+      form.append('file', imageData);
+      const res = await uploadToCloudnary(form);
+      this.setState({ profilePic: res.url });
+      updateProfile({ image_url: res.url });
+      toast.dismiss();
+    } else {
+      toast.error(validFormat.message);
+    }
   };
 
   render() {
@@ -63,7 +74,7 @@ class Profilepage extends Component {
       profilePic,
       isReviewer,
     } = this.state;
-    const { isLoadingReducer, articlesUpdate } = this.props;
+    const { isLoadingReducer, articlesUpdate, updateProfile } = this.props;
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const { bookmarkedArticles } = this.props;
@@ -71,7 +82,11 @@ class Profilepage extends Component {
       <React.Fragment>
         {loader && <Loader />}
         <div className="profile-header">
-          <Imagepic profilePic={profilePic} handleChange={this.handleChange} />
+          <Imagepic
+            profilePic={profilePic}
+            handleChange={this.handleChange}
+            updateProfile={updateProfile}
+          />
           <h1>
             {firstname}
             &nbsp;
@@ -117,6 +132,7 @@ Profilepage.propTypes = {
   bookmarkedArticles: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
   fetchBookmarks: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

@@ -10,6 +10,10 @@ const userProfile = (state = initialState, action) => {
       return { ...state, userProfile: action.profile };
     case actionTypes.FETCH_PROFILE_FAILURE:
       return { ...state };
+    case actionTypes.UPDATE_PROFILE_SUCCESS:
+      return { ...state, userProfile: action.profile };
+    case actionTypes.UPDATE_PROFILE_FAILURE:
+      return { ...state };
     default:
       return state;
   }

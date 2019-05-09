@@ -14,6 +14,7 @@ const Imagepic = ({ handleChange, profilePic }) => (
           onChange={e => {
             handleChange(e);
           }}
+          accept="image/*"
         />
       </label>
     </form>
