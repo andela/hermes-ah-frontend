@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import ProfileTab from '../ProfileTab/ProfileTab';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
+import validateImage from '../../../utils/validateImage';
 import Userprofile from '../../containers/userprofile.container';
 import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
+import Following from '../UserFollwing/Following/Following';
+import Followee from '../UserFollwing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 
 class Profilepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentTab: 'following-section',
+      currentTab: 'profile-section',
       firstname: '',
       lastname: '',
       profilePic:
@@ -23,7 +27,17 @@ class Profilepage extends Component {
   }
 
   componentDidMount = () => {
-    const { getProfile, fetchArticles, fetchBookmarks } = this.props;
+    const {
+      getProfile,
+      fetchArticles,
+      getFollowee,
+      getFollowing,
+      fetchBookmarks,
+    } = this.props;
+    getProfile();
+    fetchArticles();
+    getFollowee();
+    getFollowing();
     getProfile();
     fetchArticles();
     fetchBookmarks();
@@ -48,11 +62,20 @@ class Profilepage extends Component {
   };
 
   handleChange = async e => {
+    const { updateProfile } = this.props;
     const form = new FormData();
     const imageData = e.target.files[0];
-    form.append('file', imageData);
-    const res = await uploadToCloudnary(form);
-    this.setState({ profilePic: res.url });
+    const validFormat = validateImage(imageData);
+    if (validFormat.valid) {
+      toast.info(validFormat.message);
+      form.append('file', imageData);
+      const res = await uploadToCloudnary(form);
+      this.setState({ profilePic: res.url });
+      updateProfile({ image_url: res.url });
+      toast.dismiss();
+    } else {
+      toast.error(validFormat.message);
+    }
   };
 
   render() {
@@ -63,15 +86,27 @@ class Profilepage extends Component {
       profilePic,
       isReviewer,
     } = this.state;
-    const { isLoadingReducer, articlesUpdate } = this.props;
+
+    const {
+      articlesUpdate,
+      userFollowee,
+      userFollowing,
+      isLoadingReducer,
+      bookmarkedArticles,
+      updateProfile,
+    } = this.props;
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
-    const { bookmarkedArticles } = this.props;
+    const bookmarkList = bookmarkedArticles.articles;
     return (
       <React.Fragment>
         {loader && <Loader />}
         <div className="profile-header">
-          <Imagepic profilePic={profilePic} handleChange={this.handleChange} />
+          <Imagepic
+            profilePic={profilePic}
+            handleChange={this.handleChange}
+            updateProfile={updateProfile}
+          />
           <h1>
             {firstname}
             &nbsp;
@@ -82,13 +117,16 @@ class Profilepage extends Component {
           changeTab={this.changeTab}
           currentTab={currentTab}
           totalArticle={`${articles.length}`}
+          totalFollowee={`${userFollowee.userFollowee.length}`}
+          totalFollowing={`${userFollowing.userFollowing.length}`}
+          totalBookmarkArticle={`${bookmarkList.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
-            <div>This is the following section</div>
+            <Following userFollowing={userFollowing} />
           ) : null}
           {currentTab === 'followers-section' ? (
-            <div>This is the follower section</div>
+            <Followee userFollowee={userFollowee} />
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
@@ -114,9 +152,14 @@ Profilepage.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
-  bookmarkedArticles: PropTypes.shape().isRequired,
+  userFollowee: PropTypes.shape().isRequired,
+  userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
+  getFollowee: PropTypes.func.isRequired,
+  getFollowing: PropTypes.func.isRequired,
+  bookmarkedArticles: PropTypes.shape().isRequired,
   fetchBookmarks: PropTypes.func.isRequired,
+  updateProfile: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

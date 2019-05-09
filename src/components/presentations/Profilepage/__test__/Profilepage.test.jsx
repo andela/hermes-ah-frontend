@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
+// import jest from 'jest';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import Profilpage from '../ProfilePage';
+import Profilepage from '../ProfilePage';
 import Imagepic from '../ImagePic';
 
 const userProfile = {
@@ -19,18 +20,36 @@ const articleObj = {
   articles: [],
 };
 
+const userFollowingObj = {
+  userFollowing: [],
+};
+
+const userFolloweeObj = {
+  userFollowee: [],
+};
+
+const bookmarkObj = {
+  articles: [],
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
 
 const ProfilepageComponent = (
   <Provider store={store}>
-    <Profilpage
-      getProfile={() => 'profile'}
+    <Profilepage
+      getProfile={jest.fn()}
       userProfile={{ profile: 'me' }}
       isLoadingReducer={{ loader: true }}
-      fetchArticles={() => 'articles'}
+      fetchArticles={jest.fn()}
+      fetchBookmarks={jest.fn()}
       articlesUpdate={articleObj}
+      getFollowee={jest.fn()}
+      getFollowing={jest.fn()}
+      userFollowee={userFolloweeObj}
+      userFollowing={userFollowingObj}
+      bookmarkedArticles={bookmarkObj}
     />
   </Provider>
 );
@@ -50,19 +69,24 @@ describe('ProfilePage component', () => {
 
   it('should change state', () => {
     const wrapper = shallow(
-      <Profilpage
-        getProfile={() => 'profile'}
+      <Profilepage
+        getProfile={jest.fn()}
         userProfile={{ profile: 'dummy profile' }}
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
-        fetchArticles={() => 'articles'}
-        fetchBookmarks={() => 'bookmarked'}
+        fetchArticles={jest.fn()}
+        getFollowee={jest.fn()}
+        getFollowing={jest.fn()}
+        userFollowee={userFolloweeObj}
+        userFollowing={userFollowingObj}
+        fetchBookmarks={jest.fn()}
+        bookmarkedArticles={bookmarkObj}
       />
     );
 
-    expect(wrapper.state('currentTab')).toBe('following-section');
-    wrapper.instance().changeTab('profile-section');
     expect(wrapper.state('currentTab')).toBe('profile-section');
+    wrapper.instance().changeTab('following-section');
+    expect(wrapper.state('currentTab')).toBe('following-section');
     wrapper.instance().changeTab('followers-section');
     expect(wrapper.state('currentTab')).toBe('followers-section');
     wrapper.instance().changeTab('article-section');

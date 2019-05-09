@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 
 const Imagepic = ({ handleChange, profilePic }) => (
   <div className="profile-img-container">
-    <img src={profilePic} alt="avatar" />
+    <img
+      src={
+        !profilePic
+          ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
+          : profilePic
+      }
+      alt="avatar"
+    />
     <form className="custom-file-upload" encType="multipart/form-data">
       <label htmlFor="file-upload">
         <i className="fa fa-upload" />
@@ -14,6 +21,7 @@ const Imagepic = ({ handleChange, profilePic }) => (
           onChange={e => {
             handleChange(e);
           }}
+          accept="image/*"
         />
       </label>
     </form>

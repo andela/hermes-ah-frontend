@@ -18,6 +18,19 @@ export const getProfileFailure = () => {
   };
 };
 
+export const updateProfileSuccess = profile => {
+  return {
+    type: actions.UPDATE_PROFILE_SUCCESS,
+    profile,
+  };
+};
+
+export const updateProfileFailure = () => {
+  return {
+    type: actions.UPDATE_PROFILE_FAILURE,
+  };
+};
+
 const getProfile = () => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -36,8 +49,26 @@ const getProfile = () => {
   };
 };
 
+const updateProfile = obj => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      if (!navigator.onLine) {
+        return toast.error('Please check your internet connection');
+      }
+      const user = decodeToken();
+      const { data } = await http.patch(`/profile/${user.id}`, obj);
+      return dispatch(updateProfileSuccess(data));
+    } catch (error) {
+      dispatch(updateProfileFailure());
+      return exceptionHandler(error);
+    }
+  };
+};
+
 const profileAction = {
   getProfile,
+  updateProfile,
 };
 
 export default profileAction;

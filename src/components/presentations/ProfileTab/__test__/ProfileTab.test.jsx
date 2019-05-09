@@ -9,7 +9,10 @@ describe('ProfileTab and ProfileButton component', () => {
       <ProfileTab
         changeTab={() => 'tabCahnged'}
         currentTab="profile-tab"
-        totalArticle="10"
+        totalArticle=""
+        totalFollowee=""
+        totalFollowing=""
+        totalBookmarkArticle="10"
       />
     );
     expect(wrapper.find('div'));
