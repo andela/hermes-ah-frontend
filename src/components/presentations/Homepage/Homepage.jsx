@@ -16,6 +16,9 @@ class Homepage extends Component {
   }
 
   componentDidMount = async () => {
+    const redirect = () => {
+      window.location = '/logout';
+    };
     const { getAllArticles: articles, confirmAccount } = this.props;
     articles();
     const token = new URLSearchParams(
@@ -24,19 +27,13 @@ class Homepage extends Component {
     if (token) {
       const message = await confirmAccount(token);
       if (message === 'Account verification was successful') {
-        toast.info(
-          `${message}, You will be redirected to the login page in 5 seconds`,
-          {
-            type: toast.TYPE.INFO,
-            closeButton: false,
-            transition: Zoom,
-            position: toast.POSITION.TOP_CENTER,
-          }
-        );
-        setTimeout(() => {
-          localStorage.removeItem('token');
-          window.location = '/login';
-        }, 5000);
+        toast.info(`${message}, Click here to login`, {
+          type: toast.TYPE.INFO,
+          closeButton: false,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+          onClose: () => redirect(),
+        });
       }
     }
   };

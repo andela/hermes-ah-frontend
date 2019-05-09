@@ -12,7 +12,9 @@ export const resetPasswordSuccess = () => ({
 export const resetPasswordFailure = () => ({
   type: actionTypes.RESET_PASSWORD_FAILURE,
 });
-
+const redirect = () => {
+  window.location = '/login';
+};
 export const resetPassword = newPassword => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -22,16 +24,15 @@ export const resetPassword = newPassword => {
       setToken(token);
       await http.patch(`/new-password?token=${token}`, newPassword);
       toast.info(
-        'You have successfully reset your password. You will be redirected to the login page in 5 seconds',
+        'You have successfully reset your password. Click here to login',
         {
           type: toast.TYPE.INFO,
           closeButton: false,
           position: toast.POSITION.TOP_CENTER,
+          onClose: () => redirect(),
         }
       );
-      return setTimeout(() => {
-        window.location = '/login';
-      }, 5000);
+      return toast.info();
     } catch (error) {
       return exceptionHandler(error);
     } finally {
