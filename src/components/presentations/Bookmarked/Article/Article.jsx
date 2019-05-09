@@ -1,26 +1,17 @@
 import React from 'react';
-import { Item } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import './article.scss';
 
 const Article = ({ title, abstract, image, readTime }) => (
   <div className="bookmark-articles-list">
-    <Item.Group>
-      <Item>
-        <Item.Content>
-          <Item.Header as="a">{title}</Item.Header>
-          <Item.Description>
-            <p>{abstract}</p>
-            <p className="meta">
-              {readTime}
-              &nbsp; min read
-            </p>
-          </Item.Description>
-        </Item.Content>
-
-        <Item.Image size="small" src={image} />
-      </Item>
-    </Item.Group>
+    <div className="article-details">
+      <h3>{title}</h3>
+      <p>{`${abstract.substring(0, 200)}...`}</p>
+      <p className="meta">{`${readTime} min read`}</p>
+    </div>
+    <div className="article-img">
+      <img src={image} alt="article logo" />
+    </div>
   </div>
 );
 
