@@ -45,7 +45,7 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
-                <Link to="/">Logout</Link>
+                <Link to="/logout">Logout</Link>
               </div>
             ) : null}
           </div>

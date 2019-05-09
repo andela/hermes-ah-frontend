@@ -7,6 +7,7 @@ import store from './store/store';
 import HomePageContainer from './components/containers/homepage.container';
 import LoginContainer from './components/containers/login.container';
 import Notfound from './components/presentations/Notfound/Notfound';
+import Logout from './components/presentations/Logout/Logout';
 import Footer from './components/shared/Footer/Footer';
 import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
@@ -67,6 +68,7 @@ class App extends Component {
                 exact
                 render={props => <SignupContainer {...props} user={user} />}
               />
+              <Route path="/logout/" exact component={Logout} />
               <Route path="/" exact component={HomePageContainer} />
               <Route path="*" component={Notfound} />
             </Switch>
