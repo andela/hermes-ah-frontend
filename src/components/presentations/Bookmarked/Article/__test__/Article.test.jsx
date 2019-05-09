@@ -5,27 +5,19 @@ import Article from '../Article';
 const articles = [
   {
     id: 1,
-    title: 'This is a cat',
-    abstract: 'March 3 2019',
+    title: 'This is a wild fish',
+    abstract: 'June 3 2019',
     image:
-      'https://res.cloudinary.com/walsam/image/upload/v1556790944/brain-2062057_640.jpg',
-    readTime: 3,
+      'https://res.cloudinary.com/walsam/image/upload/v1556790931/robotics.jpg',
+    readTime: 1,
   },
   {
     id: 2,
-    title: 'This is a dog',
-    abstract: 'March 23 2019',
+    title: 'There is a way that seem right to many',
+    abstract: 'December 22 2019',
     image:
-      'https://res.cloudinary.com/walsam/image/upload/v1556790944/brain-2062057_640.jpg',
-    readTime: 3,
-  },
-  {
-    id: 3,
-    title: 'This is a fish',
-    abstract: 'March 13 2019',
-    image:
-      'https://res.cloudinary.com/walsam/image/upload/v1556790944/brain-2062057_640.jpg',
-    readTime: 3,
+      'https://res.cloudinary.com/walsam/image/upload/v1556790931/robotics.jpg',
+    readTime: 7,
   },
 ];
 
