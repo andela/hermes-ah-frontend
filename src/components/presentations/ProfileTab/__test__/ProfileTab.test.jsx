@@ -12,6 +12,7 @@ describe('ProfileTab and ProfileButton component', () => {
         totalArticle=""
         totalFollowee=""
         totalFollowing=""
+        totalBookmarkArticle="10"
       />
     );
     expect(wrapper.find('div'));
