@@ -189,21 +189,38 @@ class NewArticle extends Component {
                 onToggle={this.toggleBlockType}
               />
               {/* Inline buttons */}
-              <button type="button" onClick={this.onBoldClick}>
+              <button
+                type="button"
+                className="style-button"
+                onClick={this.onBoldClick}
+              >
                 <i className="fas fa-bold" />
               </button>
-              <button type="button" onClick={this.onItalicClick}>
+              <button
+                type="button"
+                className="style-button"
+                onClick={this.onItalicClick}
+              >
                 <i className="fas fa-italic" />
               </button>
-              <button type="button" onClick={this.onUnderlineClick}>
+              <button
+                type="button"
+                className="style-button"
+                onClick={this.onUnderlineClick}
+              >
                 <i className="fas fa-underline" />
               </button>
-              <button type="button" onClick={this.onStrikethroughClick}>
+              <button
+                type="button"
+                className="style-button"
+                onClick={this.onStrikethroughClick}
+              >
                 <i className="fas fa-strikethrough" />
               </button>
               <button
                 type="button"
                 className="inline styleButton"
+                id="style-button"
                 onClick={this.onAddImage}
               >
                 <i className="fas fa-image" />

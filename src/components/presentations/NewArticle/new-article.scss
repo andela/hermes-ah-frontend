@@ -69,11 +69,11 @@
 .ui.basic.blue.button {
     color: $primary-color!important; 
 }
-button{
+.style-button, #style-button{
     padding: 1%;
     border: 1px solid rgb(221, 221, 221);
 }
 
-button:hover{
+.style-button:hover{
     background-color: #e7e6e6;
 }
