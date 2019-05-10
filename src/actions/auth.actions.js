@@ -72,7 +72,7 @@ export const confirmAccount = token => {
 
 export const logout = () => {
   removeToken();
-  window.location = '/';
+  window.location = '/login';
 };
 
 export default {
