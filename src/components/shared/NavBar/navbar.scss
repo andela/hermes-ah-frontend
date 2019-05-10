@@ -88,13 +88,14 @@
     .navbar-item::before, .item::before {
       background: none;
     }
-    .navbar-item:hover, .ui.menu .active.item:hover, .active.item {
+    .navbar-item:hover, .active.item {
       color: #FFF !important;
       background-color: #0E71EB !important;
-      transition: 0.5s;
     }
  
     .active.item:hover {
-      background-color: #2185d0 !important;
+      background-color: #ffffff !important;
+      color: #000 !important;
+      border: 1px solid #0E71EB;
     }
  }
