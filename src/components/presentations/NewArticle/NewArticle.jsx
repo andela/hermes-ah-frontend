@@ -9,7 +9,6 @@ import {
 } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import PropTypes from 'prop-types';
-import uploadToCloudinary from '../../../utils/uploadToCloudnary';
 import './new-article.scss';
 import BlockStyleToolbar from './BlockStyles/BlockStyleToolbar';
 
@@ -48,15 +47,6 @@ class NewArticle extends Component {
   onClick = e => {
     const { editorState } = this.state;
     this.onChange(RichUtils.toggleInlineStyle(editorState, e.target.name));
-  };
-
-  // handler for Article header
-  handleImageChange = async e => {
-    const form = new FormData();
-    const imageData = e.target.files[0];
-    form.append('file', imageData);
-    const res = await uploadToCloudinary(form);
-    this.setState({ headerpic: res.url });
   };
 
   handleChange = (e, { value }) => {

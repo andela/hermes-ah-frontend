@@ -16,7 +16,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
-import NewArticle from './components/containers/newarticle.container';
+import NewArticle from './components/presentations/NewArticle/NewArticle';
 
 class App extends Component {
   constructor(props) {
