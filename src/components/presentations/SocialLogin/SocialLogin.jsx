@@ -1,18 +1,7 @@
-import { Component } from 'react';
-import { setToken } from '../../../utils/authService';
+import { socialLogin } from '../../../actions/auth.actions';
 
-class SocialLogin extends Component {
-  componentDidMount() {
-    const socialLoginToken = window.location.href.split('?')[1];
-    if (socialLoginToken) {
-      setToken(socialLoginToken);
-      window.location = '/';
-    }
-  }
-
-  render() {
-    return null;
-  }
-}
+const SocialLogin = () => {
+  return socialLogin();
+};
 
 export default SocialLogin;
