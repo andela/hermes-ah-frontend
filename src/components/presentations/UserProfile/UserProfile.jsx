@@ -18,6 +18,11 @@ class Userprofile extends Component {
     };
   }
 
+  componentDidMount = () => {
+    const { reportedArticle } = this.props;
+    console.log(reportedArticle);
+  };
+
   componentDidUpdate = prevProps => {
     const { isReviewer } = this.props;
     if (prevProps.isReviewer !== isReviewer) {
@@ -29,9 +34,11 @@ class Userprofile extends Component {
 
   render() {
     const { checked } = this.state;
-    const { userProfile: userProps, isReviewer } = this.props;
+    const { userProfile: userProps, isReviewer, reportedArticle } = this.props;
     const { userProfile } = userProps;
     const { profile } = userProfile;
+
+    console.log(reportedArticle);
 
     const reportList = profileReport.map(item => (
       <Reportcard
@@ -88,6 +95,7 @@ class Userprofile extends Component {
 Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
+  reportedArticle: PropTypes.shape().isRequired,
 };
 
 export default Userprofile;
