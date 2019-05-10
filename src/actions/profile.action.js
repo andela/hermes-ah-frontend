@@ -53,21 +53,17 @@ const updateProfile = obj => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      if (!navigator.onLine) {
-        return toast.error('Please check your internet connection');
-      }
       const user = decodeToken();
       const { data } = await http.patch(`/profile/${user.id}`, obj);
       dispatch(updateProfileSuccess(data));
-      toast.info('You have successfully update your profile.', {
+      toast.info('Profile update successful', {
         type: toast.TYPE.INFO,
         closeButton: false,
         position: toast.POSITION.TOP_CENTER,
       });
-      return 'success';
     } catch (error) {
       dispatch(updateProfileFailure());
-      return exceptionHandler(error);
+      exceptionHandler(error);
     }
   };
 };

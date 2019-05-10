@@ -1,4 +1,3 @@
-/* eslint-disable no-dupe-keys */
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
@@ -142,7 +141,6 @@ describe('auth actions', () => {
 
     const expectedAction = [
       {
-        type: 'UPDATE_PROFILE_SUCCESS',
         type: 'CONTENT_LOADING',
       },
       {
