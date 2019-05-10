@@ -42,6 +42,7 @@ class UserHomepage extends Component {
               <Container className="display-article-card">
                 {sectionArandomArticle.map(item => (
                   <ArticleCard
+                    id={item.id}
                     key={item.id}
                     category={item.category}
                     title={item.title}
@@ -175,8 +176,12 @@ class UserHomepage extends Component {
                       }`}
                     </p>
                     <div className="date-start">
-                      <p className="date">March 13 2019</p>
-                      <p className="stats">7 min read</p>
+                      <p className="date">
+                        {new Date(article.createdAt).toDateString()}
+                      </p>
+                      <p className="stats">
+                        {`${article.reading_time} min read`}
+                      </p>
                     </div>
                   </Item.Description>
                 </Item.Content>

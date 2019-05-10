@@ -10,9 +10,8 @@ export const getAllArticlesSuccess = articles => ({
   articles,
 });
 
-export const getAllArticlesError = error => ({
+export const getAllArticlesError = () => ({
   type: actionTypes.FETCH_ARTICLES_FAILURE,
-  error,
 });
 
 export const getAllArticles = () => {
