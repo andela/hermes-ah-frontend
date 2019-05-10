@@ -13,7 +13,7 @@ exports[`NewArticle button component should match snapshot 1`] = `
     }
   }
 >
-  <NewArticle
+  <UNDEFINED
     createNewArticle="article"
   />
 </Provider>

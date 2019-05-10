@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Block style button component should match snapshot 1`] = `
+<BlockStyleButton
+  active={[MockFunction]}
+  label={[MockFunction]}
+  onToggle={[MockFunction]}
+  style=""
+/>
+`;

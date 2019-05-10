@@ -3,27 +3,27 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import NewArticle from '../NewArticle';
+import HeaderDropdown from '../BlockStyles/HeaderStyleDropdown';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
-const NewArticleComponent = (
+const DropdownHeader = (
   <Provider store={store}>
-    <NewArticle createNewArticle="article" />
+    <HeaderDropdown active="" onToggle={jest.fn()} headerOptions="" />
   </Provider>
 );
 
 describe('NewArticle button component', () => {
   it('should match snapshot', () => {
-    const wrap = NewArticleComponent;
+    const wrap = DropdownHeader;
     expect(wrap).toMatchSnapshot();
   });
 
   it('should render without crashing', () => {
-    const wrapper = shallow(NewArticleComponent);
-    expect(wrapper.find('div'));
-    expect(wrapper.find('form'));
+    const wrapper = shallow(DropdownHeader);
+    expect(wrapper.find('select'));
+    expect(wrapper.find('option'));
   });
 });

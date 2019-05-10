@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import NewArticle from '../NewArticle';
+import TextStyle from '../BlockStyles/TextStyle';
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
@@ -11,7 +11,7 @@ const store = mockStore({});
 
 const NewArticleComponent = (
   <Provider store={store}>
-    <NewArticle createNewArticle="article" />
+    <TextStyle createNewArticle="article" />
   </Provider>
 );
 
@@ -23,7 +23,7 @@ describe('NewArticle button component', () => {
 
   it('should render without crashing', () => {
     const wrapper = shallow(NewArticleComponent);
-    expect(wrapper.find('div'));
-    expect(wrapper.find('form'));
+    expect(wrapper.find('label'));
+    expect(wrapper.find('style'));
   });
 });

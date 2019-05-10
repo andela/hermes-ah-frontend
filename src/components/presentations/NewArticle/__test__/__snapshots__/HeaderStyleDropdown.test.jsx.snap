@@ -13,8 +13,10 @@ exports[`NewArticle button component should match snapshot 1`] = `
     }
   }
 >
-  <NewArticle
-    createNewArticle="article"
+  <HeaderStyleDropdown
+    active=""
+    headerOptions=""
+    onToggle={[MockFunction]}
   />
 </Provider>
 `;
