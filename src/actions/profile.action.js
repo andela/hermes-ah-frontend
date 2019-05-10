@@ -53,7 +53,6 @@ const getProfile = () => {
         return toast.error('Please check your internet connection');
       }
       const user = decodeToken();
-      console.log(user, '....user');
       const { data } = await http.get(`/profile/${user.id}`);
       return dispatch(getProfileSuccess(data));
     } catch (error) {
