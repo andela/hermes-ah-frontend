@@ -1,0 +1,58 @@
+.admin-page{
+    @import '../../../assets/stylesheets/index.scss'; 
+    .admin-tab{
+        height: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        width: 75%;
+        margin: 36px 40px 0 105px;
+        border-bottom: 1px solid #9a8b8b;;
+    }
+    
+    .admin-tab-items-left{
+        height: 100%;
+        display: flex;
+        justify-self: left;
+
+    }
+    
+    .admin-btn{
+        button{
+            height: 70%;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2rem;
+            margin: 5px;
+            outline: none;
+        }
+        margin: auto 5px;
+    }
+    
+    .admin-btn-active{
+        button{
+            height: 70%;
+            cursor: pointer;
+            border: none;
+            font-size: 1.2rem;
+            padding: 15px;
+            outline: none;
+            background: $primary-color;
+        }
+    
+        margin: auto 5px;
+    }
+    .admin-btn button {
+        background: transparent;
+        height: 70%;
+        cursor: pointer;
+        border: none;
+        font-size: 1.2rem;
+        margin: 5px;
+        outline: none;
+    }
+    
+}
+
+
+
