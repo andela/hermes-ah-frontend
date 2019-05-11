@@ -4,6 +4,7 @@ import http from '../utils/httpService';
 import { decodeToken } from '../utils/authService';
 import contentLoading from './loading.action';
 import exceptionHandler from '../utils/exceptionHandler';
+import suggestedResearchers from '../utils/suggestedResearchers';
 
 export const getProfileSuccess = profile => {
   return {
@@ -28,6 +29,19 @@ export const updateProfileSuccess = profile => {
 export const updateProfileFailure = () => {
   return {
     type: actions.UPDATE_PROFILE_FAILURE,
+  };
+};
+
+export const fetchSuggestedResearchersSuccess = researchers => {
+  return {
+    type: actions.FETCH_SUGGESTED_RESEARCHERS_SUCCESS,
+    researchers,
+  };
+};
+
+export const fetchSuggestedResearchersFailure = () => {
+  return {
+    type: actions.FETCH_SUGGESTED_RESEARCHERS_FAILURE,
   };
 };
 
@@ -66,9 +80,26 @@ const updateProfile = obj => {
   };
 };
 
+const getSuggestions = () => {
+  return async dispatch => {
+    try {
+      const data = await suggestedResearchers();
+
+      return setTimeout(
+        () => dispatch(fetchSuggestedResearchersSuccess(data)),
+        3000
+      );
+    } catch (error) {
+      dispatch(fetchSuggestedResearchersFailure());
+      return exceptionHandler(error);
+    }
+  };
+};
+
 const profileAction = {
   getProfile,
   updateProfile,
+  getSuggestions,
 };
 
 export default profileAction;
