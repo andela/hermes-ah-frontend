@@ -21,9 +21,11 @@ const store = mockStore({ userProfile });
 const UserprofileComponent = (
   <Provider store={store}>
     <Userprofile
-      getProfile={() => 'profile'}
+      getProfile={jest.fn()}
       userProfile={{ profile: 'me' }}
       isReviewer={false}
+      getReportedArticle={jest.fn()}
+      reportedArticles={{ profile: 'me' }}
     />
   </Provider>
 );
@@ -37,9 +39,11 @@ describe('ProfilePage component', () => {
   it('should change state', () => {
     const wrapper = shallow(
       <Userprofile
-        getProfile={() => 'profile'}
+        getProfile={jest.fn()}
         userProfile={{ userProfile: { profile: { fake: 'data' } } }}
         isReviewer={false}
+        getReportedArticle={jest.fn()}
+        reportedArticles={{ profile: 'me' }}
       />
     );
 

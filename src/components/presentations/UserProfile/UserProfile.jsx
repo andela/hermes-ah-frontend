@@ -7,7 +7,7 @@ import Reportcard from './ReportedCard';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import dummyData from '../../../utils/dummyData';
 
-const { profileReport, suggestedArticle } = dummyData;
+const { suggestedArticle } = dummyData;
 
 class Userprofile extends Component {
   constructor(props) {
@@ -15,39 +15,47 @@ class Userprofile extends Component {
     const { isReviewer } = this.props;
     this.state = {
       checked: isReviewer,
+      reportedArticles: [],
     };
   }
 
   componentDidMount = () => {
-    const { reportedArticle } = this.props;
-    console.log(reportedArticle);
+    const { getReportedArticle } = this.props;
+    getReportedArticle();
   };
 
   componentDidUpdate = prevProps => {
-    const { isReviewer } = this.props;
+    const { isReviewer, reportedArticles } = this.props;
+    const { reportedArticle: profileReports } = reportedArticles;
+
     if (prevProps.isReviewer !== isReviewer) {
       this.setState({ checked: isReviewer });
+    }
+    if (prevProps.reportedArticles !== reportedArticles) {
+      this.setState({ reportedArticles: profileReports.reportedArticles });
     }
   };
 
   toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
 
   render() {
-    const { checked } = this.state;
-    const { userProfile: userProps, isReviewer, reportedArticle } = this.props;
+    const { checked, reportedArticles: reportLists } = this.state;
+    const { userProfile: userProps, isReviewer } = this.props;
     const { userProfile } = userProps;
     const { profile } = userProfile;
 
-    console.log(reportedArticle);
-
-    const reportList = profileReport.map(item => (
-      <Reportcard
-        key={item.id}
-        topic={item.title}
-        reason={item.reason}
-        status={item.status}
-      />
-    ));
+    const reportList =
+      reportLists.length &&
+      reportLists
+        .map(item => (
+          <Reportcard
+            key={item.id}
+            topic={item.reporter_reason}
+            reason={item.reporter_comment}
+            status={item.status}
+          />
+        ))
+        .slice(0, 3);
 
     const suggestedArticleList = suggestedArticle.map(item => (
       <SuggestedArticleCard
@@ -69,7 +77,7 @@ class Userprofile extends Component {
               <Profilecard profile={profile} />
               <div>
                 <Button onClick={this.toggle}>Become A Reviewer</Button>
-                <Checkbox onChange={this.toggle} checked={checked} />
+                <Checkbox checked={checked} />
               </div>
 
               {isReviewer ? (
@@ -95,7 +103,8 @@ class Userprofile extends Component {
 Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
-  reportedArticle: PropTypes.shape().isRequired,
+  getReportedArticle: PropTypes.func.isRequired,
+  reportedArticles: PropTypes.shape().isRequired,
 };
 
 export default Userprofile;
