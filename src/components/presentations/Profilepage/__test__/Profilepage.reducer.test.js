@@ -5,6 +5,7 @@ describe('profile reducers', () => {
   it('should return the initial state', () => {
     expect(profileReducer(undefined, {})).toEqual({
       userProfile: [],
+      suggestedResearchers: [],
     });
   });
 

@@ -11,6 +11,9 @@ const userProfile = {
       first_name: 'jest',
       last_name: 'enzyme',
     },
+    suggestedResearchers: [
+      { profile: { first_name: 'sam' }, isFollowing: false },
+    ],
   },
 };
 
@@ -38,7 +41,15 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(
       <Userprofile
         getProfile={() => 'profile'}
-        userProfile={{ userProfile: { profile: { fake: 'data' } } }}
+        userProfile={{
+          userProfile: { profile: { fake: 'data' } },
+          suggestedResearchers: [
+            {
+              profile: { first_name: 'sam', last_name: 'pete' },
+              isFollowing: false,
+            },
+          ],
+        }}
         isReviewer={false}
       />
     );
