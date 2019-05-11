@@ -14,7 +14,12 @@
 
 .profile-card-item{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 10px;
+
+    i{
+        justify-self: right;
+        align-self: center;
+    }
 }
 
 .editable{
