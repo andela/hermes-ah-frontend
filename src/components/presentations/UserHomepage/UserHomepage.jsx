@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Item, Container, Grid } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import ArticleCard from '../ArticleCard/Article';
 import PopularArticleCard from '../PopularArticleCard/PopularArticleCard';
 import './user-homepage.scss';
@@ -80,36 +81,39 @@ class UserHomepage extends Component {
         <Item.Group className="section-2">
           <Container className="wrap-A-B">
             <div className="a-cont-wrap">
-              {sectionBdivA.map(article => (
-                <Item className="a-sectn" key={article.id}>
-                  {article.image_url ? (
-                    <Item.Image
-                      className="a-image"
-                      size="small"
-                      src={article.image_url}
-                    />
-                  ) : null}
+              <Link to="/" className="sectA-lnk">
+                {sectionBdivA.map(article => (
+                  <Item className="a-sectn" key={article.id}>
+                    {article.image_url ? (
+                      <Item.Image
+                        className="a-image"
+                        size="small"
+                        src={article.image_url}
+                      />
+                    ) : null}
 
-                  <Item.Content className="a-content">
-                    <Item.Header className="art-title">
-                      {article.title}
-                    </Item.Header>
-                    <Item.Description>
-                      <p className="description">
-                        {`${article.abstract.substring(0, 200)}...`}
-                      </p>
-                      <p className="author">
-                        {`${article.author.first_name} ${
-                          article.author.last_name
-                        }`}
-                      </p>
-                      <p className="date">
-                        {new Date(article.createdAt).toDateString()}
-                      </p>
-                    </Item.Description>
-                  </Item.Content>
-                </Item>
-              ))}
+                    <Item.Content className="a-content">
+                      <Item.Header className="art-title">
+                        {article.title}
+                      </Item.Header>
+                      <Item.Description>
+                        <p className="description">
+                          {`${article.abstract.charAt(0).toUpperCase() +
+                            article.abstract.slice(1).substring(0, 200)}...`}
+                        </p>
+                        <p className="author">
+                          {`${article.author.first_name} ${
+                            article.author.last_name
+                          }`}
+                        </p>
+                        <p className="date">
+                          {new Date(article.createdAt).toDateString()}
+                        </p>
+                      </Item.Description>
+                    </Item.Content>
+                  </Item>
+                ))}
+              </Link>
             </div>
 
             <div className="b-cont-wrap">
@@ -129,7 +133,8 @@ class UserHomepage extends Component {
                           />
                         ) : null}
                         <p className="desc-txt">
-                          {`${article.abstract.substring(0, 100)}...`}
+                          {`${article.abstract.charAt(0).toUpperCase() +
+                            article.abstract.slice(1).substring(0, 100)}...`}
                         </p>
                       </div>
                       <p className="author">
@@ -168,7 +173,8 @@ class UserHomepage extends Component {
                   </Item.Header>
                   <Item.Description>
                     <p className="description">
-                      {`${article.abstract.substring(0, 200)}...`}
+                      {`${article.abstract.charAt(0).toUpperCase() +
+                        article.abstract.slice(1).substring(0, 200)}...`}
                     </p>
                     <p className="author">
                       {`${article.author.first_name} ${

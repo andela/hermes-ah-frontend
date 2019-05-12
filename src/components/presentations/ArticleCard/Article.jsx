@@ -21,7 +21,8 @@ const ArticleCard = ({
         <br />
         <Item.Header as="a">{title}</Item.Header>
         <Item.Description>
-          {`${paragraph.substring(0, 200)}...`}
+          {`${paragraph.charAt(0).toUpperCase() +
+            paragraph.slice(1).substring(0, 200)}...`}
         </Item.Description>
         <Item.Extra>
           <p className="author-name">{author}</p>
