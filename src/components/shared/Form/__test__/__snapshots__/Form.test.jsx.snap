@@ -66,26 +66,32 @@ exports[`HomePage component should match snapshot renderSocialLogin 1`] = `
 <div
   className="social-login"
 >
-  <Link
+  <Button
+    as="button"
+    className="social-login-list twitter"
     onClick={[Function]}
   >
     <i
       className="fab fa-twitter"
     />
-  </Link>
-  <Link
+  </Button>
+  <Button
+    as="button"
+    className="social-login-list google"
     onClick={[Function]}
   >
     <i
-      className="fab fa-google"
+      className="fab fa-google-plus-g"
     />
-  </Link>
-  <Link
+  </Button>
+  <Button
+    as="button"
+    className="social-login-list facebook"
     onClick={[Function]}
   >
     <i
       className="fab fa-facebook-f"
     />
-  </Link>
+  </Button>
 </div>
 `;
