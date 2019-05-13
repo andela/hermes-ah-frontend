@@ -3,28 +3,12 @@ import { shallow } from 'enzyme';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-
 import Followee from '../Followee/Followee';
 import Following from '../Following/Following';
 import FollowCard from '../FollowCard/Follow-card';
+import mock from '../../../../utils/testMocks';
 
-const userFollowee = {
-  imageUrl: '',
-  initials: '',
-  name: '',
-  bio: '',
-  button: '',
-  btnClass: '',
-};
-
-const userFollowing = {
-  imageUrl: '',
-  initials: '',
-  name: '',
-  bio: '',
-  button: '',
-  btnClass: '',
-};
+const { userFollowing, userFollowee } = mock;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
