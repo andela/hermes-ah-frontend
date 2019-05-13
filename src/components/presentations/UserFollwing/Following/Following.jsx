@@ -15,7 +15,7 @@ const FollowingList = ({ userFollowing }) => {
             .charAt(0)
             .toUpperCase()}${user.followee.last_name.charAt(0).toUpperCase()}`}
           name={`${user.followee.first_name} ${user.followee.last_name}`}
-          bio={`${user.followee.bio}`}
+          bio={`${user.followee.bio.substring(0, 100)}...`}
           button="following"
           btnClass="btn-following"
         />
