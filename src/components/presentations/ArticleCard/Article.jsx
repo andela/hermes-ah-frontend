@@ -21,7 +21,8 @@ const ArticleCard = ({
         <br />
         <Item.Header as="a">{title}</Item.Header>
         <Item.Description>
-          {`${paragraph.substring(0, 200)}...`}
+          {`${paragraph.charAt(0).toUpperCase() +
+            paragraph.slice(1).substring(0, 200)}...`}
         </Item.Description>
         <Item.Extra>
           <p className="author-name">{author}</p>
@@ -50,10 +51,14 @@ ArticleCard.defaultProps = {
     'https://res.cloudinary.com/dnch08bzc/image/upload/v1557150721/science-1182713_1280.jpg',
 };
 
+ArticleCard.defaultProps = {
+  date: '10/05/2019, 08:49:38',
+};
+
 ArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.string,
   read: PropTypes.string.isRequired,
   paragraph: PropTypes.string.isRequired,
   image: PropTypes.string,
