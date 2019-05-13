@@ -30,7 +30,12 @@ class Userprofile extends Component {
 
   render() {
     const { checked } = this.state;
-    const { userProfile: userProps, isReviewer, articles } = this.props;
+    const {
+      userProfile: userProps,
+      isReviewer,
+      updateProfile,
+      articles,
+    } = this.props;
     const { userProfile, suggestedResearchers } = userProps;
     const { profile } = userProfile;
     const { articleData } = articles;
@@ -87,7 +92,7 @@ class Userprofile extends Component {
           <Grid.Row>
             <Grid.Column width={8}>
               <Headercard icon="fa fa-user" value="Bio" />
-              <Profilecard profile={profile} />
+              <Profilecard profile={profile} updateProfile={updateProfile} />
               <div>
                 <Button onClick={this.toggle}>Become A Reviewer</Button>
                 <Checkbox onChange={this.toggle} checked={checked} />
@@ -126,6 +131,7 @@ Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   articles: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
+  updateProfile: PropTypes.func.isRequired,
 };
 
 export default Userprofile;

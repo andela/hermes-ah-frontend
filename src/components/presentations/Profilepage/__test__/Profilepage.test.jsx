@@ -49,6 +49,7 @@ const ProfilepageComponent = (
       userFollowee={userFolloweeObj}
       userFollowing={userFollowingObj}
       bookmarkedArticles={bookmarkObj}
+      updateProfile={jest.fn()}
     />
   </Provider>
 );
@@ -80,6 +81,7 @@ describe('ProfilePage component', () => {
         userFollowing={userFollowingObj}
         fetchBookmarks={jest.fn()}
         bookmarkedArticles={bookmarkObj}
+        updateProfile={jest.fn()}
       />
     );
 

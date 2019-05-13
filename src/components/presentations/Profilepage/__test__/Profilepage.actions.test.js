@@ -4,6 +4,8 @@ import fetchMock from 'fetch-mock';
 import actions, {
   getProfileFailure,
   getProfileSuccess,
+  updateProfileFailure,
+  updateProfileSuccess,
 } from '../../../../actions/profile.action';
 import types from '../../../../constants/profile.constants';
 
@@ -81,6 +83,74 @@ describe('auth actions', () => {
     const store = mockStore({});
 
     store.dispatch(actions.getProfile());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to patch profile success', async () => {
+    const expectedAction = [
+      {
+        type: 'UPDATE_PROFILE_SUCCESS',
+        profile: { firstname: 'sam', lastname: 'peter' },
+      },
+    ];
+    const store = mockStore({});
+
+    const dummyProfile = {
+      firstname: 'sam',
+      lastname: 'peter',
+    };
+
+    store.dispatch(updateProfileSuccess(dummyProfile));
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to update profile failure', async () => {
+    const expectedAction = [
+      {
+        type: types.UPDATE_PROFILE_FAILURE,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(updateProfileFailure());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action for pacth profile', async () => {
+    fetchMock.mock(
+      '/api/v1/profile/12345',
+      {
+        status: 200,
+      },
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: 'faketoken',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    await fetch('/api/v1/profile/12345', {
+      method: 'PATCH',
+      headers: {
+        Authorization: 'faketoken',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const expectedAction = [
+      {
+        type: 'CONTENT_LOADING',
+      },
+      {
+        type: 'UPDATE_PROFILE_FAILURE',
+      },
+    ];
+
+    const store = mockStore({});
+
+    store.dispatch(actions.updateProfile());
     expect(store.getActions()).toEqual(expectedAction);
   });
 });

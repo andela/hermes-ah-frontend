@@ -5,9 +5,9 @@ const ProfileButton = ({ value, number, className, ...rest }) => {
   return (
     <div className={className}>
       <button type="button" {...rest}>
-        <span className="text">{value}</span>
+        {value}
       </button>
-      {number ? <span className="num-icon">{number}</span> : null}
+      {number ? <p className="num-icon">{number}</p> : null}
     </div>
   );
 };

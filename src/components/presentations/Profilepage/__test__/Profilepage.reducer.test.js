@@ -27,4 +27,23 @@ describe('profile reducers', () => {
       })
     ).toEqual({});
   });
+
+  it('should handle UPDATE_PROFILE_SUCCESS', () => {
+    expect(
+      profileReducer([], {
+        type: types.UPDATE_PROFILE_SUCCESS,
+        profile: [{ user: 'jest' }],
+      })
+    ).toEqual({
+      userProfile: [{ user: 'jest' }],
+    });
+  });
+
+  it('should handle UPDATE_PROFILE_FAILURE', () => {
+    expect(
+      profileReducer([], {
+        type: types.UPDATE_PROFILE_FAILURE,
+      })
+    ).toEqual({});
+  });
 });
