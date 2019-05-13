@@ -33,18 +33,27 @@
         cursor: pointer;
         border: none;
         font-size: 1.2rem;
-        margin: 5px;
+        margin: 5px 0;
+        padding: 0;
         outline: none;
         border-bottom: 2px solid $primary-color;
+    }
+    .text {
+        padding: 0;
     }
     margin: auto 5px;
 }
 
 .num-icon{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    float: right;
     background: #fff;
     border-radius: 50%;
     color: $primary-color;
     padding: 5px;
+    margin: 0 10px 0 3px;
 }
 
 .profile-btn-active{
@@ -55,7 +64,8 @@
         cursor: pointer;
         border: none;
         font-size: 1.2rem;
-        margin: 5px;
+        margin: 5px 0;
+        padding: 0;
         outline: none;
         border-bottom: 2px solid #fff;
     }
