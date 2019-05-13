@@ -84,14 +84,10 @@ const getSuggestions = () => {
   return async dispatch => {
     try {
       const data = await suggestedResearchers();
-
-      return setTimeout(
-        () => dispatch(fetchSuggestedResearchersSuccess(data)),
-        3000
-      );
+      dispatch(fetchSuggestedResearchersSuccess(data));
     } catch (error) {
       dispatch(fetchSuggestedResearchersFailure());
-      return exceptionHandler(error);
+      exceptionHandler(error);
     }
   };
 };
