@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Item } from 'semantic-ui-react';
 import './popular-article-card.scss';
 
-const ArticleCard = ({ title, author, date, likes, num }) => (
+const PopularArticleCard = ({ title, author, date, likes, num }) => (
   <Item.Group>
     <Item>
       <Item.Header className="header-num" as="h1">
@@ -28,12 +28,17 @@ const ArticleCard = ({ title, author, date, likes, num }) => (
   </Item.Group>
 );
 
-ArticleCard.propTypes = {
+PopularArticleCard.defaultProps = {
+  date: '10/05/2019, 08:49:38',
+  likes: 0,
+};
+
+PopularArticleCard.propTypes = {
   num: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
-  likes: PropTypes.number.isRequired,
+  date: PropTypes.string,
+  likes: PropTypes.number,
 };
 
-export default ArticleCard;
+export default PopularArticleCard;

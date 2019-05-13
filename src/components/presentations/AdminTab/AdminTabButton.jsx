@@ -1,26 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ProfileButton = ({ value, number, className, ...rest }) => {
+const AdminButton = ({ value, className, ...rest }) => {
   return (
     <div className={className}>
       <button type="button" {...rest}>
-        {value}
+        <span className="text">{value}</span>
       </button>
-      {number ? <p className="num-icon">{number}</p> : null}
     </div>
   );
 };
 
-ProfileButton.propTypes = {
+AdminButton.propTypes = {
   value: PropTypes.string.isRequired,
   className: PropTypes.string.isRequired,
-  number: PropTypes.string,
   onClick: PropTypes.func.isRequired,
 };
 
-ProfileButton.defaultProps = {
-  number: null,
-};
-
-export default ProfileButton;
+export default AdminButton;

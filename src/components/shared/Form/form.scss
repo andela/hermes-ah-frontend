@@ -45,16 +45,16 @@
   button.ui.button.signup:hover {
     background: #FFF;
     color: $primary-color;
-    transition: 0.5s;
   }
 }
 .form-wrap {
-  height: 86vh;
+  min-height: 86vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   background: #fcfcfc;
+  overflow: auto;
 }
 
 .form-cont {
@@ -145,4 +145,17 @@ form.ui.unstackable.form {
 ::placeholder {
   font-size: 20px;
   color: #857e7e !important;
+}
+
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .form-cont {
+    width: 95%;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 768px) {
+  .form-cont {
+    width: 60%;
+  }
 }

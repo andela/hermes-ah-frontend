@@ -4,7 +4,10 @@ import profileAction from '../../actions/profile.action';
 
 const { updateProfile } = profileAction;
 
-const mapStateToProps = ({ userProfile }) => ({ userProfile });
+const mapStateToProps = ({ userProfile, articles }) => ({
+  userProfile,
+  articles,
+});
 
 const UserprofileContainer = connect(
   mapStateToProps,
