@@ -18,10 +18,12 @@ const SuggestedArticleCard = ({
       <div className="sgg-footer">
         <Button>Read More...</Button>
         <div className="sgg-footer-item-container">
-          <span className="sgg-footer-item">{firstname}</span>
-          &nbsp;
-          <span className="sgg-footer-item">{lastname}</span>
-          &nbsp;
+          <span className="sgg-footer-item">
+            <b>{firstname}</b>
+          </span>
+          <span className="sgg-footer-item">
+            <b>{lastname}</b>
+          </span>
           <span className="sgg-footer-item">
             {readingTime}
             mins read

@@ -13,8 +13,9 @@ class NavDropdown extends Component {
   }
 
   async componentDidMount() {
-    const { getProfile } = this.props;
+    const { getProfile, getSuggestions } = this.props;
     await getProfile();
+    getSuggestions();
   }
 
   componentDidUpdate = prevProps => {
@@ -54,6 +55,7 @@ class NavDropdown extends Component {
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
                 <Link to="/logout">Logout</Link>
+                <Link to="/admin">Admin</Link>
               </div>
             ) : null}
           </div>
@@ -65,6 +67,7 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
+  getSuggestions: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
 };
 

@@ -14,7 +14,16 @@
 
 .profile-card-item{
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 2fr 10px;
+
+    i{
+        justify-self: right;
+        align-self: center;
+    }
+}
+
+.editable{
+    cursor: pointer;
 }
 
 
@@ -67,7 +76,16 @@
     }
 
     .sgg-footer-item{
-        margin: auto 5px;
+        margin: auto 2px;
+    }
+
+}
+.sgg-rsh-container{
+    .main-card{
+        width: 100%;
+        margin: 0;
+        margin-bottom: 10px;
     }
 }
+
 

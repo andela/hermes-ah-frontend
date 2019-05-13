@@ -10,11 +10,16 @@
         color: #868686;
     } 
 
+    .description:hover {
+        color: #4183c4 !important;
+        cursor: pointer;
+    }
+
 }
 .ui.items>.item>.image>img {
     height: 169px;
 }
-.twelve.wide.computer.sixteen.wide.mobile.column {
+.twelve.wide.computer.sixteen.wide.mobile.column{
     height: 69vh;
-    overflow: overlay;
+    overflow: auto;
 }
