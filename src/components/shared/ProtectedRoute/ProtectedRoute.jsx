@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { decodeToken } from '../../../utils/authService';
 
 const ProtectedRoute = ({ component: Component, render, ...rest }) => {
@@ -23,10 +23,9 @@ const ProtectedRoute = ({ component: Component, render, ...rest }) => {
   );
 };
 
-ProtectedRoute.propTypes = {
-  render: PropTypes.shape.Object.isRequired,
-  location: PropTypes.string.isRequired,
-  component: PropTypes.string.isRequired,
-};
+// ProtectedRoute.propTypes = {
+//   render: PropTypes.shape.Object.isRequired,
+//   location: PropTypes.string.isRequired,
+// };
 
 export default ProtectedRoute;

@@ -16,7 +16,10 @@ class Login extends FormComponent {
     e.preventDefault();
     const { data } = this.state;
     const { login: loginUser } = this.props;
-    await loginUser(data);
+    const { location } = this.props;
+    const { state } = location;
+    const path = state ? state.from.pathname : '/';
+    await loginUser(data, path);
   };
 
   render() {
