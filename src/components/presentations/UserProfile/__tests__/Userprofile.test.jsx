@@ -41,6 +41,7 @@ const UserprofileComponent = (
       userProfile={{ profile: 'me' }}
       articles={{ articleData: { author: { first_name: 'sam' } } }}
       isReviewer={false}
+      updateProfile={jest.fn()}
     />
   </Provider>
 );
@@ -54,10 +55,11 @@ describe('ProfilePage component', () => {
   it('should change state', () => {
     const wrapper = shallow(
       <Userprofile
-        getProfile={() => 'profile'}
+        getProfile={jest.fn()}
         userProfile={{ userProfile: { profile: { fake: 'data' } } }}
         articles={{ articleData: [{ author: { first_name: 'sam' } }] }}
         isReviewer={false}
+        updateProfile={jest.fn()}
       />
     );
 
