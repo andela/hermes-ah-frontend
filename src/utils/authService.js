@@ -1,11 +1,11 @@
 import jwtDecode from 'jwt-decode';
-import http from './httpService';
+import { setDefaultToken } from './httpService';
 
 const tokenKey = 'token';
 
 export const getToken = () => localStorage.getItem(tokenKey);
 
-http.setDefaultToken(getToken());
+setDefaultToken(getToken());
 
 export const decodeToken = () => {
   try {
