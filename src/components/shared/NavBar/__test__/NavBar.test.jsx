@@ -61,7 +61,8 @@ describe('NavBar component', () => {
     const wrapper = shallow(
       <NavContainer
         userProfile={initUserProfile}
-        getProfile={() => 'profile'}
+        getProfile={jest.fn()}
+        getSuggestions={jest.fn()}
       />
     );
     wrapper.setProps({ userProfile });
