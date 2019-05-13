@@ -27,16 +27,16 @@
 
 .twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-track
 {
-	background-color: rgb(255, 255, 255);
+	background-color: #ffffff;
 }
 
 .twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-thumb
 {
-	background-color: rgb(255, 255, 255);
+	background-color: #ffffff;
 }
 .twelve.wide.computer.sixteen.wide.mobile.column:hover::-webkit-scrollbar-thumb
 {
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
-	background-color: rgb(143, 143, 143);
+	background-color: #8f8f8f;
 }
