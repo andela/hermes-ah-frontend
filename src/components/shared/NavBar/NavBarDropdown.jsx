@@ -23,12 +23,11 @@ class NavDropdown extends Component {
     const { userProfile: userProps } = this.props;
     const { userProfile } = userProps;
     if (prevProps.userProfile !== userProps) {
-      const token = localStorage.getItem('token');
-      const getToken = decodeToken(token);
+      const user = decodeToken();
       const { profile } = userProfile;
       this.setState({
         userPic: profile.image_url,
-        isAdmin: getToken.isAdmin,
+        isAdmin: user.isAdmin,
       });
     }
   };
