@@ -25,7 +25,7 @@ const getReportedArticle = () => {
         return toast.error('Please check your internet connection');
       }
       const { data } = await http.get(`/reported-articles`);
-      return dispatch(getReportedArticleSuccess(data));
+      return dispatch(getReportedArticleSuccess(data.reportedArticles));
     } catch (error) {
       dispatch(getReportedArticleFailure());
       return exceptionHandler(error);

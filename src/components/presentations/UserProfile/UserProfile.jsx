@@ -15,7 +15,6 @@ class Userprofile extends Component {
     const { isReviewer } = this.props;
     this.state = {
       checked: isReviewer,
-      reportedArticles: [],
     };
   }
 
@@ -25,28 +24,25 @@ class Userprofile extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    const { isReviewer, reportedArticles } = this.props;
-    const { reportedArticle: profileReports } = reportedArticles;
-
+    const { isReviewer } = this.props;
     if (prevProps.isReviewer !== isReviewer) {
       this.setState({ checked: isReviewer });
-    }
-    if (prevProps.reportedArticles !== reportedArticles) {
-      this.setState({ reportedArticles: profileReports.reportedArticles });
     }
   };
 
   toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
 
   render() {
-    const { checked, reportedArticles: reportLists } = this.state;
-    const { userProfile: userProps, isReviewer } = this.props;
+    const { checked } = this.state;
+    const { userProfile: userProps, isReviewer, reportedArticles } = this.props;
+    const { reportedArticle: profileReports } = reportedArticles;
     const { userProfile } = userProps;
     const { profile } = userProfile;
 
     const reportList =
-      reportLists.length &&
-      reportLists
+      profileReports.length &&
+      profileReports
+        .slice(0, 3)
         .map(item => (
           <Reportcard
             key={item.id}
@@ -54,8 +50,7 @@ class Userprofile extends Component {
             reason={item.reporter_comment}
             status={item.status}
           />
-        ))
-        .slice(0, 3);
+        ));
 
     const suggestedArticleList = suggestedArticle.map(item => (
       <SuggestedArticleCard
