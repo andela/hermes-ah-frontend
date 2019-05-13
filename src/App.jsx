@@ -16,6 +16,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
+import NewArticle from './components/presentations/NewArticle/NewArticle';
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class App extends Component {
             <ToastContainer autoClose={false} />
             <NavBar user={user} />
             <Switch>
+              <Route path="/create-article/" exact component={NewArticle} />
               <Route path="/profile/" exact component={Profilepage} />
               <Route path="/about/" exact component={AboutPage} />
               <Route
