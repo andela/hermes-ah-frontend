@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
 import {
   getAllArticlesSuccess,
+  getAllArticles,
   getAllArticlesError,
 } from '../../../../actions/article.actions';
 import types from '../../../../constants/article.constants';
@@ -30,7 +31,7 @@ describe('article actions', () => {
       abstract: 'abstract',
     };
 
-    store.dispatch(getAllArticlesSuccess(dummyArticle));
+    await store.dispatch(getAllArticlesSuccess(dummyArticle));
     expect(store.getActions()).toEqual(expectedAction);
   });
 
@@ -42,7 +43,46 @@ describe('article actions', () => {
     ];
     const store = mockStore({});
 
-    store.dispatch(getAllArticlesError());
+    await store.dispatch(getAllArticlesError());
     expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action for getting all articles', async () => {
+    fetchMock.mock(
+      '/api/v1/articles',
+      {
+        status: 200,
+      },
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    await fetch('/api/v1/articles', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const expectedAction = [
+      {
+        type: 'CONTENT_LOADING',
+      },
+      {
+        type: types.FETCH_ARTICLES_SUCCESS,
+      },
+      {
+        type: types.FETCH_ARTICLES_FAILURE,
+      },
+    ];
+
+    const store = mockStore({});
+
+    await store.dispatch(getAllArticles());
+    expect(store.getActions()).toMatchObject(expectedAction);
   });
 });

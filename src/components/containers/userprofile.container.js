@@ -4,9 +4,10 @@ import reportedArticleAction from '../../actions/reported.actions';
 
 const { getReportedArticle } = reportedArticleAction;
 
-const mapStateToProps = ({ userProfile, reportedArticles }) => ({
+const mapStateToProps = ({ userProfile, reportedArticles, articles }) => ({
   userProfile,
   reportedArticles,
+  articles,
 });
 
 const UserprofileContainer = connect(

@@ -5,9 +5,6 @@ import Headercard from '../HeaderCard/Headercard';
 import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
 import SuggestedArticleCard from './SuggestedArticleCard';
-import dummyData from '../../../utils/dummyData';
-
-const { suggestedArticle } = dummyData;
 
 class Userprofile extends Component {
   constructor(props) {
@@ -34,10 +31,20 @@ class Userprofile extends Component {
 
   render() {
     const { checked } = this.state;
-    const { userProfile: userProps, isReviewer, reportedArticles } = this.props;
+    const {
+      userProfile: userProps,
+      isReviewer,
+      reportedArticles,
+      articles,
+    } = this.props;
     const { reportedArticle: profileReports } = reportedArticles;
     const { userProfile } = userProps;
     const { profile } = userProfile;
+    const { articleData } = articles;
+
+    const suggestionList = articleData.filter(item => {
+      return item.user_id !== profile.id;
+    });
 
     const reportList =
       profileReports.length &&
@@ -52,16 +59,18 @@ class Userprofile extends Component {
           />
         ));
 
-    const suggestedArticleList = suggestedArticle.map(item => (
-      <SuggestedArticleCard
-        key={item.id}
-        title={item.title}
-        body={item.body}
-        readingTime={item.readingTime}
-        firstname={item.firstname}
-        lastname={item.lastname}
-      />
-    ));
+    const suggestedArticleList = suggestionList
+      .map(item => (
+        <SuggestedArticleCard
+          key={item.id}
+          title={item.title}
+          body={item.abstract}
+          readingTime={item.reading_time}
+          firstname={item.author.first_name}
+          lastname={item.author.last_name}
+        />
+      ))
+      .slice(0, 3);
 
     return (
       <div>
@@ -97,6 +106,7 @@ class Userprofile extends Component {
 
 Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
+  articles: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
   getReportedArticle: PropTypes.func.isRequired,
   reportedArticles: PropTypes.shape().isRequired,

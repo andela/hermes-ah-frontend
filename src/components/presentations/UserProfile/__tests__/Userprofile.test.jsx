@@ -14,15 +14,32 @@ const userProfile = {
   },
 };
 
+const articles = {
+  articles: {
+    articleData: [
+      {
+        key: 0,
+        author: 'fadad',
+        abstract: 'sfsf',
+        title: 'fsdsds',
+        category: 'gfdfg',
+        date: 'date',
+        likes: 23,
+      },
+    ],
+  },
+};
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const store = mockStore({ userProfile });
+const store = mockStore({ userProfile, articles });
 
 const UserprofileComponent = (
   <Provider store={store}>
     <Userprofile
       getProfile={jest.fn()}
       userProfile={{ profile: 'me' }}
+      articles={{ articleData: { author: { first_name: 'sam' } } }}
       isReviewer={false}
       getReportedArticle={jest.fn()}
       reportedArticles={{ reportedArticle: [] }}
@@ -41,6 +58,7 @@ describe('ProfilePage component', () => {
       <Userprofile
         getProfile={jest.fn()}
         userProfile={{ userProfile: { profile: { fake: 'data' } } }}
+        articles={{ articleData: [{ author: { first_name: 'sam' } }] }}
         isReviewer={false}
         getReportedArticle={jest.fn()}
         reportedArticles={{ reportedArticle: [] }}

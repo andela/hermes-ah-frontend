@@ -41,6 +41,15 @@
     max-width: 500px;
     
 }
+.ui.primary.button:hover, .ui.primary.buttons .button:hover {
+    background-color: #fff;
+    color: #fff;
+    text-shadow: none;
+    color: #066be6;
+    border: 1px solid #0e71eb;
+    font-weight: 700;
+}
+
 @media (max-width: 918px){
     .heroImage{
         top: 8vw;
