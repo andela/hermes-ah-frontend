@@ -140,7 +140,7 @@ Userprofile.propTypes = {
   articles: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
   getReportedArticle: PropTypes.func.isRequired,
-  reportedArticles: PropTypes.shape().isRequired,
+  reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
 };
 
