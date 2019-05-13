@@ -49,6 +49,7 @@ class Userprofile extends Component {
     ));
 
     const suggestedArticleList = suggestionList
+      .slice(0, 3)
       .map(item => (
         <SuggestedArticleCard
           key={item.id}
@@ -58,8 +59,7 @@ class Userprofile extends Component {
           firstname={item.author.first_name}
           lastname={item.author.last_name}
         />
-      ))
-      .slice(0, 3);
+      ));
 
     const removeResearchersUserFollow = suggestedResearchers.filter(item => {
       return !item.isFollowing;
