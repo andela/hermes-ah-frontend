@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import './form.scss';
 
 class FormComponent extends Component {
@@ -61,15 +60,24 @@ class FormComponent extends Component {
   renderSocialLogin = () => {
     return (
       <div className="social-login">
-        <Link onClick={this.onTwitterButtonClick}>
+        <Button
+          className="social-login-list twitter"
+          onClick={this.onTwitterButtonClick}
+        >
           <i className="fab fa-twitter" />
-        </Link>
-        <Link onClick={this.onGoogleButtonClick}>
-          <i className="fab fa-google" />
-        </Link>
-        <Link onClick={this.onFacebookButtonClick}>
+        </Button>
+        <Button
+          className="social-login-list google"
+          onClick={this.onGoogleButtonClick}
+        >
+          <i className="fab fa-google-plus-g" />
+        </Button>
+        <Button
+          className="social-login-list facebook"
+          onClick={this.onFacebookButtonClick}
+        >
           <i className="fab fa-facebook-f" />
-        </Link>
+        </Button>
       </div>
     );
   };
