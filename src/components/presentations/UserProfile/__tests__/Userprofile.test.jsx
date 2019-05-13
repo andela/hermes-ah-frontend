@@ -25,7 +25,7 @@ const UserprofileComponent = (
       userProfile={{ profile: 'me' }}
       isReviewer={false}
       getReportedArticle={jest.fn()}
-      reportedArticles={{ profile: 'me' }}
+      reportedArticles={{ reportedArticle: [] }}
     />
   </Provider>
 );
@@ -43,7 +43,7 @@ describe('ProfilePage component', () => {
         userProfile={{ userProfile: { profile: { fake: 'data' } } }}
         isReviewer={false}
         getReportedArticle={jest.fn()}
-        reportedArticles={{ profile: 'me' }}
+        reportedArticles={{ reportedArticle: [] }}
       />
     );
 
