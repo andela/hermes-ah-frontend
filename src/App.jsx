@@ -53,7 +53,6 @@ class App extends Component {
             <NavBar user={user} />
             <Switch>
               <ProtectedRoute exact path="/profile/" component={Profilepage} />
-              {/* <Route path="/profile/" exact component={Profilepage} /> */}
               <Route path="/about/" exact component={AboutPage} />
               <Route
                 path="/forgot-password/"
