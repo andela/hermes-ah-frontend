@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { decodeToken } from '../../../utils/authService';
 
 class NavDropdown extends Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class NavDropdown extends Component {
       openDropdown: false,
       userPic:
         'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
+      isAdmin: false,
     };
   }
 
@@ -21,8 +23,13 @@ class NavDropdown extends Component {
     const { userProfile: userProps } = this.props;
     const { userProfile } = userProps;
     if (prevProps.userProfile !== userProps) {
+      const token = localStorage.getItem('token');
+      const getToken = decodeToken(token);
       const { profile } = userProfile;
-      this.setState({ userPic: profile.image_url });
+      this.setState({
+        userPic: profile.image_url,
+        isAdmin: getToken.isAdmin,
+      });
     }
   };
 
@@ -31,7 +38,7 @@ class NavDropdown extends Component {
   };
 
   render() {
-    const { openDropdown, userPic } = this.state;
+    const { openDropdown, userPic, isAdmin } = this.state;
     return (
       <div>
         <button
@@ -53,8 +60,8 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
+                {isAdmin && <Link to="/admin">Admin</Link>}
                 <Link to="/logout">Logout</Link>
-                <Link to="/admin">Admin</Link>
               </div>
             ) : null}
           </div>

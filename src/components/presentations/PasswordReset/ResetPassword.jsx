@@ -21,7 +21,7 @@ class ResetPassword extends FormComponent {
   };
 
   render() {
-    const confirmPasswordIdType = 'Confirm Password';
+    const confirmPasswordIdType = 'confirmPassword';
     const confirmPasswordPlaceHolder = 'Confirm Password';
     const passwordIdType = 'password';
     const passwordPlaceHolder = 'New Password';
