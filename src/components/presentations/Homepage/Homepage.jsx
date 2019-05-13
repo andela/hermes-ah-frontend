@@ -6,6 +6,7 @@ import HeroView from '../HeroView/HeroviewPresentations';
 import ArticleCard from '../ArticleCard/Article';
 import PopularArticleCard from '../PopularArticleCard/PopularArticleCard';
 import UserHomepageContainer from '../../containers/user-homepage.container';
+import CookieBanner from '../CookieBanner/CookieBanner';
 import Loader from '../../shared/Loader/Loader';
 import './homepage.scss';
 
@@ -50,6 +51,7 @@ class Homepage extends Component {
     const limit = sortedArticle.slice(0, 3);
     return (
       <React.Fragment>
+        <CookieBanner />
         {loader && <Loader />}
         {user ? (
           <UserHomepageContainer />

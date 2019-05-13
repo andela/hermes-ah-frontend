@@ -37,7 +37,7 @@
   }
   
   .notfound .notfound-404 h1 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-stack;
     font-size: 230px;
     margin: 0px;
     font-weight: 900;
@@ -55,7 +55,7 @@
   
   
   .error-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-stack;
     color: #000;
     font-size: 24px;
     font-weight: 700;
@@ -64,7 +64,7 @@
   }
   
   .error-message {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-stack;
     color: #000;
     font-size: 14px;
     font-weight: 400;
@@ -73,7 +73,7 @@
   }
   
   .home-button{
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-stack;
     font-size: 14px;
     text-decoration: none;
     text-transform: uppercase;

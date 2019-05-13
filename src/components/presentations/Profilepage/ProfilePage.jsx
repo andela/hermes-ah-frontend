@@ -34,12 +34,11 @@ class Profilepage extends Component {
       getFollowing,
       fetchBookmarks,
     } = this.props;
+
     getProfile();
     fetchArticles();
     getFollowee();
     getFollowing();
-    getProfile();
-    fetchArticles();
     fetchBookmarks();
   };
 
