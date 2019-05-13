@@ -8,3 +8,10 @@ $article-border-color: #BDBDBD;
 .custom-center{
     text-align: center;
 }
+
+::-webkit-scrollbar {
+    width: 0;
+    background-image: url(https://res.cloudinary.com/mchardex/image/upload/v1557683419/3258565a77b195e.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+}

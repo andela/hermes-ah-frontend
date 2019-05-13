@@ -25,4 +25,14 @@
         width: 250px;
         margin: 0 10px;
     }
+
+    i.far.fa-thumbs-up {
+        font-size: 18px;
+        cursor: pointer;
+    }
+
+    i.far.fa-thumbs-up:hover {
+        color: #0E71EB;
+        transform: scale(1.1)
+    }
 }

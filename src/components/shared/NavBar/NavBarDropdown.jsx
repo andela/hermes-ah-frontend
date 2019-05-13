@@ -55,6 +55,7 @@ class NavDropdown extends Component {
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
                 <Link to="/logout">Logout</Link>
+                <Link to="/admin">Admin</Link>
               </div>
             ) : null}
           </div>

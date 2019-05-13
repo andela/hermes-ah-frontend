@@ -16,6 +16,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
+import AdminPage from './components/presentations/AdminPage/AdminPage';
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,7 @@ class App extends Component {
                 exact
                 component={ForgotPassword}
               />
+              <Route path="/admin/" exact component={AdminPage} />
               <Route path="/reset-password/" exact component={ResetPassword} />
               <Route
                 path="/login/"

@@ -8,7 +8,7 @@ import FollowCard from '../UserFollwing/FollowCard/Follow-card';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import dummyData from '../../../utils/dummyData';
 
-const { profileReport, suggestedArticle } = dummyData;
+const { profileReport } = dummyData;
 
 class Userprofile extends Component {
   constructor(props) {
@@ -30,9 +30,14 @@ class Userprofile extends Component {
 
   render() {
     const { checked } = this.state;
-    const { userProfile: userProps, isReviewer } = this.props;
+    const { userProfile: userProps, isReviewer, articles } = this.props;
     const { userProfile, suggestedResearchers } = userProps;
     const { profile } = userProfile;
+    const { articleData } = articles;
+
+    const suggestionList = articleData.filter(item => {
+      return item.user_id !== profile.id;
+    });
 
     const reportList = profileReport.map(item => (
       <Reportcard
@@ -43,16 +48,18 @@ class Userprofile extends Component {
       />
     ));
 
-    const suggestedArticleList = suggestedArticle.map(item => (
-      <SuggestedArticleCard
-        key={item.id}
-        title={item.title}
-        body={item.body}
-        readingTime={item.readingTime}
-        firstname={item.firstname}
-        lastname={item.lastname}
-      />
-    ));
+    const suggestedArticleList = suggestionList
+      .map(item => (
+        <SuggestedArticleCard
+          key={item.id}
+          title={item.title}
+          body={item.abstract}
+          readingTime={item.reading_time}
+          firstname={item.author.first_name}
+          lastname={item.author.last_name}
+        />
+      ))
+      .slice(0, 3);
 
     const removeResearchersUserFollow = suggestedResearchers.filter(item => {
       return !item.isFollowing;
@@ -117,6 +124,7 @@ class Userprofile extends Component {
 
 Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
+  articles: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
 };
 
