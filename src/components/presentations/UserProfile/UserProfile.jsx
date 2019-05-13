@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Headercard from '../HeaderCard/Headercard';
 import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
+import FollowCard from '../UserFollwing/FollowCard/Follow-card';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import dummyData from '../../../utils/dummyData';
 
@@ -35,7 +36,7 @@ class Userprofile extends Component {
       updateProfile,
       articles,
     } = this.props;
-    const { userProfile } = userProps;
+    const { userProfile, suggestedResearchers } = userProps;
     const { profile } = userProfile;
     const { articleData } = articles;
 
@@ -53,6 +54,7 @@ class Userprofile extends Component {
     ));
 
     const suggestedArticleList = suggestionList
+      .slice(0, 3)
       .map(item => (
         <SuggestedArticleCard
           key={item.id}
@@ -61,6 +63,25 @@ class Userprofile extends Component {
           readingTime={item.reading_time}
           firstname={item.author.first_name}
           lastname={item.author.last_name}
+        />
+      ));
+
+    const removeResearchersUserFollow = suggestedResearchers.filter(item => {
+      return !item.isFollowing;
+    });
+
+    const suggestedResearchersList = removeResearchersUserFollow
+      .map(item => (
+        <FollowCard
+          key={item.profile.id}
+          imageUrl={item.profile.image_url}
+          initials={`${item.profile.first_name
+            .charAt(0)
+            .toUpperCase()}${item.profile.last_name.charAt(0).toUpperCase()}`}
+          bio={item.profile.bio}
+          button="Follow"
+          btnClass="btn-following"
+          name={`${item.profile.first_name} ${item.profile.last_name}`}
         />
       ))
       .slice(0, 3);
@@ -86,7 +107,16 @@ class Userprofile extends Component {
             </Grid.Column>
 
             <Grid.Column width={8}>
-              <Headercard icon="fa fa-users" value="Suggested Researchers" />
+              {suggestedResearchersList.length ? (
+                <div className="sgg-rsh-container">
+                  <Headercard
+                    icon="fa fa-users"
+                    value="Suggested Researchers"
+                  />
+                  {suggestedResearchersList}
+                </div>
+              ) : null}
+
               <Headercard icon="far fa-newspaper" value="Suggested Articles" />
               {suggestedArticleList}
             </Grid.Column>
