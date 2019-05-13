@@ -21,7 +21,8 @@ exports[`HomePage component should match snapshot 1`] = `
         ],
       }
     }
-    getAllArticles={[Function]}
+    confirmAccount={[MockFunction]}
+    getAllArticles={[MockFunction]}
     isLoadingReducer={
       Object {
         "loader": false,

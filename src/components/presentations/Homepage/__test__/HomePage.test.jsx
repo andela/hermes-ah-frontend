@@ -13,9 +13,10 @@ const store = mockStore({});
 const HomePageComponent = (
   <Provider store={store}>
     <HomePage
-      getAllArticles={() => 'articles'}
+      getAllArticles={jest.fn()}
       articles={{ articleData: [{}] }}
       isLoadingReducer={{ loader: false }}
+      confirmAccount={jest.fn()}
     />
   </Provider>
 );

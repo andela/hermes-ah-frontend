@@ -6,7 +6,9 @@ import SuggestesArticleCard from '../SuggestedArticleCard';
 
 describe('ProfilePage component', () => {
   it('should render profile page', () => {
-    const wrapper = shallow(<ProfileCard profile={{}} />);
+    const wrapper = shallow(
+      <ProfileCard profile={{}} updateProfile={jest.fn()} />
+    );
     expect(wrapper.find('div'));
   });
 
