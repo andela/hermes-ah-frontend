@@ -18,6 +18,7 @@ import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
+import './assets/stylesheets/index.scss';
 
 class App extends Component {
   constructor(props) {
