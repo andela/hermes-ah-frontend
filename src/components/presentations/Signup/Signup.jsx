@@ -40,7 +40,7 @@ class Signup extends FormComponent {
     const { isLoadingReducer, user } = this.props;
     const { userProfile } = user;
     const { loader } = isLoadingReducer;
-    if (userProfile) return <Redirect to="/" />;
+    if (Object.keys(userProfile).length) return <Redirect to="/" />;
     return (
       <div>
         <NavBar />

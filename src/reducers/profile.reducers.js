@@ -1,7 +1,7 @@
 import actionTypes from '../constants/profile.constants';
 
 const initialState = {
-  userProfile: null,
+  userProfile: {},
   suggestedResearchers: [],
 };
 
