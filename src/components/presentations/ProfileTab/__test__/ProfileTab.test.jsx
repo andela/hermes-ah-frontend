@@ -7,7 +7,7 @@ describe('ProfileTab and ProfileButton component', () => {
   it('should render profile tab component', () => {
     const wrapper = shallow(
       <ProfileTab
-        changeTab={() => 'tabCahnged'}
+        changeTab={jest.fn()}
         currentTab="profile-tab"
         totalArticle=""
         totalFollowee=""
@@ -22,7 +22,7 @@ describe('ProfileTab and ProfileButton component', () => {
     const wrapper = shallow(
       <ProfileTabButton
         value="profile"
-        onClick={() => 'clicked'}
+        onClick={jest.fn()}
         className="profile-tab"
         number="10"
       />

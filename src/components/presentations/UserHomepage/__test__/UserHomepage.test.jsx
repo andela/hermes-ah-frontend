@@ -6,36 +6,13 @@ import thunk from 'redux-thunk';
 import UserHomepage from '../UserHomepage';
 import PopularArticleCard from '../../PopularArticleCard/PopularArticleCard';
 import ArticleCard from '../../ArticleCard/Article';
+import mock from '../../../../utils/testMocks';
+
+const { articleCardProps, articleReducer } = mock;
 
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const store = mockStore({});
-
-const props = {
-  articles: {
-    articleData: [
-      {
-        id: 2,
-        author: 'fadad',
-        abstract: 'sfsf',
-        title: 'fsdsds',
-        category: 'gfdfg',
-      },
-    ],
-  },
-  getAllArticles: jest.fn(),
-};
-
-const articleCardProps = {
-  id: 2,
-  author: 'fadad',
-  abstract: 'sfsf',
-  title: 'fsdsds',
-  category: 'gfdfg',
-  date: '2017-11-25T12:34:56z',
-  read: 'min',
-  paragraph: 'paragraph',
-};
 
 const popularArticleCardProps = {
   title: 'title',
@@ -47,7 +24,7 @@ const popularArticleCardProps = {
 
 const UserHomePageComponent = (
   <Provider store={store}>
-    <UserHomepage {...props} />
+    <UserHomepage {...articleReducer} />
   </Provider>
 );
 
@@ -58,7 +35,7 @@ describe('userHomePage component', () => {
   });
 
   it('should render without crashing', () => {
-    const wrapper = shallow(<UserHomepage {...props} />);
+    const wrapper = shallow(<UserHomepage {...articleReducer} />);
     expect(wrapper.find('Item'));
   });
 

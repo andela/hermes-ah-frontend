@@ -1,3 +1,4 @@
+@import '../../../assets/stylesheets/index.scss';
 .article-card-item{
     .author-name {
         color: black;
@@ -21,5 +22,21 @@
 }
 .twelve.wide.computer.sixteen.wide.mobile.column{
     height: 69vh;
-    overflow: auto;
+    overflow-y:auto;
+}
+
+.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-track
+{
+	background-color: #ffffff;
+}
+
+.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-thumb
+{
+	background-color: #ffffff;
+}
+.twelve.wide.computer.sixteen.wide.mobile.column:hover::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+	background-color: #8f8f8f;
 }
