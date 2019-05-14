@@ -18,42 +18,21 @@ class Profilepage extends Component {
     super(props);
     this.state = {
       currentTab: 'profile-section',
-      firstname: '',
-      lastname: '',
-      profilePic:
-        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
-      isReviewer: false,
     };
   }
 
   componentDidMount = () => {
     const {
-      getProfile,
       fetchArticles,
       getFollowee,
       getFollowing,
       fetchBookmarks,
     } = this.props;
 
-    getProfile();
     fetchArticles();
     getFollowee();
     getFollowing();
     fetchBookmarks();
-  };
-
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const { profile } = userProfile;
-      this.setState({
-        firstname: profile.first_name,
-        lastname: profile.last_name,
-        profilePic: profile.image_url,
-        isReviewer: profile.is_reviewer,
-      });
-    }
   };
 
   changeTab = tab => {
@@ -73,7 +52,6 @@ class Profilepage extends Component {
       });
       form.append('file', imageData);
       const res = await uploadToCloudnary(form);
-      this.setState({ profilePic: res.url });
       updateProfile({ image_url: res.url });
       toast.dismiss();
     } else {
@@ -82,13 +60,7 @@ class Profilepage extends Component {
   };
 
   render() {
-    const {
-      currentTab,
-      firstname,
-      lastname,
-      profilePic,
-      isReviewer,
-    } = this.state;
+    const { currentTab } = this.state;
 
     const {
       articlesUpdate,
@@ -97,7 +69,12 @@ class Profilepage extends Component {
       isLoadingReducer,
       bookmarkedArticles,
       updateProfile,
+      userProfile: userProps,
     } = this.props;
+
+    const { userProfile } = userProps;
+    const { profile } = userProfile;
+
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
@@ -106,14 +83,14 @@ class Profilepage extends Component {
         {loader && <Loader />}
         <div className="profile-header">
           <Imagepic
-            profilePic={profilePic}
+            profilePic={profile && profile.image_url}
             handleChange={this.handleChange}
             updateProfile={updateProfile}
           />
           <h1>
-            {firstname}
+            {profile && profile.first_name}
             &nbsp;
-            {lastname}
+            {profile && profile.last_name}
           </h1>
         </div>
         <ProfileTab
@@ -142,7 +119,7 @@ class Profilepage extends Component {
             </div>
           ) : null}
           {currentTab === 'profile-section' ? (
-            <Userprofile isReviewer={isReviewer} />
+            <Userprofile isReviewer={profile && profile.is_reviewer} />
           ) : null}
         </div>
       </React.Fragment>
@@ -151,7 +128,6 @@ class Profilepage extends Component {
 }
 
 Profilepage.propTypes = {
-  getProfile: PropTypes.func.isRequired,
   userProfile: PropTypes.shape().isRequired,
   isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,

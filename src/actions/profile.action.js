@@ -50,15 +50,14 @@ const getProfile = () => {
     dispatch(contentLoading());
     try {
       if (!navigator.onLine) {
-        return toast.error('Please check your internet connection');
+        toast.error('Please check your internet connection');
       }
       const user = decodeToken();
       const { data } = await http.get(`/profile/${user.id}`);
-      return dispatch(getProfileSuccess(data));
+      dispatch(getProfileSuccess(data));
     } catch (error) {
-      return exceptionHandler(error);
-    } finally {
       dispatch(getProfileFailure());
+      exceptionHandler(error);
     }
   };
 };
