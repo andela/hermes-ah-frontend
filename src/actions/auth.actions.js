@@ -11,11 +11,7 @@ export const loginError = () => ({
   type: actionTypes.LOGIN_FAILURE,
 });
 
-const redirect = redirectUrl => {
-  window.location = redirectUrl;
-};
-
-export const login = (userObj, redirectUrl) => {
+export const login = (userObj, props) => {
   return async dispatch => {
     if (!navigator.onLine) {
       return toast.error('Please check your internet connection');
@@ -26,7 +22,10 @@ export const login = (userObj, redirectUrl) => {
       const { user } = data;
       const { token } = user;
       setToken(token);
-      return redirect(redirectUrl);
+      const { location } = props;
+      const { state } = location;
+      const path = state ? state.from.pathname : '/';
+      return props.history.push(path);
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {
@@ -35,7 +34,7 @@ export const login = (userObj, redirectUrl) => {
   };
 };
 
-export const signup = userObj => {
+export const signup = (userObj, props) => {
   return async dispatch => {
     if (!navigator.onLine) {
       return toast.error('Please check your internet connection');
@@ -46,7 +45,7 @@ export const signup = userObj => {
       const { user } = data;
       const { token } = user;
       setToken(token);
-      return redirect('/');
+      return props.history.push('/');
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {

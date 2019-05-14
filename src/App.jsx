@@ -9,7 +9,7 @@ import LoginContainer from './components/containers/login.container';
 import Notfound from './components/presentations/Notfound/Notfound';
 import Logout from './components/presentations/Logout/Logout';
 import Footer from './components/shared/Footer/Footer';
-import NavBar from './components/shared/NavBar/NavBar';
+// import NavBar from './components/shared/NavBar/NavBar';
 import AboutPage from './components/presentations/AboutPage/AboutPage';
 import Profilepage from './components/containers/profile.container';
 import ForgotPassword from './components/containers/passwordReset.containers';
@@ -25,12 +25,12 @@ import './assets/stylesheets/index.scss';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: null };
+    this.state = {};
   }
 
   componentDidMount() {
     const user = decodeToken();
-    this.setState({ user });
+    // this.setState({ user });
     const token = new URLSearchParams(
       document.location.search.substring(1)
     ).get('token');
@@ -47,13 +47,12 @@ class App extends Component {
   }
 
   render() {
-    const { user } = this.state;
+    // const { user } = this.state;
     return (
       <Provider store={store}>
         <Router>
           <React.Fragment>
             <ToastContainer autoClose={false} />
-            <NavBar user={user} />
             <Switch>
               <ProtectedRoute exact path="/profile/" component={Profilepage} />
               <Route path="/about/" exact component={AboutPage} />
@@ -65,23 +64,11 @@ class App extends Component {
               />
               <Route path="/admin/" exact component={AdminPage} />
               <Route path="/reset-password/" exact component={ResetPassword} />
-              <Route
-                path="/login/"
-                exact
-                render={props => <LoginContainer {...props} user={user} />}
-              />
-              <Route
-                path="/signup/"
-                exact
-                render={props => <SignupContainer {...props} user={user} />}
-              />
+              <Route path="/login/" exact component={LoginContainer} />
+              <Route path="/signup/" exact component={SignupContainer} />
               <Route path="/logout/" exact component={Logout} />
               <Route path="/auth/social" exact component={SocialLogin} />
-              <Route
-                path="/"
-                exact
-                render={props => <HomePageContainer {...props} user={user} />}
-              />
+              <Route path="/" exact component={HomePageContainer} />
               <Route path="*" component={Notfound} />
             </Switch>
             <Footer />

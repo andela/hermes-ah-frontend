@@ -12,6 +12,7 @@ import Articles from '../UserArticles/Articles';
 import Following from '../UserFollwing/Following/Following';
 import Followee from '../UserFollwing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class Profilepage extends Component {
     const bookmarkList = bookmarkedArticles.articles;
     return (
       <React.Fragment>
+        <NavBar />
         {loader && <Loader />}
         <div className="profile-header">
           <Imagepic
