@@ -1,50 +1,49 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
-
+import PropTypes from 'prop-types';
 import NewArticleForm from './NewArticleForm/NewArticleForm';
 
 class CreateArticle extends Component {
   constructor() {
     super();
-
-    this.state = {
-      title: '',
-      content: EditorState.createEmpty(),
-    };
+    this.state = {};
   }
-
-  handleEditorState = editorState => {
-    this.setState({
-      content: editorState,
-    });
-  };
-
-  handleSubmit = async event => {
-    event.preventDefault();
-  };
 
   render() {
     const {
-      handleTextAreaChange,
       handleInputChange,
+      handleImageChange,
+      handleEditorState,
+      handleSubmit,
+      handleTextAreaChange,
       title,
-      textarea,
       content,
-    } = this.state;
+      textarea,
+    } = this.props;
 
     return (
       <NewArticleForm
         handleInputChange={handleInputChange}
+        handleImageChange={handleImageChange}
+        handleEditorState={handleEditorState}
         handleTextAreaChange={handleTextAreaChange}
-        handleSubmit={this.handleSubmit}
-        handleImageChange={this.handleImageChange}
+        handleSubmit={handleSubmit}
         title={title}
         textarea={textarea}
         content={content}
-        handleEditorState={this.handleEditorState}
       />
     );
   }
 }
+
+CreateArticle.propTypes = {
+  handleTextAreaChange: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
+  handleImageChange: PropTypes.func.isRequired,
+  handleEditorState: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  textarea: PropTypes.string.isRequired,
+  content: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default CreateArticle;
