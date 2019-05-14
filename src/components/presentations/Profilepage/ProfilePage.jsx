@@ -41,10 +41,9 @@ class Profilepage extends Component {
   };
 
   unFollowClick = async e => {
-    const { unFollowUser, getFollowing } = this.props;
-    await unFollowUser(e.target.id, () => {
-      getFollowing();
-    });
+    const { unFollowUser, userFollowing: users } = this.props;
+    const { userFollowing } = users;
+    await unFollowUser(e.target.id, userFollowing);
   };
 
   componentDidUpdate = prevProps => {

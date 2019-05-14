@@ -2,7 +2,6 @@ import { toast } from 'react-toastify';
 import actions from '../constants/follow.constants';
 import http from '../utils/httpService';
 import exceptionHandler from '../utils/exceptionHandler';
-import contentLoading from './loading.action';
 
 export const getFollowingSuccess = following => {
   return {
@@ -43,14 +42,15 @@ const getFollowing = () => {
   };
 };
 
-const unFollowUser = (userId, successCallback) => {
+const unFollowUser = (userId, userFollowing) => {
   return async dispatch => {
-    dispatch(contentLoading());
     try {
       const unFollow = await http.delete(`follow/${userId}`);
-      dispatch(unFollowSuccess(unFollow.data.user));
+      const data = userFollowing.filter(
+        following => following.followee_id !== userId
+      );
+      dispatch(unFollowSuccess(data));
       toast.success(`You unfollowed ${unFollow.data.user.last_name}`);
-      successCallback();
     } catch (error) {
       dispatch(unFollowFailure());
       exceptionHandler(error);
