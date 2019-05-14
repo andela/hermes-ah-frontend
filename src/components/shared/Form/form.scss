@@ -118,27 +118,44 @@ form.ui.unstackable.form {
   }
 }
 .social-login {
+  padding: 12px 15px;
+  overflow: auto;
+  display: flex;
   justify-content: center;
-    padding: 12px 0;
-    display: flex;
-    align-items: center;
-    margin-top: -14px;
-  i.fab.fa-twitter, i.fab.fa-google, i.fab.fa-facebook-f {
-    font-size: 30px;
+  
+  i {
+    font-size: 25px;
+  }
+  
+  .twitter {
     background: #55ACEE;
     color: #fff;
-    padding: 8px;
-    border-radius: 5px;
-    cursor: pointer;
   }
-  i.fab.fa-google {
-    background: #fff !important;
-    color: #4384F7 !important;
-    font-size: 42px !important;
+  .ui.twitter.button:hover {
+    background: #3d7bab;
   }
-  i.fab.fa-facebook-f {
-    background: #1B4A97 !important;
-    padding: 8px 16px !important;
+  .google {
+    background: #DD4B39;
+    color: #fff;
+  }
+  .google:hover {
+    background: #ab3a2d;
+    color: #fff;
+  }
+  .facebook {
+    background: #1B4A97;
+    color: #fff;
+  }
+  .ui.facebook.button:hover {
+    background: #143873;
+    color: #fff;
+  }
+  .social-login-list {
+    width: 20%;
+    float: left;
+  }
+  .fa-icon {
+    float: left;
   }
 }
 

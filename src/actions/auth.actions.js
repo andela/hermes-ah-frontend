@@ -15,7 +15,7 @@ const redirect = redirectUrl => {
   window.location = redirectUrl;
 };
 
-export const login = userObj => {
+export const login = (userObj, redirectUrl) => {
   return async dispatch => {
     if (!navigator.onLine) {
       return toast.error('Please check your internet connection');
@@ -26,7 +26,7 @@ export const login = userObj => {
       const { user } = data;
       const { token } = user;
       setToken(token);
-      return redirect('/');
+      return redirect(redirectUrl);
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {
@@ -75,9 +75,18 @@ export const logout = () => {
   window.location = '/login';
 };
 
+export const socialLogin = () => {
+  const socialLoginToken = window.location.href.split('?')[1].split('#')[0];
+  if (socialLoginToken) {
+    setToken(socialLoginToken);
+    window.location = '/';
+  }
+};
+
 export default {
   login,
   signup,
   confirmAccount,
   logout,
+  socialLogin,
 };

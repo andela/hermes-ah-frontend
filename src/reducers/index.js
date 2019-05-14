@@ -9,6 +9,7 @@ import userFollowing from './following.reducers';
 import articlesUpdate from './articles-update.reducer';
 import isLoadingReducer from './loading.reducer';
 import bookmarkedArticles from './bookmarked.reducer';
+import reportedArticles from './reported.reducers';
 
 const reducers = combineReducers({
   auth,
@@ -21,6 +22,7 @@ const reducers = combineReducers({
   userResetPassword,
   isLoadingReducer,
   bookmarkedArticles,
+  reportedArticles,
 });
 
 export default reducers;

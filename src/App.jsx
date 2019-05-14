@@ -17,6 +17,9 @@ import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
+import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
+import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
+import './assets/stylesheets/index.scss';
 
 class App extends Component {
   constructor(props) {
@@ -51,7 +54,7 @@ class App extends Component {
             <ToastContainer autoClose={false} />
             <NavBar user={user} />
             <Switch>
-              <Route path="/profile/" exact component={Profilepage} />
+              <ProtectedRoute exact path="/profile/" component={Profilepage} />
               <Route path="/about/" exact component={AboutPage} />
               <Route
                 path="/forgot-password/"
@@ -71,6 +74,7 @@ class App extends Component {
                 render={props => <SignupContainer {...props} user={user} />}
               />
               <Route path="/logout/" exact component={Logout} />
+              <Route path="/auth/social" exact component={SocialLogin} />
               <Route
                 path="/"
                 exact

@@ -13,7 +13,7 @@ const Imagepic = ({ handleChange, profilePic }) => (
     />
     <form className="custom-file-upload" encType="multipart/form-data">
       <label htmlFor="file-upload">
-        <i className="fa fa-upload" />
+        <i className="far fa-edit" title="Change profile picture" />
         <input
           type="file"
           id="file-upload"

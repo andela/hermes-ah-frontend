@@ -11,6 +11,9 @@ const userProfile = {
       first_name: 'jest',
       last_name: 'enzyme',
     },
+    suggestedResearchers: [
+      { profile: { first_name: 'sam' }, isFollowing: false },
+    ],
   },
 };
 
@@ -38,9 +41,20 @@ const UserprofileComponent = (
   <Provider store={store}>
     <Userprofile
       getProfile={jest.fn()}
-      userProfile={{ profile: 'me' }}
       articles={{ articleData: { author: { first_name: 'sam' } } }}
       isReviewer={false}
+      getReportedArticle={jest.fn()}
+      reportedArticles={{ reportedArticle: [] }}
+      updateProfile={jest.fn()}
+      userProfile={{
+        userProfile: { profile: { fake: 'data' } },
+        suggestedResearchers: [
+          {
+            profile: { first_name: 'sam', last_name: 'pete' },
+            isFollowing: false,
+          },
+        ],
+      }}
     />
   </Provider>
 );
@@ -54,10 +68,27 @@ describe('ProfilePage component', () => {
   it('should change state', () => {
     const wrapper = shallow(
       <Userprofile
-        getProfile={() => 'profile'}
-        userProfile={{ userProfile: { profile: { fake: 'data' } } }}
+        getProfile={jest.fn()}
         articles={{ articleData: [{ author: { first_name: 'sam' } }] }}
         isReviewer={false}
+        getReportedArticle={jest.fn()}
+        reportedArticles={{ reportedArticle: [] }}
+        userProfile={{
+          userProfile: { profile: { fake: 'data' } },
+          suggestedResearchers: [
+            {
+              profile: {
+                first_name: 'sam',
+                last_name: 'pete',
+                id: 'asfnj',
+                bio: 'bio',
+                image_url: 'image',
+              },
+              isFollowing: false,
+            },
+          ],
+        }}
+        updateProfile={jest.fn()}
       />
     );
 
