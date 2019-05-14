@@ -6,9 +6,6 @@ import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
 import FollowCard from '../UserFollwing/FollowCard/Follow-card';
 import SuggestedArticleCard from './SuggestedArticleCard';
-import dummyData from '../../../utils/dummyData';
-
-const { profileReport } = dummyData;
 
 class Userprofile extends Component {
   constructor(props) {
@@ -18,6 +15,11 @@ class Userprofile extends Component {
       checked: isReviewer,
     };
   }
+
+  componentDidMount = () => {
+    const { getReportedArticle } = this.props;
+    getReportedArticle();
+  };
 
   componentDidUpdate = prevProps => {
     const { isReviewer } = this.props;
@@ -33,9 +35,11 @@ class Userprofile extends Component {
     const {
       userProfile: userProps,
       isReviewer,
+      reportedArticles,
       updateProfile,
       articles,
     } = this.props;
+    const { reportedArticle: profileReports } = reportedArticles;
     const { userProfile, suggestedResearchers } = userProps;
     const { profile } = userProfile;
     const { articleData } = articles;
@@ -44,14 +48,18 @@ class Userprofile extends Component {
       return item.user_id !== profile.id;
     });
 
-    const reportList = profileReport.map(item => (
-      <Reportcard
-        key={item.id}
-        topic={item.title}
-        reason={item.reason}
-        status={item.status}
-      />
-    ));
+    const reportList =
+      profileReports.length &&
+      profileReports
+        .slice(0, 3)
+        .map(item => (
+          <Reportcard
+            key={item.id}
+            topic={item.reporter_reason}
+            reason={item.reporter_comment}
+            status={item.status}
+          />
+        ));
 
     const suggestedArticleList = suggestionList
       .slice(0, 3)
@@ -95,7 +103,7 @@ class Userprofile extends Component {
               <Profilecard profile={profile} updateProfile={updateProfile} />
               <div>
                 <Button onClick={this.toggle}>Become A Reviewer</Button>
-                <Checkbox onChange={this.toggle} checked={checked} />
+                <Checkbox checked={checked} />
               </div>
 
               {isReviewer ? (
@@ -131,6 +139,8 @@ Userprofile.propTypes = {
   userProfile: PropTypes.shape().isRequired,
   articles: PropTypes.shape().isRequired,
   isReviewer: PropTypes.bool.isRequired,
+  getReportedArticle: PropTypes.func.isRequired,
+  reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
 };
 

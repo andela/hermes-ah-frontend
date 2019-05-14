@@ -19,6 +19,7 @@ import { decodeToken } from './utils/authService';
 import NewArticle from './components/presentations/NewArticle/NewArticle';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
+import './assets/stylesheets/index.scss';
 
 class App extends Component {
   constructor(props) {
