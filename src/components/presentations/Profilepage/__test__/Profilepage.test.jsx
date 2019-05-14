@@ -5,31 +5,15 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Profilepage from '../ProfilePage';
 import Imagepic from '../ImagePic';
+import mock from '../../../../utils/testMocks';
 
-const userProfile = {
-  userProfile: {
-    profile: {
-      first_name: 'jest',
-      last_name: 'enzyme',
-    },
-  },
-};
-
-const articleObj = {
-  articles: [],
-};
-
-const userFollowingObj = {
-  userFollowing: [],
-};
-
-const userFolloweeObj = {
-  userFollowee: [],
-};
-
-const bookmarkObj = {
-  articles: [],
-};
+const {
+  userProfile,
+  articleObj,
+  userFolloweeObj,
+  userFollowingObj,
+  bookmarkObj,
+} = mock;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
