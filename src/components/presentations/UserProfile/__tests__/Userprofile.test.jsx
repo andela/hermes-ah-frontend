@@ -4,57 +4,27 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import Userprofile from '../UserProfile';
+import mock from '../../../../utils/testMocks';
 
-const userProfile = {
-  userProfile: {
-    profile: {
-      first_name: 'jest',
-      last_name: 'enzyme',
-    },
-    suggestedResearchers: [
-      { profile: { first_name: 'sam' }, isFollowing: false },
-    ],
-  },
-};
-
-const articles = {
-  articles: {
-    articleData: [
-      {
-        key: 0,
-        author: 'fadad',
-        abstract: 'sfsf',
-        title: 'fsdsds',
-        category: 'gfdfg',
-        date: 'date',
-        likes: 23,
-      },
-    ],
-  },
-};
+const { userProfileReducer, articleReducer } = mock;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-const store = mockStore({ userProfile, articles });
+const store = mockStore({
+  userProfileReducer,
+  articles: articleReducer.articles,
+});
 
 const UserprofileComponent = (
   <Provider store={store}>
     <Userprofile
       getProfile={jest.fn()}
-      articles={{ articleData: { author: { first_name: 'sam' } } }}
+      articles={articleReducer.articles}
       isReviewer={false}
       getReportedArticle={jest.fn()}
       reportedArticles={{ reportedArticle: [] }}
       updateProfile={jest.fn()}
-      userProfile={{
-        userProfile: { profile: { fake: 'data' } },
-        suggestedResearchers: [
-          {
-            profile: { first_name: 'sam', last_name: 'pete' },
-            isFollowing: false,
-          },
-        ],
-      }}
+      userProfile={userProfileReducer}
     />
   </Provider>
 );
@@ -69,25 +39,11 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(
       <Userprofile
         getProfile={jest.fn()}
-        articles={{ articleData: [{ author: { first_name: 'sam' } }] }}
+        articles={articleReducer.articles}
         isReviewer={false}
         getReportedArticle={jest.fn()}
         reportedArticles={{ reportedArticle: [] }}
-        userProfile={{
-          userProfile: { profile: { fake: 'data' } },
-          suggestedResearchers: [
-            {
-              profile: {
-                first_name: 'sam',
-                last_name: 'pete',
-                id: 'asfnj',
-                bio: 'bio',
-                image_url: 'image',
-              },
-              isFollowing: false,
-            },
-          ],
-        }}
+        userProfile={userProfileReducer}
         updateProfile={jest.fn()}
       />
     );
