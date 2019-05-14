@@ -18,6 +18,7 @@ import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
+import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
 import './assets/stylesheets/index.scss';
 
 class App extends Component {
@@ -73,6 +74,7 @@ class App extends Component {
                 render={props => <SignupContainer {...props} user={user} />}
               />
               <Route path="/logout/" exact component={Logout} />
+              <Route path="/auth/social" exact component={SocialLogin} />
               <Route
                 path="/"
                 exact

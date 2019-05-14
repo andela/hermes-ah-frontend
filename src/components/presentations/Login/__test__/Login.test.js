@@ -7,7 +7,6 @@ import types from '../../../../constants/auth.constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
-
 describe('auth actions', () => {
   afterEach(() => {
     fetchMock.restore();
@@ -20,12 +19,12 @@ describe('auth actions', () => {
       },
     ];
     const store = mockStore({});
-    store.dispatch(loginError());
+    await store.dispatch(loginError());
     expect(store.getActions()).toEqual(expectedAction);
   });
 
   it('should create an action on login request', async () => {
-    fetchMock.mock('/api/v1/auth/login', {
+    await fetchMock.mock('/api/v1/auth/login', {
       method: 'POST',
     });
     await fetch('/api/v1/auth/login', {
@@ -35,10 +34,13 @@ describe('auth actions', () => {
       {
         type: loginConstant.CONTENT_LOADING,
       },
+      {
+        type: types.LOGIN_FAILURE,
+      },
     ];
 
     const store = mockStore({});
-    store.dispatch(login());
-    expect(store.getActions()).toEqual(expectedAction);
+    await store.dispatch(login());
+    expect(store.getActions()).toMatchObject(expectedAction);
   });
 });
