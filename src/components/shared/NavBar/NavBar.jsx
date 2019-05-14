@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-// import propTypes from 'prop-types';
+import { toast, Zoom } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { decodeToken } from '../../../utils/authService';
 import navLinks from '../../../utils/headers';
@@ -18,6 +18,19 @@ class NavBar extends Component {
   componentDidMount() {
     const user = decodeToken();
     this.setState({ user });
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
+    if (!token) {
+      if (user && !user.isActivated) {
+        toast.info('Please confirm your email address', {
+          type: toast.TYPE.INFO,
+          closeButton: true,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
   }
 
   render() {
