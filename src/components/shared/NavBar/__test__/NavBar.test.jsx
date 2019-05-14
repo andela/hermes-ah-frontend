@@ -65,8 +65,6 @@ describe('NavBar component', () => {
         getSuggestions={jest.fn()}
       />
     );
-    wrapper.setProps({ userProfile });
-    expect(wrapper.state('userPic')).toBe('url');
     wrapper.instance().toggleDropdown();
     expect(wrapper.state('openDropdown')).toBe(true);
   });

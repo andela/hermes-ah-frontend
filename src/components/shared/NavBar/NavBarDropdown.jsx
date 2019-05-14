@@ -7,34 +7,24 @@ class NavDropdown extends Component {
     super(props);
     this.state = {
       openDropdown: false,
-      userPic:
-        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { getProfile, getSuggestions } = this.props;
-    await getProfile();
+    getProfile();
     getSuggestions();
   }
-
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const { profile } = userProfile;
-      if (profile) {
-        this.setState({ userPic: profile.image_url });
-      }
-    }
-  };
 
   toggleDropdown = () => {
     this.setState(prevState => ({ openDropdown: !prevState.openDropdown }));
   };
 
   render() {
-    const { openDropdown, userPic } = this.state;
+    const { openDropdown } = this.state;
+    const { userProfile: userProps } = this.props;
+    const { userProfile } = userProps;
+    const { profile } = userProfile;
     return (
       <div>
         <button
@@ -46,9 +36,9 @@ class NavDropdown extends Component {
             <img
               className="nav-drp-pic"
               src={
-                !userPic
+                !profile || !profile.image_url
                   ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
-                  : userPic
+                  : profile.image_url
               }
               alt=""
             />

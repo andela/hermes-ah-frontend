@@ -21,13 +21,6 @@ class Userprofile extends Component {
     getReportedArticle();
   };
 
-  componentDidUpdate = prevProps => {
-    const { isReviewer } = this.props;
-    if (prevProps.isReviewer !== isReviewer) {
-      this.setState({ checked: isReviewer });
-    }
-  };
-
   toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
 
   render() {
@@ -98,23 +91,31 @@ class Userprofile extends Component {
       <div>
         <Grid>
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column computer={8} mobile={16}>
               <Headercard icon="fa fa-user" value="Bio" />
               <Profilecard profile={profile} updateProfile={updateProfile} />
-              <div>
-                <Button onClick={this.toggle}>Become A Reviewer</Button>
-                <Checkbox checked={checked} />
-              </div>
 
               {isReviewer ? (
                 <div>
                   <Headercard icon="far fa-flag" value="Reported Articles" />
                   <div>{reportList}</div>
+                  <div>
+                    <Button onClick={this.toggle}>Become A Reviewer</Button>
+                    <Checkbox checked={checked} />
+                  </div>
                 </div>
-              ) : null}
+              ) : (
+                <div>
+                  <h2>Become a reviewer</h2>
+                  <div>
+                    <Button onClick={this.toggle}>Become A Reviewer</Button>
+                    <Checkbox checked={checked} />
+                  </div>
+                </div>
+              )}
             </Grid.Column>
 
-            <Grid.Column width={8}>
+            <Grid.Column computer={8} mobile={16}>
               {suggestedResearchersList.length ? (
                 <div className="sgg-rsh-container">
                   <Headercard
