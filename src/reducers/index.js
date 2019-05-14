@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import articles from './article.reducers';
-import userProfile from './profile.reducers';
+import user from './profile.reducers';
 import passwordReset from './forgotPassword.reducers';
 import userResetPassword from './resetPassword.reducers';
 import auth from './auth.reducer';
@@ -13,7 +13,7 @@ import reportedArticles from './reported.reducers';
 
 const reducers = combineReducers({
   auth,
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,

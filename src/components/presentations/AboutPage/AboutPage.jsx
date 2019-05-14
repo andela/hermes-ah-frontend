@@ -1,9 +1,11 @@
 import React from 'react';
 import './about-page.scss';
+import NavBar from '../../shared/NavBar/NavBar';
 
 const AboutPage = () => {
   return (
     <React.Fragment>
+      <NavBar />
       <div>
         <div className="title">
           <h1>Welcome to Authors Haven</h1>

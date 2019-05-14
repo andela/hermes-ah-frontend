@@ -9,6 +9,7 @@ import UserHomepageContainer from '../../containers/user-homepage.container';
 import CookieBanner from '../CookieBanner/CookieBanner';
 import Loader from '../../shared/Loader/Loader';
 import './homepage.scss';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Homepage extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ class Homepage extends Component {
 
   render() {
     const { articles, isLoadingReducer, user } = this.props;
+    const { userProfile } = user;
     const { loader } = isLoadingReducer;
     const { articleData } = articles;
     const sortedArticle = articleData.sort(
@@ -51,9 +53,10 @@ class Homepage extends Component {
     const limit = sortedArticle.slice(0, 3);
     return (
       <React.Fragment>
+        <NavBar />
         <CookieBanner />
         {loader && <Loader />}
-        {user ? (
+        {userProfile ? (
           <UserHomepageContainer />
         ) : (
           <React.Fragment>
@@ -112,7 +115,9 @@ class Homepage extends Component {
 }
 
 Homepage.defaultProps = {
-  user: null,
+  user: PropTypes.shape({
+    userProfile: null,
+  }),
 };
 
 Homepage.propTypes = {
@@ -123,7 +128,9 @@ Homepage.propTypes = {
   isLoadingReducer: PropTypes.shape({}).isRequired,
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
-  user: PropTypes.shape(Object),
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape({}).isRequired,
+  }),
 };
 
 export default Homepage;
