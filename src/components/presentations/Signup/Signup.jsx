@@ -23,7 +23,7 @@ class Signup extends FormComponent {
     e.preventDefault();
     const { data } = this.state;
     const { signup: signupUser } = this.props;
-    await signupUser(data, this.props);
+    await signupUser(data);
   };
 
   render() {
