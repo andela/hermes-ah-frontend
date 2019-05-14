@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NewArticleForm from './NewArticleForm/NewArticleForm';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class NewArticle extends Component {
   constructor() {
@@ -21,16 +22,19 @@ class NewArticle extends Component {
     } = this.props;
 
     return (
-      <NewArticleForm
-        handleInputChange={handleInputChange}
-        handleImageChange={handleImageChange}
-        handleEditorState={handleEditorState}
-        handleTextAreaChange={handleTextAreaChange}
-        handleSubmit={handleSubmit}
-        title={title}
-        textarea={textarea}
-        content={content}
-      />
+      <React.Fragment>
+        <NavBar />
+        <NewArticleForm
+          handleInputChange={handleInputChange}
+          handleImageChange={handleImageChange}
+          handleEditorState={handleEditorState}
+          handleTextAreaChange={handleTextAreaChange}
+          handleSubmit={handleSubmit}
+          title={title}
+          textarea={textarea}
+          content={content}
+        />
+      </React.Fragment>
     );
   }
 }
