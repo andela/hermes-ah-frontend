@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import './form.scss';
 
 class FormComponent extends Component {
@@ -41,18 +41,42 @@ class FormComponent extends Component {
     );
   };
 
+  onFacebookButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/facebook';
+  };
+
+  onTwitterButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/twitter';
+  };
+
+  onGoogleButtonClick = () => {
+    window.location =
+      'https://hermes-ah-backend-staging.herokuapp.com/api/v1/auth/google';
+  };
+
   renderSocialLogin = () => {
     return (
       <div className="social-login">
-        <a href="htttwitter.com">
+        <Button
+          className="social-login-list twitter"
+          onClick={this.onTwitterButtonClick}
+        >
           <i className="fab fa-twitter" />
-        </a>
-        <a href="google.com.com">
-          <i className="fab fa-google" />
-        </a>
-        <a href="facebook.com">
+        </Button>
+        <Button
+          className="social-login-list google"
+          onClick={this.onGoogleButtonClick}
+        >
+          <i className="fab fa-google-plus-g" />
+        </Button>
+        <Button
+          className="social-login-list facebook"
+          onClick={this.onFacebookButtonClick}
+        >
           <i className="fab fa-facebook-f" />
-        </a>
+        </Button>
       </div>
     );
   };

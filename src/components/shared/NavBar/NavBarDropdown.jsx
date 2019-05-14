@@ -23,7 +23,9 @@ class NavDropdown extends Component {
     const { userProfile } = userProps;
     if (prevProps.userProfile !== userProps) {
       const { profile } = userProfile;
-      this.setState({ userPic: profile.image_url });
+      if (profile) {
+        this.setState({ userPic: profile.image_url });
+      }
     }
   };
 

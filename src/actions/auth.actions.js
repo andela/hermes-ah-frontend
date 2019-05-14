@@ -75,9 +75,18 @@ export const logout = () => {
   window.location = '/login';
 };
 
+export const socialLogin = () => {
+  const socialLoginToken = window.location.href.split('?')[1].split('#')[0];
+  if (socialLoginToken) {
+    setToken(socialLoginToken);
+    window.location = '/';
+  }
+};
+
 export default {
   login,
   signup,
   confirmAccount,
   logout,
+  socialLogin,
 };

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 
 import NewArticleForm from './NewArticleForm/NewArticleForm';
 
-class CreateArticle extends React.Component {
+class CreateArticle extends Component {
   constructor() {
     super();
 
