@@ -11,14 +11,14 @@ const { getFollowee } = followeeAction;
 const { getFollowing } = followingAction;
 
 const mapStateToProps = ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,
   isLoadingReducer,
   bookmarkedArticles,
 }) => ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,

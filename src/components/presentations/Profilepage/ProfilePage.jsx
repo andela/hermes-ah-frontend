@@ -70,10 +70,10 @@ class Profilepage extends Component {
       isLoadingReducer,
       bookmarkedArticles,
       updateProfile,
-      userProfile: userProps,
+      user,
     } = this.props;
 
-    const { userProfile } = userProps;
+    const { userProfile } = user;
     const { profile } = userProfile;
 
     const { loader } = isLoadingReducer;
@@ -130,7 +130,7 @@ class Profilepage extends Component {
 }
 
 Profilepage.propTypes = {
-  userProfile: PropTypes.shape().isRequired,
+  user: PropTypes.shape().isRequired,
   isLoadingReducer: PropTypes.shape().isRequired,
   articlesUpdate: PropTypes.shape().isRequired,
   userFollowee: PropTypes.shape().isRequired,

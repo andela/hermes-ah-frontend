@@ -7,8 +7,8 @@ const { updateProfile } = profileAction;
 
 const { getReportedArticle } = reportedArticleAction;
 
-const mapStateToProps = ({ userProfile, reportedArticles, articles }) => ({
-  userProfile,
+const mapStateToProps = ({ user, reportedArticles, articles }) => ({
+  user,
   reportedArticles,
   articles,
 });

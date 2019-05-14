@@ -56,7 +56,7 @@ class Homepage extends Component {
         <NavBar />
         <CookieBanner />
         {loader && <Loader />}
-        {userProfile ? (
+        {Object.keys(userProfile).length ? (
           <UserHomepageContainer />
         ) : (
           <React.Fragment>
@@ -129,7 +129,7 @@ Homepage.propTypes = {
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
   user: PropTypes.shape({
-    userProfile: PropTypes.shape({}).isRequired,
+    userProfile: PropTypes.shape({}),
   }),
 };
 
