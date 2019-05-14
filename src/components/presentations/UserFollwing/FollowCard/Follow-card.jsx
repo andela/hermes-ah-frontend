@@ -2,7 +2,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './follow-card.scss';
 
-const Follow = ({ initials, imageUrl, name, bio, button, btnClass }) => {
+const Follow = ({
+  initials,
+  imageUrl,
+  name,
+  bio,
+  button,
+  btnClass,
+  followeeId,
+  buttonEvent,
+}) => {
   return (
     <div className="main-card">
       <div className="img-section">
@@ -17,7 +26,12 @@ const Follow = ({ initials, imageUrl, name, bio, button, btnClass }) => {
         <p>{bio}</p>
       </div>
       <div className="button-div">
-        <button type="submit" className={btnClass}>
+        <button
+          type="submit"
+          id={followeeId}
+          onClick={buttonEvent}
+          className={btnClass}
+        >
           {button}
         </button>
       </div>
@@ -32,6 +46,8 @@ Follow.propTypes = {
   button: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  followeeId: PropTypes.string.isRequired,
+  buttonEvent: PropTypes.func.isRequired,
 };
 
 export default Follow;

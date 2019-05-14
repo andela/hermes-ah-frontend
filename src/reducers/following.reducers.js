@@ -1,7 +1,8 @@
-import actionTypes from '../constants/following.constants';
+import actionTypes from '../constants/follow.constants';
 
 const initialState = {
   userFollowing: [],
+  unFollowedUser: '',
 };
 
 const userFollowing = (state = initialState, action) => {
@@ -9,6 +10,10 @@ const userFollowing = (state = initialState, action) => {
     case actionTypes.FETCH_FOLLOWING_SUCCESS:
       return { ...state, userFollowing: action.following };
     case actionTypes.FETCH_FOLLOWING_FAILURE:
+      return { ...state };
+    case actionTypes.UNFOLLOW_SUCCESS:
+      return { ...state, unFollowedUser: action.unFollowedUser };
+    case actionTypes.UNFOLLOW_FAILURE:
       return { ...state };
     default:
       return state;

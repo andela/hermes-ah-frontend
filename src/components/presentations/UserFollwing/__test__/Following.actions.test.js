@@ -5,7 +5,7 @@ import {
   getFollowingSuccess,
   getFollowingFailure,
 } from '../../../../actions/following.actions';
-import types from '../../../../constants/following.constants';
+import types from '../../../../constants/follow.constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);

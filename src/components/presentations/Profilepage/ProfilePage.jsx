@@ -40,6 +40,27 @@ class Profilepage extends Component {
     fetchBookmarks();
   };
 
+  unFollowClick = async e => {
+    const { unFollowUser, getFollowing } = this.props;
+    await unFollowUser(e.target.id, () => {
+      getFollowing();
+    });
+  };
+
+  componentDidUpdate = prevProps => {
+    const { userProfile: userProps } = this.props;
+    const { userProfile } = userProps;
+    if (prevProps.userProfile !== userProps) {
+      const { profile } = userProfile;
+      this.setState({
+        firstname: profile.first_name,
+        lastname: profile.last_name,
+        profilePic: profile.image_url,
+        isReviewer: profile.is_reviewer,
+      });
+    }
+  };
+
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
@@ -79,7 +100,6 @@ class Profilepage extends Component {
 
     const { userProfile } = user;
     const { profile } = userProfile;
-
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
@@ -109,7 +129,10 @@ class Profilepage extends Component {
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
-            <Following userFollowing={userFollowing} />
+            <Following
+              userFollowing={userFollowing}
+              unFollow={this.unFollowClick}
+            />
           ) : null}
           {currentTab === 'followers-section' ? (
             <Followee userFollowee={userFollowee} />
@@ -143,6 +166,8 @@ Profilepage.propTypes = {
   articlesUpdate: PropTypes.shape({
     articles: PropTypes.array,
   }).isRequired,
+  getProfile: PropTypes.func.isRequired,
+  unFollowUser: PropTypes.func.isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
@@ -152,7 +177,6 @@ Profilepage.propTypes = {
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
-  getProfile: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
