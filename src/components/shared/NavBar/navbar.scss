@@ -99,3 +99,20 @@
       border: 1px solid #0E71EB;
     }
  }
+
+ @media screen and (max-width: 600px) {
+   .ui.menu {
+    img.logo {
+      width: 100px !important;
+    }
+    .menu.nav-cont {
+      height: 320px;
+      flex-direction: column;
+    }
+    .navbar-item {
+      display: block;
+      float: left;
+      
+    }
+   }
+ }
