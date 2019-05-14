@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import NewArticleForm from './NewArticleForm/NewArticleForm';
 
-class CreateArticle extends Component {
+class NewArticle extends Component {
   constructor() {
     super();
     this.state = {};
@@ -35,7 +35,7 @@ class CreateArticle extends Component {
   }
 }
 
-CreateArticle.propTypes = {
+NewArticle.propTypes = {
   handleTextAreaChange: PropTypes.func.isRequired,
   handleInputChange: PropTypes.func.isRequired,
   handleImageChange: PropTypes.func.isRequired,
@@ -46,4 +46,4 @@ CreateArticle.propTypes = {
   content: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
-export default CreateArticle;
+export default NewArticle;
