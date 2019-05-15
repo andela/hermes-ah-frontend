@@ -25,7 +25,7 @@ class NewArticle extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: e.target.value.toLowerCase() });
   }
 
   onEditorStateChange = editorState => {
@@ -107,10 +107,14 @@ class NewArticle extends Component {
   }
 }
 
+NewArticle.defaultProps = {
+  success: false,
+};
+
 NewArticle.propTypes = {
-  postArticle: PropTypes.shape().isRequired,
-  success: PropTypes.bool.isRequired,
-  history: PropTypes.func.isRequired,
+  postArticle: PropTypes.func.isRequired,
+  success: PropTypes.bool,
+  history: PropTypes.shape().isRequired,
 };
 
 export default NewArticle;
