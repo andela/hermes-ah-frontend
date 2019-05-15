@@ -15,6 +15,14 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
       };
+    case actionType.POST_ARTICLES_SUCCESS:
+      return {
+        ...state,
+      };
+    case actionType.POST_ARTICLES_FAILURE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

@@ -145,6 +145,7 @@ textarea {
           .rdw-editor-main {
             height: 350px;
         }
+        .text-center{
         .ui.button{
             margin-left: 2%;
          }
@@ -155,12 +156,14 @@ textarea {
             margin-left: 40%;
             margin-top: 20px;
          }
-        }
+      }
+    }
 
         @media screen and (max-width: 442px){
             .image-upload {
                 width: 75%;
               }
+              .text-center{
               .ui.button{
                 margin-left: 2%;
              }
@@ -172,6 +175,7 @@ textarea {
                 margin-top: 20px;
              }
             }
+        }
 
             @media screen and (max-width: 392px){
                 .rdw-editor-main {
@@ -180,6 +184,7 @@ textarea {
                 .image-upload {
                     width: 100%;
                   }
+                  .text-center{
                   .ui.button{
                     margin-left: 2%;
                  }
@@ -195,6 +200,7 @@ textarea {
                     margin-top: 20px;
                  }
                 }
+            }
                 @media screen and (max-width: 213px){
                     #form-whole {
                         margin: 0 auto;
@@ -203,18 +209,21 @@ textarea {
                         text-align: center;
                         margin-left: 0;
                     }
+                    .image-upload {
+                        width: 100%;
+                      }
+
                     .rdw-editor-main {
                         height: 300px;
                     }
+                    .text-center{
+
                     .ui.input {
                         margin-left: 25%;
                     }
                     .ui.fluid.dropdown {
                         margin-left: 25%;
                     }
-                    .image-upload {
-                        width: 100%;
-                      }
                       .ui.button{
                         margin-left: 2%;
                      }
@@ -229,4 +238,5 @@ textarea {
                         margin-left: 46%;
                         margin-top: 20px;
                      }
-                    }
+                }
+            }

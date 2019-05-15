@@ -16,7 +16,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import { decodeToken } from './utils/authService';
-import NewArticle from './components/presentations/NewArticle/NewArticle';
+import NewArticle from './components/containers/newArticle.container';
 import AdminPage from './components/presentations/AdminPage/AdminPage';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
 import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
@@ -56,8 +56,12 @@ class App extends Component {
             <NavBar user={user} />
             <Switch>
               <ProtectedRoute exact path="/profile/" component={Profilepage} />
+              <ProtectedRoute
+                exact
+                path="/create-article/"
+                component={NewArticle}
+              />
               <Route path="/about/" exact component={AboutPage} />
-              <Route path="/create-article/" exact component={NewArticle} />
               <Route
                 path="/forgot-password/"
                 exact

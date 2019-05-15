@@ -4,6 +4,7 @@ import contentLoading from './loading.action';
 import actionTypes from '../constants/article.constants';
 
 const url = '/articles';
+const url2 = '/article';
 
 export const getAllArticlesSuccess = articles => ({
   type: actionTypes.FETCH_ARTICLES_SUCCESS,
@@ -12,6 +13,15 @@ export const getAllArticlesSuccess = articles => ({
 
 export const getAllArticlesError = () => ({
   type: actionTypes.FETCH_ARTICLES_FAILURE,
+});
+
+export const postArticleSuccess = article => ({
+  type: actionTypes.POST_ARTICLES_SUCCESS,
+  article,
+});
+
+export const postArticleError = () => ({
+  type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
 export const getAllArticles = () => {
@@ -29,6 +39,21 @@ export const getAllArticles = () => {
   };
 };
 
+export const postArticle = data => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const article = await http.post(`${url2}`, data);
+      dispatch(postArticleSuccess());
+      return article;
+    } catch (err) {
+      dispatch(postArticleError());
+      return exceptionHandler(err);
+    }
+  };
+};
+
 export default {
   getAllArticles,
+  postArticle,
 };
