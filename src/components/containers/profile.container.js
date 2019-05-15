@@ -13,7 +13,7 @@ const { getFollowing } = followingAction;
 const { getUserRequests } = RequestAction;
 
 const mapStateToProps = ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,
@@ -21,7 +21,7 @@ const mapStateToProps = ({
   isLoadingReducer,
   bookmarkedArticles,
 }) => ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,

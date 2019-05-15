@@ -15,7 +15,7 @@ const redirect = redirectUrl => {
   window.location = redirectUrl;
 };
 
-export const login = (userObj, redirectUrl) => {
+export const login = (userObj, props) => {
   return async dispatch => {
     if (!navigator.onLine) {
       return toast.error('Please check your internet connection');
@@ -26,7 +26,10 @@ export const login = (userObj, redirectUrl) => {
       const { user } = data;
       const { token } = user;
       setToken(token);
-      return redirect(redirectUrl);
+      const { location } = props;
+      const { state } = location;
+      const path = state ? state.from.pathname : '/';
+      return redirect(path);
     } catch (ex) {
       return exceptionHandler(ex);
     } finally {

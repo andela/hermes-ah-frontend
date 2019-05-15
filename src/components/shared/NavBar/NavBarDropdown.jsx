@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { decodeToken } from '../../../utils/authService';
 
 class NavDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDropdown: false,
+      isAdmin: false,
     };
   }
 
   componentDidMount() {
-    const { getProfile, getSuggestions } = this.props;
+    const { getProfile } = this.props;
     getProfile();
-    getSuggestions();
   }
 
   toggleDropdown = () => {
-    this.setState(prevState => ({ openDropdown: !prevState.openDropdown }));
+    const user = decodeToken();
+    this.setState(prevState => ({
+      openDropdown: !prevState.openDropdown,
+      isAdmin: user.isAdmin,
+    }));
   };
 
   render() {
-    const { openDropdown } = this.state;
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
+    const { openDropdown, isAdmin } = this.state;
+    const { user } = this.props;
+    const { userProfile } = user;
     const { profile } = userProfile;
     return (
       <div>
@@ -46,8 +51,8 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
+                {isAdmin && <Link to="/admin">Admin</Link>}
                 <Link to="/logout">Logout</Link>
-                <Link to="/admin">Admin</Link>
               </div>
             ) : null}
           </div>
@@ -59,8 +64,8 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  getSuggestions: PropTypes.func.isRequired,
-  userProfile: PropTypes.shape().isRequired,
+  // getSuggestions: PropTypes.func.isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default NavDropdown;

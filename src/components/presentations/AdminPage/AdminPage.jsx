@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AdminTab from '../AdminTab/AdminTab';
 import RequestList from '../ReviewerRequests/Requests/Requests';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class AdminPage extends Component {
   constructor(props) {
@@ -25,11 +26,8 @@ class AdminPage extends Component {
     const { userRequests } = this.props;
     return (
       <React.Fragment>
-        <AdminTab
-          changeTab={this.changeTab}
-          currentTab={currentTab}
-          totalRequest={`${userRequests.userRequests.length}`}
-        />
+        <NavBar />
+        <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
         <div className="profile-content">
           {currentTab === 'request-section' ? (
             <RequestList userRequests={userRequests} />

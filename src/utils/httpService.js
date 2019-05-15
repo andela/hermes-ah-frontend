@@ -1,12 +1,11 @@
 import axios from 'axios';
+import { getToken } from './authService';
 
-axios.defaults.baseURL =
-  'https://hermes-ah-backend-staging.herokuapp.com/api/v1';
+const token = getToken();
 
-export const setDefaultToken = token => {
-  axios.defaults.headers.common.Authorization = token;
-};
-
-const http = axios.create();
+const http = axios.create({
+  baseURL: 'https://hermes-ah-backend-staging.herokuapp.com/api/v1',
+  headers: { Authorization: token },
+});
 
 export default http;
