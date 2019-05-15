@@ -18,11 +18,11 @@ class ResetPassword extends FormComponent {
     e.preventDefault();
     const { data } = this.state;
     const { resetPassword: userForgotPassword } = this.props;
-    await userForgotPassword(data);
+    await userForgotPassword(data, this.props);
   };
 
   render() {
-    const confirmPasswordIdType = 'Confirm Password';
+    const confirmPasswordIdType = 'confirmPassword';
     const confirmPasswordPlaceHolder = 'Confirm Password';
     const passwordIdType = 'password';
     const passwordPlaceHolder = 'New Password';

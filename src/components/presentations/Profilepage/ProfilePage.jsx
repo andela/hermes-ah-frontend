@@ -134,9 +134,15 @@ class Profilepage extends Component {
 }
 
 Profilepage.propTypes = {
-  user: PropTypes.shape().isRequired,
-  isLoadingReducer: PropTypes.shape().isRequired,
-  articlesUpdate: PropTypes.shape().isRequired,
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape(),
+  }).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
+  articlesUpdate: PropTypes.shape({
+    articles: PropTypes.array,
+  }).isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,

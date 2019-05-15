@@ -21,11 +21,9 @@ class Homepage extends Component {
     const redirect = () => {
       window.location = '/logout';
     };
-    const { getAllArticles: articles, confirmAccount } = this.props;
+    const { getAllArticles: articles, confirmAccount, location } = this.props;
     articles();
-    const token = new URLSearchParams(
-      document.location.search.substring(1)
-    ).get('token');
+    const token = location.search.split('=')[1];
     if (token) {
       const message = await confirmAccount(token);
       if (message === 'Account verification was successful') {
@@ -121,11 +119,14 @@ Homepage.defaultProps = {
 };
 
 Homepage.propTypes = {
+  location: PropTypes.shape().isRequired,
   articles: PropTypes.shape({
     isLoading: PropTypes.bool,
     articleData: PropTypes.arrayOf(PropTypes.shape),
   }).isRequired,
-  isLoadingReducer: PropTypes.shape({}).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
   user: PropTypes.shape({

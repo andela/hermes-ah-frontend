@@ -1,13 +1,18 @@
 .admin-page{
     @import '../../../assets/stylesheets/index.scss'; 
+    width: 95%;
+    margin: 0 auto;
+    border-bottom: 1px solid #9a8b8b;
+    button {
+        width: 100%;
+    }
     .admin-tab{
+        width: 100%;
         height: 100%;
         display: grid;
         grid-template-columns: 2fr 1fr;
         align-items: center;
-        width: 75%;
-        margin: 36px 40px 0 105px;
-        border-bottom: 1px solid #9a8b8b;;
+        margin: 36px 40px 0 0px;
     }
     
     .admin-tab-items-left{
