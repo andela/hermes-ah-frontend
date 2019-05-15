@@ -6,29 +6,33 @@ import SuggestesArticleCard from '../SuggestedArticleCard';
 
 describe('ProfilePage component', () => {
   it('should render profile page', () => {
-    const wrapper = shallow(
-      <ProfileCard profile={{}} updateProfile={jest.fn()} />
-    );
+    const props = {
+      profile: {},
+      updateProfile: jest.fn(),
+    };
+    const wrapper = shallow(<ProfileCard {...props} />);
     expect(wrapper.find('div'));
   });
 
   it('should render profile page', () => {
-    const wrapper = shallow(
-      <ReportedCard topic="topic" reason="reason" status="status" />
-    );
+    const props = {
+      topic: 'topic',
+      reason: 'reason',
+      status: 'status',
+    };
+    const wrapper = shallow(<ReportedCard {...props} />);
     expect(wrapper.find('div'));
   });
 
   it('should render profile page', () => {
-    const wrapper = shallow(
-      <SuggestesArticleCard
-        title="title"
-        firstname="firstname"
-        lastname="firstname"
-        readingTime="firstname"
-        body="firstname"
-      />
-    );
+    const props = {
+      title: 'title',
+      firstname: 'firstname',
+      lastname: 'firstname',
+      readingTime: 'firstname',
+      body: 'firstname',
+    };
+    const wrapper = shallow(<SuggestesArticleCard {...props} />);
     expect(wrapper.find('div'));
   });
 });

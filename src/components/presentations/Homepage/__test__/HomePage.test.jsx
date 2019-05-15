@@ -10,14 +10,16 @@ const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 const store = mockStore({});
 
+const props = {
+  getAllArticles: jest.fn(),
+  articles: { articleData: [{}] },
+  isLoadingReducer: { loader: false },
+  confirmAccount: jest.fn(),
+};
+
 const HomePageComponent = (
   <Provider store={store}>
-    <HomePage
-      getAllArticles={jest.fn()}
-      articles={{ articleData: [{}] }}
-      isLoadingReducer={{ loader: false }}
-      confirmAccount={jest.fn()}
-    />
+    <HomePage {...props} />
   </Provider>
 );
 

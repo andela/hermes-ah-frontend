@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AdminTab from '../AdminTab/AdminTab';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Adminpage extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class Adminpage extends Component {
     const { currentTab } = this.state;
     return (
       <React.Fragment>
+        <NavBar />
         <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
         <div className="profile-content">
           {currentTab === 'request-section' ? (
