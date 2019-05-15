@@ -25,4 +25,5 @@ export default {
   setToken,
   removeToken,
   getToken,
+  decodeToken,
 };
