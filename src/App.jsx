@@ -15,7 +15,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import NewArticle from './components/containers/newArticle.container';
-import AdminPage from './components/presentations/AdminPage/AdminPage';
+import AdminPage from './components/containers/admin.container';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
 import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
 import './assets/stylesheets/index.scss';
