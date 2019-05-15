@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { decodeToken } from '../../../utils/authService';
 
 class NavDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDropdown: false,
+      isAdmin: false,
     };
   }
 
@@ -17,11 +19,15 @@ class NavDropdown extends Component {
   }
 
   toggleDropdown = () => {
-    this.setState(prevState => ({ openDropdown: !prevState.openDropdown }));
+    const user = decodeToken();
+    this.setState(prevState => ({
+      openDropdown: !prevState.openDropdown,
+      isAdmin: user.isAdmin,
+    }));
   };
 
   render() {
-    const { openDropdown } = this.state;
+    const { openDropdown, isAdmin } = this.state;
     const { userProfile: userProps } = this.props;
     const { userProfile } = userProps;
     const { profile } = userProfile;
@@ -46,7 +52,7 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
-                <Link to="/admin">Admin</Link>
+                {isAdmin && <Link to="/admin">Admin</Link>}
                 <Link to="/logout">Logout</Link>
               </div>
             ) : null}
