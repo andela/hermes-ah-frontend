@@ -1,7 +1,7 @@
 .article-section-hmp.cont {
   .twelve.wide.computer.sixteen.wide.mobile.column {
     height: 55vh;
-    .description:hover,
+    p.description:hover,
     .art-title:hover,
     .b-art-title:hover {
       color: #4183c4;
@@ -25,6 +25,7 @@
     .a-cont-wrap {
       width: 45%;
     }
+
     .c-cont-wrap {
       width: 25%;
       display: flex;
@@ -69,12 +70,15 @@
         margin-left: 15px;
       }
     }
-    .description, .date, .stats {
+    .description, .date, .stts {
       color: #555454;
+      text-transform: capitalize;
+
     }
-    .description:hover,
+    p.description:hover,
     .art-title:hover,
-    .b-art-title:hover {
+    .b-art-title:hover,
+    p.desc-txt:hover {
       color: #4183c4;
     }
     .c-image {

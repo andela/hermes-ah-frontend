@@ -12,48 +12,28 @@ import Articles from '../UserArticles/Articles';
 import Following from '../UserFollwing/Following/Following';
 import Followee from '../UserFollwing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Profilepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: 'profile-section',
-      firstname: '',
-      lastname: '',
-      profilePic:
-        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
-      isReviewer: false,
     };
   }
 
   componentDidMount = () => {
     const {
-      getProfile,
       fetchArticles,
       getFollowee,
       getFollowing,
       fetchBookmarks,
     } = this.props;
 
-    getProfile();
     fetchArticles();
     getFollowee();
     getFollowing();
     fetchBookmarks();
-  };
-
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const { profile } = userProfile;
-      this.setState({
-        firstname: profile.first_name,
-        lastname: profile.last_name,
-        profilePic: profile.image_url,
-        isReviewer: profile.is_reviewer,
-      });
-    }
   };
 
   changeTab = tab => {
@@ -73,7 +53,6 @@ class Profilepage extends Component {
       });
       form.append('file', imageData);
       const res = await uploadToCloudnary(form);
-      this.setState({ profilePic: res.url });
       updateProfile({ image_url: res.url });
       toast.dismiss();
     } else {
@@ -82,13 +61,7 @@ class Profilepage extends Component {
   };
 
   render() {
-    const {
-      currentTab,
-      firstname,
-      lastname,
-      profilePic,
-      isReviewer,
-    } = this.state;
+    const { currentTab } = this.state;
 
     const {
       articlesUpdate,
@@ -97,23 +70,29 @@ class Profilepage extends Component {
       isLoadingReducer,
       bookmarkedArticles,
       updateProfile,
+      user,
     } = this.props;
+
+    const { userProfile } = user;
+    const { profile } = userProfile;
+
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
     return (
       <React.Fragment>
+        <NavBar />
         {loader && <Loader />}
         <div className="profile-header">
           <Imagepic
-            profilePic={profilePic}
+            profilePic={profile && profile.image_url}
             handleChange={this.handleChange}
             updateProfile={updateProfile}
           />
           <h1>
-            {firstname}
+            {profile && profile.first_name}
             &nbsp;
-            {lastname}
+            {profile && profile.last_name}
           </h1>
         </div>
         <ProfileTab
@@ -142,7 +121,7 @@ class Profilepage extends Component {
             </div>
           ) : null}
           {currentTab === 'profile-section' ? (
-            <Userprofile isReviewer={isReviewer} />
+            <Userprofile isReviewer={profile && profile.is_reviewer} />
           ) : null}
         </div>
       </React.Fragment>
@@ -151,10 +130,15 @@ class Profilepage extends Component {
 }
 
 Profilepage.propTypes = {
-  getProfile: PropTypes.func.isRequired,
-  userProfile: PropTypes.shape().isRequired,
-  isLoadingReducer: PropTypes.shape().isRequired,
-  articlesUpdate: PropTypes.shape().isRequired,
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape(),
+  }).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
+  articlesUpdate: PropTypes.shape({
+    articles: PropTypes.array,
+  }).isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,

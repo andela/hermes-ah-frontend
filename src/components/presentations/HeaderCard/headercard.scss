@@ -2,15 +2,14 @@
 
 .header-card{
     display: flex;
-    border: 1px solid lightgrey;
+    border-bottom: 1px solid #b7b5b5bf;
     text-align: left;
     width: 100%;
     margin: 20px auto;
-    padding: 10px 20px;
+    padding: 10px 0;
+    background: white;
     overflow: auto;
-    border-radius: 4px;
-    box-shadow: 0px 3px #888888;
-    align-content: end; 
+    align-content: end;
 }
 
 .header-card-icon{

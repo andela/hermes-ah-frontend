@@ -25,7 +25,9 @@ const FollowingList = ({ userFollowing }) => {
 };
 
 FollowingList.propTypes = {
-  userFollowing: PropTypes.shape().isRequired,
+  userFollowing: PropTypes.shape({
+    userFollowing: PropTypes.array,
+  }).isRequired,
 };
 
 export default FollowingList;

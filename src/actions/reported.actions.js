@@ -2,7 +2,6 @@ import { toast } from 'react-toastify';
 import actions from '../constants/reported.contants';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
-import exceptionHandler from '../utils/exceptionHandler';
 
 export const getReportedArticleSuccess = reports => {
   return {
@@ -22,13 +21,12 @@ const getReportedArticle = () => {
     dispatch(contentLoading());
     try {
       if (!navigator.onLine) {
-        return toast.error('Please check your internet connection');
+        toast.error('Please check your internet connection');
       }
       const { data } = await http.get(`/reported-articles`);
-      return dispatch(getReportedArticleSuccess(data.reportedArticles));
+      dispatch(getReportedArticleSuccess(data.reportedArticles));
     } catch (error) {
       dispatch(getReportedArticleFailure());
-      return exceptionHandler(error);
     }
   };
 };
