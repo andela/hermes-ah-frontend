@@ -25,6 +25,7 @@ const UserprofileComponent = (
       reportedArticles={{ reportedArticle: [] }}
       updateProfile={jest.fn()}
       userProfile={userProfileReducer}
+      requestReview={jest.fn()}
     />
   </Provider>
 );
@@ -45,13 +46,10 @@ describe('ProfilePage component', () => {
         reportedArticles={{ reportedArticle: [] }}
         userProfile={userProfileReducer}
         updateProfile={jest.fn()}
+        requestReview={jest.fn()}
       />
     );
 
     expect(wrapper.state('checked')).toBe(false);
-    wrapper.instance().toggle();
-    expect(wrapper.state('checked')).toBe(true);
-    wrapper.setProps({ isReviewer: true });
-    expect(wrapper.state('checked')).toBe(true);
   });
 });
