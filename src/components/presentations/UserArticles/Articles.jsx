@@ -40,7 +40,13 @@ const ArticleList = ({ articlesUpdate }) => {
 };
 
 ArticleList.propTypes = {
-  articlesUpdate: PropTypes.shape().isRequired,
+  articlesUpdate: PropTypes.shape({
+    articles: PropTypes.shape({
+      title: PropTypes.string,
+      date: PropTypes.string,
+      isDraft: PropTypes.bool,
+    }),
+  }).isRequired,
 };
 
 export default ArticleList;

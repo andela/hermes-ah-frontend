@@ -8,8 +8,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from '../NavBar';
 import NavContainer from '../NavBarDropdown';
 
-const user = { name: null };
-
 const userProfile = {
   userProfile: {
     profile: {
@@ -39,7 +37,7 @@ describe('NavBar component', () => {
     const wrapper = create(
       <Router>
         <Provider store={store}>
-          <NavBar user={user} />
+          <NavBar user={initUserProfile} />
         </Provider>
       </Router>
     );
@@ -49,7 +47,7 @@ describe('NavBar component', () => {
   it('should render tags', () => {
     const wrapper = shallow(
       <Router>
-        <NavBar user={user} />
+        <NavBar user={userProfile} />
       </Router>
     );
     expect(wrapper.find('menu'));
@@ -58,13 +56,17 @@ describe('NavBar component', () => {
   });
 
   it('should change state', () => {
-    const wrapper = shallow(
-      <NavContainer
-        userProfile={initUserProfile}
-        getProfile={jest.fn()}
-        getSuggestions={jest.fn()}
-      />
+    localStorage.setItem(
+      'token',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyT2JqIjp7ImlkIjoiNTdjNTE1YTEtODkwZC00MTJmLThjYTEtMGE1Mzk1MTIzZGNhIiwiZW1haWwiOiJhbWVhY2hpY2h1a3NAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaXNSZXZpZXdlciI6dHJ1ZSwiaXNBY3RpdmF0ZWQiOnRydWV9LCJpYXQiOjE1NTc3Njg3NjcsImV4cCI6MTU1ODAyNzk2N30.msqGVSZbPrBu8ky7Pa-KauhDnMLGRHG4eas9wlIEEA0'
     );
+
+    const props = {
+      user: { userProfile: {} },
+      getProfile: jest.fn(),
+      getSuggestions: jest.fn(),
+    };
+    const wrapper = shallow(<NavContainer {...props} />);
     wrapper.instance().toggleDropdown();
     expect(wrapper.state('openDropdown')).toBe(true);
   });

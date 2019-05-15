@@ -12,6 +12,7 @@ import Articles from '../UserArticles/Articles';
 import Following from '../UserFollwing/Following/Following';
 import Followee from '../UserFollwing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -69,10 +70,10 @@ class Profilepage extends Component {
       isLoadingReducer,
       bookmarkedArticles,
       updateProfile,
-      userProfile: userProps,
+      user,
     } = this.props;
 
-    const { userProfile } = userProps;
+    const { userProfile } = user;
     const { profile } = userProfile;
 
     const { loader } = isLoadingReducer;
@@ -80,6 +81,7 @@ class Profilepage extends Component {
     const bookmarkList = bookmarkedArticles.articles;
     return (
       <React.Fragment>
+        <NavBar />
         {loader && <Loader />}
         <div className="profile-header">
           <Imagepic
@@ -128,9 +130,15 @@ class Profilepage extends Component {
 }
 
 Profilepage.propTypes = {
-  userProfile: PropTypes.shape().isRequired,
-  isLoadingReducer: PropTypes.shape().isRequired,
-  articlesUpdate: PropTypes.shape().isRequired,
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape(),
+  }).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
+  articlesUpdate: PropTypes.shape({
+    articles: PropTypes.array,
+  }).isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,

@@ -5,23 +5,27 @@ import fetchArticles from '../../actions/articles-update.actions';
 import followeeAction from '../../actions/followee.actions';
 import followingAction from '../../actions/following.actions';
 import fetchBookmarks from '../../actions/bookmarked.action';
+import RequestAction from '../../actions/reviewers-request.action';
 
 const { getProfile, updateProfile } = profileAction;
 const { getFollowee } = followeeAction;
 const { getFollowing } = followingAction;
+const { getUserRequests } = RequestAction;
 
 const mapStateToProps = ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,
+  userRequests,
   isLoadingReducer,
   bookmarkedArticles,
 }) => ({
-  userProfile,
+  user,
   articlesUpdate,
   userFollowee,
   userFollowing,
+  userRequests,
   isLoadingReducer,
   bookmarkedArticles,
 });
@@ -35,6 +39,7 @@ const ProfilepageContainer = connect(
     getFollowing,
     fetchBookmarks,
     updateProfile,
+    getUserRequests,
   }
 )(Profilepage);
 

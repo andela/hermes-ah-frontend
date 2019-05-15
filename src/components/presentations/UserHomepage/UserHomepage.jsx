@@ -201,7 +201,9 @@ class UserHomepage extends Component {
 }
 
 UserHomepage.propTypes = {
-  articles: PropTypes.shape({}).isRequired,
+  articles: PropTypes.shape({
+    articleData: PropTypes.array,
+  }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
 };
 
