@@ -29,7 +29,7 @@ describe('ProfilePage component', () => {
       title: 'title',
       firstname: 'firstname',
       lastname: 'firstname',
-      readingTime: 'firstname',
+      readingTime: 1,
       body: 'firstname',
     };
     const wrapper = shallow(<SuggestesArticleCard {...props} />);
