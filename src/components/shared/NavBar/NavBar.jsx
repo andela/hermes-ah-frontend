@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
 import { toast, Zoom } from 'react-toastify';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { decodeToken } from '../../../utils/authService';
 import navLinks from '../../../utils/headers';
@@ -17,10 +16,11 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props;
     const user = decodeToken();
     this.setState({ user });
-    const token = location.search.split('=')[1];
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
     if (!token) {
       if (user && !user.isActivated) {
         toast.info('Please confirm your email address', {
@@ -65,7 +65,4 @@ class NavBar extends Component {
   }
 }
 
-NavBar.propTypes = {
-  location: PropTypes.shape().isRequired,
-};
 export default NavBar;

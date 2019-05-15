@@ -124,7 +124,9 @@ Homepage.propTypes = {
     isLoading: PropTypes.bool,
     articleData: PropTypes.arrayOf(PropTypes.shape),
   }).isRequired,
-  isLoadingReducer: PropTypes.shape({}).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
   user: PropTypes.shape({
