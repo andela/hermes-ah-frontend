@@ -4,7 +4,7 @@ const initialState = {
 
 const isLoadingReducer = (state = initialState, action) => {
   const { type } = action;
-  const matches = /(.*)_(LOADING|SUCCESS|FAILURE)/.exec(type);
+  const matches = /(.*)_(LOADING|SUCCESS|FAILURE|STOP)/.exec(type);
 
   if (!matches) return state;
 

@@ -21,7 +21,10 @@ class Userprofile extends Component {
     getReportedArticle();
   };
 
-  toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
+  toggle = () => {
+    const { requestReview } = this.props;
+    requestReview();
+  };
 
   render() {
     const { checked } = this.state;
@@ -143,6 +146,7 @@ Userprofile.propTypes = {
   getReportedArticle: PropTypes.func.isRequired,
   reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
+  requestReview: PropTypes.func.isRequired,
 };
 
 export default Userprofile;
