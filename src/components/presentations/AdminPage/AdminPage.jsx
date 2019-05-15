@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import AdminTab from '../AdminTab/AdminTab';
+import RequestList from '../ReviewerRequests/Requests/Requests';
 
-class Adminpage extends Component {
+class AdminPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,18 +11,28 @@ class Adminpage extends Component {
     };
   }
 
+  componentDidMount = () => {
+    const { getUserRequests } = this.props;
+    getUserRequests();
+  };
+
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
 
   render() {
     const { currentTab } = this.state;
+    const { userRequests } = this.props;
     return (
       <React.Fragment>
-        <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
+        <AdminTab
+          changeTab={this.changeTab}
+          currentTab={currentTab}
+          totalRequest={`${userRequests.userRequests.length}`}
+        />
         <div className="profile-content">
           {currentTab === 'request-section' ? (
-            <p>This is a section for reviewer requests</p>
+            <RequestList userRequests={userRequests} />
           ) : null}
           {currentTab === 'article-section' ? (
             <p>This is a section for reviewed articles</p>
@@ -35,5 +47,13 @@ class Adminpage extends Component {
     );
   }
 }
+AdminPage.defaultProps = {
+  getUserRequests: null,
+  userRequests: null,
+};
+AdminPage.propTypes = {
+  getUserRequests: PropTypes.shape(),
+  userRequests: PropTypes.shape(),
+};
 
-export default Adminpage;
+export default AdminPage;
