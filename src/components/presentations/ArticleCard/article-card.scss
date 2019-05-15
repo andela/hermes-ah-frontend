@@ -16,6 +16,10 @@
         cursor: pointer;
     }
 
+    a.header {
+        text-transform: capitalize;
+    }
+
 }
 .ui.items>.item>.image>img {
     height: 169px;
