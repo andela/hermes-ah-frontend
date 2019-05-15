@@ -23,7 +23,7 @@ const ProfilepageComponent = (
   <Provider store={store}>
     <Profilepage
       getProfile={jest.fn()}
-      userProfile={{ profile: 'me' }}
+      userProfile={userProfile}
       isLoadingReducer={{ loader: true }}
       fetchArticles={jest.fn()}
       fetchBookmarks={jest.fn()}
@@ -55,7 +55,7 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(
       <Profilepage
         getProfile={jest.fn()}
-        userProfile={{ profile: 'dummy profile' }}
+        userProfile={userProfile}
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
         fetchArticles={jest.fn()}
@@ -78,8 +78,5 @@ describe('ProfilePage component', () => {
     expect(wrapper.state('currentTab')).toBe('article-section');
     wrapper.instance().changeTab('bookmark-section');
     expect(wrapper.state('currentTab')).toBe('bookmark-section');
-    wrapper.setProps({ userProfile });
-    expect(wrapper.state('firstname')).toBe('jest');
-    expect(wrapper.state('lastname')).toBe('enzyme');
   });
 });
