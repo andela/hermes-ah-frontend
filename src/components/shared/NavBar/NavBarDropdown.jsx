@@ -1,47 +1,30 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { decodeToken } from '../../../utils/authService';
 
 class NavDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDropdown: false,
-      userPic:
-        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
-      isAdmin: false,
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const { getProfile, getSuggestions } = this.props;
-    await getProfile();
+    getProfile();
     getSuggestions();
   }
-
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const user = decodeToken();
-      const { profile } = userProfile;
-      this.setState({
-        userPic: profile.image_url,
-        isAdmin: user.isAdmin,
-      });
-      if (profile) {
-        this.setState({ userPic: profile.image_url });
-      }
-    }
-  };
 
   toggleDropdown = () => {
     this.setState(prevState => ({ openDropdown: !prevState.openDropdown }));
   };
 
   render() {
-    const { openDropdown, userPic, isAdmin } = this.state;
+    const { openDropdown } = this.state;
+    const { userProfile: userProps } = this.props;
+    const { userProfile } = userProps;
+    const { profile } = userProfile;
     return (
       <div>
         <button
@@ -53,9 +36,9 @@ class NavDropdown extends Component {
             <img
               className="nav-drp-pic"
               src={
-                !userPic
+                !profile || !profile.image_url
                   ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
-                  : userPic
+                  : profile.image_url
               }
               alt=""
             />
@@ -63,7 +46,7 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
-                {isAdmin && <Link to="/admin">Admin</Link>}
+                <Link to="/admin">Admin</Link>
                 <Link to="/logout">Logout</Link>
               </div>
             ) : null}
