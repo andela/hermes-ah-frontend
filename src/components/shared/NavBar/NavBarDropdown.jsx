@@ -1,40 +1,35 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { decodeToken } from '../../../utils/authService';
 
 class NavDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openDropdown: false,
-      userPic:
-        'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
+      isAdmin: false,
     };
   }
 
-  async componentDidMount() {
-    const { getProfile, getSuggestions } = this.props;
-    await getProfile();
-    getSuggestions();
+  componentDidMount() {
+    const { getProfile } = this.props;
+    getProfile();
   }
 
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const { profile } = userProfile;
-      if (profile) {
-        this.setState({ userPic: profile.image_url });
-      }
-    }
-  };
-
   toggleDropdown = () => {
-    this.setState(prevState => ({ openDropdown: !prevState.openDropdown }));
+    const user = decodeToken();
+    this.setState(prevState => ({
+      openDropdown: !prevState.openDropdown,
+      isAdmin: user.isAdmin,
+    }));
   };
 
   render() {
-    const { openDropdown, userPic } = this.state;
+    const { openDropdown, isAdmin } = this.state;
+    const { user } = this.props;
+    const { userProfile } = user;
+    const { profile } = userProfile;
     return (
       <div>
         <button
@@ -46,9 +41,9 @@ class NavDropdown extends Component {
             <img
               className="nav-drp-pic"
               src={
-                !userPic
+                !profile || !profile.image_url
                   ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
-                  : userPic
+                  : profile.image_url
               }
               alt=""
             />
@@ -57,8 +52,8 @@ class NavDropdown extends Component {
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
                 <Link to="/create-article">Create Article</Link>
+                {isAdmin && <Link to="/admin">Admin</Link>}
                 <Link to="/logout">Logout</Link>
-                <Link to="/admin">Admin</Link>
               </div>
             ) : null}
           </div>
@@ -70,8 +65,8 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  getSuggestions: PropTypes.func.isRequired,
-  userProfile: PropTypes.shape().isRequired,
+  // getSuggestions: PropTypes.func.isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default NavDropdown;

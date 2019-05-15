@@ -3,6 +3,7 @@ import { Redirect, Link } from 'react-router-dom';
 import React from 'react';
 import FormComponent from '../../shared/Form/Form';
 import Loader from '../../shared/Loader/Loader';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Signup extends FormComponent {
   constructor(props) {
@@ -36,11 +37,14 @@ class Signup extends FormComponent {
     const lastnamePlaceholder = 'Last Name';
     const confirmPasswordId = 'confirmPassword';
     const confirmPasswordPlaceHolder = 'Confirm Password';
-    const { auth, user } = this.props;
-    if (user) return <Redirect to="/" />;
+    const { isLoadingReducer, user } = this.props;
+    const { userProfile } = user;
+    const { loader } = isLoadingReducer;
+    if (Object.keys(userProfile).length) return <Redirect to="/" />;
     return (
       <div>
-        {auth.isLoading && <Loader />}
+        <NavBar />
+        {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">
             <div className="form-cont">

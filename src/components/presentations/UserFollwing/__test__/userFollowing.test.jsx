@@ -13,16 +13,16 @@ const { userFollowing, userFollowee } = mock;
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userFollowee, userFollowing });
-
+const props = { userFollowee: { userFollowee: [{}] } };
 const UserFolloweeComponent = (
   <Provider store={store}>
-    <Followee userFollowee={{ userFollowee: [{}] }} />
+    <Followee {...props} />
   </Provider>
 );
 
 const UserFollowingComponent = (
   <Provider store={store}>
-    <Following userFollowing={{ userFollowing: [{}] }} />
+    <Following {...props} />
   </Provider>
 );
 

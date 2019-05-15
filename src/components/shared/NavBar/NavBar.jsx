@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Menu } from 'semantic-ui-react';
-import propTypes from 'prop-types';
+import { toast, Zoom } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { decodeToken } from '../../../utils/authService';
 import navLinks from '../../../utils/headers';
 import AuthNavBar from './AuthNavBar';
 import './navbar.scss';
@@ -11,11 +12,29 @@ const { auth } = navLinks;
 class NavBar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { user: null };
+  }
+
+  componentDidMount() {
+    const user = decodeToken();
+    this.setState({ user });
+    const token = new URLSearchParams(
+      document.location.search.substring(1)
+    ).get('token');
+    if (!token) {
+      if (user && !user.isActivated) {
+        toast.info('Please confirm your email address', {
+          type: toast.TYPE.INFO,
+          closeButton: true,
+          transition: Zoom,
+          position: toast.POSITION.TOP_CENTER,
+        });
+      }
+    }
   }
 
   render() {
-    const { user } = this.props;
+    const { user } = this.state;
     return (
       <Menu>
         <Menu.Menu className="logo-cont">
@@ -45,13 +64,5 @@ class NavBar extends Component {
     );
   }
 }
-
-NavBar.defaultProps = {
-  user: (propTypes.defaultProps = null),
-};
-
-NavBar.propTypes = {
-  user: propTypes.shape(Object),
-};
 
 export default NavBar;

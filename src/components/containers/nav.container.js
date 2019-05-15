@@ -4,7 +4,7 @@ import profileAction from '../../actions/profile.action';
 
 const { getProfile, getSuggestions } = profileAction;
 
-const mapStateToProps = ({ userProfile }) => ({ userProfile });
+const mapStateToProps = ({ user }) => ({ user });
 
 const Nav = connect(
   mapStateToProps,

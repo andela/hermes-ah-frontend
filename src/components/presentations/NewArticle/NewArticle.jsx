@@ -6,6 +6,7 @@ import draftToHtml from 'draftjs-to-html';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import NewArticleForm from './NewArticleForm/NewArticleForm';
 import validateImage from '../../../utils/validateImage';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class NewArticle extends Component {
   constructor() {
@@ -94,15 +95,18 @@ class NewArticle extends Component {
     }
     const { editorState } = this.state;
     return (
-      <NewArticleForm
-        saveCategory={this.saveCategory}
-        saveKeywords={this.saveKeywords}
-        onEditorStateChange={this.onEditorStateChange}
-        editorState={editorState}
-        onChange={this.onChange}
-        processInput={this.processInput}
-        saveToCloudinary={this.saveToCloudinary}
-      />
+      <React.Fragment>
+        <NavBar />
+        <NewArticleForm
+          saveCategory={this.saveCategory}
+          saveKeywords={this.saveKeywords}
+          onEditorStateChange={this.onEditorStateChange}
+          editorState={editorState}
+          onChange={this.onChange}
+          processInput={this.processInput}
+          saveToCloudinary={this.saveToCloudinary}
+        />
+      </React.Fragment>
     );
   }
 }
