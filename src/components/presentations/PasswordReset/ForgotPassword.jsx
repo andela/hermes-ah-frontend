@@ -38,6 +38,9 @@ class ForgotPassword extends FormComponent {
     const { isLoadingReducer, user } = this.props;
     const { userProfile } = user;
     const { loader } = isLoadingReducer;
+    const id = 'email';
+    const placeholder = 'Email';
+    const type = 'email';
     if (Object.keys(userProfile).length) return <Redirect to="/" />;
     return (
       <React.Fragment>
@@ -49,7 +52,7 @@ class ForgotPassword extends FormComponent {
               <div className="form-cont">
                 <Form unstackable onSubmit={this.handelClick}>
                   <p>FORGOT PASSWORD</p>
-                  {this.renderInput('email', 'Email', 'email')}
+                  {this.renderInput(id, placeholder, type)}
                   <Button className="submit" type="submit">
                     Reset my password
                   </Button>
