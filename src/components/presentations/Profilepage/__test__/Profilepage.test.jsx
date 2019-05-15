@@ -23,7 +23,7 @@ const ProfilepageComponent = (
   <Provider store={store}>
     <Profilepage
       getProfile={jest.fn()}
-      userProfile={userProfile}
+      user={{ userProfile: {} }}
       isLoadingReducer={{ loader: true }}
       fetchArticles={jest.fn()}
       fetchBookmarks={jest.fn()}
@@ -55,7 +55,7 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(
       <Profilepage
         getProfile={jest.fn()}
-        userProfile={userProfile}
+        user={{ userProfile: {} }}
         isLoadingReducer={{ loader: true }}
         articlesUpdate={articleObj}
         fetchArticles={jest.fn()}

@@ -24,7 +24,7 @@ const UserprofileComponent = (
       getReportedArticle={jest.fn()}
       reportedArticles={{ reportedArticle: [] }}
       updateProfile={jest.fn()}
-      userProfile={userProfileReducer}
+      user={userProfileReducer}
     />
   </Provider>
 );
@@ -43,7 +43,7 @@ describe('ProfilePage component', () => {
         isReviewer={false}
         getReportedArticle={jest.fn()}
         reportedArticles={{ reportedArticle: [] }}
-        userProfile={userProfileReducer}
+        user={userProfileReducer}
         updateProfile={jest.fn()}
       />
     );
