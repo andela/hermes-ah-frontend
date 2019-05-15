@@ -8,8 +8,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import NavBar from '../NavBar';
 import NavContainer from '../NavBarDropdown';
 
-const user = { name: null };
-
 const userProfile = {
   userProfile: {
     profile: {
@@ -39,7 +37,7 @@ describe('NavBar component', () => {
     const wrapper = create(
       <Router>
         <Provider store={store}>
-          <NavBar user={user} />
+          <NavBar user={initUserProfile} />
         </Provider>
       </Router>
     );
@@ -49,7 +47,7 @@ describe('NavBar component', () => {
   it('should render tags', () => {
     const wrapper = shallow(
       <Router>
-        <NavBar user={user} />
+        <NavBar user={userProfile} />
       </Router>
     );
     expect(wrapper.find('menu'));
@@ -65,7 +63,7 @@ describe('NavBar component', () => {
 
     const wrapper = shallow(
       <NavContainer
-        userProfile={initUserProfile}
+        user={{ userProfile: {} }}
         getProfile={jest.fn()}
         getSuggestions={jest.fn()}
       />
