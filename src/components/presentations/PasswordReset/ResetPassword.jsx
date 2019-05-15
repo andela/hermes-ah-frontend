@@ -18,7 +18,7 @@ class ResetPassword extends FormComponent {
     e.preventDefault();
     const { data } = this.state;
     const { resetPassword: userForgotPassword } = this.props;
-    await userForgotPassword(data);
+    await userForgotPassword(data, this.props);
   };
 
   render() {

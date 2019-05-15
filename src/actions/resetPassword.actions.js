@@ -15,12 +15,11 @@ export const resetPasswordFailure = () => ({
 const redirect = () => {
   window.location = '/login';
 };
-export const resetPassword = newPassword => {
+export const resetPassword = (newPassword, props) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const params = new URLSearchParams(document.location.search.substring(1));
-      const token = params.get('token');
+      const token = props.location.search.split('=')[1];
       setToken(token);
       await http.patch(`/new-password?token=${token}`, newPassword);
       toast.info(

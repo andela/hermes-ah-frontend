@@ -13,9 +13,8 @@ class NavDropdown extends Component {
   }
 
   componentDidMount() {
-    const { getProfile, getSuggestions } = this.props;
+    const { getProfile } = this.props;
     getProfile();
-    getSuggestions();
   }
 
   toggleDropdown = () => {
@@ -65,7 +64,7 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  getSuggestions: PropTypes.func.isRequired,
+  // getSuggestions: PropTypes.func.isRequired,
   user: PropTypes.shape().isRequired,
 };
 
