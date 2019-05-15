@@ -15,17 +15,18 @@ const store = mockStore({
   articles: articleReducer.articles,
 });
 
+const props = {
+  getProfile: jest.fn(),
+  articles: articleReducer.articles,
+  isReviewer: false,
+  getReportedArticle: jest.fn(),
+  reportedArticles: { reportedArticle: [] },
+  updateProfile: jest.fn(),
+  user: userProfileReducer,
+};
 const UserprofileComponent = (
   <Provider store={store}>
-    <Userprofile
-      getProfile={jest.fn()}
-      articles={articleReducer.articles}
-      isReviewer={false}
-      getReportedArticle={jest.fn()}
-      reportedArticles={{ reportedArticle: [] }}
-      updateProfile={jest.fn()}
-      user={userProfileReducer}
-    />
+    <Userprofile {...props} />
   </Provider>
 );
 
@@ -36,17 +37,7 @@ describe('ProfilePage component', () => {
   });
 
   it('should change state', () => {
-    const wrapper = shallow(
-      <Userprofile
-        getProfile={jest.fn()}
-        articles={articleReducer.articles}
-        isReviewer={false}
-        getReportedArticle={jest.fn()}
-        reportedArticles={{ reportedArticle: [] }}
-        user={userProfileReducer}
-        updateProfile={jest.fn()}
-      />
-    );
+    const wrapper = shallow(<Userprofile {...props} />);
 
     expect(wrapper.state('checked')).toBe(false);
     wrapper.instance().toggle();

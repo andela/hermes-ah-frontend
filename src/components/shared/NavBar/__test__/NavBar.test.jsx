@@ -61,13 +61,12 @@ describe('NavBar component', () => {
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyT2JqIjp7ImlkIjoiNTdjNTE1YTEtODkwZC00MTJmLThjYTEtMGE1Mzk1MTIzZGNhIiwiZW1haWwiOiJhbWVhY2hpY2h1a3NAZ21haWwuY29tIiwiaXNBZG1pbiI6dHJ1ZSwiaXNSZXZpZXdlciI6dHJ1ZSwiaXNBY3RpdmF0ZWQiOnRydWV9LCJpYXQiOjE1NTc3Njg3NjcsImV4cCI6MTU1ODAyNzk2N30.msqGVSZbPrBu8ky7Pa-KauhDnMLGRHG4eas9wlIEEA0'
     );
 
-    const wrapper = shallow(
-      <NavContainer
-        user={{ userProfile: {} }}
-        getProfile={jest.fn()}
-        getSuggestions={jest.fn()}
-      />
-    );
+    const props = {
+      user: { userProfile: {} },
+      getProfile: jest.fn(),
+      getSuggestions: jest.fn(),
+    };
+    const wrapper = shallow(<NavContainer {...props} />);
     wrapper.instance().toggleDropdown();
     expect(wrapper.state('openDropdown')).toBe(true);
   });

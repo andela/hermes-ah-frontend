@@ -5,28 +5,26 @@ import ProfileTabButton from '../ProfileTabButton';
 
 describe('ProfileTab and ProfileButton component', () => {
   it('should render profile tab component', () => {
-    const wrapper = shallow(
-      <ProfileTab
-        changeTab={jest.fn()}
-        currentTab="profile-tab"
-        totalArticle=""
-        totalFollowee=""
-        totalFollowing=""
-        totalBookmarkArticle="10"
-      />
-    );
+    const props = {
+      changeTab: jest.fn(),
+      currentTab: 'profile-tab',
+      totalArticle: '',
+      totalFollowee: '',
+      totalFollowing: '',
+      totalBookmarkArticle: '10',
+    };
+    const wrapper = shallow(<ProfileTab {...props} />);
     expect(wrapper.find('div'));
   });
 
   it('should render profile tab button component', () => {
-    const wrapper = shallow(
-      <ProfileTabButton
-        value="profile"
-        onClick={jest.fn()}
-        className="profile-tab"
-        number="10"
-      />
-    );
+    const btnProps = {
+      value: 'profile',
+      onClick: jest.fn(),
+      className: 'profile-tab',
+      number: '10',
+    };
+    const wrapper = shallow(<ProfileTabButton {...btnProps} />);
     expect(wrapper.find('div'));
   });
 });

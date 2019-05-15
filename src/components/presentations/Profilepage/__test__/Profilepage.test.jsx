@@ -18,23 +18,24 @@ const {
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const store = mockStore({ userProfile });
+const props = {
+  getProfile: jest.fn(),
+  user: { userProfile: {} },
+  isLoadingReducer: { loader: true },
+  articlesUpdate: articleObj,
+  fetchArticles: jest.fn(),
+  getFollowee: jest.fn(),
+  getFollowing: jest.fn(),
+  userFollowee: userFolloweeObj,
+  userFollowing: userFollowingObj,
+  fetchBookmarks: jest.fn(),
+  bookmarkedArticles: bookmarkObj,
+  updateProfile: jest.fn(),
+};
 
 const ProfilepageComponent = (
   <Provider store={store}>
-    <Profilepage
-      getProfile={jest.fn()}
-      user={{ userProfile: {} }}
-      isLoadingReducer={{ loader: true }}
-      fetchArticles={jest.fn()}
-      fetchBookmarks={jest.fn()}
-      articlesUpdate={articleObj}
-      getFollowee={jest.fn()}
-      getFollowing={jest.fn()}
-      userFollowee={userFolloweeObj}
-      userFollowing={userFollowingObj}
-      bookmarkedArticles={bookmarkObj}
-      updateProfile={jest.fn()}
-    />
+    <Profilepage {...props} />
   </Provider>
 );
 
@@ -52,22 +53,7 @@ describe('ProfilePage component', () => {
   });
 
   it('should change state', () => {
-    const wrapper = shallow(
-      <Profilepage
-        getProfile={jest.fn()}
-        user={{ userProfile: {} }}
-        isLoadingReducer={{ loader: true }}
-        articlesUpdate={articleObj}
-        fetchArticles={jest.fn()}
-        getFollowee={jest.fn()}
-        getFollowing={jest.fn()}
-        userFollowee={userFolloweeObj}
-        userFollowing={userFollowingObj}
-        fetchBookmarks={jest.fn()}
-        bookmarkedArticles={bookmarkObj}
-        updateProfile={jest.fn()}
-      />
-    );
+    const wrapper = shallow(<Profilepage {...props} />);
 
     expect(wrapper.state('currentTab')).toBe('profile-section');
     wrapper.instance().changeTab('following-section');

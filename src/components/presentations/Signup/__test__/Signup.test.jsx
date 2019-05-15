@@ -9,9 +9,11 @@ describe('Login component', () => {
   });
 
   it('always renders a div', () => {
-    const wrapper = shallow(
-      <Signup isLoadingReducer={{ loader: true }} user={{ userProfile: {} }} />
-    );
+    const props = {
+      isLoadingReducer: { loader: true },
+      user: { userProfile: {} },
+    };
+    const wrapper = shallow(<Signup {...props} />);
     expect(wrapper.state('data')).toEqual({
       firstname: '',
       lastname: '',
