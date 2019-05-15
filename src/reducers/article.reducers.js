@@ -18,6 +18,7 @@ const articles = (state = initialState, action) => {
     case actionType.POST_ARTICLES_SUCCESS:
       return {
         ...state,
+        success: true,
       };
     case actionType.POST_ARTICLES_FAILURE:
       return {

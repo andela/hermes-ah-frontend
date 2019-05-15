@@ -87,6 +87,11 @@ class NewArticle extends Component {
   };
 
   render() {
+    const { success, history } = this.props;
+    if (success) {
+      toast.success('Your article has been successfully published');
+      history.push('/');
+    }
     const { editorState } = this.state;
     return (
       <NewArticleForm
@@ -104,6 +109,8 @@ class NewArticle extends Component {
 
 NewArticle.propTypes = {
   postArticle: PropTypes.shape().isRequired,
+  success: PropTypes.bool.isRequired,
+  history: PropTypes.func.isRequired,
 };
 
 export default NewArticle;
