@@ -2,11 +2,14 @@
 h3, p {
     font-family: $font-stack;
 }
+.article-container {
+    overflow: auto;
+}
 .profile-article-list {
     text-align: center;
     width: 47%;
     margin: 10px;
-    padding: 10px 20px;
+    padding: 10px;
     float: left;
     overflow: auto;
     border: solid 1px #e8e7e7;
@@ -16,6 +19,7 @@ h3, p {
     .article-list {
         width: 100%;
         float: left;
+        overflow: hidden;
         h3 {
             font-size: 18px;
         }
@@ -54,15 +58,15 @@ h3, p {
         }
 
         .unpublish {
-            background: #857E7E;
-            color: #fff;
+            background: #fff;
+            color: #857E7E;
             text-transform: capitalize;
             border: solid 1px #857E7E;
         }
 
         .unpublish:hover {
-            background: #fff;
-            color: #857E7E;
+            background: #857E7E;
+            color: #fff;
             text-transform: capitalize;
             border: solid 1px #857E7E;
         }
@@ -82,4 +86,35 @@ h3, p {
         }
 
     } 
+}
+
+@media screen and (max-width: 768px) {
+    .profile-article-list {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px 4px;
+        display: flex;
+        flex-direction: column;
+
+        .update-buttons {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+}
+
+@media screen and (max-width: 480px) {
+    .profile-article-list {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile-article-list {
+        padding: 10px 4px;
+    }
 }

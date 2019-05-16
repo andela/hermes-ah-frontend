@@ -26,6 +26,9 @@
 
 
 .profile-btn{
+    display: flex;
+    margin: auto 5px;
+
     button{
         color: white;
         background: transparent;
@@ -41,7 +44,6 @@
     .text {
         padding: 0;
     }
-    margin: auto 5px;
 }
 
 .num-icon{
@@ -57,6 +59,8 @@
 }
 
 .profile-btn-active{
+    display: flex;
+    margin: auto 5px;
     button{
         color: white;
         background: transparent;
@@ -68,10 +72,43 @@
         padding: 0;
         outline: none;
         border-bottom: 2px solid #fff;
-    }
-
-    
-    margin: auto 5px;
+    }  
 }
 
+@media screen and (max-width: 600px) {
+    .profile-tab {
+        height: 229px;
+        display: flex;
+        flex-direction: column-reverse;
+        padding: 0;
+    }
 
+    .profile-tab-items-right, .profile-tab-items-left {
+        height: auto;
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .profile-btn {
+        margin: 0;
+        padding: 8px 10px;
+        justify-content: space-between;
+
+        button {
+            width: 100%;
+            border-bottom: none;
+            text-align: left;
+        }
+    }
+
+    .profile-btn-active {
+        margin: 0;
+        padding: 8px 10px;
+        justify-content: space-between;
+        background: #001d40;
+        
+        button {
+            border-bottom: none;
+        }
+    }
+}

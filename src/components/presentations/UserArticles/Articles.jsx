@@ -20,7 +20,7 @@ const ArticleList = ({ articlesUpdate }) => {
     'December',
   ];
   return (
-    <div>
+    <div className="article-container">
       {articles.map(article => {
         const updateDate = new Date(article.updatedAt);
         const updateMonth = monthNames[updateDate.getMonth()];
