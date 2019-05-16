@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Item, Button } from 'semantic-ui-react';
+import { decodeToken } from '../../../utils/authService';
 import './popular-article-card.scss';
 
 const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
@@ -18,11 +19,17 @@ const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
           <p>
             {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
-            <Button onClick={onClick}>
-              <i className="far fa-thumbs-up" />
-            </Button>
-            &nbsp;
-            {likes}
+            {decodeToken() && (
+              <React.Fragment>
+                <Button onClick={onClick}>
+                  <i className="far fa-thumbs-up" />
+                </Button>
+                <p>
+                  &nbsp;
+                  {likes}
+                </p>
+              </React.Fragment>
+            )}
           </p>
         </Item.Extra>
       </Item.Content>
