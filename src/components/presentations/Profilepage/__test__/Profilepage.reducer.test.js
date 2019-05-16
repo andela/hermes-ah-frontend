@@ -46,4 +46,23 @@ describe('profile reducers', () => {
       })
     ).toEqual({});
   });
+
+  it('should handle FETCH_SUGGESTED_RESEARCHERS_SUCCESS', () => {
+    expect(
+      profileReducer([], {
+        type: types.FETCH_SUGGESTED_RESEARCHERS_SUCCESS,
+        researchers: [{ user: 'jest' }],
+      })
+    ).toEqual({
+      suggestedResearchers: [{ user: 'jest' }],
+    });
+  });
+
+  it('should handle FETCH_SUGGESTED_RESEARCHERS_FAILURE', () => {
+    expect(
+      profileReducer([], {
+        type: types.FETCH_SUGGESTED_RESEARCHERS_FAILURE,
+      })
+    ).toEqual({});
+  });
 });
