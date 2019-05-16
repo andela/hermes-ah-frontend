@@ -92,7 +92,7 @@ class Userprofile extends Component {
                   <div>{reportList}</div>
                   <div>
                     <p className="small-text">
-                      You can see reported article because you are a reviewer
+                      You can see reported articles because you are a reviewer
                     </p>
                     <Button onClick={this.toggle}>Remove from Reviewers</Button>
                   </div>
