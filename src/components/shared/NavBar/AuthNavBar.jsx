@@ -2,7 +2,6 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import NavDropdown from '../../containers/nav.container';
 import './navbar.scss';
 
 const AuthNavBar = ({ navItems }) => (
@@ -14,7 +13,6 @@ const AuthNavBar = ({ navItems }) => (
         </Menu.Item>
       </Link>
     ))}
-    <NavDropdown />
   </div>
 );
 

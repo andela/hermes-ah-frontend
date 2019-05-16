@@ -17,6 +17,11 @@
     .menu.nav-cont {
       width: 100%;
       justify-content: flex-end;
+
+      .submenu-max {
+        display: flex;
+        padding: 0 10px;
+      }
     }
   
     .nav-items{
@@ -58,6 +63,7 @@
     .dropdown-content {
       position: absolute;
       top: 120%;
+      right: 0;
       background-color: #f1f1f1;
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
@@ -88,6 +94,10 @@
   
     .menu.logo-cont {
       width: 20%;
+
+      .submenu-mini {
+        display: none;
+      }
     }
    
     .navbar-item {
@@ -126,6 +136,10 @@
       img.logo {
         width: 150px !important;
       }
+      
+      .nav-items {
+        flex-direction: column;
+      }
     }
   }
 }
@@ -134,26 +148,44 @@
    .nav-header {
     .ui.menu {
       width: 100%;
-      overflow: auto;
       flex-direction: column;
       align-items: normal;
      img.logo {
        width: 100px !important;
      }
+      
+     .navbar-items {
+       flex-direction: column;
+     }
+
      .hamburger {
        display: block;
      }
+
      .menu.nav-cont {
        display: none;
        width: 100%;
        flex-direction: column;
        clear: both;
        transition: max-height .2s ease-out;
+
+       .submenu-max {
+         display: none;
+       }
      }
      .menu.logo-cont {
        width: 100%;
        padding: 0 10px;
        justify-content: space-between;
+
+       .submenu-mini {
+         display: flex;
+         padding: 0 10px;
+       }
+
+       .menu-sect-2 {
+         display: flex;
+       }
      }
      .navbar-item {
        border: none;

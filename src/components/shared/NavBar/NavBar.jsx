@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { decodeToken } from '../../../utils/authService';
 import navLinks from '../../../utils/headers';
 import AuthNavBar from './AuthNavBar';
+import NavDropdown from '../../containers/nav.container';
 import './navbar.scss';
 
 const { auth } = navLinks;
@@ -51,11 +52,16 @@ class NavBar extends Component {
                 />
               </Link>
             </Menu.Item>
-            <Menu.Item className="hamburger">
-              <label htmlFor="checker">
-                <i className="fas fa-bars" />
-              </label>
-            </Menu.Item>
+            <div className="menu-sect-2">
+              <Menu.Item className="hamburger">
+                <label htmlFor="checker">
+                  <i className="fas fa-bars" />
+                </label>
+              </Menu.Item>
+              <Menu.Item className="submenu-mini">
+                {user && <NavDropdown />}
+              </Menu.Item>
+            </div>
           </Menu.Menu>
           <input type="checkbox" id="checker" className="mini-menu" />
           <Menu.Menu className="nav-cont">
@@ -68,6 +74,9 @@ class NavBar extends Component {
                   </Menu.Item>
                 </Link>
               ))}
+            <Menu.Item className="submenu-max">
+              {user && <NavDropdown />}
+            </Menu.Item>
           </Menu.Menu>
         </Menu>
       </div>
