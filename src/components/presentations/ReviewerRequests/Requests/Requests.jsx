@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReviewerRequests from '../ReviewersCard/Reviewers-card';
+import ReviewerRequestCard from '../ReviewersCard/Reviewers-card';
 import '../ReviewersCard/reviewers-card.scss';
 
 const RequestList = ({ userRequests }) => {
@@ -11,7 +11,7 @@ const RequestList = ({ userRequests }) => {
       <div className="main-grid">
         {allUsersRequest.length &&
           allUsersRequest.map(user => (
-            <ReviewerRequests
+            <ReviewerRequestCard
               key={user.user_id}
               imageUrl={user.User.image_url}
               initials={`${user.User.first_name
