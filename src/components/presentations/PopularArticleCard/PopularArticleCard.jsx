@@ -16,7 +16,7 @@ const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
           <p className="author-name">{author}</p>
         </Item.Extra>
         <Item.Extra>
-          <p>
+          <div>
             {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
             {decodeToken() && (
@@ -30,7 +30,7 @@ const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
                 </p>
               </React.Fragment>
             )}
-          </p>
+          </div>
         </Item.Extra>
       </Item.Content>
     </Item>

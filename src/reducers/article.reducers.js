@@ -4,6 +4,15 @@ const initialState = {
   articleData: [],
 };
 
+const updateArticle = (articleId, article) => {
+  const currentArticle = article.filter(x => x.id === articleId);
+  const newArticles = article.filter(x => x.id !== articleId);
+  let likes = currentArticle[0].likes_count;
+  likes += 1;
+  currentArticle[0].likes_count = likes;
+  return [...newArticles, currentArticle[0]];
+};
+
 const articles = (state = initialState, action) => {
   switch (action.type) {
     case actionType.FETCH_ARTICLES_SUCCESS:
@@ -15,7 +24,6 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
       };
-<<<<<<< HEAD
     case actionType.POST_ARTICLES_SUCCESS:
       return {
         ...state,
@@ -24,17 +32,16 @@ const articles = (state = initialState, action) => {
     case actionType.POST_ARTICLES_FAILURE:
       return {
         ...state,
-=======
+      };
     case actionType.LIKE_SUCCESS:
       return {
         ...state,
-        articleData: action.currentArticle,
+        articleData: updateArticle(action.articleId, action.article),
       };
     case actionType.LIKE_FAILURE:
       return {
         ...state,
         articleData: action.article,
->>>>>>> 1aa3a40... 164797984-feature(like): implement like feature
       };
     default:
       return state;

@@ -5,9 +5,10 @@ import http from '../utils/httpService';
 
 const url = '/likes';
 
-export const likeSuccess = currentArticle => ({
+export const likeSuccess = (articleId, article) => ({
   type: actionTypes.LIKE_SUCCESS,
-  currentArticle,
+  articleId,
+  article,
 });
 
 export const likeFailure = article => ({
@@ -18,13 +19,7 @@ export const likeFailure = article => ({
 export const likeArticle = (articleId, article) => {
   return async dispatch => {
     try {
-      const currentArticle = article.filter(x => x.id === articleId);
-      const newArticles = article.filter(x => x.id !== articleId);
-      let likes = currentArticle[0].likes_count;
-      likes += 1;
-      currentArticle[0].likes_count = likes;
-      const articles = [...newArticles, currentArticle[0]];
-      dispatch(likeSuccess(articles));
+      dispatch(likeSuccess(articleId, article));
       const { data: result } = await http.post(`${url}/${articleId}`);
       const { data } = result;
       if (!data.like) {
