@@ -20,7 +20,7 @@ class NewArticle extends Component {
       title: '',
       abstract: '',
     };
-    this.processInput = this.processInput.bind(this);
+    this.saveOrPublish = this.saveOrPublish.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
   }
@@ -70,7 +70,7 @@ class NewArticle extends Component {
     this.setState({ category: categoryData });
   };
 
-  processInput = async (e, isDraft) => {
+  saveOrPublish = async (e, isDraft) => {
     e.preventDefault();
     const articleInput = this.state;
     const { postArticle } = this.props;
@@ -103,7 +103,7 @@ class NewArticle extends Component {
           onEditorStateChange={this.onEditorStateChange}
           editorState={editorState}
           onChange={this.onChange}
-          processInput={this.processInput}
+          saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
         />
       </React.Fragment>

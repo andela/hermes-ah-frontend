@@ -3,9 +3,6 @@ import http from '../utils/httpService';
 import contentLoading from './loading.action';
 import actionTypes from '../constants/article.constants';
 
-const url = '/articles';
-const url2 = '/article';
-
 export const getAllArticlesSuccess = articles => ({
   type: actionTypes.FETCH_ARTICLES_SUCCESS,
   articles,
@@ -28,7 +25,7 @@ export const getAllArticles = () => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const articles = await http.get(`${url}`);
+      const articles = await http.get(`/articles`);
       dispatch(getAllArticlesSuccess(articles.data.articles));
       return articles;
     } catch (ex) {
@@ -43,7 +40,7 @@ export const postArticle = data => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const article = await http.post(`${url2}`, data);
+      const article = await http.post(`/article`, data);
       dispatch(postArticleSuccess());
       return article;
     } catch (err) {

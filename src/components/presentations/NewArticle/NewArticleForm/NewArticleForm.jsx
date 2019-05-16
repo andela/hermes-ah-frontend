@@ -14,7 +14,7 @@ const NewArticleForm = ({
   saveToCloudinary,
   editorState,
   onEditorStateChange,
-  processInput,
+  saveOrPublish,
   onChange,
 }) => (
   <div>
@@ -108,14 +108,14 @@ const NewArticleForm = ({
                   <Button
                     className="save-button"
                     type="submit"
-                    onClick={e => processInput(e, true)}
+                    onClick={e => saveOrPublish(e, true)}
                   >
                     Save as Draft
                   </Button>
                   <Button
                     className="save-button"
                     type="submit"
-                    onClick={e => processInput(e, false)}
+                    onClick={e => saveOrPublish(e, false)}
                   >
                     Save & Publish
                   </Button>
@@ -138,7 +138,7 @@ const NewArticleForm = ({
 
 NewArticleForm.propTypes = {
   onChange: PropTypes.func.isRequired,
-  processInput: PropTypes.func.isRequired,
+  saveOrPublish: PropTypes.func.isRequired,
   onEditorStateChange: PropTypes.func.isRequired,
   editorState: PropTypes.shape().isRequired,
   saveToCloudinary: PropTypes.func.isRequired,
