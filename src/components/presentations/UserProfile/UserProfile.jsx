@@ -112,7 +112,7 @@ class Userprofile extends Component {
               <div>
                 <Button onClick={this.showResearchers}>
                   {showResearchers
-                    ? 'Close Suggested Researchers'
+                    ? 'Hide Suggested Researchers'
                     : 'Show Suggested Researchers'}
                 </Button>
               </div>
