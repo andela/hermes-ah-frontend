@@ -4,7 +4,8 @@
   text-align: left;
   border-radius: 5px;
   box-sizing: border-box;
-  box-shadow: 0 1px 8px #848484;
+  border: 1px solid #e2dfdf;
+  box-shadow: 1px 4px 3px #959595;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
@@ -37,7 +38,7 @@
   }
   .reviewr-commt {
     span {
-      font-weight: bold;
+      font-weight: bolder;
     }
     p {
       font-weight: 100;
@@ -48,10 +49,7 @@
   .admin-art-decision {
     display: flex;
     flex-direction: row;
-    width: 35%;
-    justify-content: space-between;
     margin-top: 20px;
-    align-items: center;
 
     .accept-rev-art {
       text-transform: capitalize;
@@ -80,6 +78,7 @@
       cursor: pointer;
       background: #ffffff;
       outline: none;
+      margin-left: 20px;
     }
     .reject-rev-art:hover {
       background: #ff0000;
