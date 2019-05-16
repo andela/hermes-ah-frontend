@@ -5,6 +5,7 @@ import './reviewers-card.scss';
 const ReviewerRequests = ({
   initials,
   imageUrl,
+  bio,
   name,
   button,
   button1,
@@ -23,6 +24,7 @@ const ReviewerRequests = ({
         </div>
         <div className="title_text_box">
           <p className="name">{name}</p>
+          {bio ? <p className="user_bio">{bio}</p> : null}
         </div>
       </div>
       <div className="admin_decision_on_request">
@@ -45,6 +47,7 @@ const ReviewerRequests = ({
 ReviewerRequests.propTypes = {
   initials: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  bio: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
   button1: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,

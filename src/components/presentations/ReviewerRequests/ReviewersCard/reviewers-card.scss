@@ -21,29 +21,9 @@
   }
   .image_title_bio{
     display: flex;
-    justify-content: center;
   }
-  .profile_image {
-    width: 80px;
-    height: 80px;
-    margin: 13px 15px;
-    background-color: grey;
-    border-radius: 66px;
-    float: left;
-    text-align: center;
-    color: white;
-   
-
-    .initials {
-      margin-top: 8px;
-      font-size: 41px;
-    }
-
-    .user_pic {
-      width: 100%;
-      height: 80px;
-      border-radius: 50%;
-    }
+  .user_bio {
+    font-size: 14px;
   }
 
   .itle_text_box {
@@ -65,7 +45,8 @@
   }
   .admin_decision_on_request {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    float: right;
   }
   .main_button {
     float: right;
@@ -107,6 +88,28 @@
     }
   }
 }
+.profile_image {
+  width: 80px;
+  height: 80px;
+  margin: 13px 15px;
+  background-color: grey;
+  border-radius: 66px;
+  float: left;
+  text-align: center;
+  color: white;
+ 
+
+  .initials {
+    margin-top: 8px;
+    font-size: 41px;
+  }
+
+  .user_pic {
+    width: 100%;
+    height: 80px;
+    border-radius: 50%;
+  }
+}
 
 .main-grid {
     display: grid;
@@ -127,10 +130,125 @@
   .main-grid {
     display: block;
   }
+  .main-title .image_title_bio {
+    display: flex;
+    flex-direction: column;
+}
+.main-title .user_bio {
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.main-title p:first-child {
+  margin-top: -10px;
+  font-weight: bold;
+}
+  .profile-content {
+    width: 95%;
+    margin: 0 auto;
+    min-height: 600px;
+    text-align: center;
+    font-size: 2rem;
+    padding-left: 47px;
+}
+.profile_image {
+  width: 124px;
+  height: 124px;
+  margin: 13px auto;
+  background-color: grey;
+  border-radius: 66px;
+  float: left;
+  text-align: center;
+  color: white;
+  .user_pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+.main-title {
+  display:flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  margin-left: 35px;
+  padding: 10px 20px;
+  overflow: auto;
+  border: solid 1px $secondary-color;
+  border: solid 1px #959595;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px 0 #888888;
+}
+}
+@media screen and (max-width: 768px){
+  .main_page_title {
+    display: flex;
+    flex-direction: column
+}
 }
 @media screen and (max-width: 480px){
   p:first-child {
-    padding-top: 30px;
+    padding-top: 0px;
     font-size: 17px;
+}
+.main-grid {
+  display: block;
+}
+.main-title .image_title_bio {
+  display: flex;
+  flex-direction: column;
+}
+.main-title .user_bio {
+font-size: 16px;
+margin-bottom: 15px;
+}
+.main-title p:first-child {
+margin-top: -10px;
+font-weight: bold;
+}
+.initials {
+color: red;
+}
+.profile-content {
+  width: 95%;
+  margin: 0 auto;
+  min-height: 600px;
+  text-align: center;
+  font-size: 2rem;
+  padding-left: 47px;
+}
+.profile_image {
+width: 124px;
+height: 124px;
+margin: 13px auto;
+background-color: grey;
+border-radius: 66px;
+float: left;
+text-align: center;
+color: white;
+.user_pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+}
+.main-title {
+display:flex;
+flex-direction: column;
+text-align: center;
+justify-content: center;
+align-items: center;
+width: 85%;
+margin-left: 11px;
+padding: 10px 20px;
+overflow: auto;
+border: solid 1px $secondary-color;
+border: solid 1px #959595;
+border-radius: 8px;
+box-shadow: 0 1px 6px 0 #888888;
+}
+  .text {
+    font-size: 11px;
 }
 }
