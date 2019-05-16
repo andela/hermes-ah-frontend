@@ -11,7 +11,7 @@ const BookmakedComponent = (
   </div>
 );
 
-describe('<ArticleCard />', () => {
+describe('<Bookmarked />', () => {
   it('should render bookmark component', () => {
     const wrapper = shallow(BookmakedComponent);
     expect(wrapper).toMatchSnapshot();

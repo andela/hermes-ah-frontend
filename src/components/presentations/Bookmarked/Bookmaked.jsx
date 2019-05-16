@@ -33,14 +33,17 @@ const Bookmarked = ({ bookmarkedArticles }) => {
 };
 
 Bookmarked.propTypes = {
-  bookmarkedArticles: PropTypes.shape({
-    articles: PropTypes.shape({
-      title: PropTypes.string,
-      abstract: PropTypes.string,
-      image: PropTypes.string,
-      readTime: PropTypes.number,
-    }),
-  }).isRequired,
+  bookmarkedArticles: PropTypes.shape([
+    {
+      articles: PropTypes.shape({
+        title: PropTypes.string,
+        abstract: PropTypes.string,
+        image: PropTypes.string,
+        readTime: PropTypes.number,
+        author: PropTypes.string,
+      }),
+    },
+  ]).isRequired,
 };
 
 export default Bookmarked;
