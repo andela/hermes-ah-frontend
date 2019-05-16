@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import actions from '../constants/reported.contants';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
-import stopLaoding from './stopLoading.action';
+import stopLoading from './stopLoading.action';
 import exceptionHandler from '../utils/exceptionHandler';
 
 export const getReportedArticleSuccess = reports => {
@@ -43,10 +43,10 @@ const requestReview = () => {
         closeButton: false,
         position: toast.POSITION.TOP_CENTER,
       });
-      dispatch(stopLaoding());
+      dispatch(stopLoading());
     } catch (error) {
       exceptionHandler(error);
-      dispatch(stopLaoding());
+      dispatch(stopLoading());
     }
   };
 };
