@@ -45,20 +45,6 @@ class Profilepage extends Component {
     await unFollowUser(e.target.id);
   };
 
-  componentDidUpdate = prevProps => {
-    const { userProfile: userProps } = this.props;
-    const { userProfile } = userProps;
-    if (prevProps.userProfile !== userProps) {
-      const { profile } = userProfile;
-      this.setState({
-        firstname: profile.first_name,
-        lastname: profile.last_name,
-        profilePic: profile.image_url,
-        isReviewer: profile.is_reviewer,
-      });
-    }
-  };
-
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };

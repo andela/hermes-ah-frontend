@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import FollowCard from '../UserFollwing/FollowCard/Follow-card';
+import FollowCard from '../UserFollowing/FollowCard/Follow-card';
 
 const SuggestedResearchers = ({ suggestedResearchers }) => (
   <div className="profile-img-container">
