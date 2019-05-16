@@ -2,6 +2,8 @@ import { toast } from 'react-toastify';
 import actions from '../constants/reported.contants';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
+import stopLoading from './stopLoading.action';
+import exceptionHandler from '../utils/exceptionHandler';
 
 export const getReportedArticleSuccess = reports => {
   return {
@@ -31,8 +33,27 @@ const getReportedArticle = () => {
   };
 };
 
+const requestReview = () => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data } = await http.post(`/request`);
+      toast.info(data.message, {
+        type: toast.TYPE.INFO,
+        closeButton: false,
+        position: toast.POSITION.TOP_CENTER,
+      });
+      dispatch(stopLoading());
+    } catch (error) {
+      exceptionHandler(error);
+      dispatch(stopLoading());
+    }
+  };
+};
+
 const reportedArticleAction = {
   getReportedArticle,
+  requestReview,
 };
 
 export default reportedArticleAction;

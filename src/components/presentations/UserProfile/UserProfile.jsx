@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Button, Checkbox } from 'semantic-ui-react';
+import { Grid, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Headercard from '../HeaderCard/Headercard';
 import Profilecard from './ProfileCard';
@@ -10,9 +10,7 @@ import SuggestedResearchers from './SuggestedResearchers';
 class Userprofile extends Component {
   constructor(props) {
     super(props);
-    const { isReviewer } = this.props;
     this.state = {
-      checked: isReviewer,
       showResearchers: false,
     };
   }
@@ -22,7 +20,10 @@ class Userprofile extends Component {
     getReportedArticle();
   };
 
-  toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
+  toggle = () => {
+    const { requestReview } = this.props;
+    requestReview();
+  };
 
   showResearchers = () =>
     this.setState(prevState => ({
@@ -30,7 +31,7 @@ class Userprofile extends Component {
     }));
 
   render() {
-    const { checked, showResearchers } = this.state;
+    const { showResearchers } = this.state;
     const {
       user,
       isReviewer,
@@ -90,16 +91,19 @@ class Userprofile extends Component {
                   <Headercard icon="far fa-flag" value="Reported Articles" />
                   <div>{reportList}</div>
                   <div>
-                    <Button onClick={this.toggle}>Become A Reviewer</Button>
-                    <Checkbox checked={checked} />
+                    <p className="small-text">
+                      You can see reported articles because you are a reviewer
+                    </p>
+                    <Button onClick={this.toggle}>Remove from Reviewers</Button>
                   </div>
                 </div>
               ) : (
                 <div>
-                  <h2>Become a reviewer</h2>
+                  <p className="small-text">
+                    Become a reviewer and review reported articles.
+                  </p>
                   <div>
                     <Button onClick={this.toggle}>Become A Reviewer</Button>
-                    <Checkbox checked={checked} />
                   </div>
                 </div>
               )}
@@ -151,6 +155,7 @@ Userprofile.propTypes = {
   getReportedArticle: PropTypes.func.isRequired,
   reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
+  requestReview: PropTypes.func.isRequired,
 };
 
 export default Userprofile;
