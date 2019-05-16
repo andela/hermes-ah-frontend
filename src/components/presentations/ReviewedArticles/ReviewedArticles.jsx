@@ -17,7 +17,7 @@ const ReviewedArticles = () => {
             article.comment.slice(1)}`}
           dateReviewed={article.dateReviewed}
           AcceptBtnValue="Accept"
-          RejectBtnValue="reject"
+          RejectBtnValue="Reject"
         />
       ))}
     </div>
