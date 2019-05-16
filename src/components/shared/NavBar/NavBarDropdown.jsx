@@ -65,7 +65,6 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  // getSuggestions: PropTypes.func.isRequired,
   user: PropTypes.shape().isRequired,
 };
 

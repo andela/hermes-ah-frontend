@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import AdminTab from '../AdminTab/AdminTab';
 import RequestList from '../ReviewerRequests/Requests/Requests';
 import NavBar from '../../shared/NavBar/NavBar';
+import ReviewedArticles from '../ReviewedArticles/ReviewedArticles';
 
 class AdminPage extends Component {
   constructor(props) {
@@ -32,9 +33,7 @@ class AdminPage extends Component {
           {currentTab === 'request-section' ? (
             <RequestList userRequests={userRequests} />
           ) : null}
-          {currentTab === 'article-section' ? (
-            <p>This is a section for reviewed articles</p>
-          ) : null}
+          {currentTab === 'article-section' ? <ReviewedArticles /> : null}
           {currentTab === 'reported-section' ? (
             <div>
               <p>This is a section for reported articles</p>

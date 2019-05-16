@@ -28,8 +28,12 @@ class Profilepage extends Component {
       getFollowee,
       getFollowing,
       fetchBookmarks,
+      getSuggestions,
+      getProfile,
     } = this.props;
 
+    getProfile();
+    getSuggestions();
     fetchArticles();
     getFollowee();
     getFollowing();
@@ -147,6 +151,8 @@ Profilepage.propTypes = {
   bookmarkedArticles: PropTypes.shape().isRequired,
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
+  getSuggestions: PropTypes.func.isRequired,
+  getProfile: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
