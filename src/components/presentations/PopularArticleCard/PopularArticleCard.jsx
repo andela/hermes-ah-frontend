@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Item } from 'semantic-ui-react';
+import { Item, Button } from 'semantic-ui-react';
 import './popular-article-card.scss';
 
-const PopularArticleCard = ({ title, author, date, likes, num }) => (
+const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
   <Item.Group>
     <Item>
       <Item.Header className="header-num" as="h1">
@@ -18,7 +18,9 @@ const PopularArticleCard = ({ title, author, date, likes, num }) => (
           <p>
             {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
-            <i className="far fa-thumbs-up" />
+            <Button onClick={onClick}>
+              <i className="far fa-thumbs-up" />
+            </Button>
             &nbsp;
             {likes}
           </p>
@@ -39,6 +41,7 @@ PopularArticleCard.propTypes = {
   author: PropTypes.string.isRequired,
   date: PropTypes.string,
   likes: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PopularArticleCard;

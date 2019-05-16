@@ -15,6 +15,7 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
       };
+<<<<<<< HEAD
     case actionType.POST_ARTICLES_SUCCESS:
       return {
         ...state,
@@ -23,6 +24,17 @@ const articles = (state = initialState, action) => {
     case actionType.POST_ARTICLES_FAILURE:
       return {
         ...state,
+=======
+    case actionType.LIKE_SUCCESS:
+      return {
+        ...state,
+        articleData: action.currentArticle,
+      };
+    case actionType.LIKE_FAILURE:
+      return {
+        ...state,
+        articleData: action.article,
+>>>>>>> 1aa3a40... 164797984-feature(like): implement like feature
       };
     default:
       return state;
