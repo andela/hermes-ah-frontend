@@ -8,11 +8,6 @@ import FollowCard from '../UserFollwing/FollowCard/Follow-card';
 import SuggestedArticleCard from './SuggestedArticleCard';
 
 class Userprofile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   componentDidMount = () => {
     const { getReportedArticle } = this.props;
     getReportedArticle();
