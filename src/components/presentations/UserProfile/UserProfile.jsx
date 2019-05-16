@@ -39,7 +39,7 @@ class Userprofile extends Component {
       articles,
     } = this.props;
     const { reportedArticle: profileReports } = reportedArticles;
-    const { userProfile, suggestedResearchers } = user;
+    const { userProfile, suggestedResearchers: allSuggestedResearchers } = user;
     const { profile } = userProfile;
     const { articleData } = articles;
 
@@ -73,9 +73,9 @@ class Userprofile extends Component {
         />
       ));
 
-    const removeResearchersUserFollow = suggestedResearchers.filter(item => {
-      return !item.isFollowing;
-    });
+    const suggestedResearchers = allSuggestedResearchers.filter(
+      researcher => !researcher.isFollowing
+    );
 
     return (
       <div>
@@ -123,7 +123,7 @@ class Userprofile extends Component {
                     value="Suggested Researchers"
                   />
                   <SuggestedResearchers
-                    suggestedResearchers={removeResearchersUserFollow}
+                    suggestedResearchers={suggestedResearchers}
                   />
                 </div>
               ) : null}
