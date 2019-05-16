@@ -29,7 +29,7 @@ class AdminPage extends Component {
       <React.Fragment>
         <NavBar />
         <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
-        <div className="profile-content">
+        <div className="admin-content">
           {currentTab === 'request-section' ? (
             <RequestList userRequests={userRequests} />
           ) : null}
