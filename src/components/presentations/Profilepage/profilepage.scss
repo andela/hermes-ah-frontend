@@ -70,3 +70,24 @@
     font-size: 2rem;
     padding: 10px 20px;
 }
+
+@media screen and (max-width: 768px) {
+    .profile-content{
+        width: 93%;
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .profile-content {
+        width: 90%;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile-content {
+        width: 90%;
+        padding: 5px;
+    }
+}

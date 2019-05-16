@@ -7,7 +7,7 @@ import followingAction from '../../actions/following.actions';
 import fetchBookmarks from '../../actions/bookmarked.action';
 import RequestAction from '../../actions/reviewers-request.action';
 
-const { getProfile, updateProfile } = profileAction;
+const { getProfile, updateProfile, getSuggestions } = profileAction;
 const { getFollowee } = followeeAction;
 const { getFollowing } = followingAction;
 const { getUserRequests } = RequestAction;
@@ -39,6 +39,7 @@ const ProfilepageContainer = connect(
     getFollowing,
     fetchBookmarks,
     updateProfile,
+    getSuggestions,
     getUserRequests,
   }
 )(Profilepage);
