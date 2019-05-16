@@ -2,8 +2,6 @@ import actions from '../constants/reviewerRequests.constant';
 import http from '../utils/httpService';
 import exceptionHandler from '../utils/exceptionHandler';
 
-const url = '/admin/reviewer';
-
 export const getReviewerRequestsSuccess = request => {
   return {
     type: actions.REVIEWER_REQUESTS_SUCCESS,
@@ -20,7 +18,7 @@ export const getRevieweRequestsFailure = () => {
 const getUserRequests = () => {
   return async dispatch => {
     try {
-      const { data } = await http.get(`${url}`);
+      const { data } = await http.get(`/admin/reviewer`);
       return dispatch(getReviewerRequestsSuccess(data.allUsersRequest));
     } catch (error) {
       return exceptionHandler(error);
