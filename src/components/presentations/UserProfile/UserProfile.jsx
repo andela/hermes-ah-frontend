@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Headercard from '../HeaderCard/Headercard';
 import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
-import FollowCard from '../UserFollwing/FollowCard/Follow-card';
 import SuggestedArticleCard from './SuggestedArticleCard';
+import SuggestedResearchers from './SuggestedResearchers';
 
 class Userprofile extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class Userprofile extends Component {
     const { isReviewer } = this.props;
     this.state = {
       checked: isReviewer,
+      showResearchers: false,
     };
   }
 
@@ -23,8 +24,13 @@ class Userprofile extends Component {
 
   toggle = () => this.setState(prevState => ({ checked: !prevState.checked }));
 
+  showResearchers = () =>
+    this.setState(prevState => ({
+      showResearchers: !prevState.showResearchers,
+    }));
+
   render() {
-    const { checked } = this.state;
+    const { checked, showResearchers } = this.state;
     const {
       user,
       isReviewer,
@@ -33,7 +39,7 @@ class Userprofile extends Component {
       articles,
     } = this.props;
     const { reportedArticle: profileReports } = reportedArticles;
-    const { userProfile, suggestedResearchers } = user;
+    const { userProfile, suggestedResearchers: allSuggestedResearchers } = user;
     const { profile } = userProfile;
     const { articleData } = articles;
 
@@ -67,25 +73,9 @@ class Userprofile extends Component {
         />
       ));
 
-    const removeResearchersUserFollow = suggestedResearchers.filter(item => {
-      return !item.isFollowing;
-    });
-
-    const suggestedResearchersList = removeResearchersUserFollow
-      .map(item => (
-        <FollowCard
-          key={item.profile.id}
-          imageUrl={item.profile.image_url}
-          initials={`${item.profile.first_name
-            .charAt(0)
-            .toUpperCase()}${item.profile.last_name.charAt(0).toUpperCase()}`}
-          bio={item.profile.bio}
-          button="Follow"
-          btnClass="btn-following"
-          name={`${item.profile.first_name} ${item.profile.last_name}`}
-        />
-      ))
-      .slice(0, 3);
+    const suggestedResearchers = allSuggestedResearchers.filter(
+      researcher => !researcher.isFollowing
+    );
 
     return (
       <div>
@@ -116,18 +106,27 @@ class Userprofile extends Component {
             </Grid.Column>
 
             <Grid.Column computer={8} mobile={16}>
-              {suggestedResearchersList.length ? (
+              <Headercard icon="far fa-newspaper" value="Suggested Articles" />
+              {suggestedArticleList}
+
+              <div>
+                <Button onClick={this.showResearchers}>
+                  {showResearchers
+                    ? 'Hide Suggested Researchers'
+                    : 'Show Suggested Researchers'}
+                </Button>
+              </div>
+              {showResearchers ? (
                 <div className="sgg-rsh-container">
                   <Headercard
                     icon="fa fa-users"
                     value="Suggested Researchers"
                   />
-                  {suggestedResearchersList}
+                  <SuggestedResearchers
+                    suggestedResearchers={suggestedResearchers}
+                  />
                 </div>
               ) : null}
-
-              <Headercard icon="far fa-newspaper" value="Suggested Articles" />
-              {suggestedArticleList}
             </Grid.Column>
           </Grid.Row>
         </Grid>
