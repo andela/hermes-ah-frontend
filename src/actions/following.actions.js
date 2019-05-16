@@ -42,14 +42,11 @@ const getFollowing = () => {
   };
 };
 
-const unFollowUser = (userId, userFollowing) => {
+const unFollowUser = userId => {
   return async dispatch => {
     try {
       const unFollow = await http.delete(`follow/${userId}`);
-      const data = userFollowing.filter(
-        following => following.followee_id !== userId
-      );
-      dispatch(unFollowSuccess(data));
+      dispatch(unFollowSuccess(unFollow.data));
       toast.success(`You unfollowed ${unFollow.data.user.last_name}`);
     } catch (error) {
       dispatch(unFollowFailure());
