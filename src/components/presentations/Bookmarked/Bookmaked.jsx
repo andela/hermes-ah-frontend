@@ -20,6 +20,9 @@ const Bookmarked = ({ bookmarkedArticles }) => {
         <Article
           key={item.article_id}
           title={item.Article.title}
+          author={`${item.Article.author.first_name} ${
+            item.Article.author.last_name
+          }`}
           abstract={item.Article.abstract}
           image={item.Article.image_url}
           readTime={item.Article.reading_time}
