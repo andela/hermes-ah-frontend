@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './reviewers-card.scss';
 
-const ReviewerRequests = ({
+const ReviewerRequestCard = ({
   initials,
   imageUrl,
   name,
@@ -42,7 +42,7 @@ const ReviewerRequests = ({
   );
 };
 
-ReviewerRequests.propTypes = {
+ReviewerRequestCard.propTypes = {
   initials: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   button: PropTypes.string.isRequired,
@@ -52,4 +52,4 @@ ReviewerRequests.propTypes = {
   imageUrl: PropTypes.string.isRequired,
 };
 
-export default ReviewerRequests;
+export default ReviewerRequestCard;
