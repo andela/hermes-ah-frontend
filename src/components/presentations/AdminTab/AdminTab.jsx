@@ -10,30 +10,21 @@ class AdminTab extends Component {
   }
 
   render() {
-    const {
-      changeTab,
-      currentTab,
-      reviewerRequest,
-      reportedArticles,
-      reviewedArticles,
-    } = this.props;
+    const { changeTab, currentTab } = this.props;
     const AdminTabItems = [
       {
         id: 1,
         value: 'Reviewer Requests',
-        valueNum: reviewerRequest,
         section: 'request-section',
       },
       {
         id: 2,
         value: 'Reviewed Articles',
-        valueNum: reviewedArticles,
         section: 'article-section',
       },
       {
         id: 3,
         value: 'Reported Articles',
-        valueNum: reportedArticles,
         section: 'reported-section',
       },
     ];
@@ -67,9 +58,6 @@ class AdminTab extends Component {
 AdminTab.propTypes = {
   changeTab: PropTypes.func.isRequired,
   currentTab: PropTypes.string.isRequired,
-  reviewerRequest: PropTypes.string.isRequired,
-  reportedArticles: PropTypes.string.isRequired,
-  reviewedArticles: PropTypes.string.isRequired,
 };
 
 export default AdminTab;
