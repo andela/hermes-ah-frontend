@@ -9,7 +9,7 @@ import RequestAction from '../../actions/reviewers-request.action';
 
 const { getProfile, updateProfile, getSuggestions } = profileAction;
 const { getFollowee } = followeeAction;
-const { getFollowing } = followingAction;
+const { getFollowing, unFollowUser } = followingAction;
 const { getUserRequests } = RequestAction;
 
 const mapStateToProps = ({
@@ -41,6 +41,7 @@ const ProfilepageContainer = connect(
     updateProfile,
     getSuggestions,
     getUserRequests,
+    unFollowUser,
   }
 )(Profilepage);
 
