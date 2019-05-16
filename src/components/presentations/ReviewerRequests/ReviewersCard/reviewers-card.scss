@@ -17,6 +17,8 @@
   }
   p:first-child {
     margin-top: 35px;
+    font-weight: 600;
+    font-size: 20px;
   }
   .image_title_bio {
     display: flex;
@@ -138,13 +140,12 @@
     margin-top: -10px;
     font-weight: bold;
   }
-  .profile-content {
+  .admin-content {
     width: 95%;
     margin: 0 auto;
     min-height: 600px;
     text-align: center;
     font-size: 2rem;
-    padding-left: 47px;
   }
   .profile_image {
     width: 124px;
@@ -206,13 +207,12 @@
   .initials {
     color: red;
   }
-  .profile-content {
+  .admin-content {
     width: 95%;
     margin: 0 auto;
     min-height: 600px;
     text-align: center;
     font-size: 2rem;
-    padding-left: 47px;
   }
   .profile_image {
     width: 124px;
@@ -230,19 +230,8 @@
     }
   }
   .main-title {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
     width: 85%;
-    margin-left: 11px;
-    padding: 10px 20px;
-    overflow: auto;
-    border: solid 1px $secondary-color;
-    border: solid 1px #959595;
-    border-radius: 8px;
-    box-shadow: 0 1px 6px 0 #888888;
+    
   }
   .text {
     font-size: 11px;

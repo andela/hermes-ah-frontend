@@ -7,7 +7,6 @@ const RequestList = ({ userRequests }) => {
   const { userRequests: allUsersRequest } = userRequests;
   return (
     <div>
-      <p className="Reviewers_title">Reviewer Requests</p>
       <div className="main_page_title">
         <div className="main-grid">
           {allUsersRequest.map(user => (
