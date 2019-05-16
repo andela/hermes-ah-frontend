@@ -51,6 +51,7 @@ class NavDropdown extends Component {
             {openDropdown ? (
               <div className="dropdown-content">
                 <Link to="/profile">My Profile</Link>
+                <Link to="/create-article">Create Article</Link>
                 {isAdmin && <Link to="/admin">Admin</Link>}
                 <Link to="/logout">Logout</Link>
               </div>
@@ -64,7 +65,6 @@ class NavDropdown extends Component {
 
 NavDropdown.propTypes = {
   getProfile: PropTypes.func.isRequired,
-  // getSuggestions: PropTypes.func.isRequired,
   user: PropTypes.shape().isRequired,
 };
 

@@ -23,6 +23,7 @@ const props = {
   reportedArticles: { reportedArticle: [] },
   updateProfile: jest.fn(),
   user: userProfileReducer,
+  requestReview: jest.fn(),
 };
 const UserprofileComponent = (
   <Provider store={store}>
@@ -34,15 +35,5 @@ describe('ProfilePage component', () => {
   it('should render profile page', () => {
     const wrapper = shallow(UserprofileComponent);
     expect(wrapper.find('div'));
-  });
-
-  it('should change state', () => {
-    const wrapper = shallow(<Userprofile {...props} />);
-
-    expect(wrapper.state('checked')).toBe(false);
-    wrapper.instance().toggle();
-    expect(wrapper.state('checked')).toBe(true);
-    wrapper.setProps({ isReviewer: true });
-    expect(wrapper.state('checked')).toBe(true);
   });
 });

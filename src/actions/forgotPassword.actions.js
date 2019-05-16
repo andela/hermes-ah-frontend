@@ -4,8 +4,6 @@ import http from '../utils/httpService';
 import actionTypes from '../constants/forgotPassword.constants';
 import contentLoading from './loading.action';
 
-const url = '/auth';
-
 export const forgotPasswordSuccess = () => ({
   type: actionTypes.FORGOT_PASSWORD_SUCCESS,
 });
@@ -25,7 +23,7 @@ export const forgotPassword = userObj => {
           position: toast.POSITION.TOP_CENTER,
         });
       }
-      const { data } = await http.post(`${url}/reset`, userObj);
+      const { data } = await http.post(`/auth/reset`, userObj);
       const messageDispatch = data.data[0].message;
       return toast.info(`${messageDispatch}`, {
         type: toast.TYPE.INFO,

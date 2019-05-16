@@ -31,6 +31,7 @@ const props = {
   fetchBookmarks: jest.fn(),
   bookmarkedArticles: bookmarkObj,
   updateProfile: jest.fn(),
+  getSuggestions: jest.fn(),
 };
 
 const ProfilepageComponent = (

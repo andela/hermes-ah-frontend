@@ -38,7 +38,7 @@ SuggestedArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
-  readingTime: PropTypes.string.isRequired,
+  readingTime: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
 };
 
