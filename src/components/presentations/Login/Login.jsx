@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import React from 'react';
 import FormComponent from '../../shared/Form/Form';
 import Loader from '../../shared/Loader/Loader';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Login extends FormComponent {
   constructor(props) {
@@ -16,10 +17,7 @@ class Login extends FormComponent {
     e.preventDefault();
     const { data } = this.state;
     const { login: loginUser } = this.props;
-    const { location } = this.props;
-    const { state } = location;
-    const path = state ? state.from.pathname : '/';
-    await loginUser(data, path);
+    await loginUser(data, this.props);
   };
 
   render() {
@@ -27,11 +25,13 @@ class Login extends FormComponent {
     const emailPlaceHolder = 'Email';
     const passwordIdType = 'password';
     const passwordPlaceHolder = 'Password';
-    const { user, isLoadingReducer } = this.props;
+    const { isLoadingReducer, user } = this.props;
+    const { userProfile } = user;
     const { loader } = isLoadingReducer;
-    if (user) return <Redirect to="/" />;
+    if (Object.keys(userProfile).length) return <Redirect to="/" />;
     return (
       <div>
+        <NavBar />
         {loader && <Loader />}
         <React.Fragment>
           <div className="form-wrap">

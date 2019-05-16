@@ -9,13 +9,15 @@ describe('ForgotPssword component', () => {
   });
 
   it('should change state', () => {
-    const wrapper = shallow(
-      <ForgotPassword isLoadingReducer={{ loader: true }} />
-    );
+    const props = {
+      isLoadingReducer: { loader: true },
+      user: { userProfile: {} },
+    };
+    const wrapper = shallow(<ForgotPassword {...props} />);
     expect(wrapper.find('div'));
     expect(wrapper.state('data')).toEqual({
       email: '',
     });
-    wrapper.setProps({ isLoading: true });
+    wrapper.setProps({ loader: false });
   });
 });

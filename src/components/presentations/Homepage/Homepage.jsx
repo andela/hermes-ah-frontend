@@ -9,6 +9,7 @@ import UserHomepageContainer from '../../containers/user-homepage.container';
 import CookieBanner from '../CookieBanner/CookieBanner';
 import Loader from '../../shared/Loader/Loader';
 import './homepage.scss';
+import NavBar from '../../shared/NavBar/NavBar';
 
 class Homepage extends Component {
   constructor(props) {
@@ -20,11 +21,9 @@ class Homepage extends Component {
     const redirect = () => {
       window.location = '/logout';
     };
-    const { getAllArticles: articles, confirmAccount } = this.props;
+    const { getAllArticles: articles, confirmAccount, location } = this.props;
     articles();
-    const token = new URLSearchParams(
-      document.location.search.substring(1)
-    ).get('token');
+    const token = location.search.split('=')[1];
     if (token) {
       const message = await confirmAccount(token);
       if (message === 'Account verification was successful') {
@@ -41,6 +40,7 @@ class Homepage extends Component {
 
   render() {
     const { articles, isLoadingReducer, user } = this.props;
+    const { userProfile } = user;
     const { loader } = isLoadingReducer;
     const { articleData } = articles;
     const sortedArticle = articleData.sort(
@@ -51,9 +51,10 @@ class Homepage extends Component {
     const limit = sortedArticle.slice(0, 3);
     return (
       <React.Fragment>
+        <NavBar />
         <CookieBanner />
         {loader && <Loader />}
-        {user ? (
+        {Object.keys(userProfile).length ? (
           <UserHomepageContainer />
         ) : (
           <React.Fragment>
@@ -112,18 +113,25 @@ class Homepage extends Component {
 }
 
 Homepage.defaultProps = {
-  user: null,
+  user: PropTypes.shape({
+    userProfile: null,
+  }),
 };
 
 Homepage.propTypes = {
+  location: PropTypes.shape().isRequired,
   articles: PropTypes.shape({
     isLoading: PropTypes.bool,
     articleData: PropTypes.arrayOf(PropTypes.shape),
   }).isRequired,
-  isLoadingReducer: PropTypes.shape({}).isRequired,
+  isLoadingReducer: PropTypes.shape({
+    loader: PropTypes.bool,
+  }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
   confirmAccount: PropTypes.func.isRequired,
-  user: PropTypes.shape(Object),
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape({}),
+  }),
 };
 
 export default Homepage;

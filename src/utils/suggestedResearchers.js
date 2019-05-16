@@ -1,6 +1,6 @@
 import http from './httpService';
 
-const getProfile = async id => {
+const getUserProfile = async id => {
   const { data } = await http.get(`/profile/${id}`);
   return data;
 };
@@ -19,7 +19,7 @@ const returnProfileOfResearchers = async () => {
 
   const uniq = [...new Set(id)];
   uniq.forEach(async item => {
-    const profile = await getProfile(item);
+    const profile = await getUserProfile(item);
     arr.push(profile);
   });
 

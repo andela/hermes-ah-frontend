@@ -29,14 +29,14 @@ class Userprofile extends Component {
   render() {
     const { checked } = this.state;
     const {
-      userProfile: userProps,
+      user,
       isReviewer,
       reportedArticles,
       updateProfile,
       articles,
     } = this.props;
     const { reportedArticle: profileReports } = reportedArticles;
-    const { userProfile, suggestedResearchers } = userProps;
+    const { userProfile, suggestedResearchers } = user;
     const { profile } = userProfile;
     const { articleData } = articles;
 
@@ -139,10 +139,19 @@ class Userprofile extends Component {
   }
 }
 
+Userprofile.defaultProps = {
+  isReviewer: false,
+};
+
 Userprofile.propTypes = {
-  userProfile: PropTypes.shape().isRequired,
-  articles: PropTypes.shape().isRequired,
-  isReviewer: PropTypes.bool.isRequired,
+  user: PropTypes.shape({
+    userProfile: PropTypes.shape({}),
+    suggestedResearchers: PropTypes.array,
+  }).isRequired,
+  articles: PropTypes.shape({
+    articleData: PropTypes.array,
+  }).isRequired,
+  isReviewer: PropTypes.bool,
   getReportedArticle: PropTypes.func.isRequired,
   reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
