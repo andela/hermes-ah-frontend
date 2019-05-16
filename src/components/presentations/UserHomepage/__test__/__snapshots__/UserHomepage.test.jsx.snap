@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`userHomePage component should match snapshot 1`] = `ShallowWrapper {}`;
+
+exports[`userHomePage component should render without crashing 1`] = `undefined`;

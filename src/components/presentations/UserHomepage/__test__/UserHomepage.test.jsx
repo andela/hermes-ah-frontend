@@ -37,6 +37,7 @@ describe('userHomePage component', () => {
   it('should render without crashing', () => {
     const wrapper = shallow(<UserHomepage {...articleReducer} />);
     expect(wrapper.find('Item'));
+    expect(wrapper.instance().onLikeClick(1)).toMatchSnapshot();
   });
 
   it('should render ArticleCard without crashing', () => {
