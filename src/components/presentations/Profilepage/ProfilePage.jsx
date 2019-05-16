@@ -9,8 +9,8 @@ import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
-import Following from '../UserFollwing/Following/Following';
-import Followee from '../UserFollwing/Followee/Followee';
+import Following from '../UserFollowing/Following/Following';
+import Followee from '../UserFollowing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 import NavBar from '../../shared/NavBar/NavBar';
 

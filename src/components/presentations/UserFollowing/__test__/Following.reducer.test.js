@@ -28,13 +28,26 @@ describe('following reducers', () => {
     ).toEqual({});
   });
 
-  // it('should handle UNFOLLOW_SUCCESS', () => {
-  //   expect(
-  //     followingReducer([], {
-  //       type: types.UNFOLLOW_SUCCESS,
-  //     })
-  //   ).toEqual({});
-  // });
+  it('should handle UNFOLLOW_SUCCESS', () => {
+    const state = {
+      userFollowing: [{ id: 'abc', followee_id: 'jkl' }, { id: 'jkl' }],
+      unFollowedUser: '',
+    };
+
+    const newState = followingReducer(state, {
+      type: types.UNFOLLOW_SUCCESS,
+      unFollowedUser: {
+        user: {
+          id: 'jkl',
+        },
+      },
+    });
+
+    expect(newState).toEqual({
+      userFollowing: [{ id: 'jkl' }],
+      unFollowedUser: { user: { id: 'jkl' } },
+    });
+  });
 
   it('should handle UNFOLLOW_FAILURE', () => {
     expect(
