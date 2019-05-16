@@ -40,7 +40,7 @@
             padding: 15px;
             outline: none;
             background: $primary-color;
-            color: #fff;
+            color: #ffffff;
         }
     
         margin: auto 5px;
@@ -54,5 +54,28 @@
         margin: 5px;
         outline: none;
     }
+    .admin-btn button .text {
+        font-size: 14px;
+    }
     
 }
+@media screen and (max-width: 480px){
+    .text {
+        font-size: 13px;
+    }
+    .admin-btn-active{
+        button{
+            height: 70%;
+            cursor: pointer;
+            border: none;
+            font-size: 10px;
+            padding: 15px;
+            outline: none;
+            color: #ffffff;
+            font-size: 13px;
+        }
+    
+        margin: auto 5px;
+    }
+}
+

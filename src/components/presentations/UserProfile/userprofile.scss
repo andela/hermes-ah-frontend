@@ -1,7 +1,7 @@
 @import '../../../assets/stylesheets/index.scss'; 
 
 .profile-card{
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     text-align: left;
     width: 100%;
     margin: 20px auto;
@@ -28,7 +28,7 @@
 
 
 .report-profile-card{
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     text-align: left;
     width: 100%;
     margin: 20px auto;
@@ -50,7 +50,7 @@
 }
 
 .sgg-profile-card{
-    border: 1px solid lightgrey;
+    border: 1px solid #d3d3d3;
     text-align: left;
     width: 100%;
     margin: 20px auto;
@@ -86,6 +86,10 @@
         margin: 0;
         margin-bottom: 10px;
     }
+}
+
+.small-text{
+    font-size: 1rem;
 }
 
 

@@ -14,8 +14,8 @@ import Profilepage from './components/containers/profile.container';
 import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
+import NewArticle from './components/containers/newArticle.container';
 import AdminPage from './components/containers/admin.container';
-import NewArticle from './components/presentations/NewArticle/NewArticle';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
 import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
 import './assets/stylesheets/index.scss';
@@ -28,6 +28,11 @@ const App = () => {
           <ToastContainer autoClose={false} />
           <Switch>
             <ProtectedRoute exact path="/profile/" component={Profilepage} />
+            <ProtectedRoute
+              exact
+              path="/create-article/"
+              component={NewArticle}
+            />
             <Route path="/about/" exact component={AboutPage} />
             <Route path="/create-article/" exact component={NewArticle} />
             <Route path="/forgot-password/" exact component={ForgotPassword} />

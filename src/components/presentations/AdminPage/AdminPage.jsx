@@ -4,6 +4,7 @@ import AdminTab from '../AdminTab/AdminTab';
 import RequestList from '../ReviewerRequests/Requests/Requests';
 import NavBar from '../../shared/NavBar/NavBar';
 import ReviewedArticles from '../ReviewedArticles/ReviewedArticles';
+import ReportedArticles from './ReportedArticles';
 
 class AdminPage extends Component {
   constructor(props) {
@@ -14,8 +15,9 @@ class AdminPage extends Component {
   }
 
   componentDidMount = () => {
-    const { getUserRequests } = this.props;
+    const { getUserRequests, getReportedArticle } = this.props;
     getUserRequests();
+    getReportedArticle();
   };
 
   changeTab = tab => {
@@ -24,20 +26,18 @@ class AdminPage extends Component {
 
   render() {
     const { currentTab } = this.state;
-    const { userRequests } = this.props;
+    const { userRequests, reportedArticle } = this.props;
     return (
       <React.Fragment>
         <NavBar />
         <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
-        <div className="profile-content">
+        <div className="admin-content">
           {currentTab === 'request-section' ? (
             <RequestList userRequests={userRequests} />
           ) : null}
           {currentTab === 'article-section' ? <ReviewedArticles /> : null}
           {currentTab === 'reported-section' ? (
-            <div>
-              <p>This is a section for reported articles</p>
-            </div>
+            <ReportedArticles reportedArticle={reportedArticle} />
           ) : null}
         </div>
       </React.Fragment>
@@ -45,11 +45,12 @@ class AdminPage extends Component {
   }
 }
 AdminPage.defaultProps = {
-  getUserRequests: null,
   userRequests: null,
 };
 AdminPage.propTypes = {
-  getUserRequests: PropTypes.shape(),
+  getUserRequests: PropTypes.func.isRequired,
+  getReportedArticle: PropTypes.func.isRequired,
+  reportedArticle: PropTypes.arrayOf(PropTypes.shape).isRequired,
   userRequests: PropTypes.shape(),
 };
 

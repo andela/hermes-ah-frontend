@@ -4,8 +4,7 @@ import reportedArticleAction from '../../actions/reported.actions';
 import profileAction from '../../actions/profile.action';
 
 const { updateProfile, getSuggestions } = profileAction;
-
-const { getReportedArticle } = reportedArticleAction;
+const { getReportedArticle, requestReview } = reportedArticleAction;
 
 const mapStateToProps = ({ user, reportedArticles, articles }) => ({
   user,
@@ -15,7 +14,7 @@ const mapStateToProps = ({ user, reportedArticles, articles }) => ({
 
 const UserprofileContainer = connect(
   mapStateToProps,
-  { getReportedArticle, updateProfile, getSuggestions }
+  { getReportedArticle, updateProfile, getSuggestions, requestReview }
 )(Userprofile);
 
 export default UserprofileContainer;

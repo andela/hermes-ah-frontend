@@ -2,8 +2,6 @@ import actions from '../constants/followee.constants';
 import http from '../utils/httpService';
 import exceptionHandler from '../utils/exceptionHandler';
 
-const url = '/followers';
-
 export const getFolloweeSuccess = followee => {
   return {
     type: actions.FETCH_FOLLOWEE_SUCCESS,
@@ -20,7 +18,7 @@ export const getFolloweeFailure = () => {
 const getFollowee = () => {
   return async dispatch => {
     try {
-      const followee = await http.get(`${url}`);
+      const followee = await http.get(`/followers`);
       return dispatch(getFolloweeSuccess(followee.data.followers));
     } catch (error) {
       return exceptionHandler(error);

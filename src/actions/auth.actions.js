@@ -5,8 +5,6 @@ import { setToken, removeToken } from '../utils/authService';
 import actionTypes from '../constants/auth.constants';
 import contentLoading from './loading.action';
 
-const url = '/auth';
-
 export const loginError = () => ({
   type: actionTypes.LOGIN_FAILURE,
 });
@@ -22,7 +20,7 @@ export const login = (userObj, props) => {
     }
     dispatch(contentLoading());
     try {
-      const { data } = await http.post(`${url}/login`, userObj);
+      const { data } = await http.post(`/auth/login`, userObj);
       const { user } = data;
       const { token } = user;
       setToken(token);
@@ -45,7 +43,7 @@ export const signup = userObj => {
     }
     dispatch(contentLoading());
     try {
-      const { data } = await http.post(`${url}/signup`, userObj);
+      const { data } = await http.post(`/auth/signup`, userObj);
       const { user } = data;
       const { token } = user;
       setToken(token);
@@ -62,7 +60,7 @@ export const confirmAccount = token => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const { data } = await http.patch(`${url}/verification/${token}`);
+      const { data } = await http.patch(`/auth/verification/${token}`);
       const { message } = data;
       return message;
     } catch (ex) {

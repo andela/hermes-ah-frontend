@@ -6,7 +6,7 @@ const validateImage = file => {
     message = 'Invalid picture format';
   }
 
-  if (file && parseFloat(file.size) > 2000000) {
+  if (file && parseFloat(file.size) > 2097152) {
     valid = false;
     message = 'File size exceeds 2MB';
   }

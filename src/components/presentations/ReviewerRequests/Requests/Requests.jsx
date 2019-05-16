@@ -7,10 +7,9 @@ const RequestList = ({ userRequests }) => {
   const { userRequests: allUsersRequest } = userRequests;
   return (
     <div>
-      <p className="Reviewers_title">Reviewer Requests</p>
-      <div className="main-grid">
-        {allUsersRequest.length &&
-          allUsersRequest.map(user => (
+      <div className="main_page_title">
+        <div className="main-grid">
+          {allUsersRequest.map(user => (
             <ReviewerRequestCard
               key={user.user_id}
               imageUrl={user.User.image_url}
@@ -18,12 +17,14 @@ const RequestList = ({ userRequests }) => {
                 .charAt(0)
                 .toUpperCase()}${user.User.last_name.charAt(0).toUpperCase()}`}
               name={`${user.User.first_name} ${user.User.last_name}`}
+              bio={user.User.bio}
               button="Accept"
               button1="reject"
               btnClass="btn-accept"
               btnClass1="btn-reject"
             />
           ))}
+        </div>
       </div>
     </div>
   );

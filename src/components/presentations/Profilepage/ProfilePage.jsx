@@ -9,8 +9,8 @@ import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
 import Articles from '../UserArticles/Articles';
-import Following from '../UserFollwing/Following/Following';
-import Followee from '../UserFollwing/Followee/Followee';
+import Following from '../UserFollowing/Following/Following';
+import Followee from '../UserFollowing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 import NavBar from '../../shared/NavBar/NavBar';
 
@@ -38,6 +38,11 @@ class Profilepage extends Component {
     getFollowee();
     getFollowing();
     fetchBookmarks();
+  };
+
+  unFollowClick = async e => {
+    const { unFollowUser } = this.props;
+    await unFollowUser(e.target.id);
   };
 
   changeTab = tab => {
@@ -79,7 +84,6 @@ class Profilepage extends Component {
 
     const { userProfile } = user;
     const { profile } = userProfile;
-
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
@@ -109,7 +113,10 @@ class Profilepage extends Component {
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
-            <Following userFollowing={userFollowing} />
+            <Following
+              userFollowing={userFollowing}
+              unFollow={this.unFollowClick}
+            />
           ) : null}
           {currentTab === 'followers-section' ? (
             <Followee userFollowee={userFollowee} />
@@ -143,6 +150,8 @@ Profilepage.propTypes = {
   articlesUpdate: PropTypes.shape({
     articles: PropTypes.array,
   }).isRequired,
+  getProfile: PropTypes.func.isRequired,
+  unFollowUser: PropTypes.func.isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
@@ -152,7 +161,6 @@ Profilepage.propTypes = {
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
-  getProfile: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
