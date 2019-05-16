@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: row;
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
     p {
       font-weight: bold;
       span {
@@ -38,7 +38,7 @@
   }
   .reviewr-commt {
     span {
-      font-weight: bolder;
+      font-weight: bold;
     }
     p {
       font-weight: 100;
@@ -87,6 +87,11 @@
     }
 
   }
+}
+
+.admin-content {
+  width: 95%;
+  margin: 0 auto;
 }
 
 @media (min-width: 480px) and (max-width: 768px) {
