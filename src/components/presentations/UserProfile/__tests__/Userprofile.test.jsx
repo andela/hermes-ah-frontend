@@ -36,9 +36,4 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(UserprofileComponent);
     expect(wrapper.find('div'));
   });
-
-  it('should change state', () => {
-    const wrapper = shallow(<Userprofile {...props} />);
-    expect(wrapper.state('checked')).toBe(false);
-  });
 });
