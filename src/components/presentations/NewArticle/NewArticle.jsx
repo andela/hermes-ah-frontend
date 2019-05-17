@@ -85,12 +85,6 @@ class NewArticle extends Component {
       category: articleInput.category,
     };
     await postArticle(data);
-
-    const { success, history } = this.props;
-    if (success) {
-      toast.success('Your article has been successfully published');
-      history.push('/');
-    }
   };
 
   render() {
@@ -112,14 +106,8 @@ class NewArticle extends Component {
   }
 }
 
-NewArticle.defaultProps = {
-  success: false,
-};
-
 NewArticle.propTypes = {
   postArticle: PropTypes.func.isRequired,
-  success: PropTypes.bool,
-  history: PropTypes.shape().isRequired,
 };
 
 export default NewArticle;

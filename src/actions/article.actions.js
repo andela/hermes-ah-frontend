@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
@@ -40,9 +41,11 @@ export const postArticle = data => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const article = await http.post(`/article`, data);
+      const { data: articles } = await http.post(`/article`, data);
       dispatch(postArticleSuccess());
-      return article;
+      toast.success(articles.message);
+      window.location = '/';
+      return articles;
     } catch (err) {
       dispatch(postArticleError());
       return exceptionHandler(err);
