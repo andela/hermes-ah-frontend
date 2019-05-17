@@ -6,6 +6,8 @@ import actions, {
   getProfileSuccess,
   updateProfileFailure,
   updateProfileSuccess,
+  fetchSuggestedResearchersFailure,
+  fetchSuggestedResearchersSuccess,
 } from '../../../../actions/profile.action';
 import types from '../../../../constants/profile.constants';
 
@@ -151,6 +153,36 @@ describe('auth actions', () => {
     const store = mockStore({});
 
     store.dispatch(actions.updateProfile());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to fetch suggested researchers', async () => {
+    const expectedAction = [
+      {
+        type: types.FETCH_SUGGESTED_RESEARCHERS_SUCCESS,
+        researchers: { firstname: 'sam', lastname: 'peter' },
+      },
+    ];
+    const store = mockStore({});
+
+    const dummyProfile = {
+      firstname: 'sam',
+      lastname: 'peter',
+    };
+
+    store.dispatch(fetchSuggestedResearchersSuccess(dummyProfile));
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to fetch suggested researchers failure', async () => {
+    const expectedAction = [
+      {
+        type: types.FETCH_SUGGESTED_RESEARCHERS_FAILURE,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(fetchSuggestedResearchersFailure());
     expect(store.getActions()).toEqual(expectedAction);
   });
 });
