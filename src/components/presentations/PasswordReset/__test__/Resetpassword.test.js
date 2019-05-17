@@ -73,9 +73,6 @@ describe('auth actions', () => {
       {
         type: loadingConstant.CONTENT_LOADING,
       },
-      // {
-      //   type: types.RESET_PASSWORD_FAILURE,
-      // },
     ];
 
     const store = mockStore({});
