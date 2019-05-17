@@ -9,6 +9,8 @@ import {
 import loginConstant from '../../../../constants/loading.constants';
 import types from '../../../../constants/auth.constants';
 
+jest.setTimeout(10000);
+
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 describe('auth actions', () => {

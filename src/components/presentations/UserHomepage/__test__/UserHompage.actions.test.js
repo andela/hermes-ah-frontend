@@ -48,7 +48,7 @@ describe('article actions', () => {
   });
 
   it('should create an action for getting all articles', async () => {
-    fetchMock.mock(
+    await fetchMock.mock(
       '/api/v1/articles',
       {
         status: 200,

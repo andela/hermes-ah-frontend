@@ -1,7 +1,7 @@
 import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
-import actionTypes from '../constants/resetPassword.contants';
+import actionTypes from '../constants/resetPassword.constants';
 import contentLoading from './loading.action';
 
 export const resetPasswordSuccess = () => ({
@@ -11,6 +11,7 @@ export const resetPasswordSuccess = () => ({
 export const resetPasswordFailure = () => ({
   type: actionTypes.RESET_PASSWORD_FAILURE,
 });
+
 const redirect = () => {
   window.location = '/login';
 };

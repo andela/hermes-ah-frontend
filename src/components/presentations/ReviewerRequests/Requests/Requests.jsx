@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import ReviewerRequestCard from '../ReviewersCard/Reviewers-card';
 import '../ReviewersCard/reviewers-card.scss';
 
-const RequestList = ({ userRequests }) => {
-  const { userRequests: allUsersRequest } = userRequests;
+const RequestList = props => {
+  const { userRequests } = props;
   return (
     <div>
       <div className="main_page_title">
         <div className="main-grid">
-          {allUsersRequest.map(user => (
+          {userRequests.map(user => (
             <ReviewerRequestCard
               key={user.user_id}
               imageUrl={user.User.image_url}
@@ -30,8 +30,12 @@ const RequestList = ({ userRequests }) => {
   );
 };
 
+RequestList.defaultProps = {
+  userRequests: [],
+};
+
 RequestList.propTypes = {
-  userRequests: PropTypes.shape().isRequired,
+  userRequests: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default RequestList;

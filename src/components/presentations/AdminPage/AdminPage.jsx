@@ -46,13 +46,14 @@ class AdminPage extends Component {
   }
 }
 AdminPage.defaultProps = {
-  userRequests: null,
+  userRequests: [],
+  reportedArticle: [],
 };
 AdminPage.propTypes = {
   getUserRequests: PropTypes.func.isRequired,
   getReportedArticle: PropTypes.func.isRequired,
-  reportedArticle: PropTypes.arrayOf(PropTypes.shape).isRequired,
-  userRequests: PropTypes.shape(),
+  reportedArticle: PropTypes.arrayOf(PropTypes.shape),
+  userRequests: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default AdminPage;

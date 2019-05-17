@@ -126,6 +126,33 @@ const articleCardProps = {
   paragraph: 'paragraph',
 };
 
+const reportedArticleProps = [
+  {
+    topic: 'fadad',
+    status: 'sfsf',
+    reason: 'fsdsds',
+  },
+];
+
+const reviewedArticleProps = [
+  {
+    topic: 'string',
+    abstract: 'string',
+    reviewedBy: 'string',
+    comment: 'string',
+    dateReviewed: 'string',
+  },
+];
+
+const reviewerRequestProps = [
+  {
+    imageUrl: 'string',
+    name: 'string',
+    bio: 'string',
+    initials: 'string',
+  },
+];
+
 const mock = {
   article,
   bookmarkedArticles,
@@ -139,6 +166,9 @@ const mock = {
   articleReducer,
   articleCardProps,
   userProfileReducer,
+  reportedArticleProps,
+  reviewedArticleProps,
+  reviewerRequestProps,
 };
 
 export default mock;
