@@ -38,7 +38,7 @@ describe('AdminPage component', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render ReviewerRequest without crashing', () => {
+  it('should render Admin page without crashing', () => {
     const wrapper = shallow(<AdminPage {...props} />);
     expect(wrapper.find('NavBar'));
   });
