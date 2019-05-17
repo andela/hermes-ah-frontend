@@ -5,6 +5,7 @@ import RequestList from '../ReviewerRequests/Requests/Requests';
 import NavBar from '../../shared/NavBar/NavBar';
 import ReviewedArticles from '../ReviewedArticles/ReviewedArticles';
 import ReportedArticles from './ReportedArticles';
+import './admin.scss';
 
 class AdminPage extends Component {
   constructor(props) {
