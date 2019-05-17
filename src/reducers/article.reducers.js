@@ -4,13 +4,11 @@ const initialState = {
   articleData: [],
 };
 
-const updateArticle = (articleId, article) => {
-  const currentArticle = article.filter(x => x.id === articleId);
-  const newArticles = article.filter(x => x.id !== articleId);
-  let likes = currentArticle[0].likes_count;
-  likes += 1;
-  currentArticle[0].likes_count = likes;
-  return [...newArticles, currentArticle[0]];
+const updateArticle = (articleId, articles) => {
+  const [currentArticle] = articles.filter(x => x.id === articleId);
+  const newArticles = articles.filter(x => x.id !== articleId);
+  currentArticle.likes_count += 1;
+  return [...newArticles, currentArticle];
 };
 
 const articles = (state = initialState, action) => {
