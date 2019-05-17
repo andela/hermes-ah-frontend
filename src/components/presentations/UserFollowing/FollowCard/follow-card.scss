@@ -5,11 +5,11 @@ p {
 }
 .main-card {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   text-align: left;
   width: 95%;
   margin: 10px;
-  padding: 10px;
+  padding: 10px 45px;
   float: left;
   overflow: auto;
   border: solid 1px #e8e7e7;
@@ -104,6 +104,7 @@ p {
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 10px;
 
     .details {
       flex-direction: column;
