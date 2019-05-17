@@ -6,6 +6,7 @@ const articles = [
   {
     id: 1,
     title: 'This is a wild fish',
+    author: 'Akinwale Samuel',
     abstract: 'June 3 2019',
     image:
       'https://res.cloudinary.com/walsam/image/upload/v1556790931/robotics.jpg',
@@ -14,6 +15,7 @@ const articles = [
   {
     id: 2,
     title: 'There is a way that seem right to many',
+    author: 'Anayo Oleru',
     abstract: 'December 22 2019',
     image:
       'https://res.cloudinary.com/walsam/image/upload/v1556790931/robotics.jpg',
@@ -26,6 +28,7 @@ const ArticleComponent = (
     {articles.map(item => (
       <Article
         key={item.id}
+        author={item.author}
         title={item.title}
         abstract={item.abstract}
         image={item.image}
