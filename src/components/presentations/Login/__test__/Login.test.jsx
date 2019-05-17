@@ -19,4 +19,13 @@ describe('Login component', () => {
       password: '',
     });
   });
+  it('test handle click function', () => {
+    const props = {
+      isLoadingReducer: { loader: true },
+      user: { userProfile: {} },
+    };
+    const wrapper = shallow(<Login {...props} />);
+    const event = { preventDefault: jest.fn() };
+    expect(wrapper.instance().handelClick(event));
+  });
 });

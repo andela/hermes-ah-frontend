@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Item } from 'semantic-ui-react';
+import { Item, Button } from 'semantic-ui-react';
+import { decodeToken } from '../../../utils/authService';
 import './popular-article-card.scss';
 
-const PopularArticleCard = ({ title, author, date, likes, num }) => (
+const PopularArticleCard = ({ title, author, date, likes, num, onClick }) => (
   <Item.Group>
     <Item>
       <Item.Header className="header-num" as="h1">
@@ -15,13 +16,21 @@ const PopularArticleCard = ({ title, author, date, likes, num }) => (
           <p className="author-name">{author}</p>
         </Item.Extra>
         <Item.Extra>
-          <p>
+          <div>
             {new Date(date).toDateString()}
             &nbsp; &nbsp; &nbsp;
-            <i className="far fa-thumbs-up" />
-            &nbsp;
-            {likes}
-          </p>
+            {decodeToken() && (
+              <React.Fragment>
+                <Button onClick={onClick}>
+                  <i className="far fa-thumbs-up" />
+                </Button>
+                <p>
+                  &nbsp;
+                  {likes}
+                </p>
+              </React.Fragment>
+            )}
+          </div>
         </Item.Extra>
       </Item.Content>
     </Item>
@@ -39,6 +48,7 @@ PopularArticleCard.propTypes = {
   author: PropTypes.string.isRequired,
   date: PropTypes.string,
   likes: PropTypes.number,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PopularArticleCard;
