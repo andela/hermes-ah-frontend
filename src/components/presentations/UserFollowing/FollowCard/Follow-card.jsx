@@ -14,16 +14,18 @@ const Follow = ({
 }) => {
   return (
     <div className="main-card">
-      <div className="img-section">
-        {imageUrl ? (
-          <img className="profile-pic" src={imageUrl} alt="" />
-        ) : (
-          <p className="initials">{initials}</p>
-        )}
-      </div>
-      <div className="highlights">
-        <p className="name">{name}</p>
-        <p>{bio}</p>
+      <div className="details">
+        <div className="img-section">
+          {imageUrl ? (
+            <img className="profile-pic" src={imageUrl} alt="" />
+          ) : (
+            <p className="initials">{initials}</p>
+          )}
+        </div>
+        <div className="highlights">
+          <p className="name">{name}</p>
+          <p>{bio}</p>
+        </div>
       </div>
       <div className="button-div">
         <button
