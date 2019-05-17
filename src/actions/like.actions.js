@@ -3,8 +3,6 @@ import exceptionHandler from '../utils/exceptionHandler';
 import actionTypes from '../constants/article.constants';
 import http from '../utils/httpService';
 
-const url = '/likes';
-
 export const likeSuccess = (articleId, article) => ({
   type: actionTypes.LIKE_SUCCESS,
   articleId,
@@ -20,7 +18,7 @@ export const likeArticle = (articleId, article) => {
   return async dispatch => {
     try {
       dispatch(likeSuccess(articleId, article));
-      const { data: result } = await http.post(`${url}/${articleId}`);
+      const { data: result } = await http.post(`/likes/${articleId}`);
       const { data } = result;
       if (!data.like) {
         dispatch(likeFailure(article));
