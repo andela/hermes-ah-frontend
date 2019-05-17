@@ -119,10 +119,10 @@
      .ui.button:nth-child(1){
         margin-left: 9%;
      }
-     .ui.button:nth-child(1):hover{
-        background-color:$primary-color; 
-        color:rgba(255, 255, 255, 0.15); 
-     }
+    //  .ui.button:nth-child(1):hover{
+    //     background-color:$primary-color; 
+    //     color:rgba(255, 255, 255, 0.15); 
+    //  }
      .cancel-button {
         background-color:$primary-color; 
         color:rgba(255, 255, 255, 0.15); 
@@ -130,6 +130,7 @@
      
     .ui.basic.blue.button {
          color: $primary-color; 
+         margin: 1%;
      }
      .ui.button:hover {
         background-color:rgba(255, 255, 255, 0.15); 
