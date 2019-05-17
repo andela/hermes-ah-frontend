@@ -1,7 +1,6 @@
 import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
-import { setToken } from '../utils/authService';
 import actionTypes from '../constants/resetPassword.contants';
 import contentLoading from './loading.action';
 
@@ -15,13 +14,13 @@ export const resetPasswordFailure = () => ({
 const redirect = () => {
   window.location = '/login';
 };
-export const resetPassword = (newPassword, props) => {
+export const resetPassword = (newPassword, token) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const token = props.location.search.split('=')[1];
-      setToken(token);
-      await http.patch(`/new-password?token=${token}`, newPassword);
+      await http.patch(`/new-password?token=${token}`, newPassword, {
+        headers: { Authorization: token },
+      });
       toast.info(
         'You have successfully reset your password. Click here to login',
         {
