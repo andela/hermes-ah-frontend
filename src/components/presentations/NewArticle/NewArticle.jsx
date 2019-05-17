@@ -85,14 +85,15 @@ class NewArticle extends Component {
       category: articleInput.category,
     };
     await postArticle(data);
-  };
 
-  render() {
     const { success, history } = this.props;
     if (success) {
       toast.success('Your article has been successfully published');
       history.push('/');
     }
+  };
+
+  render() {
     const { editorState } = this.state;
     return (
       <React.Fragment>
