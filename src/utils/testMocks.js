@@ -96,6 +96,7 @@ const articleReducer = {
     ],
   },
   getAllArticles: jest.fn(),
+  likeArticle: jest.fn(),
 };
 
 const userProfileReducer = {
