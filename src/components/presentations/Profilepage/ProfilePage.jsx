@@ -45,6 +45,12 @@ class Profilepage extends Component {
     await unFollowUser(e.target.id);
   };
 
+  followClick = async e => {
+    const { followUser, getFollowing } = this.props;
+    await followUser(e.target.id);
+    getFollowing();
+  };
+
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
@@ -119,7 +125,7 @@ class Profilepage extends Component {
             />
           ) : null}
           {currentTab === 'followers-section' ? (
-            <Followee userFollowee={userFollowee} />
+            <Followee userFollowee={userFollowee} follow={this.followClick} />
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
@@ -152,6 +158,7 @@ Profilepage.propTypes = {
   }).isRequired,
   getProfile: PropTypes.func.isRequired,
   unFollowUser: PropTypes.func.isRequired,
+  followUser: PropTypes.func.isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,

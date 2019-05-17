@@ -9,7 +9,7 @@ const Follow = ({
   bio,
   button,
   btnClass,
-  followeeId,
+  Id,
   buttonEvent,
 }) => {
   return (
@@ -28,7 +28,7 @@ const Follow = ({
       <div className="button-div">
         <button
           type="submit"
-          id={followeeId}
+          id={Id}
           onClick={buttonEvent}
           className={btnClass}
         >
@@ -46,7 +46,7 @@ Follow.propTypes = {
   button: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  followeeId: PropTypes.string.isRequired,
+  Id: PropTypes.string.isRequired,
   buttonEvent: PropTypes.func.isRequired,
 };
 

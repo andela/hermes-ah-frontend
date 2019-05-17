@@ -16,7 +16,7 @@ const FollowingList = ({ userFollowing, unFollow }) => {
             .toUpperCase()}${user.followee.last_name.charAt(0).toUpperCase()}`}
           name={`${user.followee.first_name} ${user.followee.last_name}`}
           bio={`${user.followee.bio.substring(0, 100)}...`}
-          followeeId={user.followee_id}
+          Id={user.followee_id}
           button="unfollow"
           btnClass="btn-following"
           buttonEvent={unFollow}

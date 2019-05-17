@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FollowingCard from '../FollowCard/Follow-card';
 import '../FollowCard/follow-card.scss';
 
-const FolloweeList = ({ userFollowee }) => {
+const FolloweeList = ({ userFollowee, follow }) => {
   const { userFollowee: followee } = userFollowee;
   return (
     <div className="grid-render">
@@ -16,8 +16,10 @@ const FolloweeList = ({ userFollowee }) => {
             .toUpperCase()}${user.follower.last_name.charAt(0).toUpperCase()}`}
           name={`${user.follower.first_name} ${user.follower.last_name}`}
           bio={`${user.follower.bio.substring(0, 100)}...`}
+          Id={user.follower_id}
           button="follow"
           btnClass="btn-follower"
+          buttonEvent={follow}
         />
       ))}
     </div>
@@ -28,6 +30,7 @@ FolloweeList.propTypes = {
   userFollowee: PropTypes.shape({
     userFollowee: PropTypes.array,
   }).isRequired,
+  follow: PropTypes.func.isRequired,
 };
 
 export default FolloweeList;
