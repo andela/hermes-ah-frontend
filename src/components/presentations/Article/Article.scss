@@ -1,3 +1,5 @@
+@import "../../../assets/stylesheets/index.scss";
+
 .section {
   border: 1px solid black;
   height: 300px;
@@ -178,4 +180,112 @@
 @keyframes fadeIn {
   from {opacity: 0;}
   to {opacity:1 ;}
+}
+
+.section{
+    height: auto;
+    margin: 10px;
+}
+
+.article-page{
+    margin: 20px;
+}
+
+.article-container{
+    overflow: unset;
+
+    .article-title{
+        text-transform: capitalize;
+    }
+
+    .btn-follow {
+        background: $primary-color;
+        text-transform: capitalize;
+        padding: 5px 10px;
+        border-radius: 5px;
+        border: solid 1px #fff;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+      }
+  
+      .btn-follow:hover{
+        background: #fff;
+        color: $primary-color;
+        border: solid 1px $primary-color;
+      }
+
+
+    .checked{
+        color: $primary-color;
+      }
+    .article-datail-footer{
+        display: flex;
+    }
+
+    .article-author-detail-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .article-author-details{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        width: 300px;
+        margin: 10px;
+        align-items: center;
+        justify-items: center;
+
+        .article-avatar img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid lightgrey;
+            grid-column: 1/2;
+        }
+
+        .article-avatar{
+            align-self: center;
+        }
+
+        .article-datail{
+            grid-column: 2/3;
+            display: flex;
+            flex-direction: column;
+            align-self: center;
+
+        }
+
+        .article-datail p{
+            margin: 0;
+        }
+
+        .article-btn-follow{
+            grid-column: 3/4;
+        }
+
+    }
+
+    .article-rating-star{
+        justify-self: center;
+        align-self: center;
+    }
+
+    .article-image-container{
+        height: 300px;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .article-image-container img{
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+        object-fit: cover;
+
+    }
+
+    .article-body-container{
+        margin: 20px auto;
+    }
 }
