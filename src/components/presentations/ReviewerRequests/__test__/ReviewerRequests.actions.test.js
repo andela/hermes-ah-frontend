@@ -1,55 +1,56 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import {
-  getAllArticlesSuccess,
-  getAllArticles,
-  getAllArticlesError,
-} from '../../../../actions/article.actions';
-import types from '../../../../constants/article.constants';
+import reviewerRequestAction, {
+  getReviewerRequestsSuccess,
+  getRevieweRequestsFailure,
+} from '../../../../actions/reviewers-request.action';
+import types from '../../../../constants/reviewerRequests.constant';
+
+const { getUserRequests } = reviewerRequestAction;
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-describe('article actions', () => {
+describe('get reviewer request actions', () => {
   afterEach(() => {
     fetchMock.restore();
     fetchMock.config.fallbackToNetwork = false;
   });
 
-  it('should create an action to fetch article success', async () => {
+  it('should create an action get reviewer request success', async () => {
     const expectedAction = [
       {
-        type: types.FETCH_ARTICLES_SUCCESS,
-        articles: { title: 'title', abstract: 'abstract' },
+        type: types.REVIEWER_REQUESTS_SUCCESS,
+        request: { title: 'title', abstract: 'abstract' },
       },
     ];
     const store = mockStore({});
 
-    const dummyArticle = {
+    const request = {
       title: 'title',
       abstract: 'abstract',
     };
 
-    await store.dispatch(getAllArticlesSuccess(dummyArticle));
+    await store.dispatch(getReviewerRequestsSuccess(request));
     expect(store.getActions()).toEqual(expectedAction);
   });
 
-  it('should create an action for article failure', async () => {
+  it('should create an action for get reviewer request failure', async () => {
     const expectedAction = [
       {
-        type: types.FETCH_ARTICLES_FAILURE,
+        type: types.REVIEWER_REQUESTS_FAILURE,
       },
     ];
     const store = mockStore({});
 
-    await store.dispatch(getAllArticlesError());
+    await store.dispatch(getRevieweRequestsFailure());
     expect(store.getActions()).toEqual(expectedAction);
   });
 
-  it('should create an action for getting all articles', async () => {
+  it('should create an action for getting all reviewer request ', async () => {
     await fetchMock.mock(
-      '/api/v1/articles',
+      '/api/v1/admin/reviewer',
       {
         status: 200,
       },
@@ -57,32 +58,28 @@ describe('article actions', () => {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: 'faketoken',
         },
       }
     );
 
-    await fetch('/api/v1/articles', {
+    await fetch('/api/v1/admin/reviewer', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: 'faketoken',
       },
     });
 
     const expectedAction = [
       {
-        type: 'CONTENT_LOADING',
-      },
-      {
-        type: types.FETCH_ARTICLES_SUCCESS,
-      },
-      {
-        type: types.FETCH_ARTICLES_FAILURE,
+        type: types.REVIEWER_REQUESTS_FAILURE,
       },
     ];
 
     const store = mockStore({});
 
-    await store.dispatch(getAllArticles());
+    await store.dispatch(getUserRequests());
     expect(store.getActions()).toMatchObject(expectedAction);
   });
 });

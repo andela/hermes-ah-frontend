@@ -28,13 +28,14 @@ class AdminPage extends Component {
   render() {
     const { currentTab } = this.state;
     const { userRequests, reportedArticle } = this.props;
+    const { userRequests: allUserRequests } = userRequests;
     return (
       <React.Fragment>
         <NavBar />
         <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
         <div className="admin-content">
           {currentTab === 'request-section' ? (
-            <RequestList userRequests={userRequests} />
+            <RequestList userRequests={allUserRequests} />
           ) : null}
           {currentTab === 'article-section' ? <ReviewedArticles /> : null}
           {currentTab === 'reported-section' ? (
@@ -46,12 +47,13 @@ class AdminPage extends Component {
   }
 }
 AdminPage.defaultProps = {
-  userRequests: null,
+  userRequests: {},
+  reportedArticle: [],
 };
 AdminPage.propTypes = {
   getUserRequests: PropTypes.func.isRequired,
   getReportedArticle: PropTypes.func.isRequired,
-  reportedArticle: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  reportedArticle: PropTypes.arrayOf(PropTypes.shape),
   userRequests: PropTypes.shape(),
 };
 

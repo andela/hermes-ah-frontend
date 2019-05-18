@@ -7,7 +7,7 @@ import {
   resetPassword,
 } from '../../../../actions/resetPassword.actions';
 import loadingConstant from '../../../../constants/loading.constants';
-import types from '../../../../constants/resetPassword.contants';
+import types from '../../../../constants/resetPassword.constants';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
