@@ -1,9 +1,181 @@
-.section{
-    border: 1px solid black;
-    height: 300px;
-    margin: 10px;
+.section {
+  border: 1px solid black;
+  height: 300px;
+  margin: 10px;
 }
 
-.article-page{
-    margin: 20px;
+.article-page {
+  margin: 20px;
+
+  // comment card
+  .comment-cont {
+    h3 {
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    .write-comment {
+      .comment-text-wrap {
+        display: flex;
+        flex-direction: row;
+        border: 1px solid #c4c4c4;
+        padding: 10px;
+        align-items: flex-end;
+        .wrap-img-text {
+          flex-grow: 2;
+          display: flex;
+          .image {
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background-position: center;
+              background-size: cover;
+              background-origin: border-box;
+            }
+          }
+          textarea {
+            flex-grow: 2;
+            border: none;
+            height: 100px;
+            outline: none;
+            margin: 10px;
+            font-size: 16px;
+            color: #3f3d56;
+            word-wrap: break-word;
+            word-break: break-all;
+            resize: none;
+          }
+        }
+        .submit-comment {
+          color: #fff;
+          background: #0e71eb;
+          margin: 0;
+          padding: 10px 25px;
+          border: none;
+          height: 35px;
+          border-radius: 5px;
+          cursor: pointer;
+          opacity: 0.85;
+        }
+        .submit-comment:hover {
+          background: #0072ff;
+          transition: 0.3s;
+          opacity: 1;
+        }
+      }
+    }
+
+    .comments-cont-text-content {
+      margin-top: 40px;
+      width: 100%;
+      border: 1px solid #c4c4c4;
+      padding: 10px;
+      .wrap-image-author {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .image-author {
+          display: flex;
+          align-items: flex-start;
+          .commenter-img {
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              background-position: center;
+              background-size: cover;
+              background-origin: border-box;
+            }
+          }
+          .commenter-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 12px;
+            h3 {
+              margin: 0;
+            }
+          }
+        }
+        i.fas.fa-ellipsis-v {
+          font-size: 20px;
+          color: #969696;
+          cursor: pointer;
+        }
+      }
+      .commenter-text {
+        width: 95%;
+        margin: 12px;
+        p {
+          text-align: justify;
+          overflow-wrap: break-word;
+          color: #000;
+        }
+      }
+      .commt-details {
+        display: flex;
+        margin-left: 30px;
+        align-items: center;
+        .last-upd {
+          margin: 0;
+          color: #979797;
+        }
+        span {
+          margin: 0 10px;
+          color: #979797;
+        }
+        .reply {
+          font-weight: 600;
+          cursor: pointer;
+          padding: 0;
+          font-size: 18px;
+          color: #979797;
+        }
+        .reply:hover {
+          color: #0e71eb;
+          transition: 0.2s
+        }
+      }
+      .hide-replies {
+        display: flex;
+        align-items: center;
+        width: 50%;
+        margin: 10px 30px;
+        .line {
+          border: 1px solid #c3c3c3;
+          margin: 0;
+          width: 30%;
+        }
+        button {
+          margin-left: 15px;
+          cursor: pointer;
+          font-weight: 600;
+          background: transparent;
+          border: none;
+          outline: none;
+        }
+        button:hover {
+          color: #0e71eb;
+          transition: 0.2s
+        }
+      }
+    }
+    // nested replies
+    .response {
+      width: 92%;
+      margin: 25px 50px;
+      -webkit-animation: fadeIn 1.5s;
+      animation: fadeIn 1.5s;
+    }
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }

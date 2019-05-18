@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import NavBar from '../../shared/NavBar/NavBar';
+import CommentCard from './CommentCard';
 import './Article.scss';
 
 class ArticlePage extends Component {
@@ -25,7 +26,7 @@ class ArticlePage extends Component {
                     <div className="section">Reading Section</div>
                   </Grid.Column>
                   <Grid.Column>
-                    <div className="section">Comment Section</div>
+                    <CommentCard />
                   </Grid.Column>
                 </Grid.Row>
               </Grid.Column>
