@@ -12,7 +12,6 @@ const { getUserRequests } = reviewerRequestAction;
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-jest.setTimeout(10000);
 describe('get reviewer request actions', () => {
   afterEach(() => {
     fetchMock.restore();

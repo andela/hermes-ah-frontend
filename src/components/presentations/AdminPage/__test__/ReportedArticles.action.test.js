@@ -13,7 +13,6 @@ const { getReportedArticle, requestReview } = reportedArticleAction;
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-jest.setTimeout(10000);
 describe('get reported article actions', () => {
   afterEach(() => {
     fetchMock.restore();
