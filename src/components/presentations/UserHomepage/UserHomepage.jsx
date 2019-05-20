@@ -27,13 +27,11 @@ class UserHomepage extends Component {
     const { articles } = this.props;
     const { articleData } = articles;
 
-    const popularArticles = articleData.sort(
-      (a, b) => b.likes_count - a.likes_count
-    );
+    const popularArticlesLimit = articleData
+      .sort((a, b) => parseInt(b.likes_count, 10) - parseInt(a.likes_count, 10))
+      .slice(0, 3);
 
     const sectionArandomArticle = articleData.sort(() => Math.random() - 0.5);
-
-    const popularArticlesLimit = popularArticles.slice(0, 3);
 
     const sectionBrandomArticle = articleData.sort(() => Math.random() - 0.5);
 
