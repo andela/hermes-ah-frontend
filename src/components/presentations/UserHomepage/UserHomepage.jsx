@@ -17,6 +17,12 @@ class UserHomepage extends Component {
     fetchArticles();
   };
 
+  onLikeClick = articleId => {
+    const { articles, likeArticle } = this.props;
+    const { articleData } = articles;
+    likeArticle(articleId, articleData);
+  };
+
   render() {
     const { articles } = this.props;
     const { articleData } = articles;
@@ -71,6 +77,7 @@ class UserHomepage extends Component {
                     }`}
                     date={elem.createdAt}
                     likes={elem.likes_count}
+                    onClick={() => this.onLikeClick(elem.id)}
                   />
                 ))}
               </Container>
@@ -205,6 +212,7 @@ UserHomepage.propTypes = {
     articleData: PropTypes.array,
   }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
+  likeArticle: PropTypes.func.isRequired,
 };
 
 export default UserHomepage;

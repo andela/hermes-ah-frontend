@@ -20,11 +20,11 @@ export const getReportedArticleFailure = () => {
 
 const getReportedArticle = () => {
   return async dispatch => {
+    if (!navigator.onLine) {
+      toast.error('Please check your internet connection');
+    }
     dispatch(contentLoading());
     try {
-      if (!navigator.onLine) {
-        toast.error('Please check your internet connection');
-      }
       const { data } = await http.get(`/reported-articles`);
       dispatch(getReportedArticleSuccess(data.reportedArticles));
     } catch (error) {

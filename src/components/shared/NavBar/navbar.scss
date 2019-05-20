@@ -136,10 +136,6 @@
       img.logo {
         width: 150px !important;
       }
-      
-      .nav-items {
-        flex-direction: column;
-      }
     }
   }
 }
@@ -150,7 +146,12 @@
       width: 100%;
       flex-direction: column;
       align-items: normal;
-     img.logo {
+      
+      .nav-items {
+        flex-direction: column;
+      }
+
+      img.logo {
        width: 100px !important;
      }
       

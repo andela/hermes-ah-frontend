@@ -5,7 +5,7 @@ import '../author-articles.scss';
 
 const Article = ({ title, date, isDraft }) => {
   let draftStatus;
-  if (isDraft) {
+  if (!isDraft) {
     draftStatus = 'unpublish';
   } else {
     draftStatus = 'publish';

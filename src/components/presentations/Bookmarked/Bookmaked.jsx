@@ -20,6 +20,9 @@ const Bookmarked = ({ bookmarkedArticles }) => {
         <Article
           key={item.article_id}
           title={item.Article.title}
+          author={`${item.Article.author.first_name} ${
+            item.Article.author.last_name
+          }`}
           abstract={item.Article.abstract}
           image={item.Article.image_url}
           readTime={item.Article.reading_time}
@@ -30,14 +33,17 @@ const Bookmarked = ({ bookmarkedArticles }) => {
 };
 
 Bookmarked.propTypes = {
-  bookmarkedArticles: PropTypes.shape({
-    articles: PropTypes.shape({
-      title: PropTypes.string,
-      abstract: PropTypes.string,
-      image: PropTypes.string,
-      readTime: PropTypes.number,
-    }),
-  }).isRequired,
+  bookmarkedArticles: PropTypes.shape([
+    {
+      articles: PropTypes.shape({
+        title: PropTypes.string,
+        abstract: PropTypes.string,
+        image: PropTypes.string,
+        readTime: PropTypes.number,
+        author: PropTypes.string,
+      }),
+    },
+  ]).isRequired,
 };
 
 export default Bookmarked;
