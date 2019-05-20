@@ -2,6 +2,8 @@
 
 .header-card{
     display: flex;
+    border: none;
+    outline: none;
     border-bottom: 1px solid #b7b5b5bf;
     text-align: left;
     width: 100%;
@@ -19,4 +21,8 @@
 
 .header-card-title{
     margin: auto 10px;
+}
+
+.pointer {
+    cursor: pointer;
 }
