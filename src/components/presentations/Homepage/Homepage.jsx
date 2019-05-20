@@ -43,19 +43,18 @@ class Homepage extends Component {
     const { userProfile } = user;
     const { loader } = isLoadingReducer;
     const { articleData } = articles;
-    const sortedArticle = articleData.sort(
-      (a, b) => b.likes_count - a.likes_count
-    );
+    const sortedArticle = articleData
+      .sort((a, b) => parseInt(b.likes_count, 10) - parseInt(a.likes_count, 10))
+      .slice(0, 3);
     const randomArticle = articleData.sort(() => Math.random() - 0.5);
 
-    const limit = sortedArticle.slice(0, 3);
     return (
       <React.Fragment>
         <NavBar />
         <CookieBanner />
         {loader && <Loader />}
         {Object.keys(userProfile).length ? (
-          <UserHomepageContainer />
+          <UserHomepageContainer articles={articles} />
         ) : (
           <React.Fragment>
             <HeroView />
@@ -83,10 +82,10 @@ class Homepage extends Component {
                   <Grid.Column computer={4} mobile={16}>
                     <h2 className="custom-center">POPULAR POST</h2>
                     <Container className="popular-articles-card">
-                      {limit.map(elem => (
+                      {sortedArticle.map(elem => (
                         <PopularArticleCard
                           key={elem.id}
-                          num={`0${limit.indexOf(elem) + 1}`}
+                          num={`0${sortedArticle.indexOf(elem) + 1}`}
                           title={elem.title}
                           author={`${elem.author.first_name} ${
                             elem.author.last_name
