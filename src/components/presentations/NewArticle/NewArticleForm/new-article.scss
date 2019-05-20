@@ -105,6 +105,12 @@
      .image-upload-box input[type="file"] {
         margin: 14px 16% 0;
     }
+    .headerImage img{
+        width: 20%;
+        height: 140px;
+        margin-left: 8.5%;
+        margin-top: 20px;
+    }
 }
 
 .text-center {
@@ -152,6 +158,11 @@
 .text-center {
     font-size: 19px;
     }
+    .image-group{
+    .headerImage img{
+        width: 45%;
+    }
+  }
 }
 
 @media screen and (max-width: 854px){

@@ -16,6 +16,7 @@ const NewArticleForm = ({
   onEditorStateChange,
   saveOrPublish,
   onChange,
+  headerImage,
 }) => (
   <div>
     <main className="main-content">
@@ -94,11 +95,15 @@ const NewArticleForm = ({
                         name="image"
                         className="form-control"
                         onChange={saveToCloudinary}
+                        accept=".png, .jpg, .jpeg"
                       />
                     </div>
                     <p>One file only</p>
                     <p>2 MB limit</p>
-                    <p>Allowed types: png, gif, jpg, jpeg</p>
+                    <p>Allowed types: png, jpg, jpeg</p>
+                  </div>
+                  <div className="headerImage">
+                    <img alt="" src={headerImage} />
                   </div>
                 </div>
                 <br />
@@ -144,6 +149,7 @@ NewArticleForm.propTypes = {
   saveToCloudinary: PropTypes.func.isRequired,
   saveKeywords: PropTypes.func.isRequired,
   saveCategory: PropTypes.func.isRequired,
+  headerImage: PropTypes.string.isRequired,
 };
 
 export default NewArticleForm;

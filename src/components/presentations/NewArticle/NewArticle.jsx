@@ -88,7 +88,7 @@ class NewArticle extends Component {
   };
 
   render() {
-    const { editorState } = this.state;
+    const { editorState, imageUrl } = this.state;
     return (
       <React.Fragment>
         <NavBar />
@@ -100,6 +100,7 @@ class NewArticle extends Component {
           onChange={this.onChange}
           saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
+          headerImage={imageUrl}
         />
       </React.Fragment>
     );
