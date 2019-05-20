@@ -1,0 +1,120 @@
+@import '../../../assets/stylesheets/index.scss';
+h3, p {
+    font-family: $font-stack;
+}
+.article-container {
+    overflow: auto;
+}
+.profile-article-list {
+    text-align: center;
+    width: 47%;
+    margin: 10px;
+    padding: 10px;
+    float: left;
+    overflow: auto;
+    border: solid 1px #e8e7e7;
+    border-radius: 4px;
+    box-shadow: 0 3px 6px #bfbfbf;
+    
+    .article-list {
+        width: 100%;
+        float: left;
+        overflow: hidden;
+        h3 {
+            font-size: 18px;
+        }
+        p {
+            font-size: 16px;
+            color: #868686;
+        }
+    }
+    .update-buttons {
+        width: 100%;
+        margin: 10px auto;
+        float: left;
+
+        .success {
+            background: #fff;
+            color: #20A100;
+            border: solid 1px #20A100;
+        }
+
+        .success:hover {
+            background: #20A100;
+            color: #fff;
+            border: solid 1px #20A100;
+        }
+
+        .failure {
+            background: #fff;
+            color: #D90000;
+            border: solid 1px #D90000;
+        }
+
+        .failure:hover {
+            background: #D90000;
+            color: #fff;
+            border: solid 1px #D90000;
+        }
+
+        .unpublish {
+            background: #fff;
+            color: #857E7E;
+            text-transform: capitalize;
+            border: solid 1px #857E7E;
+        }
+
+        .unpublish:hover {
+            background: #857E7E;
+            color: #fff;
+            text-transform: capitalize;
+            border: solid 1px #857E7E;
+        }
+
+        .publish {
+            background: #fff;
+            color: $primary-color;
+            text-transform: capitalize;
+            border: solid 1px $primary-color;
+        }
+
+        .publish:hover {
+            background: $primary-color;
+            color: #fff;
+            text-transform: capitalize;
+            border: solid 1px $primary-color;
+        }
+
+    } 
+}
+
+@media screen and (max-width: 768px) {
+    .profile-article-list {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px 4px;
+        display: flex;
+        flex-direction: column;
+
+        .update-buttons {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    
+}
+
+@media screen and (max-width: 480px) {
+    .profile-article-list {
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .profile-article-list {
+        padding: 10px 4px;
+    }
+}

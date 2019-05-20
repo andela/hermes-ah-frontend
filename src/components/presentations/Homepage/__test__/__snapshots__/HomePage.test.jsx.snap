@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage component should match snapshot 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Homepage
+    articles={
+      Object {
+        "articleData": Array [
+          Object {},
+        ],
+      }
+    }
+    confirmAccount={[MockFunction]}
+    getAllArticles={[MockFunction]}
+    isLoadingReducer={
+      Object {
+        "loader": false,
+      }
+    }
+    user={[Function]}
+  />
+</Provider>
+`;

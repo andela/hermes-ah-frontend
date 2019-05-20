@@ -1,0 +1,42 @@
+@import '../../../assets/stylesheets/index.scss';
+h3, p {
+    font-family: $font-stack;
+}
+
+.bookmark-articles {
+    width: 70%;
+    overflow: auto;
+    margin: 0 auto;
+
+    .header-card {
+        width: 80%;
+        margin: 20px 0;
+        border: 1px solid #d3d3d3;
+        box-shadow: 0px 3px #888888;
+        border-radius: 4px;
+    }
+    .icon {
+        color: $primary-color;
+        padding: 0 10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bookmark-articles {
+        width: 90%;
+
+        .header-card {
+            width: 100%;
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .bookmark-articles {
+        width: 100%;
+
+        .header-card {
+            width: 100%;
+        }
+    }
+}

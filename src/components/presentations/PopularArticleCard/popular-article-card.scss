@@ -1,0 +1,58 @@
+
+.article-section-hmp {
+    .popular-articles-card {
+        margin-top: 10px;
+    }
+
+    .title {
+        color: #0E71EB;
+    }
+    
+    .author-name {
+        color: black;
+        font-weight: 600
+    }
+    
+    .display-article-card {
+        margin-top: 10px;
+     
+    }
+    .header-num {
+            color: #959595;
+            margin: 0 10px;
+            line-height: 0.6em;
+    }
+    .ui.grid {
+        margin: 0;
+    }
+    .ui.small.image{
+        width: 250px;
+        margin: 0 10px;
+    }
+    .likes-date-det {
+        display: flex;
+        align-items: center;
+        i.fas.fa-star {
+            font-size: 8px;
+            margin: 8px 20px;
+        }
+    }
+
+    i.far.fa-thumbs-up:hover {
+        color: #0E71EB;
+        transform: scale(1.1)
+    }
+
+    .ui.button {
+        background: #ffffff;
+    }
+
+    .ui.button:hover {
+        background: #ffffff;
+    }
+
+    .ui.button:active {
+        background: #ffffff;
+    }
+
+}

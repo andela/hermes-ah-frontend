@@ -1,0 +1,6 @@
+const actionTypes = {
+  FORGOT_PASSWORD_SUCCESS: 'FORGOT_PASSWORD_SUCCESS',
+  FORGOT_PASSWORD_FAILURE: 'FORGOT_PASSWORD_FAILURE',
+};
+
+export default actionTypes;
