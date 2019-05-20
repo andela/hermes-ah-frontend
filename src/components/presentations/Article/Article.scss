@@ -16,6 +16,8 @@
       margin-bottom: 30px;
     }
     .write-comment {
+      -webkit-animation: fadeIn ease 0.2s;
+      animation: fadeIn ease 0.2s;
       .comment-text-wrap {
         display: flex;
         flex-direction: row;
@@ -118,6 +120,7 @@
         display: flex;
         margin-left: 30px;
         align-items: center;
+        margin-bottom: 10px;
         .last-upd {
           margin: 0;
           color: #979797;
@@ -127,11 +130,13 @@
           color: #979797;
         }
         .reply {
-          font-weight: 600;
           cursor: pointer;
           padding: 0;
-          font-size: 18px;
+          font-size: 14px;
           color: #979797;
+          background: transparent;
+          border: none;
+          outline: none;
         }
         .reply:hover {
           color: #0e71eb;
@@ -166,8 +171,8 @@
     .response {
       width: 92%;
       margin: 25px 50px;
-      -webkit-animation: fadeIn 1.5s;
-      animation: fadeIn 1.5s;
+      -webkit-animation: fadeIn ease 0.5s;
+      animation: fadeIn ease 0.5s;
     }
   }
 }

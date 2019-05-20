@@ -18,8 +18,12 @@ const ReportedArticles = props => {
   );
 };
 
+ReportedArticles.defaultProps = {
+  reportedArticle: [],
+};
+
 ReportedArticles.propTypes = {
-  reportedArticle: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  reportedArticle: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default ReportedArticles;

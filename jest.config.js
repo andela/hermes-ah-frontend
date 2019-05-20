@@ -65,4 +65,6 @@ module.exports = {
     '<rootDir>/src/index.js',
     '<rootDir>/src/__test__/end2end',
   ],
+
+  setupFilesAfterEnv: ['./jest.setup.js'],
 };
