@@ -22,15 +22,14 @@ export const resetPassword = (newPassword, token) => {
       await http.patch(`/new-password?token=${token}`, newPassword, {
         headers: { Authorization: token },
       });
-      toast.info(
-        'You have successfully reset your password. Click here to login',
-        {
-          type: toast.TYPE.INFO,
-          closeButton: false,
-          position: toast.POSITION.TOP_CENTER,
-          onClose: () => redirect(),
-        }
-      );
+      toast.info('You have successfully reset your password.', {
+        type: toast.TYPE.INFO,
+        closeButton: true,
+        position: toast.POSITION.TOP_CENTER,
+      });
+      setTimeout(() => {
+        return redirect();
+      }, 3000);
       return toast.info();
     } catch (error) {
       return exceptionHandler(error);
