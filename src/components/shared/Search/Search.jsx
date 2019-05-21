@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { filter, range, reduce } from 'lodash';
+import { range } from 'lodash';
 import { Search, Grid } from 'semantic-ui-react';
 import { searchArticle } from '../../../actions/search.action';
 import './search.scss';
@@ -21,18 +21,6 @@ class SearchComponent extends Component {
 
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.title });
-
-  filterResultByName = arr => {
-    return reduce(
-      arr,
-      (acc, cur, name) => {
-        const results = filter(cur.results);
-        if (results.length) acc[name] = { name, results };
-        return acc;
-      },
-      {}
-    );
-  };
 
   updateCategoriesWithSearchResult = result => {
     return range(0, 3).reduce((acc, cur) => {
@@ -83,16 +71,16 @@ class SearchComponent extends Component {
 
     return setTimeout(() => {
       const { articles, authors, tags } = getResults;
+
       const source = this.updateCategoriesWithSearchResult([
         articles,
         authors,
         tags,
       ]);
-      const filteredResults = this.filterResultByName(source);
 
       return this.setState({
         isLoading: false,
-        results: filteredResults,
+        results: source,
       });
     }, 500);
   };
