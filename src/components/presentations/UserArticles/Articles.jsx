@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Article from './Article/Article';
 import './author-articles.scss';
 
-const ArticleList = ({ articlesUpdate }) => {
+const ArticleList = ({ articlesUpdate, deleteArticle }) => {
   const { articles } = articlesUpdate;
   const monthNames = [
     'January',
@@ -32,6 +32,8 @@ const ArticleList = ({ articlesUpdate }) => {
             title={article.title}
             date={`Updated ${updateDay} ${updateMonth} ${updateYear}`}
             isDraft={article.is_draft}
+            articleId={article.id}
+            buttonEvent={deleteArticle}
           />
         );
       })}
@@ -47,6 +49,7 @@ ArticleList.propTypes = {
       isDraft: PropTypes.bool,
     }),
   }).isRequired,
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default ArticleList;

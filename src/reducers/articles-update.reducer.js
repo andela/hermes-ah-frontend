@@ -1,7 +1,10 @@
+import actionTypes from '../constants/my-articles.constants';
+
 const initialState = {
   fetching: false,
   fetched: false,
   articles: [],
+  deletedArticle: '',
   error: null,
 };
 
@@ -18,6 +21,18 @@ export default (state = initialState, action) => {
         articles: action.payload,
       };
     }
+    case actionTypes.DELETE_ARTICLES_SUCCESS: {
+      // const newFollowing = filter(
+      //   state.userFollowing,
+      //   action.unFollowedUser.user.id
+      // );
+      return {
+        ...state,
+        deletedArticle: action.deletedArticle,
+      };
+    }
+    case actionTypes.DELETE_ARTICLES_FAILURE:
+      return { ...state };
     default:
       return state;
   }

@@ -45,6 +45,11 @@ class Profilepage extends Component {
     await unFollowUser(e.target.id);
   };
 
+  deleteArticleClick = async e => {
+    const { deleteArticle } = this.props;
+    await deleteArticle(e.target.id);
+  };
+
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
@@ -123,7 +128,10 @@ class Profilepage extends Component {
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
-              <Articles articlesUpdate={articlesUpdate} />
+              <Articles
+                articlesUpdate={articlesUpdate}
+                deleteArticle={this.deleteArticleClick}
+              />
             </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
@@ -161,6 +169,7 @@ Profilepage.propTypes = {
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default Profilepage;
