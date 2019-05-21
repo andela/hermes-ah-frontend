@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProfileButton from './ProfileTabButton';
@@ -47,6 +49,48 @@ class ProfileTab extends Component {
     return (
       <React.Fragment>
         <div className="profile-tab">
+          <div className="submenu-control">
+            <label htmlFor="response-control">
+              <i className="fas fa-bars" />
+            </label>
+          </div>
+          <div className="profile-tab-responsive">
+            <div className="profile-tab-items-left">
+              {ProfileTabItems.map(tab => {
+                return (
+                  <ProfileButton
+                    key={tab.id}
+                    value={tab.value}
+                    className={
+                      currentTab === tab.section
+                        ? 'profile-btn-active'
+                        : 'profile-btn'
+                    }
+                    onClick={() => changeTab(tab.section)}
+                    number={tab.valueNum}
+                  />
+                );
+              })}
+            </div>
+            <div className="profile-tab-items-right">
+              <ProfileButton
+                value="My Profile"
+                className={
+                  currentTab === 'profile-section'
+                    ? 'profile-btn-active'
+                    : 'profile-btn'
+                }
+                onClick={() => changeTab('profile-section')}
+              />
+            </div>
+          </div>
+        </div>
+        <input
+          type="checkbox"
+          id="response-control"
+          className="response-control"
+        />
+        <div className="profile-tab-responsive-2">
           <div className="profile-tab-items-left">
             {ProfileTabItems.map(tab => {
               return (
