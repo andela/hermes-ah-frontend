@@ -22,6 +22,14 @@ export const postArticleError = () => ({
   type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
+export const postRatingSuccess = () => ({
+  type: actionTypes.RATE_SUCCESS,
+});
+
+export const postRatingError = () => ({
+  type: actionTypes.RATE_FAILURE,
+});
+
 export const getAllArticles = () => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -49,6 +57,18 @@ export const postArticle = data => {
     } catch (err) {
       dispatch(postArticleError());
       return exceptionHandler(err);
+    }
+  };
+};
+
+export const rateArticle = data => {
+  return async dispatch => {
+    try {
+      const { data: article } = await http.post('/ratings', data);
+      dispatch(postRatingSuccess());
+      toast.success(article.message);
+    } catch (err) {
+      dispatch(postRatingError());
     }
   };
 };

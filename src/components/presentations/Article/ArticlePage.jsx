@@ -4,6 +4,7 @@ import NavBar from '../../shared/NavBar/NavBar';
 import CommentCard from './CommentCard';
 import ReadingCard from './reading-article-card';
 import './Article.scss';
+import Rate from './Rate';
 
 class ArticlePage extends Component {
   constructor(props) {
@@ -26,6 +27,7 @@ class ArticlePage extends Component {
                   <Grid.Column>
                     <div className="section">
                       <ReadingCard />
+                      <Rate />
                     </div>
                   </Grid.Column>
                   <Grid.Column>

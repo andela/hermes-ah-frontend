@@ -293,3 +293,36 @@
         margin: 20px auto;
     }
 }
+
+.rate-article {
+  margin: 15px 0;
+  display: flex;
+  justify-content: flex-end;
+  border: solid 1px #0072ff;
+  font-size: 17px;
+
+  .rate {
+    margin: 0 10px;
+  }
+
+  .comment {
+    display: flex;
+    margin: 0 10px;
+
+    p {
+      margin: 0 5px;
+    }
+  }
+
+  .popout {
+    margin: 0 10px;
+  }
+}
+
+.ui.rating .active.icon {
+  color: #0e71eb;
+}
+
+.ui.rating .icon.selected {
+  color: #fbd400;
+}
