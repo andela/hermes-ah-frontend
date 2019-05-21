@@ -14,7 +14,7 @@ const keywordsOptions = [
   },
   {
     key: 4,
-    name: 'science',
+    name: 'Science',
     value: 'Science',
     text: 'Science',
   },

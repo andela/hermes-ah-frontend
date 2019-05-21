@@ -3,6 +3,10 @@
     .popular-articles-card {
         margin-top: 10px;
     }
+
+    .title {
+        color: #0E71EB;
+    }
     
     .author-name {
         color: black;
@@ -25,14 +29,30 @@
         width: 250px;
         margin: 0 10px;
     }
-
-    i.far.fa-thumbs-up {
-        font-size: 18px;
-        cursor: pointer;
+    .likes-date-det {
+        display: flex;
+        align-items: center;
+        i.fas.fa-star {
+            font-size: 8px;
+            margin: 8px 20px;
+        }
     }
 
     i.far.fa-thumbs-up:hover {
         color: #0E71EB;
         transform: scale(1.1)
     }
+
+    .ui.button {
+        background: #ffffff;
+    }
+
+    .ui.button:hover {
+        background: #ffffff;
+    }
+
+    .ui.button:active {
+        background: #ffffff;
+    }
+
 }

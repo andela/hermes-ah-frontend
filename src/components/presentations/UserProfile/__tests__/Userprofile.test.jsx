@@ -36,4 +36,12 @@ describe('ProfilePage component', () => {
     const wrapper = shallow(UserprofileComponent);
     expect(wrapper.find('div'));
   });
+
+  it('should render profile page', () => {
+    const wrapper = shallow(<Userprofile {...props} />);
+    expect(wrapper.state('showResearchers')).toEqual(false);
+    wrapper.instance().showResearchers();
+    expect(wrapper.state('showResearchers')).toEqual(true);
+    wrapper.instance().toggle();
+  });
 });

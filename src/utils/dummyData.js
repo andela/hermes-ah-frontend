@@ -131,12 +131,42 @@ const reviewedArticles = [
   },
 ];
 
+const comment = [
+  {
+    id: '0595eff6-bd3a-440e-95c4-f83c40742555',
+    likes_count: 0,
+    user_id: '57c515a1-890d-412f-8ca1-0a5395123dca',
+    body:
+      'In sit amet pretium eros, sed varius arcu. Ut tincidunt purus vitae sollicitudin fringilla. Ut at eros pulvinar, rutrum nulla non, vestibulum massa. Etiam ut ligula sodales, fermentum mi in, iaculis lorem. Vestibulum magna dui.',
+    createdAt: '2019-05-18T18:34:42.695Z',
+    replies: [
+      {
+        id: 'bf473558-8878-431c-8828-684d9a59f3cc',
+        user_id: '57c515a1-890d-412f-8ca1-0a5395123dca',
+        comment_id: '0595eff6-bd3a-440e-95c4-f83c40742555',
+        reply:
+          'ut ligula sodales, fermentum mi in, iaculis lorem. Vestibulum magna dui, consectetur luctus tempus sit amet, rutrum ac sem. Cras augue tellus, dictum a lacus eget, porta luctus quam.',
+        createdAt: '2019-05-18T18:38:04.632Z',
+      },
+      {
+        id: '1e4909e1-b564-4623-8093-141acd6487e5',
+        user_id: '57c515a1-890d-412f-8ca1-0a5395123dca',
+        comment_id: '0595eff6-bd3a-440e-95c4-f83c40742555',
+        reply:
+          'some amazong friendliness in the zonal ermentum mi in, iaculis lorem. Vestibulum magna dui, consectetur luctus tempus sit amet, rutrum ac sem. Cras augue tellus, dictum a lacus eget, porta luctus quam.',
+        createdAt: '2019-05-18T18:38:33.479Z',
+      },
+    ],
+  },
+];
+
 const data = {
   article,
   popularArticle,
   profileReport,
   suggestedArticle,
   reviewedArticles,
+  comment,
 };
 
 export default data;

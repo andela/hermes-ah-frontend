@@ -7,13 +7,17 @@ h3, p {
     flex-direction: row;
     text-align: left;
     width: 97%;
-    margin: 10px;
+    margin: 20px 10px;
     padding: 0;
     border-bottom: solid 1px $article-border-color;
 
     .article-details {
-        width: 90%;
+        width: 88%;
         float: left;
+
+        .author-details {
+            display: flex;
+        }
 
         .meta {
             color: $secondary-color;
@@ -24,8 +28,33 @@ h3, p {
         }
     }
 
+    .unbookmark {
+        margin: 0;
+
+        .ui.button, .ui.button:hover, .ui.button:active {
+            background: #fff;
+            padding: 0 10px;
+            font-size: 20px;
+            color: $primary-color;
+        }
+
+        .ui.button:hover {
+            color: #828282;
+        }
+
+        .button-image {
+            width: 19px;
+            height: 25px;
+            background: url("https://res.cloudinary.com/walsam/image/upload/v1558439121/ah-bookmark.png") no-repeat;
+        }
+
+        .button-image:hover {
+            background: url("https://res.cloudinary.com/walsam/image/upload/v1558439384/ah-bookmark-regular.png");
+        }
+    }
+
     .article-img {
-        width: 10%;
+        width: 12%;
         float: left;
         text-align: right;
 

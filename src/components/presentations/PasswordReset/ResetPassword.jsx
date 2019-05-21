@@ -3,6 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import FormComponent from '../../shared/Form/Form';
 import Loader from '../../shared/Loader/Loader';
+import { setToken } from '../../../utils/authService';
 import './forgotpassword.scss';
 import NavBar from '../../shared/NavBar/NavBar';
 
@@ -11,14 +12,23 @@ class ResetPassword extends FormComponent {
     super(props);
     this.state = {
       data: { password: '', confirmPassword: '' },
+      token: '',
     };
+  }
+
+  componentDidMount() {
+    const token = this.props.location.search.split('=')[1];
+    if (token) {
+      setToken(token);
+      this.setState({ token });
+    }
   }
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { data } = this.state;
+    const { data, token } = this.state;
     const { resetPassword: userForgotPassword } = this.props;
-    await userForgotPassword(data, this.props);
+    await userForgotPassword(data, token);
   };
 
   render() {

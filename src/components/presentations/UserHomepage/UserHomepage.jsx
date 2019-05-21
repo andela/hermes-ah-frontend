@@ -17,17 +17,21 @@ class UserHomepage extends Component {
     fetchArticles();
   };
 
+  onLikeClick = articleId => {
+    const { articles, likeArticle } = this.props;
+    const { articleData } = articles;
+    likeArticle(articleId, articleData);
+  };
+
   render() {
     const { articles } = this.props;
     const { articleData } = articles;
 
-    const popularArticles = articleData.sort(
-      (a, b) => b.likes_count - a.likes_count
-    );
+    const popularArticlesLimit = articleData
+      .sort((a, b) => parseInt(b.likes_count, 10) - parseInt(a.likes_count, 10))
+      .slice(0, 3);
 
     const sectionArandomArticle = articleData.sort(() => Math.random() - 0.5);
-
-    const popularArticlesLimit = popularArticles.slice(0, 3);
 
     const sectionBrandomArticle = articleData.sort(() => Math.random() - 0.5);
 
@@ -43,7 +47,7 @@ class UserHomepage extends Component {
               <Container className="display-article-card">
                 {sectionArandomArticle.map(item => (
                   <ArticleCard
-                    id={item.id}
+                    articleId={item.id}
                     key={item.id}
                     category={item.category}
                     title={item.title}
@@ -71,6 +75,7 @@ class UserHomepage extends Component {
                     }`}
                     date={elem.createdAt}
                     likes={elem.likes_count}
+                    onClick={() => this.onLikeClick(elem.id)}
                   />
                 ))}
               </Container>
@@ -205,6 +210,7 @@ UserHomepage.propTypes = {
     articleData: PropTypes.array,
   }).isRequired,
   getAllArticles: PropTypes.func.isRequired,
+  likeArticle: PropTypes.func.isRequired,
 };
 
 export default UserHomepage;

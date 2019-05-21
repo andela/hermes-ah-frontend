@@ -96,6 +96,7 @@ const articleReducer = {
     ],
   },
   getAllArticles: jest.fn(),
+  likeArticle: jest.fn(),
 };
 
 const userProfileReducer = {
@@ -162,6 +163,32 @@ const propsFollowing = {
   },
   unFollow: jest.fn(),
 };
+const reportedArticleProps = [
+  {
+    topic: 'fadad',
+    status: 'sfsf',
+    reason: 'fsdsds',
+  },
+];
+
+const reviewedArticleProps = [
+  {
+    topic: 'string',
+    abstract: 'string',
+    reviewedBy: 'string',
+    comment: 'string',
+    dateReviewed: 'string',
+  },
+];
+
+const reviewerRequestProps = [
+  {
+    imageUrl: 'string',
+    name: 'string',
+    bio: 'string',
+    initials: 'string',
+  },
+];
 
 const mock = {
   article,
@@ -178,6 +205,9 @@ const mock = {
   userProfileReducer,
   propsFollowing,
   propsFollowee,
+  reportedArticleProps,
+  reviewedArticleProps,
+  reviewerRequestProps,
 };
 
 export default mock;
