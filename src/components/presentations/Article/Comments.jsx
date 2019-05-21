@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import TimeAgo from 'react-timeago';
+import PropTypes from 'prop-types';
 import CommentInput from './CommentInput';
-import dummyData from '../../../utils/dummyData';
 
-const { comment } = dummyData;
-class CommentCard extends Component {
+class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,6 +24,7 @@ class CommentCard extends Component {
 
   render() {
     const { toggle, input } = this.state;
+    const { comments } = this.props;
     return (
       <React.Fragment>
         <div className="comment-cont">
@@ -33,29 +33,30 @@ class CommentCard extends Component {
           <CommentInput />
           <div>
             {/* comment */}
-            {comment.map(comm => (
-              <div className="comments-cont-text-content" key={comm.id}>
+            {comments.map(comment => (
+              <div className="comments-cont-text-content" key={comment.id}>
                 <div className="wrap-image-author">
                   <div className="image-author">
                     <div className="commenter-img">
-                      <img
-                        src="https://res.cloudinary.com/mchardex/image/upload/v1557421338/animals_hero_antelope.jpg"
-                        alt="author"
-                      />
+                      <img src={comment.commentOwner.image_url} alt="author" />
                     </div>
                     <div className="commenter-details">
-                      <h3>Anayo Oleru</h3>
-                      <span>{new Date(comm.createdAt).toDateString()}</span>
+                      <h3>
+                        {`${comment.commentOwner.first_name} ${
+                          comment.commentOwner.last_name
+                        }`}
+                      </h3>
+                      <span>{new Date(comment.createdAt).toDateString()}</span>
                     </div>
                   </div>
                   <i className="fas fa-ellipsis-v" />
                 </div>
                 <div className="commenter-text">
-                  <p>{comm.body}</p>
+                  <p>{comment.body}</p>
                 </div>
                 <div className="commt-details">
                   <p className="last-upd">
-                    <TimeAgo date={new Date(comm.createdAt).toUTCString()} />
+                    <TimeAgo date={new Date(comment.createdAt).toUTCString()} />
                   </p>
                   <span>.</span>
                   <button
@@ -76,18 +77,19 @@ class CommentCard extends Component {
                 {toggle ? (
                   <div>
                     {/* comment replies */}
-                    {comm.replies.map(reply => (
-                      <div className="response" key={reply.id}>
+                    {comment.replies.map(reply => (
+                      <div className="response" key={reply.createdAt}>
                         <div className="wrap-image-author">
                           <div className="image-author">
                             <div className="commenter-img">
-                              <img
-                                src="https://res.cloudinary.com/mchardex/image/upload/v1557421338/animals_hero_antelope.jpg"
-                                alt="author"
-                              />
+                              <img src={reply.replier.image_url} alt="author" />
                             </div>
                             <div className="commenter-details">
-                              <h3>Anayo Oleru</h3>
+                              <h3>
+                                {`${reply.replier.first_name} ${
+                                  reply.replier.last_name
+                                }`}
+                              </h3>
                               <span>
                                 {new Date(reply.createdAt).toDateString()}
                               </span>
@@ -120,4 +122,12 @@ class CommentCard extends Component {
   }
 }
 
-export default CommentCard;
+Comments.defaultProps = {
+  comments: [],
+};
+
+Comments.propTypes = {
+  comments: PropTypes.arrayOf(PropTypes.shape()),
+};
+
+export default Comments;
