@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { filter, escapeRegExp, debounce, range, reduce } from 'lodash';
+import { filter, range, reduce } from 'lodash';
 import { Search, Grid } from 'semantic-ui-react';
 import { searchArticle } from '../../../actions/search.action';
 import './search.scss';
@@ -22,6 +22,30 @@ class SearchComponent extends Component {
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.title });
 
+  filterResultByName = arr => {
+    return reduce(
+      arr,
+      (acc, cur, name) => {
+        const results = filter(cur.results);
+        if (results.length) acc[name] = { name, results };
+        return acc;
+      },
+      {}
+    );
+  };
+
+  updateCategoriesWithSearchResult = result => {
+    return range(0, 3).reduce((acc, cur) => {
+      const name = ['articles', 'authors', 'tags'];
+      const results = [...result];
+      acc[name[cur]] = {
+        name: name[cur],
+        results: results[cur],
+      };
+      return acc;
+    }, {});
+  };
+
   handleSearchChange = async (e, { value: currentVal }) => {
     this.setState({ isLoading: true, value: currentVal });
     const { authorFilter, articleFilter, keywordFilter } = await searchArticle(
@@ -30,7 +54,7 @@ class SearchComponent extends Component {
     const newAuthors = [];
     const newArticles = [];
     const newTags = [];
-    keywordFilter.slice(0, 3).forEach(tags => {
+    keywordFilter.forEach(tags => {
       newTags.push({
         title: tags.article.title,
         description: tags.article.body.substring(0, 55),
@@ -38,14 +62,14 @@ class SearchComponent extends Component {
         price: tags.keyword,
       });
     });
-    authorFilter.slice(0, 3).forEach(author => {
+    authorFilter.forEach(author => {
       newAuthors.push({
         title: author.first_name + author.last_name,
         description: author.bio,
         image: author.image_url,
       });
     });
-    articleFilter.slice(0, 3).forEach(article => {
+    articleFilter.forEach(article => {
       newArticles.push({
         title: article.title,
         description: article.body.substring(0, 55),
@@ -55,40 +79,22 @@ class SearchComponent extends Component {
     this.setState({
       getResults: { articles: newArticles, authors: newAuthors, tags: newTags },
     });
-    setTimeout(() => {
-      const { value, getResults } = this.state;
-      if (value.length < 1) return null;
+    const { getResults } = this.state;
 
-      const re = new RegExp(escapeRegExp(value), 'i');
-      const isMatch = result => re.test(result.title);
-
+    return setTimeout(() => {
       const { articles, authors, tags } = getResults;
-      const source = range(0, 3).reduce((result, index) => {
-        const name = ['articles', 'authors', 'tags'];
-        const results = [articles, authors, tags];
-        // eslint-disable-next-line no-param-reassign
-        result[name[index]] = {
-          name: name[index],
-          results: results[index],
-        };
-        return result;
-      }, {});
-      const filteredResults = reduce(
-        source,
-        (memo, data, name) => {
-          const results = filter(data.results, isMatch);
-          if (results.length) memo[name] = { name, results }; // eslint-disable-line no-param-reassign
-
-          return memo;
-        },
-        {}
-      );
+      const source = this.updateCategoriesWithSearchResult([
+        articles,
+        authors,
+        tags,
+      ]);
+      const filteredResults = this.filterResultByName(source);
 
       return this.setState({
         isLoading: false,
         results: filteredResults,
       });
-    }, 300);
+    }, 500);
   };
 
   render() {
@@ -101,12 +107,9 @@ class SearchComponent extends Component {
             placeholder="search"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
-            onSearchChange={debounce(this.handleSearchChange, 500, {
-              leading: true,
-            })}
+            onSearchChange={this.handleSearchChange}
             results={results}
             value={value}
-            // {...this.props}
           />
         </Grid.Column>
       </div>
