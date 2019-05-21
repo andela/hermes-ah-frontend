@@ -11,6 +11,8 @@ const ReviewerRequestCard = ({
   button1,
   btnClass1,
   btnClass,
+  adminAcceptRequest,
+  adminRejectRequest,
 }) => {
   return (
     <div className="main-title">
@@ -29,13 +31,21 @@ const ReviewerRequestCard = ({
       </div>
       <div className="admin_decision_on_request">
         <div className="main_button">
-          <button type="submit" className={btnClass}>
+          <button
+            type="submit"
+            className={btnClass}
+            onClick={() => adminAcceptRequest()}
+          >
             {button}
           </button>
         </div>
         {'   '}
         <div className="main_button">
-          <button type="submit" className={btnClass1}>
+          <button
+            type="submit"
+            className={btnClass1}
+            onClick={() => adminRejectRequest()}
+          >
             {button1}
           </button>
         </div>
@@ -53,6 +63,8 @@ ReviewerRequestCard.propTypes = {
   btnClass: PropTypes.string.isRequired,
   btnClass1: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
+  adminAcceptRequest: PropTypes.func.isRequired,
+  adminRejectRequest: PropTypes.func.isRequired,
 };
 
 export default ReviewerRequestCard;

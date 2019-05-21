@@ -10,7 +10,7 @@ import articlesUpdate from './articles-update.reducer';
 import isLoadingReducer from './loading.reducer';
 import bookmarkedArticles from './bookmarked.reducer';
 import reportedArticles from './reported.reducers';
-import userRequests from './reviewerRequests';
+import userRequests from './reviewerRequests.reducer';
 
 const reducers = combineReducers({
   auth,
