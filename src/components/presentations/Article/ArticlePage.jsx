@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
-import CommentCard from './CommentCard';
+import Comments from './Comments';
 import ReadingCard from './reading-article-card';
 import './Article.scss';
 import Rate from './Rate';
@@ -12,7 +13,15 @@ class ArticlePage extends Component {
     this.state = {};
   }
 
+  componentDidMount = () => {
+    const { getSingleArticle, match } = this.props;
+    const { articleId } = match.params;
+    getSingleArticle(articleId);
+  };
+
   render() {
+    const { singleArticle } = this.props;
+    const { article } = singleArticle;
     return (
       <React.Fragment>
         <NavBar />
@@ -31,7 +40,7 @@ class ArticlePage extends Component {
                     </div>
                   </Grid.Column>
                   <Grid.Column>
-                    <CommentCard />
+                    <Comments comments={article.Comments} />
                   </Grid.Column>
                 </Grid.Row>
               </Grid.Column>
@@ -45,5 +54,11 @@ class ArticlePage extends Component {
     );
   }
 }
+
+ArticlePage.propTypes = {
+  getSingleArticle: PropTypes.func.isRequired,
+  match: PropTypes.shape(PropTypes.objectOf).isRequired,
+  singleArticle: PropTypes.shape({}).isRequired,
+};
 
 export default ArticlePage;
