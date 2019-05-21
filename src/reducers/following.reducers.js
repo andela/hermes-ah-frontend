@@ -4,12 +4,17 @@ import filter from '../utils/filterFollowing';
 const initialState = {
   userFollowing: [],
   unFollowedUser: '',
+  followingCount: 0,
 };
 
 const userFollowing = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_FOLLOWING_SUCCESS:
-      return { ...state, userFollowing: action.following };
+      return {
+        ...state,
+        userFollowing: action.following,
+        followingCount: action.following.length,
+      };
     case actionTypes.FETCH_FOLLOWING_FAILURE:
       return { ...state };
     case actionTypes.UNFOLLOW_SUCCESS: {
@@ -25,6 +30,8 @@ const userFollowing = (state = initialState, action) => {
     }
     case actionTypes.UNFOLLOW_FAILURE:
       return { ...state };
+    case actionTypes.INCREASE_COUNT:
+      return { ...state, followingCount: action.newCount };
     default:
       return state;
   }

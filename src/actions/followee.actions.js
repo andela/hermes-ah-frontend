@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import actions from '../constants/followee.constants';
+import followingActions from '../constants/follow.constants';
 import http from '../utils/httpService';
 import exceptionHandler from '../utils/exceptionHandler';
 
@@ -29,6 +30,13 @@ export const followFailure = () => {
   };
 };
 
+export const countUpdate = newCount => {
+  return {
+    type: followingActions.INCREASE_COUNT,
+    newCount,
+  };
+};
+
 const getFollowee = () => {
   return async dispatch => {
     try {
@@ -42,9 +50,10 @@ const getFollowee = () => {
   };
 };
 
-const followUser = userId => {
+const followUser = (userId, newCount) => {
   return async dispatch => {
     try {
+      dispatch(countUpdate(newCount));
       const follow = await http.post(`follow/${userId}`);
       dispatch(followSuccess(follow.data));
       toast.success(`You followed ${follow.data.user.last_name}`);

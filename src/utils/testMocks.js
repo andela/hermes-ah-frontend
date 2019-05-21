@@ -162,6 +162,7 @@ const propsFollowing = {
     ],
   },
   unFollow: jest.fn(),
+  getFollowing: jest.fn(),
 };
 const reportedArticleProps = [
   {

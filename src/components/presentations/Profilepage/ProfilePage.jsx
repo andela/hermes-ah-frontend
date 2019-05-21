@@ -46,9 +46,10 @@ class Profilepage extends Component {
   };
 
   followClick = async e => {
-    const { followUser, getFollowing } = this.props;
-    await followUser(e.target.id);
-    getFollowing();
+    const { followUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = followingCount + 1;
+    await followUser(e.target.id, `${newcount}`);
   };
 
   changeTab = tab => {
@@ -86,8 +87,9 @@ class Profilepage extends Component {
       bookmarkedArticles,
       updateProfile,
       user,
+      getFollowing,
     } = this.props;
-
+    const { followingCount } = userFollowing;
     const { userProfile } = user;
     const { profile } = userProfile;
     const { loader } = isLoadingReducer;
@@ -114,13 +116,14 @@ class Profilepage extends Component {
           currentTab={currentTab}
           totalArticle={`${articles.length}`}
           totalFollowee={`${userFollowee.userFollowee.length}`}
-          totalFollowing={`${userFollowing.userFollowing.length}`}
+          totalFollowing={`${followingCount}`}
           totalBookmarkArticle={`${bookmarkList.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
             <Following
               userFollowing={userFollowing}
+              getFollowing={getFollowing}
               unFollow={this.unFollowClick}
             />
           ) : null}

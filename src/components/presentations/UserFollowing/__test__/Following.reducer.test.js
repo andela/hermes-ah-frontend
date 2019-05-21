@@ -6,6 +6,7 @@ describe('following reducers', () => {
     expect(followingReducer(undefined, {})).toEqual({
       userFollowing: [],
       unFollowedUser: '',
+      followingCount: 0,
     });
   });
 
@@ -17,6 +18,7 @@ describe('following reducers', () => {
       })
     ).toEqual({
       userFollowing: [{ userFollowing: 'following' }],
+      followingCount: 1,
     });
   });
 
@@ -55,5 +57,16 @@ describe('following reducers', () => {
         type: types.UNFOLLOW_FAILURE,
       })
     ).toEqual({});
+  });
+
+  it('should handle COUNT_INCREMENT', () => {
+    expect(
+      followingReducer([], {
+        type: types.INCREASE_COUNT,
+        newCount: '2',
+      })
+    ).toEqual({
+      followingCount: '2',
+    });
   });
 });
