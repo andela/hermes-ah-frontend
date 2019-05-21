@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'semantic-ui-react';
+import { Button, Popup } from 'semantic-ui-react';
 import './article.scss';
 
 const Article = ({ title, author, abstract, image, readTime }) => (
@@ -12,10 +12,17 @@ const Article = ({ title, author, abstract, image, readTime }) => (
       <div className="author-details">
         <p>{author}</p>
         <p className="meta">{`${readTime} min read`}</p>
-      </div>
-
-      <div>
-        <Button>Unbookmark</Button>
+        <div className="unbookmark">
+          <Popup
+            content="Remove Bookmark"
+            trigger={
+              // eslint-disable-next-line react/jsx-wrap-multilines
+              <Button>
+                <div className="button-image" />
+              </Button>
+            }
+          />
+        </div>
       </div>
     </div>
     <div className="article-img">

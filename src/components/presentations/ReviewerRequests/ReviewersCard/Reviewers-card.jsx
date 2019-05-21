@@ -32,9 +32,6 @@ const ReviewerRequestCard = ({
           <button type="submit" className={btnClass}>
             {button}
           </button>
-        </div>
-        {'   '}
-        <div className="main_button">
           <button type="submit" className={btnClass1}>
             {button1}
           </button>

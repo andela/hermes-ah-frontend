@@ -5,7 +5,7 @@ import data from '../../../utils/dummyData';
 const ReviewedArticles = () => {
   const { reviewedArticles } = data;
   return (
-    <div className="main-grid">
+    <div className="reviewed-main-grid">
       {reviewedArticles.map(article => (
         <ReviewedArticleCard
           key={article.id}
