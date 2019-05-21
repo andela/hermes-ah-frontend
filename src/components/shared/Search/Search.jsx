@@ -68,7 +68,6 @@ class SearchComponent extends Component {
       const source = range(0, 3).reduce((result, index) => {
         const name = ['articles', 'authors', 'tags'];
         const results = [articles, authors, tags];
-        console.log(index, name[index]);
         // eslint-disable-next-line no-param-reassign
         result[name[index]] = {
           name: name[index],
