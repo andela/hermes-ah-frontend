@@ -1,4 +1,3 @@
-// import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
