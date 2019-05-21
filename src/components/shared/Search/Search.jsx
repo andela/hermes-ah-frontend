@@ -4,21 +4,19 @@ import { Search, Grid } from 'semantic-ui-react';
 import { searchArticle } from '../../../actions/search.action';
 import './search.scss';
 
-const initialState = {
-  isLoading: false,
-  results: [],
-  value: '',
-  getResults: {
-    articles: {},
-    authors: {},
-    tags: {},
-  },
-};
-
 class SearchComponent extends Component {
   constructor(props) {
     super(props);
-    this.state = initialState;
+    this.state = {
+      isLoading: false,
+      results: [],
+      value: '',
+      getResults: {
+        articles: {},
+        authors: {},
+        tags: {},
+      },
+    };
   }
 
   handleResultSelect = (e, { result }) =>
@@ -59,7 +57,7 @@ class SearchComponent extends Component {
     });
     setTimeout(() => {
       const { value, getResults } = this.state;
-      if (value.length < 1) return this.setState(initialState);
+      if (value.length < 1) return null;
 
       const re = new RegExp(escapeRegExp(value), 'i');
       const isMatch = result => re.test(result.title);
@@ -100,6 +98,7 @@ class SearchComponent extends Component {
         <Grid.Column width={8}>
           <Search
             category
+            placeholder="search"
             loading={isLoading}
             onResultSelect={this.handleResultSelect}
             onSearchChange={debounce(this.handleSearchChange, 500, {
