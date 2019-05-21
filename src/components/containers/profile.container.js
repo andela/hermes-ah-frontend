@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Profilepage from '../presentations/Profilepage/ProfilePage';
 import profileAction from '../../actions/profile.action';
+import { getAnArticle } from '../../actions/article.actions';
 import fetchArticles from '../../actions/articles-update.actions';
 import followeeAction from '../../actions/followee.actions';
 import followingAction from '../../actions/following.actions';
@@ -42,6 +43,7 @@ const ProfilepageContainer = connect(
     getSuggestions,
     getUserRequests,
     unFollowUser,
+    getAnArticle,
   }
 )(Profilepage);
 

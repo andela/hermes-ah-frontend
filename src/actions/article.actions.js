@@ -22,6 +22,15 @@ export const postArticleError = () => ({
   type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
+export const getAnArticleSuccess = article => ({
+  type: actionTypes.FETCH_ARTICLE_SUCCESS,
+  article,
+});
+
+export const getAnArticleError = () => ({
+  type: actionTypes.FETCH_ARTICLE_FAILURE,
+});
+
 export const getAllArticles = () => {
   return async dispatch => {
     dispatch(contentLoading());
@@ -53,7 +62,40 @@ export const postArticle = data => {
   };
 };
 
+export const getAnArticle = id => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const article = await http.get(`/article/${id}`);
+      dispatch(getAnArticleSuccess());
+      window.location = '/edit-article';
+      return article;
+    } catch (err) {
+      dispatch(getAnArticleError());
+      return exceptionHandler(err);
+    }
+  };
+};
+
+export const editAnArticle = (id, data) => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const editedArticle = await http.patch(`/article/${id}`, data);
+      dispatch(postArticleSuccess());
+      toast.success(editedArticle.message);
+      window.location = '/';
+      return editedArticle;
+    } catch (err) {
+      dispatch(postArticleError());
+      return exceptionHandler(err);
+    }
+  };
+};
+
 export default {
   getAllArticles,
   postArticle,
+  getAnArticle,
+  editAnArticle,
 };

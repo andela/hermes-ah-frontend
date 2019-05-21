@@ -80,6 +80,7 @@ class Profilepage extends Component {
       bookmarkedArticles,
       updateProfile,
       user,
+      getAnArticle,
     } = this.props;
 
     const { userProfile } = user;
@@ -123,7 +124,10 @@ class Profilepage extends Component {
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
-              <Articles articlesUpdate={articlesUpdate} />
+              <Articles
+                articlesUpdate={articlesUpdate}
+                editAnArticle={getAnArticle}
+              />
             </div>
           ) : null}
           {currentTab === 'bookmark-section' ? (
@@ -161,6 +165,7 @@ Profilepage.propTypes = {
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
+  getAnArticle: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

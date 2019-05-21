@@ -15,6 +15,7 @@ import ForgotPassword from './components/containers/passwordReset.containers';
 import ResetPassword from './components/containers/resetPassword.containers';
 import SignupContainer from './components/containers/signup.container';
 import NewArticle from './components/containers/newArticle.container';
+import EditArticle from './components/containers/editArticle.container';
 import AdminPage from './components/containers/admin.container';
 import ProtectedRoute from './components/shared/ProtectedRoute/ProtectedRoute';
 import SocialLogin from './components/presentations/SocialLogin/SocialLogin';
@@ -37,6 +38,7 @@ const App = () => {
             <Route path="/about/" exact component={AboutPage} />
             <Route path="/article/" exact component={ArticlePage} />
             <Route path="/create-article/" exact component={NewArticle} />
+            <Route path="/edit-article/" exact component={EditArticle} />
             <Route path="/forgot-password/" exact component={ForgotPassword} />
             <Route path="/admin/" exact component={AdminPage} />
             <Route path="/reset-password/" exact component={ResetPassword} />
