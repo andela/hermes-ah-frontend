@@ -22,6 +22,8 @@ export default (state = initialState, action) => {
       };
     }
     case actionTypes.DELETE_ARTICLES_SUCCESS: {
+      console.log(state.articles, '>>>>>>>>>>>');
+      console.log(action.deletedArticle, '<<<<<<<<<<<<<<');
       // const newFollowing = filter(
       //   state.userFollowing,
       //   action.unFollowedUser.user.id

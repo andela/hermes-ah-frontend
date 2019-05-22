@@ -1,30 +1,15 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import Followee from '../Followee/Followee';
 import Following from '../Following/Following';
 import FollowCard from '../FollowCard/Follow-card';
 import mock from '../../../../utils/testMocks';
 
-const { userFollowing, userFollowee } = mock;
+const { propsFollowing, propsFollowee } = mock;
 
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
-const store = mockStore({ userFollowee, userFollowing });
-const props = { userFollowee: { userFollowee: [{}] } };
-const UserFolloweeComponent = (
-  <Provider store={store}>
-    <Followee {...props} />
-  </Provider>
-);
+const UserFolloweeComponent = <Followee {...propsFollowee} />;
 
-const UserFollowingComponent = (
-  <Provider store={store}>
-    <Following {...props} />
-  </Provider>
-);
+const UserFollowingComponent = <Following {...propsFollowing} />;
 
 describe('<Followee />', () => {
   it('should render user followee page', () => {
@@ -48,6 +33,8 @@ describe('<FollowCard />', () => {
         initials=""
         name=""
         bio=""
+        Id=""
+        buttonEvent={jest.fn()}
         button=""
         btnClass=""
       />

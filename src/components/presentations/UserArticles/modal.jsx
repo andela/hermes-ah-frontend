@@ -25,6 +25,7 @@ class ModalExampleSize extends Component {
               No
             </Button>
             <Button
+              type="submit"
               negative
               icon="checkmark"
               labelPosition="right"

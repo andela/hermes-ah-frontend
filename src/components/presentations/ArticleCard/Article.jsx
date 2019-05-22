@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Item, Header } from 'semantic-ui-react';
 import './article-card.scss';
 
@@ -11,6 +12,7 @@ const ArticleCard = ({
   read,
   paragraph,
   image,
+  articleId,
 }) => (
   <Item.Group className="article-card-item">
     <Header as="h3" className="category">
@@ -19,7 +21,9 @@ const ArticleCard = ({
     <Item>
       <Item.Content>
         <br />
-        <Item.Header as="a">{title}</Item.Header>
+        <Link to={`/article/${articleId}`} className="link">
+          <Item.Header>{title}</Item.Header>
+        </Link>
         <Item.Description>
           {`${paragraph.charAt(0).toUpperCase() +
             paragraph.slice(1).substring(0, 200)}...`}
@@ -56,6 +60,7 @@ ArticleCard.defaultProps = {
 };
 
 ArticleCard.propTypes = {
+  articleId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string,

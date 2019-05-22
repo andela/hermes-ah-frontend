@@ -36,7 +36,7 @@ const deleteArticle = articleId => {
       const deletedArticle = await http.delete(`/article/${articleId}`);
       console.log(deletedArticle.data.message, '-------');
       toast.success(deletedArticle.data.message);
-      // dispatch(deleteArticlesSuccess(deletedArticle));
+      dispatch(deleteArticlesSuccess(deletedArticle.data));
     } catch (ex) {
       exceptionHandler(ex);
     } finally {

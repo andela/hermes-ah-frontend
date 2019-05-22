@@ -11,7 +11,7 @@ const CookieBanner = () => {
       enableDeclineButton
       acceptOnScroll={false}
       flipButtons
-      declineButtonText="Decline"
+      declineButtonText="X"
     >
       This website uses cookies to enhance the user experience.
     </CookieConsent>

@@ -5,6 +5,7 @@ describe('followee reducers', () => {
   it('should return the initial state', () => {
     expect(followeeReducer(undefined, {})).toEqual({
       userFollowee: [],
+      followedUser: '',
     });
   });
 
@@ -23,6 +24,25 @@ describe('followee reducers', () => {
     expect(
       followeeReducer([], {
         type: types.FETCH_FOLLOWEE_FAILURE,
+      })
+    ).toEqual({});
+  });
+
+  it('should handle FOLLOW_SUCCESS', () => {
+    expect(
+      followeeReducer([], {
+        type: types.FOLLOW_SUCCESS,
+        followedUser: [{ followedUser: 'followee' }],
+      })
+    ).toEqual({
+      followedUser: [{ followedUser: 'followee' }],
+    });
+  });
+
+  it('should handle FOLLOW_FAILURE', () => {
+    expect(
+      followeeReducer([], {
+        type: types.FOLLOW_FAILURE,
       })
     ).toEqual({});
   });

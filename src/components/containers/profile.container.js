@@ -8,7 +8,7 @@ import RequestAction from '../../actions/reviewers-request.action';
 import myArticlesAction from '../../actions/articles-update.actions';
 
 const { getProfile, updateProfile, getSuggestions } = profileAction;
-const { getFollowee } = followeeAction;
+const { getFollowee, followUser } = followeeAction;
 const { getFollowing, unFollowUser } = followingAction;
 const { getUserRequests } = RequestAction;
 const { fetchArticles, deleteArticle } = myArticlesAction;
@@ -44,6 +44,7 @@ const ProfilepageContainer = connect(
     getUserRequests,
     unFollowUser,
     deleteArticle,
+    followUser,
   }
 )(Profilepage);
 
