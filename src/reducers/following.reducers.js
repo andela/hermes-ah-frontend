@@ -32,6 +32,8 @@ const userFollowing = (state = initialState, action) => {
       return { ...state };
     case actionTypes.INCREASE_COUNT:
       return { ...state, followingCount: action.newCount };
+    case actionTypes.DECREASE_COUNT:
+      return { ...state, followingCount: action.newCount };
     default:
       return state;
   }

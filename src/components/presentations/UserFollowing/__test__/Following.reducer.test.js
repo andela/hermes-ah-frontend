@@ -69,4 +69,15 @@ describe('following reducers', () => {
       followingCount: '2',
     });
   });
+
+  it('should handle DECREASE_COUNT', () => {
+    expect(
+      followingReducer([], {
+        type: types.DECREASE_COUNT,
+        newCount: '1',
+      })
+    ).toEqual({
+      followingCount: '1',
+    });
+  });
 });

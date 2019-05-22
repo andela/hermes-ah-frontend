@@ -53,9 +53,9 @@ const getFollowee = () => {
 const followUser = (userId, newCount) => {
   return async dispatch => {
     try {
-      dispatch(countUpdate(newCount));
       const follow = await http.post(`follow/${userId}`);
       dispatch(followSuccess(follow.data));
+      dispatch(countUpdate(newCount));
       toast.success(`You followed ${follow.data.user.last_name}`);
     } catch (error) {
       dispatch(followFailure());

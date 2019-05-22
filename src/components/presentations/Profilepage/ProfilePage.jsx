@@ -41,15 +41,17 @@ class Profilepage extends Component {
   };
 
   unFollowClick = async e => {
-    const { unFollowUser } = this.props;
-    await unFollowUser(e.target.id);
+    const { unFollowUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = parseInt(followingCount, 10) - 1;
+    await unFollowUser(e.target.id, newcount);
   };
 
   followClick = async e => {
     const { followUser, userFollowing } = this.props;
     const { followingCount } = userFollowing;
-    const newcount = followingCount + 1;
-    await followUser(e.target.id, `${newcount}`);
+    const newcount = parseInt(followingCount, 10) + 1;
+    followUser(e.target.id, newcount);
   };
 
   changeTab = tab => {
