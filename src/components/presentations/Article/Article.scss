@@ -397,3 +397,31 @@
 .ui.rating .icon.selected {
   color: #fbd400;
 }
+
+@media screen and (max-width: 768px) {
+  .social-sharing {
+    position: inherit;
+    flex-direction: inherit;
+    margin-top: 0;
+
+    .twitter-share, .facebook-share, .bookmark, .like {
+      width: 50px;
+      margin: 10px 0;
+      text-align: left;
+      color: #0e71eb;
+      font-size: 25px;
+    }
+
+    .like {
+      width: 100px;
+      justify-content: flex-start;
+      i {
+        padding: 0;
+      }
+
+      p {
+        padding: 5px;
+      }
+    }
+  }
+}

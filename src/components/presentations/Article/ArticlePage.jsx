@@ -53,14 +53,15 @@ class ArticlePage extends Component {
                 <Grid.Row>
                   <Grid.Column>
                     <div className="section">
-                      <ReadingCard />
-                      <Rate
-                        articleId={articleId}
-                        rateArticle={rateArticle}
-                        likes={article.likes_count}
-                      />
                       {Object.keys(article).length ? (
-                        <ReadingCard article={article} />
+                        <div>
+                          <ReadingCard article={article} />
+                          <Rate
+                            articleId={articleId}
+                            rateArticle={rateArticle}
+                            likes={article.likes_count}
+                          />
+                        </div>
                       ) : (
                         <p>Loading...</p>
                       )}
