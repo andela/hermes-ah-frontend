@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
-import ReadingCard from './reading-article-card';
+import ReadingCard from './ReadingArticleCard';
 import InputComment from './InputComment';
 import Loader from '../../shared/Loader/Loader';
 import './Article.scss';
