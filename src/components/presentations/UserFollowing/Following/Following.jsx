@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import FollowingCard from '../FollowCard/Follow-card';
+import UserProfileModal from '../../../shared/Modals/UserProfileModal';
 import '../FollowCard/follow-card.scss';
 
 class FollowingList extends Component {
@@ -15,10 +16,11 @@ class FollowingList extends Component {
   };
 
   render() {
-    const { userFollowing, unFollow } = this.props;
+    const { userFollowing, unFollow, modal } = this.props;
     const { userFollowing: following } = userFollowing;
     return (
       <div className="grid-render">
+        <UserProfileModal modal={modal} />
         {following.map(user => (
           <FollowingCard
             key={user.id}
@@ -34,6 +36,7 @@ class FollowingList extends Component {
             button="unfollow"
             btnClass="btn-following"
             buttonEvent={unFollow}
+            openModal={() => modal.openModal(user.followee_id)}
           />
         ))}
       </div>
@@ -47,6 +50,7 @@ FollowingList.propTypes = {
   }).isRequired,
   unFollow: PropTypes.func.isRequired,
   getFollowing: PropTypes.func.isRequired,
+  modal: PropTypes.shape().isRequired,
 };
 
 export default FollowingList;

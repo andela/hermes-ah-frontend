@@ -11,10 +11,17 @@ const Follow = ({
   btnClass,
   Id,
   buttonEvent,
+  openModal,
 }) => {
   return (
     <div className="main-card">
-      <div className="details">
+      <div
+        className="details"
+        onClick={openModal}
+        onKeyDown={openModal}
+        role="button"
+        tabIndex={0}
+      >
         <div className="img-section">
           {imageUrl ? (
             <img className="profile-pic" src={imageUrl} alt="" />
@@ -50,6 +57,7 @@ Follow.propTypes = {
   imageUrl: PropTypes.string.isRequired,
   Id: PropTypes.string.isRequired,
   buttonEvent: PropTypes.func.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default Follow;
