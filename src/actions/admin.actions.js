@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
 import actions from '../constants/reviewerRequests.constant';
 import http from '../utils/httpService';
+import contentLoading from './loading.action';
 import exceptionHandler from '../utils/exceptionHandler';
 
 export const AcceptRequestSuccess = requests => {
@@ -31,6 +32,10 @@ export const RejectRequestFailure = () => {
 
 const acceptRequest = userId => {
   return async dispatch => {
+    if (!navigator.onLine) {
+      toast.error('Please check your internet connection');
+    }
+    dispatch(contentLoading());
     try {
       const requestByUser = await http.patch(`admin/${userId}/upgrades`);
       dispatch(AcceptRequestSuccess(requestByUser.data));
@@ -53,6 +58,10 @@ const acceptRequest = userId => {
 
 const rejectRequest = userId => {
   return async dispatch => {
+    if (!navigator.onLine) {
+      toast.error('Please check your internet connection');
+    }
+    dispatch(contentLoading());
     try {
       await http.delete(`admin/${userId}/reject`);
       dispatch(RejectRequestSuccess(userId));
