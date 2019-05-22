@@ -13,12 +13,15 @@ import Following from '../UserFollowing/Following/Following';
 import Followee from '../UserFollowing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 import NavBar from '../../shared/NavBar/NavBar';
+import http from '../../../utils/httpService';
 
 class Profilepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: 'profile-section',
+      modalOpen: false,
+      modalProfile: {},
     };
   }
 
@@ -49,6 +52,16 @@ class Profilepage extends Component {
     this.setState({ currentTab: tab });
   };
 
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = async userid => {
+    const { data } = await http.get(`/profile/${userid}`);
+    this.setState({ modalOpen: true, modalProfile: data });
+    return data;
+  };
+
   handleChange = async e => {
     const { updateProfile } = this.props;
     const form = new FormData();
@@ -70,7 +83,7 @@ class Profilepage extends Component {
   };
 
   render() {
-    const { currentTab } = this.state;
+    const { currentTab, modalOpen, modalProfile } = this.state;
 
     const {
       articlesUpdate,
@@ -116,10 +129,24 @@ class Profilepage extends Component {
             <Following
               userFollowing={userFollowing}
               unFollow={this.unFollowClick}
+              modal={{
+                modalOpen,
+                openModal: this.openModal,
+                closeModal: this.closeModal,
+                modalProfile,
+              }}
             />
           ) : null}
           {currentTab === 'followers-section' ? (
-            <Followee userFollowee={userFollowee} />
+            <Followee
+              userFollowee={userFollowee}
+              modal={{
+                modalOpen,
+                openModal: this.openModal,
+                closeModal: this.closeModal,
+                modalProfile,
+              }}
+            />
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
