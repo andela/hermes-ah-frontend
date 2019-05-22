@@ -29,6 +29,13 @@ export const unFollowFailure = () => {
   };
 };
 
+export const countUpdate = newCount => {
+  return {
+    type: actions.DECREASE_COUNT,
+    newCount,
+  };
+};
+
 const getFollowing = () => {
   return async dispatch => {
     try {
@@ -42,11 +49,12 @@ const getFollowing = () => {
   };
 };
 
-const unFollowUser = userId => {
+const unFollowUser = (userId, newCount) => {
   return async dispatch => {
     try {
       const unFollow = await http.delete(`follow/${userId}`);
       dispatch(unFollowSuccess(unFollow.data));
+      dispatch(countUpdate(newCount));
       toast.success(`You unfollowed ${unFollow.data.user.last_name}`);
     } catch (error) {
       dispatch(unFollowFailure());

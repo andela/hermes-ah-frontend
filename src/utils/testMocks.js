@@ -126,6 +126,44 @@ const articleCardProps = {
   paragraph: 'paragraph',
 };
 
+const propsFollowee = {
+  userFollowee: {
+    userFollowee: [
+      {
+        id: 'nkddn',
+        follower_id: 'fjakf',
+        followee_id: 'jsdfnkj',
+        follower: {
+          image_url: '',
+          first_name: '',
+          last_name: '',
+          bio: '',
+        },
+      },
+    ],
+  },
+  follow: jest.fn(),
+};
+
+const propsFollowing = {
+  userFollowing: {
+    userFollowing: [
+      {
+        id: 'nkddn',
+        follower_id: 'fjakf',
+        followee_id: 'jsdfnkj',
+        followee: {
+          image_url: '',
+          first_name: '',
+          last_name: '',
+          bio: '',
+        },
+      },
+    ],
+  },
+  unFollow: jest.fn(),
+  getFollowing: jest.fn(),
+};
 const reportedArticleProps = [
   {
     topic: 'fadad',
@@ -168,6 +206,8 @@ const mock = {
   articleReducer,
   articleCardProps,
   userProfileReducer,
+  propsFollowing,
+  propsFollowee,
   reportedArticleProps,
   reviewedArticleProps,
   reviewerRequestProps,

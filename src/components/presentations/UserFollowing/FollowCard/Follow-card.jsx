@@ -9,19 +9,19 @@ const Follow = ({
   bio,
   button,
   btnClass,
-  followeeId,
+  Id,
   buttonEvent,
   openModal,
 }) => {
   return (
-    <div
-      className="main-card"
-      onClick={openModal}
-      onKeyDown={openModal}
-      role="button"
-      tabIndex={0}
-    >
-      <div className="details">
+    <div className="main-card">
+      <div
+        className="details"
+        onClick={openModal}
+        onKeyDown={openModal}
+        role="button"
+        tabIndex={0}
+      >
         <div className="img-section">
           {imageUrl ? (
             <img className="profile-pic" src={imageUrl} alt="" />
@@ -37,7 +37,7 @@ const Follow = ({
       <div className="button-div">
         <button
           type="submit"
-          id={followeeId}
+          id={Id}
           onClick={buttonEvent}
           className={btnClass}
         >
@@ -55,7 +55,7 @@ Follow.propTypes = {
   button: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  followeeId: PropTypes.string.isRequired,
+  Id: PropTypes.string.isRequired,
   buttonEvent: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
 };

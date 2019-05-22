@@ -15,11 +15,12 @@ p {
   border: solid 1px #e8e7e7;
   border-radius: 4px;
   box-shadow: 0 3px 6px #bfbfbf;
-  outline: none;
-  cursor: pointer;
+  
 
   .details {
     display: flex;
+    outline: none;
+    cursor: pointer;
   }
 
   .img-section {
