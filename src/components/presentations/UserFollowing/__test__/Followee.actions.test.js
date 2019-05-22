@@ -4,6 +4,8 @@ import fetchMock from 'fetch-mock';
 import {
   getFolloweeSuccess,
   getFolloweeFailure,
+  followSuccess,
+  followFailure,
 } from '../../../../actions/followee.actions';
 import types from '../../../../constants/followee.constants';
 
@@ -44,6 +46,30 @@ describe('auth actions', () => {
     const store = mockStore({});
 
     store.dispatch(getFolloweeFailure());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to fetch follow success', async () => {
+    const expectedAction = [
+      {
+        type: types.FOLLOW_SUCCESS,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(followSuccess());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action to fetch follow failure', async () => {
+    const expectedAction = [
+      {
+        type: types.FOLLOW_FAILURE,
+      },
+    ];
+    const store = mockStore({});
+
+    store.dispatch(followFailure());
     expect(store.getActions()).toEqual(expectedAction);
   });
 });

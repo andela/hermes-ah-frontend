@@ -44,8 +44,17 @@ class Profilepage extends Component {
   };
 
   unFollowClick = async e => {
-    const { unFollowUser } = this.props;
-    await unFollowUser(e.target.id);
+    const { unFollowUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = parseInt(followingCount, 10) - 1;
+    await unFollowUser(e.target.id, newcount);
+  };
+
+  followClick = async e => {
+    const { followUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = parseInt(followingCount, 10) + 1;
+    followUser(e.target.id, newcount);
   };
 
   changeTab = tab => {
@@ -93,8 +102,9 @@ class Profilepage extends Component {
       bookmarkedArticles,
       updateProfile,
       user,
+      getFollowing,
     } = this.props;
-
+    const { followingCount } = userFollowing;
     const { userProfile } = user;
     const { profile } = userProfile;
     const { loader } = isLoadingReducer;
@@ -121,13 +131,14 @@ class Profilepage extends Component {
           currentTab={currentTab}
           totalArticle={`${articles.length}`}
           totalFollowee={`${userFollowee.userFollowee.length}`}
-          totalFollowing={`${userFollowing.userFollowing.length}`}
+          totalFollowing={`${followingCount}`}
           totalBookmarkArticle={`${bookmarkList.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
             <Following
               userFollowing={userFollowing}
+              getFollowing={getFollowing}
               unFollow={this.unFollowClick}
               modal={{
                 modalOpen,
@@ -146,6 +157,7 @@ class Profilepage extends Component {
                 closeModal: this.closeModal,
                 modalProfile,
               }}
+              follow={this.followClick}
             />
           ) : null}
           {currentTab === 'article-section' ? (
@@ -179,6 +191,7 @@ Profilepage.propTypes = {
   }).isRequired,
   getProfile: PropTypes.func.isRequired,
   unFollowUser: PropTypes.func.isRequired,
+  followUser: PropTypes.func.isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
