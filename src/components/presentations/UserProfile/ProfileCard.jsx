@@ -1,67 +1,59 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import EditProfileModal from '../../shared/Modals/EditProfileModal';
 import './userprofile.scss';
 
 class ProfileCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      profile: {},
+      modalOpen: false,
     };
   }
 
-  storeDetail = ({ target }) => {
-    const { profile } = this.state;
-    profile[target.id] = target.textContent;
-    this.setState({ profile });
+  updateUserProfile = async (e, data) => {
+    const { updateProfile } = this.props;
+    e.preventDefault();
+    await updateProfile(data);
+    this.closeModal();
   };
 
-  updateUserProfile = ({ target }) => {
-    const { profile } = this.state;
-    const { updateProfile } = this.props;
-    if (profile[target.id] !== target.textContent) {
-      const key = target.id;
-      const value = target.textContent;
-      updateProfile({ [key]: value });
-    }
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = () => {
+    this.setState({ modalOpen: true });
   };
 
   render() {
     const { profile } = this.props;
+    const { modalOpen } = this.state;
     return (
       <div className="profile-card">
         {profile ? (
           <div>
+            <EditProfileModal
+              modal={{
+                modalOpen,
+                profile,
+                closeModal: this.closeModal,
+                openModal: this.openModal,
+                updateProfile: this.updateUserProfile,
+              }}
+            />
+            <div className="edit-icon">
+              <button type="button" onClick={this.openModal}>
+                <i className="far fa-edit" />
+              </button>
+            </div>
             <p className="profile-card-item">
               <b>Title:</b>
-              <span
-                className="editable"
-                contentEditable
-                suppressContentEditableWarning
-                id="title"
-                onFocus={e => this.storeDetail(e)}
-                onBlur={e => this.updateUserProfile(e)}
-              >
-                {profile.title}
-              </span>
-              <i className="fas fa-ellipsis-v" title="Update your title" />
+              <span>{profile.title}</span>
             </p>
             <p className="profile-card-item">
               <b>Research Field:</b>
-              <span
-                className="editable"
-                contentEditable
-                suppressContentEditableWarning
-                id="research_field"
-                onFocus={e => this.storeDetail(e)}
-                onBlur={e => this.updateUserProfile(e)}
-              >
-                {profile.research_field}
-              </span>
-              <i
-                className="fas fa-ellipsis-v"
-                title="Update your research field"
-              />
+              <span>{profile.research_field}</span>
             </p>
             <p className="profile-card-item">
               <b>Email:</b>
@@ -69,34 +61,11 @@ class ProfileCard extends Component {
             </p>
             <p className="profile-card-item">
               <b>Phone Number:</b>
-              <span
-                className="editable"
-                contentEditable
-                suppressContentEditableWarning
-                id="phone_number"
-                onFocus={e => this.storeDetail(e)}
-                onBlur={e => this.updateUserProfile(e)}
-              >
-                {profile.phone_number}
-              </span>
-              <i
-                className="fas fa-ellipsis-v"
-                title="Update your phone number"
-              />
+              <span>{profile.phone_number}</span>
             </p>
             <p className="profile-card-item">
               <b>About Me:</b>
-              <span
-                className="editable"
-                contentEditable
-                suppressContentEditableWarning
-                id="bio"
-                onFocus={e => this.storeDetail(e)}
-                onBlur={e => this.updateUserProfile(e)}
-              >
-                {profile.bio}
-              </span>
-              <i className="fas fa-ellipsis-v" title="Update your bio" />
+              <span>{profile.bio}</span>
             </p>
           </div>
         ) : (
