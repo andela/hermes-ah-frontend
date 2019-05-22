@@ -150,6 +150,8 @@ const reviewerRequestProps = [
     name: 'string',
     bio: 'string',
     initials: 'string',
+    adminAcceptRequest: jest.fn(),
+    adminRejectRequest: jest.fn(),
   },
 ];
 
