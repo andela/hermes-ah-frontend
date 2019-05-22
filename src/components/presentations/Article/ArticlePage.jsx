@@ -34,7 +34,11 @@ class ArticlePage extends Component {
                 <Grid.Row>
                   <Grid.Column>
                     <div className="section">
-                      <ReadingCard />
+                      {Object.keys(article).length ? (
+                        <ReadingCard article={article} />
+                      ) : (
+                        <p>Loading...</p>
+                      )}
                     </div>
                   </Grid.Column>
                   <Grid.Column>
