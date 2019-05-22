@@ -7,6 +7,7 @@ import ReportedArticles from '../ReportedArticles';
 import ReviewedArticles from '../../ReviewedArticles/ReviewedArticles';
 import AdminPage from '../AdminPage';
 import RequestList from '../../ReviewerRequests/Requests/Requests';
+import ReviewerRequestCard from '../../ReviewerRequests/ReviewersCard/Reviewers-card';
 import mock from '../../../../utils/testMocks';
 
 const {
@@ -18,6 +19,8 @@ const {
 const props = {
   getUserRequests: jest.fn(),
   getReportedArticle: jest.fn(),
+  adminAcceptRequest: jest.fn(),
+  adminRejectRequest: jest.fn(),
   reviewerRequestProps,
   reportedArticleProps,
 };
@@ -55,6 +58,26 @@ describe('AdminPage component', () => {
 
   it('should render ReportedArticles without crashing', () => {
     const wrapper = shallow(<ReportedArticles {...reportedArticleProps} />);
+    expect(wrapper.find('div'));
+  });
+});
+describe('<REQUEST CARD />', () => {
+  it('should render request card', () => {
+    const wrapper = shallow(
+      <ReviewerRequestCard
+        initials=""
+        imageUrl=""
+        bio=""
+        name=""
+        button=""
+        button1=""
+        btnClass1=""
+        btnClass=""
+        adminAcceptRequest=""
+        adminRejectRequest=""
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
     expect(wrapper.find('div'));
   });
 });

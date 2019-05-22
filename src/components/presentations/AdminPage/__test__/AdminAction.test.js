@@ -5,6 +5,7 @@ import adminAction, {
   AcceptRequestFailure,
   RejectRequestFailure,
 } from '../../../../actions/admin.actions';
+import reviewerReducers from '../../../../reducers/reviewerRequests.reducer';
 import actions from '../../../../constants/reviewerRequests.constant';
 
 const { acceptRequest, rejectRequest } = adminAction;
@@ -17,6 +18,27 @@ describe('get reported article actions', () => {
   afterEach(() => {
     fetchMock.restore();
     fetchMock.config.fallbackToNetwork = false;
+  });
+
+  it('should return the initial state', () => {
+    expect(reviewerReducers(undefined, {})).toEqual({
+      userRequests: [],
+      requestStatus: '',
+    });
+  });
+
+  it('should handle REJECT_REQUEST_SUCCESS', () => {
+    const state1 = {
+      userRequests: [{ id: 'abc' }, { userId: 'jkl' }],
+    };
+
+    const newState2 = reviewerReducers(state1, {
+      type: actions.REJECT_REQUEST_SUCCESS,
+    });
+
+    expect(newState2).toEqual({
+      userRequests: [],
+    });
   });
 
   it('should create an action for reviewer request failure', async () => {
