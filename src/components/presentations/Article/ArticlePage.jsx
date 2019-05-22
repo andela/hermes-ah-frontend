@@ -59,6 +59,11 @@ class ArticlePage extends Component {
                         rateArticle={rateArticle}
                         likes={article.likes_count}
                       />
+                      {Object.keys(article).length ? (
+                        <ReadingCard article={article} />
+                      ) : (
+                        <p>Loading...</p>
+                      )}
                     </div>
                   </Grid.Column>
                   <Grid.Column>

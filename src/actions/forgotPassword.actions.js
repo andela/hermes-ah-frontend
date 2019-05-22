@@ -27,7 +27,7 @@ export const forgotPassword = userObj => {
       const messageDispatch = data.data[0].message;
       return toast.info(`${messageDispatch}`, {
         type: toast.TYPE.INFO,
-        closeButton: false,
+        closeButton: true,
         position: toast.POSITION.TOP_CENTER,
       });
     } catch (error) {

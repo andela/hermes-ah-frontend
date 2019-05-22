@@ -1,7 +1,7 @@
 const validateImage = file => {
   let valid = true;
   let message = 'uploading...';
-  if (file && !/\/(gif|jpg|jpeg|tiff|png)$/i.test(file.type)) {
+  if (file && !/\/(jpg|jpeg|tiff|png)$/i.test(file.type)) {
     valid = false;
     message = 'Invalid picture format';
   }

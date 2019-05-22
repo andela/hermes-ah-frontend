@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FollowingCard from '../FollowCard/Follow-card';
+import UserProfileModal from '../../../shared/Modals/UserProfileModal';
 import '../FollowCard/follow-card.scss';
 
-const FollowingList = ({ userFollowing, unFollow }) => {
+const FollowingList = ({ userFollowing, unFollow, modal }) => {
   const { userFollowing: following } = userFollowing;
   return (
     <div className="grid-render">
+      <UserProfileModal modal={modal} />
       {following.map(user => (
         <FollowingCard
           key={user.id}
@@ -20,6 +22,7 @@ const FollowingList = ({ userFollowing, unFollow }) => {
           button="unfollow"
           btnClass="btn-following"
           buttonEvent={unFollow}
+          openModal={() => modal.openModal(user.followee_id)}
         />
       ))}
     </div>
@@ -31,6 +34,7 @@ FollowingList.propTypes = {
     userFollowing: PropTypes.array,
   }).isRequired,
   unFollow: PropTypes.func.isRequired,
+  modal: PropTypes.shape().isRequired,
 };
 
 export default FollowingList;

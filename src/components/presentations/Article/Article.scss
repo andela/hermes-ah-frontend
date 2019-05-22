@@ -255,6 +255,7 @@
       }
     .article-datail-footer{
         display: flex;
+        justify-content: space-between;
     }
 
     .article-author-detail-container{
@@ -264,9 +265,9 @@
     
     .article-author-details{
         display: grid;
-        grid-template-columns: 1fr 2fr 1fr;
-        width: 300px;
-        margin: 10px;
+        grid-template-columns: 1fr 3fr 1fr;
+        width: 400px;
+        margin: 10px 0;
         align-items: center;
         justify-items: center;
 
@@ -280,6 +281,8 @@
 
         .article-avatar{
             align-self: center;
+            justify-self: start;
+
         }
 
         .article-datail{
@@ -287,8 +290,13 @@
             display: flex;
             flex-direction: column;
             align-self: center;
+            width: 100%;
 
+            .aticle-detail-author-name{
+              font-weight: bold;
+            }
         }
+
 
         .article-datail p{
             margin: 0;
