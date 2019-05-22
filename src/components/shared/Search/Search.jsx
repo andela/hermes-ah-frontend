@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { range } from 'lodash';
 import { Search, Grid } from 'semantic-ui-react';
 import { searchArticle } from '../../../actions/search.action';
 import './search.scss';
@@ -21,18 +20,6 @@ class SearchComponent extends Component {
 
   handleResultSelect = (e, { result }) =>
     this.setState({ value: result.title });
-
-  updateCategoriesWithSearchResult = result => {
-    return range(0, 3).reduce((acc, cur) => {
-      const name = ['articles', 'authors', 'tags'];
-      const results = [...result];
-      acc[name[cur]] = {
-        name: name[cur],
-        results: results[cur],
-      };
-      return acc;
-    }, {});
-  };
 
   handleSearchChange = async (e, { value: currentVal }) => {
     this.setState({ isLoading: true, value: currentVal });
@@ -72,15 +59,24 @@ class SearchComponent extends Component {
     return setTimeout(() => {
       const { articles, authors, tags } = getResults;
 
-      const source = this.updateCategoriesWithSearchResult([
-        articles,
-        authors,
-        tags,
-      ]);
+      const results = {};
+      const filteredResults = [];
+      const names = ['articles', 'authors', 'tags'];
+      names.forEach((elem, index) => {
+        const result = [articles, authors, tags];
+
+        results[index] = {
+          name: elem,
+          results: result[index],
+        };
+        if (results[index].results.length) {
+          filteredResults.push(results[index]);
+        }
+      });
 
       return this.setState({
         isLoading: false,
-        results: source,
+        results: filteredResults,
       });
     }, 500);
   };
