@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
-import CommentInput from './CommentInput';
+import InputComment from './InputComment';
 
-class Comments extends Component {
+class ViewComment extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,31 +24,34 @@ class Comments extends Component {
 
   render() {
     const { toggle, input } = this.state;
-    const { comments } = this.props;
+    const { comment } = this.props;
     return (
       <React.Fragment>
         <div className="comment-cont">
-          <h3>Comments</h3>
-          {/* write comment - texbox */}
-          <CommentInput />
-          <div>
-            {/* comment */}
-            {comments.map(comment => (
+          {comment ? (
+            <div>
               <div className="comments-cont-text-content" key={comment.id}>
                 <div className="wrap-image-author">
-                  <div className="image-author">
-                    <div className="commenter-img">
-                      <img src={comment.commentOwner.image_url} alt="author" />
+                  {comment.commentOwner && (
+                    <div className="image-author">
+                      <div className="commenter-img">
+                        <img
+                          src={comment.commentOwner.image_url}
+                          alt="author"
+                        />
+                      </div>
+                      <div className="commenter-details">
+                        <h3>
+                          {`${comment.commentOwner.first_name} ${
+                            comment.commentOwner.last_name
+                          }`}
+                        </h3>
+                        <span>
+                          {new Date(comment.createdAt).toDateString()}
+                        </span>
+                      </div>
                     </div>
-                    <div className="commenter-details">
-                      <h3>
-                        {`${comment.commentOwner.first_name} ${
-                          comment.commentOwner.last_name
-                        }`}
-                      </h3>
-                      <span>{new Date(comment.createdAt).toDateString()}</span>
-                    </div>
-                  </div>
+                  )}
                   <i className="fas fa-ellipsis-v" />
                 </div>
                 <div className="commenter-text">
@@ -67,16 +70,17 @@ class Comments extends Component {
                     Reply
                   </button>
                 </div>
-                {input ? <CommentInput /> : null}
-                <div className="hide-replies">
-                  <hr className="line" />
-                  <button type="button" onClick={this.toggleReplies}>
-                    {toggle ? 'Hide replies' : 'Show replies'}
-                  </button>
-                </div>
+                {input ? <InputComment /> : null}
+                {comment.replies && comment.replies.length === 0 ? null : (
+                  <div className="hide-replies">
+                    <hr className="line" />
+                    <button type="button" onClick={this.toggleReplies}>
+                      {toggle ? 'Hide replies' : 'Show replies'}
+                    </button>
+                  </div>
+                )}
                 {toggle ? (
                   <div>
-                    {/* comment replies */}
                     {comment.replies.map(reply => (
                       <div className="response" key={reply.createdAt}>
                         <div className="wrap-image-author">
@@ -114,20 +118,18 @@ class Comments extends Component {
                   </div>
                 ) : null}
               </div>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <p>Loading</p>
+          )}
         </div>
       </React.Fragment>
     );
   }
 }
 
-Comments.defaultProps = {
-  comments: [],
+ViewComment.propTypes = {
+  comment: PropTypes.shape().isRequired,
 };
 
-Comments.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.shape()),
-};
-
-export default Comments;
+export default ViewComment;
