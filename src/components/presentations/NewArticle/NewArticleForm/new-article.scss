@@ -75,6 +75,25 @@
         margin-left: 8.5%;
         min-width: 0;
     }
+    .item {
+        padding:20px;
+    }
+    .ui.dropdown .menu .selected.item, .ui.dropdown.selected {
+        background: #ffffff;
+        color: rgba(0,0,0,.95);
+    }
+    .ui.selection.dropdown .menu>.item {
+        border-top: 1px solid #ffff;
+        padding: .78rem 1.14285714rem!important;
+        white-space: normal;
+        word-wrap: normal;
+    }
+   .selected span.text {
+        display: none;
+    }
+    .message{
+        display:none;
+    }
 }
 
 #header-image {

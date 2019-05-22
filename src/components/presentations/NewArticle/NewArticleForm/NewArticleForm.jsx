@@ -59,7 +59,7 @@ const NewArticleForm = ({
                     <h3 className="input-heading">Keywords</h3>
                     <Dropdown
                       options={options}
-                      placeholder="Choose Keywords"
+                      placeholder="Type in your keywords"
                       search
                       selection
                       fluid
