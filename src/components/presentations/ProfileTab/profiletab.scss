@@ -3,12 +3,29 @@
 .profile-tab{
     height: 60px;
     background-color: $primary-color;
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    display: flex;
     align-items: center;
     padding: 0 20px;
     width: 95%;
     margin: 0 auto;
+
+    .submenu-control {
+        display: none;
+    }
+
+    .profile-tab-responsive {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.profile-tab-responsive-2 {
+    width: 95%;
+    margin: 0 auto;
+    display: none;
+    flex-direction: column-reverse;
+    background: #0e71eb;
 }
 
 .profile-tab-items-left{
@@ -47,15 +64,22 @@
 }
 
 .num-icon{
-    width: 30px;
-    height: 30px;
+    min-width: 15px;
+    height: 18px;
     text-align: center;
     float: right;
     background: #fff;
-    border-radius: 50%;
-    color: $primary-color;
+    border-radius: 4px;
+    color: #0E71EB;
     padding: 5px;
-    margin: 0 10px 0 3px;
+    margin: 4px 10px 0 3px;
+    
+    p {
+        font-size: 11px;
+        margin: 0;
+        line-height: 0;
+        padding: 5px 0;
+    }
 }
 
 .profile-btn-active{
@@ -75,12 +99,36 @@
     }  
 }
 
+.response-control {
+    display: none;
+}
+
 @media screen and (max-width: 600px) {
     .profile-tab {
-        height: 229px;
-        display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
         padding: 0;
+
+        .submenu-control {
+            width: 100%;
+            display: block;
+            padding: 10px;
+            text-align: right;
+            
+            label {
+                display: block;
+                cursor: pointer;
+                color: #fff;
+            }
+        }
+
+        .profile-tab-responsive {
+            display: none;
+            flex-direction: column-reverse;
+        }
+    }
+
+    .response-control:checked ~ .profile-tab-responsive-2 {
+        display: flex;
     }
 
     .profile-tab-items-right, .profile-tab-items-left {
@@ -101,6 +149,10 @@
         }
     }
 
+    .profile-btn:hover {
+        background: #001d40;
+    }
+
     .profile-btn-active {
         margin: 0;
         padding: 8px 10px;
@@ -109,6 +161,18 @@
         
         button {
             border-bottom: none;
+        }
+    }
+
+    .num-icon{
+        margin: 2px 0;
+        padding: 5px;
+        min-width: 15px;
+        height: 18px;
+        
+        p {
+            line-height: 0.9;
+            padding: 0;
         }
     }
 }

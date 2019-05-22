@@ -1,4 +1,5 @@
 import React from 'react';
+import { Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const Imagepic = ({ handleChange, profilePic }) => (
@@ -12,8 +13,13 @@ const Imagepic = ({ handleChange, profilePic }) => (
       alt="avatar"
     />
     <form className="custom-file-upload" encType="multipart/form-data">
-      <label htmlFor="file-upload">
-        <i className="far fa-edit" title="Change profile picture" />
+      <label htmlFor="file-upload" className="image-label">
+        <Popup
+          content="Upload profile picture"
+          className="popup"
+          trigger={<i className="far fa-edit edit-icon" />}
+          position="top center"
+        />
         <input
           type="file"
           id="file-upload"
