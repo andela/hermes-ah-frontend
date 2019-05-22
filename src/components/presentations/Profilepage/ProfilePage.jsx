@@ -13,12 +13,15 @@ import Following from '../UserFollowing/Following/Following';
 import Followee from '../UserFollowing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 import NavBar from '../../shared/NavBar/NavBar';
+import http from '../../../utils/httpService';
 
 class Profilepage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       currentTab: 'profile-section',
+      modalOpen: false,
+      modalProfile: {},
     };
   }
 
@@ -41,12 +44,31 @@ class Profilepage extends Component {
   };
 
   unFollowClick = async e => {
-    const { unFollowUser } = this.props;
-    await unFollowUser(e.target.id);
+    const { unFollowUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = parseInt(followingCount, 10) - 1;
+    await unFollowUser(e.target.id, newcount);
+  };
+
+  followClick = async e => {
+    const { followUser, userFollowing } = this.props;
+    const { followingCount } = userFollowing;
+    const newcount = parseInt(followingCount, 10) + 1;
+    followUser(e.target.id, newcount);
   };
 
   changeTab = tab => {
     this.setState({ currentTab: tab });
+  };
+
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = async userid => {
+    const { data } = await http.get(`/profile/${userid}`);
+    this.setState({ modalOpen: true, modalProfile: data });
+    return data;
   };
 
   handleChange = async e => {
@@ -70,7 +92,7 @@ class Profilepage extends Component {
   };
 
   render() {
-    const { currentTab } = this.state;
+    const { currentTab, modalOpen, modalProfile } = this.state;
 
     const {
       articlesUpdate,
@@ -81,8 +103,9 @@ class Profilepage extends Component {
       updateProfile,
       user,
       getAnArticle,
+      getFollowing,
     } = this.props;
-
+    const { followingCount } = userFollowing;
     const { userProfile } = user;
     const { profile } = userProfile;
     const { loader } = isLoadingReducer;
@@ -109,18 +132,34 @@ class Profilepage extends Component {
           currentTab={currentTab}
           totalArticle={`${articles.length}`}
           totalFollowee={`${userFollowee.userFollowee.length}`}
-          totalFollowing={`${userFollowing.userFollowing.length}`}
+          totalFollowing={`${followingCount}`}
           totalBookmarkArticle={`${bookmarkList.length}`}
         />
         <div className="profile-content">
           {currentTab === 'following-section' ? (
             <Following
               userFollowing={userFollowing}
+              getFollowing={getFollowing}
               unFollow={this.unFollowClick}
+              modal={{
+                modalOpen,
+                openModal: this.openModal,
+                closeModal: this.closeModal,
+                modalProfile,
+              }}
             />
           ) : null}
           {currentTab === 'followers-section' ? (
-            <Followee userFollowee={userFollowee} />
+            <Followee
+              userFollowee={userFollowee}
+              modal={{
+                modalOpen,
+                openModal: this.openModal,
+                closeModal: this.closeModal,
+                modalProfile,
+              }}
+              follow={this.followClick}
+            />
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
@@ -156,6 +195,7 @@ Profilepage.propTypes = {
   }).isRequired,
   getProfile: PropTypes.func.isRequired,
   unFollowUser: PropTypes.func.isRequired,
+  followUser: PropTypes.func.isRequired,
   userFollowee: PropTypes.shape().isRequired,
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,

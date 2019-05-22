@@ -9,7 +9,7 @@ import fetchBookmarks from '../../actions/bookmarked.action';
 import RequestAction from '../../actions/reviewers-request.action';
 
 const { getProfile, updateProfile, getSuggestions } = profileAction;
-const { getFollowee } = followeeAction;
+const { getFollowee, followUser } = followeeAction;
 const { getFollowing, unFollowUser } = followingAction;
 const { getUserRequests } = RequestAction;
 
@@ -44,6 +44,7 @@ const ProfilepageContainer = connect(
     getUserRequests,
     unFollowUser,
     getAnArticle,
+    followUser,
   }
 )(Profilepage);
 

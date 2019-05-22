@@ -1,18 +1,21 @@
+@import '../../../assets/stylesheets/index.scss';
+
 .reviewd-art-card-cont {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   padding: 20px;
   font-size: 14px;
   text-align: left;
   border-radius: 5px;
   box-sizing: border-box;
   border: 1px solid #e2dfdf;
-  box-shadow: 1px 4px 3px #959595;
   margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
   .reviewd-art-details {
     .topic {
       text-transform: capitalize;
+      color: $primary-color;
       font-size: 20px;
     }
     .abstrt {

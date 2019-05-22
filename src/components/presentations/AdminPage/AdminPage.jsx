@@ -21,6 +21,16 @@ class AdminPage extends Component {
     getReportedArticle();
   };
 
+  adminAcceptRequest = async id => {
+    const { acceptRequest } = this.props;
+    await acceptRequest(id);
+  };
+
+  adminRejectRequest = async id => {
+    const { rejectRequest } = this.props;
+    await rejectRequest(id);
+  };
+
   changeTab = tab => {
     this.setState({ currentTab: tab });
   };
@@ -35,7 +45,11 @@ class AdminPage extends Component {
         <AdminTab changeTab={this.changeTab} currentTab={currentTab} />
         <div className="admin-content">
           {currentTab === 'request-section' ? (
-            <RequestList userRequests={allUserRequests} />
+            <RequestList
+              userRequests={allUserRequests}
+              adminAcceptRequest={this.adminAcceptRequest}
+              adminRejectRequest={this.adminRejectRequest}
+            />
           ) : null}
           {currentTab === 'article-section' ? <ReviewedArticles /> : null}
           {currentTab === 'reported-section' ? (
@@ -55,6 +69,8 @@ AdminPage.propTypes = {
   getReportedArticle: PropTypes.func.isRequired,
   reportedArticle: PropTypes.arrayOf(PropTypes.shape),
   userRequests: PropTypes.shape(),
+  acceptRequest: PropTypes.func.isRequired,
+  rejectRequest: PropTypes.func.isRequired,
 };
 
 export default AdminPage;
