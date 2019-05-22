@@ -71,14 +71,14 @@ class ViewComment extends Component {
                   </button>
                 </div>
                 {input ? <InputComment /> : null}
-                {comment.replies && comment.replies.length === 0 ? null : (
+                {comment.replies && comment.replies.length > 0 ? (
                   <div className="hide-replies">
                     <hr className="line" />
                     <button type="button" onClick={this.toggleReplies}>
                       {toggle ? 'Hide replies' : 'Show replies'}
                     </button>
                   </div>
-                )}
+                ) : null}
                 {toggle ? (
                   <div>
                     {comment.replies.map(reply => (

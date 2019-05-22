@@ -73,9 +73,9 @@ class ArticlePage extends Component {
                   </Grid.Column>
                   <Grid.Column>
                     <h3>Comments</h3>
-                    {article && (
+                    {article && article.author && (
                       <InputComment
-                        imageUrl={article.image_url}
+                        imageUrl={article.author.image_url}
                         articleId={article.id}
                         postComment={postComment}
                       />

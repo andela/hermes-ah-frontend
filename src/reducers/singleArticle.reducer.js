@@ -19,6 +19,10 @@ const singleArticle = (state = initialState, action) => {
         ...state,
         comments: (state.comments || []).concat([action.comment]),
       };
+    case actionType.POST_COMMENT_FAILURE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }
