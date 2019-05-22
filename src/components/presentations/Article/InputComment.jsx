@@ -7,25 +7,25 @@ class InputComment extends Component {
     this.setState({ commentVal: value.toLowerCase() });
   };
 
-  postComment = e => {
+  sendComment = e => {
     e.preventDefault();
     const { commentVal } = this.state;
     const data = {
       article_id: e.target.id,
       body: commentVal,
     };
-    const { postComment: sendComment } = this.props;
-    sendComment(data);
+    const { postComment } = this.props;
+    postComment(data);
   };
 
   render() {
     const { articleId, imageUrl } = this.props;
     return (
-      <div className="write-comment">
+      <div className="write-comment" key={articleId}>
         <form
           className="comment-text-wrap"
           id={articleId}
-          onSubmit={this.postComment}
+          onSubmit={this.sendComment}
         >
           <div className="wrap-img-text">
             <div className="image">

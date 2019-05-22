@@ -4,8 +4,10 @@ import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import ngFaker from 'ng-faker';
-import ReadingCard from '../reading-article-card';
+import ReadingCard from '../ReadingArticleCard';
+import InputComment from '../InputComment';
 import ArticlePage from '../ArticlePage';
+import ViewComment from '../ViewComment';
 
 const names = ngFaker.name.firstName();
 
@@ -30,8 +32,12 @@ const store = mockStore({});
 
 const articleProps = {
   getSingleArticle: jest.fn(),
-  match: { params: 'id' },
+  postComment: jest.fn(),
+  match: { params: 'id', articleId: 'articleId' },
   singleArticle: props,
+  isLoadingReducer: { loader: true },
+  image_url: 'image',
+  articleId: 'id',
 };
 
 const ArticlePageContainer = (
@@ -40,6 +46,8 @@ const ArticlePageContainer = (
       match={articleProps.match}
       getSingleArticle={articleProps.getSingleArticle}
       singleArticle={articleProps.singleArticle}
+      postComment={articleProps.postComment}
+      isLoadingReducer={articleProps.isLoadingReducer}
     />
   </Provider>
 );
@@ -56,8 +64,53 @@ describe('Article Page', () => {
         match={articleProps.match}
         getSingleArticle={articleProps.getSingleArticle}
         singleArticle={articleProps.singleArticle}
+        postComment={articleProps.postComment}
+        isLoadingReducer={articleProps.isLoadingReducer}
       />
     );
     expect(wrapper.find('div'));
+  });
+
+  const commentInputProps = {
+    article: {
+      id: 'id',
+      author: { image_url: 'url', first_name: names, last_name: names },
+    },
+    postComment: jest.fn(),
+  };
+
+  const commentViewProps = {
+    article: {
+      id: 'id',
+      author: { image_url: 'url', first_name: names, last_name: names },
+    },
+    comment: { replies: [{ replier: {} }] },
+    match: { params: 'id', articleId: 'articleId' },
+  };
+
+  it('test handle handleCommentInput function', () => {
+    const wrapper = shallow(<InputComment {...commentInputProps} />);
+    const event = { preventDefault: jest.fn(), target: { value: 'value' } };
+    expect(wrapper.instance().handleCommentInput(event));
+  });
+
+  it('test handle sendComment function', () => {
+    const wrapper = shallow(<InputComment {...commentInputProps} />);
+    wrapper.setState({ commentVal: 'input' });
+    const event = { preventDefault: jest.fn(), target: { id: 'id' } };
+    expect(wrapper.instance().sendComment(event));
+  });
+
+  it('test handle showCommentInput function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ input: true });
+    const event = { preventDefault: jest.fn(), target: { id: 'id' } };
+    expect(wrapper.instance().showCommentInput(event));
+  });
+
+  it('test handle toggleReplies function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ toggle: true });
+    expect(wrapper.instance().toggleReplies());
   });
 });

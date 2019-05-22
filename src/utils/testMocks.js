@@ -9,6 +9,7 @@ const article = {
     'The world’s biggest killers are in fact so tiny - the mosquito. Worldwide there are 3500 known species of mosquito. Which are the deadliest the mosquito. Worldwide there are 3500 known species of mosquito...',
   image:
     'https://res.cloudinary.com/walsam/image/upload/v1556790931/robotics.jpg',
+  articleId: 'id',
 };
 
 const bookmarkedArticles = {
