@@ -11,6 +11,7 @@ import isLoadingReducer from './loading.reducer';
 import bookmarkedArticles from './bookmarked.reducer';
 import reportedArticles from './reported.reducers';
 import userRequests from './reviewerRequests.reducer';
+import singleArticle from './singleArticle.reducer';
 
 const reducers = combineReducers({
   auth,
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   userFollowee,
   userFollowing,
   articles,
+  singleArticle,
   passwordReset,
   userResetPassword,
   isLoadingReducer,

@@ -7,7 +7,11 @@ const ProfileButton = ({ value, number, className, ...rest }) => {
       <button type="button" {...rest}>
         {value}
       </button>
-      {number ? <p className="num-icon">{number}</p> : null}
+      {number ? (
+        <div className="num-icon">
+          <p>{number}</p>
+        </div>
+      ) : null}
     </div>
   );
 };

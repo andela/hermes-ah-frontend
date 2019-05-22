@@ -85,6 +85,7 @@ class Userprofile extends Component {
             <Grid.Column computer={8} mobile={16}>
               <Headercard icon="fa fa-user" value="Bio" />
               <Profilecard profile={profile} updateProfile={updateProfile} />
+              <hr />
 
               {isReviewer ? (
                 <div>
@@ -113,19 +114,14 @@ class Userprofile extends Component {
               <Headercard icon="far fa-newspaper" value="Suggested Articles" />
               {suggestedArticleList}
 
-              <div>
-                <Button onClick={this.showResearchers}>
-                  {showResearchers
-                    ? 'Hide Suggested Researchers'
-                    : 'Show Suggested Researchers'}
-                </Button>
-              </div>
+              <Headercard
+                icon="fa fa-users"
+                value="Suggested Researchers"
+                clickFunc={this.showResearchers}
+                pointer="pointer"
+              />
               {showResearchers ? (
                 <div className="sgg-rsh-container">
-                  <Headercard
-                    icon="fa fa-users"
-                    value="Suggested Researchers"
-                  />
                   <SuggestedResearchers
                     suggestedResearchers={suggestedResearchers}
                   />

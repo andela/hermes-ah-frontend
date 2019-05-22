@@ -38,9 +38,6 @@ const ReviewerRequestCard = ({
           >
             {button}
           </button>
-        </div>
-        {'   '}
-        <div className="main_button">
           <button
             type="submit"
             className={btnClass1}

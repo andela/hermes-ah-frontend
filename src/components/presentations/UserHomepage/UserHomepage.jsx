@@ -47,7 +47,7 @@ class UserHomepage extends Component {
               <Container className="display-article-card">
                 {sectionArandomArticle.map(item => (
                   <ArticleCard
-                    id={item.id}
+                    articleId={item.id}
                     key={item.id}
                     category={item.category}
                     title={item.title}
