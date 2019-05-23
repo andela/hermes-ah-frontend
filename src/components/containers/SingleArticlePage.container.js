@@ -4,9 +4,10 @@ import { getSingleArticle } from '../../actions/singleArticle.actions';
 import { rateArticle } from '../../actions/article.actions';
 import { postComment } from '../../actions/comment.actions';
 
-const mapStateToProps = ({ singleArticle, isLoadingReducer }) => ({
+const mapStateToProps = ({ singleArticle, isLoadingReducer, user }) => ({
   singleArticle,
   isLoadingReducer,
+  user,
 });
 
 const SingleArticlePageContainer = connect(

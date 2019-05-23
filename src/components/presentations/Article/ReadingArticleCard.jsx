@@ -15,7 +15,14 @@ const ReadingArticlePage = ({ article }) => {
         <div className="article-author-detail-container">
           <div className="article-author-details">
             <div className="article-avatar">
-              <img src={article.author.image_url} alt="avatar" />
+              {article.author.image_url ? (
+                <img src={article.author.image_url} alt="avatar" />
+              ) : (
+                <img
+                  src="https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png"
+                  alt="avatar"
+                />
+              )}
             </div>
             <div className="article-datail">
               <p className="aticle-detail-author-name">
