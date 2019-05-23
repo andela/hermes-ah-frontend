@@ -78,8 +78,6 @@ class SearchComponent extends Component {
         }
       });
 
-      console.log(filteredResults);
-
       return this.setState({
         isLoading: false,
         results: filteredResults,

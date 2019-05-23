@@ -38,7 +38,6 @@
     "jest-css-modules-transform": "^2.1.1",
     "joi-browser": "^13.4.0",
     "jwt-decode": "^2.2.0",
-    "lodash": "^4.17.11",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-cookie-consent": "^2.3.1",
