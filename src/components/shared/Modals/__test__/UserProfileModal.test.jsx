@@ -38,20 +38,8 @@ describe('Edit Profile component', () => {
       },
     };
 
-    const event = { target: { id: 'title', value: 'Prof' } };
     const wrapper = shallow(<EditProfileModal {...props} />);
     expect(wrapper.find('div'));
-    expect(wrapper.state('profileDetails')).toEqual({
-      title: prefix,
-      research_field: word,
-      bio: word,
-    });
-    expect(wrapper.instance().changeProfile(event));
-    expect(wrapper.state('profileDetails')).toEqual({
-      title: 'Prof',
-      research_field: word,
-      bio: word,
-    });
   });
 
   it('should simulate edit profile modal', () => {
@@ -60,7 +48,6 @@ describe('Edit Profile component', () => {
         closeModal: jest.fn(),
         openModal: jest.fn(),
         modalOpen: false,
-        profile: { title: prefix, research_field: word, bio: word },
         updateProfile: jest.fn(),
       },
     };
@@ -68,7 +55,5 @@ describe('Edit Profile component', () => {
     const wrapper = mount(<EditProfileModal {...props} />);
     wrapper.find('.close').simulate('click');
     wrapper.find('.close').simulate('keydown');
-    wrapper.find('.edit-profile-form').simulate('submit');
-    wrapper.find('.cancel-btn').simulate('click');
   });
 });

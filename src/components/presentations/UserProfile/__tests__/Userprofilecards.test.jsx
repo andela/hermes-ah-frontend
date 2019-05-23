@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import ProfileCard from '../ProfileCard';
 import ReportedCard from '../ReportedCard';
 import SuggestesArticleCard from '../SuggestedArticleCard';
@@ -20,6 +20,7 @@ describe('ProfilePage component', () => {
     };
     const event = { preventDefault: jest.fn() };
     const data = { research_field: 'chemistry' };
+    const inputEvent = { target: { id: 'title', value: 'Prof' } };
     const wrapper = shallow(<ProfileCard {...props} />);
     expect(wrapper.state('modalOpen')).toEqual(false);
     expect(wrapper.instance().openModal());
@@ -27,6 +28,20 @@ describe('ProfilePage component', () => {
     expect(wrapper.instance().closeModal());
     expect(wrapper.state('modalOpen')).toEqual(false);
     expect(wrapper.instance().updateUserProfile(event, data));
+    expect(wrapper.state('profileDetails')).toEqual({
+      title: '',
+      research_field: '',
+      bio: '',
+    });
+    expect(wrapper.instance().changeProfile(inputEvent));
+  });
+
+  it('should render profile page', () => {
+    const props = {
+      updateProfile: jest.fn(),
+    };
+    const wrapper = mount(<ProfileCard {...props} />);
+    expect(wrapper.find('div'));
   });
 
   it('should render profile page', () => {
