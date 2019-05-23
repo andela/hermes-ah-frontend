@@ -62,7 +62,7 @@ describe('newArticle component', () => {
 
   it('should call saveOrPublish prop', () => {
     const article = {
-      title: 'Sciencetist dont die',
+      title: "Scientist don't die",
       abstract: 'Science is always alive',
       imageUrl:
         'https://res.cloudinary.com/dnch08bzc/image/upload/v1556821917/3d-rendering-human-brain-technology-background_34663-72.jpg',
@@ -90,7 +90,7 @@ describe('newArticle component', () => {
     component.instance().setState({
       ...article,
     });
-    expect(component.state('title')).toEqual('Sciencetist dont die');
+    expect(component.state('title')).toEqual("Scientist don't die");
   });
 });
 
