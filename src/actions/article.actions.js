@@ -66,10 +66,10 @@ export const rateArticle = data => {
     try {
       const { data: article } = await http.post('/ratings', data);
       toast.success(article.message);
-      return dispatch(postRatingSuccess());
+      dispatch(postRatingSuccess());
     } catch (ex) {
       dispatch(postRatingError());
-      return exceptionHandler(ex);
+      exceptionHandler(ex);
     }
   };
 };
