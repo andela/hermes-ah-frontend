@@ -10,10 +10,10 @@ class SearchComponent extends Component {
     this.state = {
       isLoading: false,
       value: '',
-      getResults: {
-        articles: {},
-        authors: {},
-        tags: {},
+      searchResults: {
+        articles: [],
+        authors: [],
+        tags: [],
       },
     };
   }
@@ -42,7 +42,7 @@ class SearchComponent extends Component {
     });
     authorFilter.forEach(author => {
       newAuthors.push({
-        title: author.first_name + author.last_name,
+        title: `${author.first_name}${author.last_name}`,
         description: author.bio,
         image: author.image_url,
       });
@@ -56,12 +56,16 @@ class SearchComponent extends Component {
       });
     });
     this.setState({
-      getResults: { articles: newArticles, authors: newAuthors, tags: newTags },
+      searchResults: {
+        articles: newArticles,
+        authors: newAuthors,
+        tags: newTags,
+      },
     });
-    const { getResults } = this.state;
+    const { searchResults } = this.state;
 
     return setTimeout(() => {
-      const { articles, authors, tags } = getResults;
+      const { articles, authors, tags } = searchResults;
 
       const results = {};
       const filteredResults = [];
