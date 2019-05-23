@@ -53,7 +53,14 @@ class InputComment extends Component {
         >
           <div className="wrap-img-text">
             <div className="image">
-              <img src={imageUrl} alt="author" />
+              <img
+                src={
+                  !imageUrl
+                    ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
+                    : imageUrl
+                }
+                alt="author"
+              />
             </div>
             <textarea
               type="text"
@@ -75,7 +82,8 @@ class InputComment extends Component {
 }
 
 InputComment.defaultProps = {
-  imageUrl: '',
+  imageUrl:
+    'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
   articleId: '',
 };
 
