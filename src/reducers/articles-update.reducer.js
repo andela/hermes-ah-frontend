@@ -1,13 +1,12 @@
 import actionTypes from '../constants/my-articles.constants';
+import filter from '../utils/filterArticles';
 
 const initialState = {
   fetching: false,
   fetched: false,
   articles: [],
-  deletedArticle: '',
   error: null,
 };
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case 'GET_ARTICLES': {
@@ -22,15 +21,10 @@ export default (state = initialState, action) => {
       };
     }
     case actionTypes.DELETE_ARTICLES_SUCCESS: {
-      console.log(state.articles, '>>>>>>>>>>>');
-      console.log(action.deletedArticle, '<<<<<<<<<<<<<<');
-      // const newFollowing = filter(
-      //   state.userFollowing,
-      //   action.unFollowedUser.user.id
-      // );
+      const newArticlesList = filter(state.articles, action.articleId);
       return {
         ...state,
-        deletedArticle: action.deletedArticle,
+        articles: newArticlesList,
       };
     }
     case actionTypes.DELETE_ARTICLES_FAILURE:

@@ -4,9 +4,9 @@ import exceptionHandler from '../utils/exceptionHandler';
 import contentLoading from './loading.action';
 import actionTypes from '../constants/my-articles.constants';
 
-export const deleteArticlesSuccess = deletedArticle => ({
+export const deleteArticlesSuccess = articleId => ({
   type: actionTypes.DELETE_ARTICLES_SUCCESS,
-  deletedArticle,
+  articleId,
 });
 
 export const deleteArticlesFailure = () => ({
@@ -32,14 +32,11 @@ const deleteArticle = articleId => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      console.log(articleId, '>>>>>>>>>>>>');
       const deletedArticle = await http.delete(`/article/${articleId}`);
-      console.log(deletedArticle.data.message, '-------');
       toast.success(deletedArticle.data.message);
-      dispatch(deleteArticlesSuccess(deletedArticle.data));
+      dispatch(deleteArticlesSuccess(articleId));
     } catch (ex) {
       exceptionHandler(ex);
-    } finally {
       dispatch(deleteArticlesFailure());
     }
   };
