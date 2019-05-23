@@ -7,9 +7,10 @@ import reportedArticleAction from '../../actions/reported.actions';
 
 const { reportArticle } = reportedArticleAction;
 
-const mapStateToProps = ({ singleArticle, isLoadingReducer }) => ({
+const mapStateToProps = ({ singleArticle, isLoadingReducer, user }) => ({
   singleArticle,
   isLoadingReducer,
+  user,
 });
 
 const SingleArticlePageContainer = connect(

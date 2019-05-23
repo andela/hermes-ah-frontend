@@ -40,6 +40,7 @@ const articleProps = {
   isLoadingReducer: { loader: true },
   image_url: 'image',
   articleId: 'id',
+  user: { userProfile: {} },
 };
 
 const ArticlePageContainer = (
@@ -50,6 +51,7 @@ const ArticlePageContainer = (
       singleArticle={articleProps.singleArticle}
       postComment={articleProps.postComment}
       isLoadingReducer={articleProps.isLoadingReducer}
+      user={articleProps.user}
     />
   </Provider>
 );
@@ -68,6 +70,7 @@ describe('Article Page', () => {
         singleArticle={articleProps.singleArticle}
         postComment={articleProps.postComment}
         isLoadingReducer={articleProps.isLoadingReducer}
+        user={articleProps.user}
       />
     );
     expect(wrapper.find('div'));

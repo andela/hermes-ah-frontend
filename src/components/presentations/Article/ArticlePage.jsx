@@ -29,9 +29,12 @@ class ArticlePage extends Component {
       rateArticle,
       isLoadingReducer,
       reportArticle,
+      user,
     } = this.props;
     const { articleId } = match.params;
     const { article, comments } = singleArticle;
+    const { userProfile } = user;
+    const { profile } = userProfile;
 
     const { loader: isLoading } = isLoadingReducer;
 
@@ -89,7 +92,7 @@ class ArticlePage extends Component {
                   <h3>Comments</h3>
                   {Object.keys(article).length && (
                     <InputComment
-                      imageUrl={article.author.image_url}
+                      imageUrl={profile && profile.image_url}
                       articleId={article.id}
                       postComment={postComment}
                     />
@@ -127,6 +130,7 @@ ArticlePage.propTypes = {
     loader: PropTypes.bool,
   }).isRequired,
   reportArticle: PropTypes.func.isRequired,
+  user: PropTypes.shape().isRequired,
 };
 
 export default ArticlePage;

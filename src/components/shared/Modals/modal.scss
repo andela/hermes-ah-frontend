@@ -30,9 +30,7 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
-  p span {
-    font-weight: bold;
-  }
+
   .mod{
     padding: 32px;
 }
@@ -104,6 +102,10 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 300px;
+  
+  p span {
+    font-weight: bold;
+  }
 }
 
 .profile-modal-grid p{
