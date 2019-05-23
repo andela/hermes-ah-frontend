@@ -5,6 +5,7 @@ import NavBar from '../../shared/NavBar/NavBar';
 import Comments from './Comments';
 import ReadingCard from './reading-article-card';
 import './Article.scss';
+import Rate from './Rate';
 
 class ArticlePage extends Component {
   constructor(props) {
@@ -19,8 +20,10 @@ class ArticlePage extends Component {
   };
 
   render() {
-    const { singleArticle } = this.props;
+    const { singleArticle, match, rateArticle } = this.props;
+    const { articleId } = match.params;
     const { article } = singleArticle;
+
     return (
       <React.Fragment>
         <NavBar />
@@ -28,14 +31,37 @@ class ArticlePage extends Component {
           <Grid>
             <Grid.Row columns={3}>
               <Grid.Column computer={2} mobile={16}>
-                <div className="section">Social Section</div>
+                <div className="section">
+                  <div className="social-sharing">
+                    <div className="facebook-share">
+                      <i className="fab fa-facebook-f" />
+                    </div>
+                    <div className="twitter-share">
+                      <i className="fab fa-twitter" />
+                    </div>
+                    <div className="bookmark">
+                      <i className="far fa-bookmark" />
+                    </div>
+                    <div className="like">
+                      <i className="far fa-thumbs-up" />
+                      <p>{article.likes_count}</p>
+                    </div>
+                  </div>
+                </div>
               </Grid.Column>
               <Grid.Column computer={10} mobile={16}>
                 <Grid.Row>
                   <Grid.Column>
                     <div className="section">
                       {Object.keys(article).length ? (
-                        <ReadingCard article={article} />
+                        <div>
+                          <ReadingCard article={article} />
+                          <Rate
+                            articleId={articleId}
+                            rateArticle={rateArticle}
+                            likes={article.likes_count}
+                          />
+                        </div>
                       ) : (
                         <p>Loading...</p>
                       )}
@@ -61,6 +87,7 @@ ArticlePage.propTypes = {
   getSingleArticle: PropTypes.func.isRequired,
   match: PropTypes.shape(PropTypes.objectOf).isRequired,
   singleArticle: PropTypes.shape({}).isRequired,
+  rateArticle: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;
