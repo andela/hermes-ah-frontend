@@ -15,14 +15,17 @@ export const getSingleArticle = articleId => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const article = await http.get(`/article/${articleId}`);
-      dispatch(getSingleArticlesSuccess(article.data.article));
-      return article;
+      const response = await http.get(`/article/${articleId}`);
+      dispatch(getSingleArticlesSuccess(response.data.article));
     } catch (ex) {
-      return dispatch(getSingleArticlesError());
+      dispatch(getSingleArticlesError());
     }
   };
 };
+
+export const reset = () => ({
+  type: actionTypes.RESET,
+});
 
 export default {
   getSingleArticle,

@@ -10,6 +10,7 @@ const actionType = {
   LIKE_FAILURE: 'LIKE_FAILURE',
   RATE_SUCCESS: 'RATE_SUCCESS',
   RATE_FAILURE: 'RATE_FAILURE',
+  RESET: 'RESET',
 };
 
 export default actionType;

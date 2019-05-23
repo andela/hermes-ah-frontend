@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ArticlePage from '../presentations/Article/ArticlePage';
-import { getSingleArticle } from '../../actions/singleArticle.actions';
+import { getSingleArticle, reset } from '../../actions/singleArticle.actions';
 import { rateArticle } from '../../actions/article.actions';
 import { postComment } from '../../actions/comment.actions';
 import reportedArticleAction from '../../actions/reported.actions';
@@ -20,6 +20,7 @@ const SingleArticlePageContainer = connect(
     rateArticle,
     postComment,
     reportArticle,
+    reset,
   }
 )(ArticlePage);
 
