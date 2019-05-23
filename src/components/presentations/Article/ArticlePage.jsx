@@ -28,6 +28,7 @@ class ArticlePage extends Component {
       postComment,
       rateArticle,
       isLoadingReducer,
+      reportArticle,
     } = this.props;
     const { articleId } = match.params;
     const { article, comments } = singleArticle;
@@ -77,6 +78,7 @@ class ArticlePage extends Component {
                             articleId={articleId}
                             rateArticle={rateArticle}
                             likes={article.likes_count}
+                            reportArticle={reportArticle}
                           />
                         </div>
                       ) : (
@@ -124,6 +126,7 @@ ArticlePage.propTypes = {
   isLoadingReducer: PropTypes.shape({
     loader: PropTypes.bool,
   }).isRequired,
+  reportArticle: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;
