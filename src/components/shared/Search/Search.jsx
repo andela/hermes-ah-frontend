@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Search, Grid } from 'semantic-ui-react';
+import Parser from 'html-react-parser';
 import { searchArticle } from '../../../actions/search.action';
 import './search.scss';
 
@@ -8,7 +9,6 @@ class SearchComponent extends Component {
     super(props);
     this.state = {
       isLoading: false,
-      results: [],
       value: '',
       getResults: {
         articles: {},
@@ -18,21 +18,24 @@ class SearchComponent extends Component {
     };
   }
 
-  handleResultSelect = (e, { result }) =>
-    this.setState({ value: result.title });
+  handleResultSelect = (e, { result }) => {
+    window.location = `/article/${result.id}`;
+  };
 
   handleSearchChange = async (e, { value: currentVal }) => {
     this.setState({ isLoading: true, value: currentVal });
     const { authorFilter, articleFilter, keywordFilter } = await searchArticle(
       currentVal
     );
+
     const newAuthors = [];
     const newArticles = [];
     const newTags = [];
     keywordFilter.forEach(tags => {
       newTags.push({
+        id: tags.article.id,
         title: tags.article.title,
-        description: tags.article.body.substring(0, 55),
+        description: Parser(tags.article.body.substring(0, 55)),
         image: tags.article.author.image_url,
         price: tags.keyword,
       });
@@ -46,8 +49,9 @@ class SearchComponent extends Component {
     });
     articleFilter.forEach(article => {
       newArticles.push({
+        id: article.id,
         title: article.title,
-        description: article.body.substring(0, 55),
+        description: Parser(article.body.substring(0, 55)),
         image: article.author.image_url,
       });
     });
@@ -73,6 +77,8 @@ class SearchComponent extends Component {
           filteredResults.push(results[index]);
         }
       });
+
+      console.log(filteredResults);
 
       return this.setState({
         isLoading: false,
