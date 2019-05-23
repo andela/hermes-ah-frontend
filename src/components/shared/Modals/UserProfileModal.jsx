@@ -37,12 +37,32 @@ class ProfileModal extends Component {
               <div className="image-container">
                 <img alt="user" src={user.profile.image_url} />
               </div>
-              <div>
-                <p>{user.profile.title}</p>
-                <p>{user.profile.research_field}</p>
-                <p>{user.profile.email}</p>
-                <p>{user.profile.phone_number}</p>
-                <p>{user.profile.bio}</p>
+              <div className="mod">
+                <p>
+                  <span>Title:</span>
+                  &nbsp;
+                  {user.profile.title}
+                </p>
+                <p>
+                  <span>Research Field:</span>
+                  &nbsp;
+                  {user.profile.research_field}
+                </p>
+                <p>
+                  <span>Email:</span>
+                  &nbsp;
+                  {user.profile.email}
+                </p>
+                <p>
+                  <span>Phone:</span>
+                  &nbsp;
+                  {user.profile.phone_number}
+                </p>
+                <p>
+                  <span>Bio:</span>
+                  &nbsp;
+                  {user.profile.bio}
+                </p>
               </div>
             </div>
           </div>

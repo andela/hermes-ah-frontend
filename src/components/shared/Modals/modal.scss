@@ -30,7 +30,13 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
-  
+  p span {
+    font-weight: bold;
+  }
+  .mod{
+    padding: 32px;
+}
+
   @-webkit-keyframes animatetop {
     from {
       top: -300px;
@@ -93,7 +99,8 @@
 }
 
 .profile-modal-grid p{
-  font-size: 1rem;
+  font-size: 17px;
+    display: flex;
 }
 
 
@@ -107,6 +114,7 @@
     height: 100%;
     margin: 0 auto;
     object-fit: contain;
+    padding: 12px;
 
 }
   
