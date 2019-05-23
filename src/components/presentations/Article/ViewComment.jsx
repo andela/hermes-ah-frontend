@@ -34,7 +34,14 @@ class ViewComment extends Component {
                 {comment.commentOwner && (
                   <div className="image-author">
                     <div className="commenter-img">
-                      <img src={comment.commentOwner.image_url} alt="author" />
+                      <img
+                        src={
+                          !comment.commentOwner.image_url
+                            ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
+                            : comment.commentOwner.image_url
+                        }
+                        alt="author"
+                      />
                     </div>
                     <div className="commenter-details">
                       <h3>
