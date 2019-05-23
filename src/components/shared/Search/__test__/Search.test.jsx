@@ -4,6 +4,16 @@ import { create } from 'react-test-renderer';
 import SearchComponent from '../Search';
 
 describe('Search component', () => {
+  const initialState = {
+    isLoading: false,
+    results: [],
+    value: '',
+    getResults: {
+      articles: {},
+      authors: {},
+      tags: {},
+    },
+  };
   it('should match snapshot', () => {
     const wrapper = create(<SearchComponent />);
     expect(wrapper.toJSON).toMatchSnapshot();
@@ -20,16 +30,6 @@ describe('Search component', () => {
     const event = { preventDefault: jest.fn() };
     const value = { title: 'test' };
     const newAuthors = [];
-    const initialState = {
-      isLoading: false,
-      results: [],
-      value: '',
-      getResults: {
-        articles: {},
-        authors: {},
-        tags: {},
-      },
-    };
     expect(newAuthors).toBeDefined();
     expect(await wrapper.instance().handleSearchChange(event, { value }));
     expect(
