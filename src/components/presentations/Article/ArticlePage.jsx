@@ -93,15 +93,14 @@ class ArticlePage extends Component {
                     />
                   )}
                   <div>
-                    {Object.keys(sortComment).length &&
-                      sortComment.map(comment => (
-                        <ViewComment
-                          key={comment.id}
-                          comment={comment}
-                          imageUrl={article.author && article.author.image_url}
-                          articleId={articleId}
-                        />
-                      ))}
+                    {sortComment.map(comment => (
+                      <ViewComment
+                        key={comment.id}
+                        comment={comment}
+                        imageUrl={article.author && article.author.image_url}
+                        articleId={articleId}
+                      />
+                    ))}
                   </div>
                 </Grid.Row>
               </Grid.Column>
