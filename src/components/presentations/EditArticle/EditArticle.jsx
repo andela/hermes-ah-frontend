@@ -7,8 +7,9 @@ import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import NewArticleForm from './EditArticleForm/EditArticleForm';
 import validateImage from '../../../utils/validateImage';
 import NavBar from '../../shared/NavBar/NavBar';
+import keywordOptions from '../NewArticle/NewArticleForm/keywords';
 
-class NewArticle extends Component {
+class EditArticle extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,8 +20,8 @@ class NewArticle extends Component {
       body: '',
       title: '',
       abstract: '',
+      options: keywordOptions,
     };
-    this.saveOrPublish = this.saveOrPublish.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
   }
@@ -36,6 +37,14 @@ class NewArticle extends Component {
       editorState,
     });
   };
+
+  handleAddition = (e, { value }) => {
+    this.setState(prevState => ({
+      options: [{ text: value, value }, ...prevState.options],
+    }));
+  };
+
+  handleChange = (e, { value }) => this.setState({ keywords: value });
 
   saveToCloudinary = async e => {
     const form = new FormData();
@@ -70,25 +79,24 @@ class NewArticle extends Component {
     this.setState({ category: categoryData });
   };
 
-  saveOrPublish = async (e, isDraft) => {
+  saveOrPublish = async (e, isDraft, id) => {
     e.preventDefault();
-    const articleInput = this.state;
-    const { postArticle } = this.props;
-    const { body, imageUrl } = this.state;
+    const { editAnArticle } = this.props;
+    const { title, abstract, imageUrl, body, keywords, category } = this.state;
     const data = {
-      title: articleInput.title,
-      abstract: articleInput.abstract,
+      title,
+      abstract,
       is_draft: isDraft,
       image_url: imageUrl,
       body,
-      keywords: articleInput.keywords,
-      category: articleInput.category,
+      keywords,
+      category,
     };
-    await postArticle(data);
+    await editAnArticle(id, data);
   };
 
   render() {
-    const { editorState } = this.state;
+    const { editorState, imageUrl, options } = this.state;
     return (
       <React.Fragment>
         <NavBar />
@@ -100,14 +108,18 @@ class NewArticle extends Component {
           onChange={this.onChange}
           saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
+          headerImage={imageUrl}
+          options={options}
+          handleChange={this.handleChange}
+          handleAddition={this.handleAddition}
         />
       </React.Fragment>
     );
   }
 }
 
-NewArticle.propTypes = {
-  postArticle: PropTypes.func.isRequired,
+EditArticle.propTypes = {
+  editAnArticle: PropTypes.func.isRequired,
 };
 
-export default NewArticle;
+export default EditArticle;

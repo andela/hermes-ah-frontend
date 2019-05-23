@@ -4,18 +4,20 @@ import { Link } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Input, TextArea, Dropdown, Button } from 'semantic-ui-react';
-import keywordsOptions from './keywords';
-import categoryOptions from './category';
+import categoryOptions from '../../NewArticle/NewArticleForm/category';
 import './edit-article.scss';
 
 const NewArticleForm = ({
   saveCategory,
-  saveKeywords,
   saveToCloudinary,
   editorState,
   onEditorStateChange,
   saveOrPublish,
   onChange,
+  headerImage,
+  options,
+  handleChange,
+  handleAddition,
 }) => (
   <div>
     <main className="main-content">
@@ -56,14 +58,15 @@ const NewArticleForm = ({
                   <div>
                     <h3 className="input-heading">Keywords</h3>
                     <Dropdown
-                      placeholder="keywords"
-                      name="category"
-                      fluid
-                      multiple
+                      options={options}
+                      placeholder="Type in your keywords"
                       search
                       selection
-                      options={keywordsOptions}
-                      onChange={saveKeywords}
+                      fluid
+                      multiple
+                      allowAdditions
+                      onAddItem={handleAddition}
+                      onChange={handleChange}
                     />
                     <p className="keyword-instruction">
                       Enter a comma-separated list. For example: Anatomy,
@@ -85,12 +88,8 @@ const NewArticleForm = ({
                   </div>
                 </div>
                 <br />
-                <h3 className="input-heading">Current Image</h3>
+                <h3 className="input-heading">Article Header Image</h3>
                 <div className="image-group">
-                  <div className="image-preview">
-                    <div>{}</div>
-                  </div>
-                  <h3 className="input-file-heading">Article Header Image</h3>
                   <div className="image-upload">
                     <div className="image-upload-box">
                       <input
@@ -98,11 +97,15 @@ const NewArticleForm = ({
                         name="image"
                         className="form-control"
                         onChange={saveToCloudinary}
+                        accept=".png, .jpg, .jpeg"
                       />
                     </div>
                     <p>One file only</p>
                     <p>2 MB limit</p>
-                    <p>Allowed types: png, gif, jpg, jpeg</p>
+                    <p>Allowed types: png, jpg, jpeg</p>
+                  </div>
+                  <div className="headerImage">
+                    <img alt="" src={headerImage} />
                   </div>
                 </div>
                 <br />
@@ -139,15 +142,17 @@ const NewArticleForm = ({
     </main>
   </div>
 );
-
 NewArticleForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   saveOrPublish: PropTypes.func.isRequired,
   onEditorStateChange: PropTypes.func.isRequired,
   editorState: PropTypes.shape().isRequired,
   saveToCloudinary: PropTypes.func.isRequired,
-  saveKeywords: PropTypes.func.isRequired,
   saveCategory: PropTypes.func.isRequired,
+  headerImage: PropTypes.string.isRequired,
+  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleAddition: PropTypes.func.isRequired,
 };
 
 export default NewArticleForm;
