@@ -39,12 +39,14 @@ class NewArticle extends Component {
   };
 
   handleAddition = (e, { value }) => {
-    this.setState(prevState => ({
-      options: [{ text: value, value }, ...prevState.options],
+    return this.setState(prevState => ({
+      options: [...prevState.options, { text: value, value }],
     }));
   };
 
-  handleChange = (e, { value }) => this.setState({ keywords: value });
+  handleChange = (e, { value }) => {
+    return this.setState({ keywords: value });
+  };
 
   saveToCloudinary = async e => {
     const form = new FormData();
@@ -64,13 +66,6 @@ class NewArticle extends Component {
       toast.error(validFormat.message);
       e.target.value = '';
     }
-  };
-
-  saveKeywords = e => {
-    e.preventDefault();
-    const keywordData = e.target.attributes.getNamedItem('name').value;
-    const { keywords } = this.state;
-    this.setState({ keywords: [...keywords, keywordData] });
   };
 
   saveCategory = e => {
@@ -102,7 +97,6 @@ class NewArticle extends Component {
         <NavBar />
         <NewArticleForm
           saveCategory={this.saveCategory}
-          saveKeywords={this.saveKeywords}
           onEditorStateChange={this.onEditorStateChange}
           editorState={editorState}
           onChange={this.onChange}
