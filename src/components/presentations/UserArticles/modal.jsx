@@ -7,7 +7,7 @@ const ConfirmationModal = ({
   size,
   buttonEvent,
   closeConfirmationModal,
-  articleId,
+  articleid,
 }) => {
   return (
     <div>
@@ -26,7 +26,7 @@ const ConfirmationModal = ({
             icon="checkmark"
             labelPosition="right"
             content="Yes"
-            id={articleId}
+            id={articleid}
             onClick={buttonEvent}
           />
         </Modal.Actions>
@@ -40,7 +40,7 @@ ConfirmationModal.propTypes = {
   size: PropTypes.string.isRequired,
   closeConfirmationModal: PropTypes.func.isRequired,
   buttonEvent: PropTypes.func.isRequired,
-  articleId: PropTypes.string.isRequired,
+  articleid: PropTypes.string.isRequired,
 };
 
 export default ConfirmationModal;

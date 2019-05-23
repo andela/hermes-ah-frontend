@@ -23,6 +23,8 @@ class Profilepage extends Component {
       modalOpen: false,
       modalProfile: {},
       open: false,
+      size: '',
+      articleid: '',
     };
   }
 
@@ -98,12 +100,20 @@ class Profilepage extends Component {
     }
   };
 
-  showConfirmationModal = size => () => this.setState({ size, open: true });
+  showConfirmationModal = (size, articleid) =>
+    this.setState({ size, open: true, articleid });
 
   closeConfirmationModal = () => this.setState({ open: false });
 
   render() {
-    const { currentTab, modalOpen, modalProfile, open, size } = this.state;
+    const {
+      currentTab,
+      modalOpen,
+      modalProfile,
+      open,
+      size,
+      articleid,
+    } = this.state;
 
     const {
       articlesUpdate,
@@ -177,8 +187,9 @@ class Profilepage extends Component {
                 articlesUpdate={articlesUpdate}
                 deleteArticle={this.deleteArticleClick}
                 size={size}
+                articleid={articleid}
                 open={open}
-                showConfirmationModal={this.showConfirmationModal('tiny')}
+                showConfirmationModal={this.showConfirmationModal}
                 closeConfirmationModal={this.closeConfirmationModal}
               />
             </div>
