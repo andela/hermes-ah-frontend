@@ -117,7 +117,7 @@ const userProfileReducer = {
 };
 
 const articleCardProps = {
-  id: 2,
+  articleId: '2',
   author: 'fadad',
   abstract: 'sfsf',
   title: 'fsdsds',

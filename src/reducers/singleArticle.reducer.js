@@ -14,6 +14,10 @@ const singleArticle = (state = initialState, action) => {
         article: action.article,
         comments: action.article.Comments,
       };
+    case actionType.FETCH_SINGLE_ARTICLE_FAILURE:
+      return {
+        ...state,
+      };
     case commentType.POST_COMMENT_SUCCESS:
       return {
         ...state,

@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
@@ -13,13 +12,13 @@ export const postCommentFailure = () => ({
   type: actionTypes.POST_COMMENT_FAILURE,
 });
 
-export const postComment = data => {
+export const postComment = (data, successCallback) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
       const comment = await http.post('/comments', data);
       dispatch(postCommentSuccess(comment.data.comment));
-      toast.success('comment sent');
+      successCallback();
       return comment;
     } catch (ex) {
       return exceptionHandler(ex);

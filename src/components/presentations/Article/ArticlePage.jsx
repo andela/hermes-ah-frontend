@@ -15,22 +15,35 @@ class ArticlePage extends Component {
     this.state = {};
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
     await getSingleArticle(articleId);
-  };
+  }
 
   render() {
-    const { singleArticle, match, postComment, rateArticle, isLoadingReducer } = this.props;
+    const {
+      singleArticle,
+      match,
+      postComment,
+      rateArticle,
+      isLoadingReducer,
+    } = this.props;
     const { articleId } = match.params;
-    const { loader } = isLoadingReducer;
     const { article, comments } = singleArticle;
+
+    const { loader: isLoading } = isLoadingReducer;
+
+    // sort comment based on the greater time in descending order
+    const sortComment = comments.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
 
     return (
       <React.Fragment>
         <NavBar />
-        {loader && <Loader />}
+        {isLoading && <Loader />}
         <div className="article-page">
           <Grid>
             <Grid.Row columns={3}>
@@ -71,17 +84,17 @@ class ArticlePage extends Component {
                       )}
                     </div>
                   </Grid.Column>
-                  <Grid.Column>
-                    <h3>Comments</h3>
-                    {article && article.author && (
-                      <InputComment
-                        imageUrl={article.author.image_url}
-                        articleId={article.id}
-                        postComment={postComment}
-                      />
-                    )}
-                    {comments &&
-                      comments.map(comment => (
+                  <h3>Comments</h3>
+                  {Object.keys(article).length && (
+                    <InputComment
+                      imageUrl={article.author.image_url}
+                      articleId={article.id}
+                      postComment={postComment}
+                    />
+                  )}
+                  <div>
+                    {Object.keys(sortComment).length &&
+                      sortComment.map(comment => (
                         <ViewComment
                           key={comment.id}
                           comment={comment}
@@ -89,7 +102,7 @@ class ArticlePage extends Component {
                           articleId={articleId}
                         />
                       ))}
-                  </Grid.Column>
+                  </div>
                 </Grid.Row>
               </Grid.Column>
               <Grid.Column computer={4} mobile={16}>
@@ -108,13 +121,10 @@ ArticlePage.propTypes = {
   postComment: PropTypes.func.isRequired,
   match: PropTypes.shape(PropTypes.objectOf).isRequired,
   singleArticle: PropTypes.shape({}).isRequired,
-<<<<<<< HEAD
   rateArticle: PropTypes.func.isRequired,
-=======
   isLoadingReducer: PropTypes.shape({
     loader: PropTypes.bool,
   }).isRequired,
->>>>>>> 8e9f274... 164797982-feature(comment): post comment
 };
 
 export default ArticlePage;

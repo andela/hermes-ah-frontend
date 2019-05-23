@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class InputComment extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentVal: '',
+    };
+  }
+
   handleCommentInput = e => {
     const { value } = e.target;
     this.setState({ commentVal: value.toLowerCase() });
@@ -16,10 +23,27 @@ class InputComment extends Component {
     };
     const { postComment } = this.props;
     postComment(data);
+    this.setState({ commentVal: '' });
+  };
+
+  onEnterSubmit = e => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      const { commentVal } = this.state;
+      const { articleId } = this.props;
+      const data = {
+        article_id: articleId,
+        body: commentVal,
+      };
+      const { postComment } = this.props;
+      postComment(data);
+      this.setState({ commentVal: '' });
+    }
   };
 
   render() {
     const { articleId, imageUrl } = this.props;
+    const { commentVal } = this.state;
     return (
       <div className="write-comment" key={articleId}>
         <form
@@ -33,9 +57,11 @@ class InputComment extends Component {
             </div>
             <textarea
               type="text"
+              value={commentVal}
               name="comment-text"
               placeholder="Write a comment..."
               className="text-area-comm"
+              onKeyDown={this.onEnterSubmit}
               onChange={this.handleCommentInput}
             />
           </div>

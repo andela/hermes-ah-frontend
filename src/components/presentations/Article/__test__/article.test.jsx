@@ -18,6 +18,7 @@ const props = {
     body: '<p>html</p>',
     image_url: 'url',
   },
+  comments: [{ replies: [{ replier: {} }] }],
 };
 describe('Article', () => {
   it('reading card', () => {
@@ -33,6 +34,7 @@ const store = mockStore({});
 const articleProps = {
   getSingleArticle: jest.fn(),
   postComment: jest.fn(),
+  comment: { id: 'id', replies: [{ replier: { createdAt: 'time' } }] },
   match: { params: 'id', articleId: 'articleId' },
   singleArticle: props,
   isLoadingReducer: { loader: true },
@@ -72,11 +74,11 @@ describe('Article Page', () => {
   });
 
   const commentInputProps = {
+    postComment: jest.fn(),
     article: {
       id: 'id',
       author: { image_url: 'url', first_name: names, last_name: names },
     },
-    postComment: jest.fn(),
   };
 
   const commentViewProps = {
@@ -84,7 +86,7 @@ describe('Article Page', () => {
       id: 'id',
       author: { image_url: 'url', first_name: names, last_name: names },
     },
-    comment: { replies: [{ replier: {} }] },
+    comment: { id: 'id', replies: [{ replier: { createdAt: 'time' } }] },
     match: { params: 'id', articleId: 'articleId' },
   };
 
@@ -99,6 +101,13 @@ describe('Article Page', () => {
     wrapper.setState({ commentVal: 'input' });
     const event = { preventDefault: jest.fn(), target: { id: 'id' } };
     expect(wrapper.instance().sendComment(event));
+  });
+
+  it('test handle onEnterSubmit function', () => {
+    const wrapper = shallow(<InputComment {...commentInputProps} />);
+    wrapper.setState({ commentVal: 'input' });
+    const event = { preventDefault: jest.fn(), keyCode: 13, shiftKey: false };
+    expect(wrapper.instance().onEnterSubmit(event));
   });
 
   it('test handle showCommentInput function', () => {
