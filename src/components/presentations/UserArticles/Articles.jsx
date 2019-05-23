@@ -3,7 +3,14 @@ import PropTypes from 'prop-types';
 import Article from './Article/Article';
 import './author-articles.scss';
 
-const ArticleList = ({ articlesUpdate }) => {
+const ArticleList = ({
+  articlesUpdate,
+  deleteArticle,
+  open,
+  size,
+  showConfirmationModal,
+  closeConfirmationModal,
+}) => {
   const { articles } = articlesUpdate;
   const monthNames = [
     'January',
@@ -32,11 +39,21 @@ const ArticleList = ({ articlesUpdate }) => {
             title={article.title}
             date={`Updated ${updateDay} ${updateMonth} ${updateYear}`}
             isDraft={article.is_draft}
+            articleId={article.id}
+            buttonEvent={deleteArticle}
+            size={size}
+            open={open}
+            showConfirmationModal={showConfirmationModal}
+            closeConfirmationModal={closeConfirmationModal}
           />
         );
       })}
     </div>
   );
+};
+
+ArticleList.defaultProps = {
+  size: '',
 };
 
 ArticleList.propTypes = {
@@ -47,6 +64,11 @@ ArticleList.propTypes = {
       isDraft: PropTypes.bool,
     }),
   }).isRequired,
+  deleteArticle: PropTypes.func.isRequired,
+  showConfirmationModal: PropTypes.func.isRequired,
+  closeConfirmationModal: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  size: PropTypes.string,
 };
 
 export default ArticleList;
