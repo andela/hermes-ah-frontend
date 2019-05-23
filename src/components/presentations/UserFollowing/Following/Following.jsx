@@ -5,11 +5,6 @@ import UserProfileModal from '../../../shared/Modals/UserProfileModal';
 import '../FollowCard/follow-card.scss';
 
 class FollowingList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   componentDidMount = () => {
     const { getFollowing } = this.props;
     getFollowing();
@@ -32,7 +27,7 @@ class FollowingList extends Component {
               .toUpperCase()}`}
             name={`${user.followee.first_name} ${user.followee.last_name}`}
             bio={`${user.followee.bio.substring(0, 100)}...`}
-            Id={user.followee_id}
+            id={user.followee_id}
             button="unfollow"
             btnClass="btn-following"
             buttonEvent={unFollow}
