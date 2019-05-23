@@ -17,8 +17,8 @@ class EditProfileModal extends Component {
             <h2>Edit Profile</h2>
             <span
               className="close"
-              onClick={() => modal.closeModal()}
-              onKeyDown={() => modal.closeModal()}
+              onClick={modal.closeModal}
+              onKeyDown={modal.closeModal}
               role="button"
               tabIndex={0}
             >
