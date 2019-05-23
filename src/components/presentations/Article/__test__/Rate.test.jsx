@@ -17,27 +17,6 @@ describe('<Rate />', () => {
     expect(wrapper.find('div'));
   });
 
-  it('test the constructor', () => {
-    const expectedProps = {
-      articleId: 'asdf',
-      rateArticle: () => {},
-      likes: 1,
-    };
-    const rate = new Rate(expectedProps);
-    expect(rate.state).toStrictEqual({});
-  });
-
-  it('describe rate function', () => {
-    const wrapper = shallow(
-      <Rate
-        articleId={mock.articleId}
-        rateArticle={mock.rateArticle}
-        likes={mock.likes}
-      />
-    );
-    expect(wrapper.instance().rate());
-  });
-
   it('describe rateHandler function', () => {
     const wrapper = shallow(
       <Rate

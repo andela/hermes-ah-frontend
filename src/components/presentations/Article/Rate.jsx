@@ -6,18 +6,7 @@ import { Rating, Button, Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 class Rate extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   rateHandler = (e, { rating }) => {
-    // eslint-disable-next-line react/no-unused-state
-    this.setState({ rating });
-    this.rate(rating);
-  };
-
-  rate = rating => {
     const { articleId, rateArticle } = this.props;
 
     const data = {
