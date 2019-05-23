@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
 import ReadingCard from './ReadingArticleCard';
@@ -21,6 +22,19 @@ class ArticlePage extends Component {
     await getSingleArticle(articleId);
   }
 
+  componentWillUnmount() {
+    const { reset } = this.props;
+    reset();
+  }
+
+  sortComment = comment => {
+    const sortedComment = comment.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    return sortedComment;
+  };
+
   render() {
     const {
       singleArticle,
@@ -30,18 +44,17 @@ class ArticlePage extends Component {
       isLoadingReducer,
       user,
     } = this.props;
+
     const { articleId } = match.params;
-    const { article, comments } = singleArticle;
+    const { article, comments, error } = singleArticle;
     const { userProfile } = user;
     const { profile } = userProfile;
 
+    if (error) {
+      const { history } = this.props;
+      history.push('/notfound');
+    }
     const { loader: isLoading } = isLoadingReducer;
-
-    // sort comment based on the greater time in descending order
-    const sortComment = comments.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
 
     return (
       <React.Fragment>
@@ -96,7 +109,7 @@ class ArticlePage extends Component {
                     />
                   )}
                   <div>
-                    {sortComment.map(comment => (
+                    {this.sortComment(comments).map(comment => (
                       <ViewComment
                         key={comment.id}
                         comment={comment}
@@ -123,11 +136,13 @@ ArticlePage.propTypes = {
   postComment: PropTypes.func.isRequired,
   match: PropTypes.shape(PropTypes.objectOf).isRequired,
   singleArticle: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired,
   rateArticle: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
   isLoadingReducer: PropTypes.shape({
     loader: PropTypes.bool,
   }).isRequired,
   user: PropTypes.shape().isRequired,
 };
 
-export default ArticlePage;
+export default withRouter(ArticlePage);
