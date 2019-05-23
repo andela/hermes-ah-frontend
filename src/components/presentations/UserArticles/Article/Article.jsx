@@ -20,7 +20,6 @@ const Article = ({ title, date, isDraft, articleId, onClick }) => {
         <Button
           className="success"
           id={articleId}
-          // eslint-disable-next-line no-console
           type="submit"
           onClick={onClick}
         >

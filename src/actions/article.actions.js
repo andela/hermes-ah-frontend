@@ -66,9 +66,10 @@ export const getAnArticle = id => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
+      console.log('dddddd');
       const article = await http.get(`/article/${id}`);
       dispatch(getAnArticleSuccess());
-      window.location = '/edit-article';
+      // window.location = '/edit-article';
       return article;
     } catch (err) {
       dispatch(getAnArticleError());

@@ -11,7 +11,7 @@ class ArticleList extends Component {
 
   show = async e => {
     const { editAnArticle } = this.props;
-    console.log(editAnArticle);
+    // console.log(editAnArticle);
     const { id } = e.target;
     // console.log(e.target.id, 'anayo');
     await editAnArticle(id);
