@@ -1,20 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-// eslint-disable-next-line no-unused-vars
-import { Provider } from 'react-redux';
-import configureMockStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
 import NewArticleForm from '../NewArticleForm/NewArticleForm';
 import NewArticle from '../NewArticle';
-import mock from '../../../../utils/testMocks';
-
-// eslint-disable-next-line no-unused-vars
-const { newArticle } = mock;
-
-const middleware = [thunk];
-const mockStore = configureMockStore(middleware);
-// eslint-disable-next-line no-unused-vars
-const store = mockStore({});
 
 describe('newArticle component', () => {
   it('should call onChange prop', () => {
@@ -48,11 +35,8 @@ describe('newArticle component', () => {
       target: { options: [{ text: 'title', value: 'title' }] },
     };
     const component = shallow(<NewArticle {...props} />);
-    // expect(component.instance().state.text).toEqual('');
     expect(component.state().keywords).toEqual([]);
     component.instance().handleAddition(event, { value: 'title' });
-    // console.log(component.instance().state.options[0].value);
-    // expect(component.instance().state.text).toEqual('title');
     expect(component.state().options[0].value).toBe('title');
   });
 
@@ -74,41 +58,7 @@ describe('newArticle component', () => {
     expect(component.state().keywords).toEqual([]);
     component.instance().handleChange(event, { value: ['title'] });
     expect(component.instance().state.keywords[0]).toEqual('title');
-    // expect(component.instance().state.keywords.value).toEqual('title');
   });
-
-  //   it.only('should call saveCategory prop', () => {
-  //     const props = {
-  //       postArticle: jest.fn(),
-  //       success: true,
-  //       history: {
-  //         push: '/',
-  //       },
-  //     };
-  //     // eslint-disable-next-line no-console
-  //     // eslint-disable-next-line no-undef
-  //     const event = {
-  //       preventDefault: jest.fn(),
-  //       target: {
-  //         attributes: {
-  //           getNamedItem(name) {
-  //             return {
-  //               value: name,
-  //             };
-  //           },
-  //         },
-  //       },
-  //     };
-
-  //     const component = shallow(<NewArticle {...props} />);
-  //     // expect(component.instance().state.text).toEqual('');
-  //     expect(component.state().category).toEqual('');
-  //     component.instance().saveCategory(event, { value: ['title'] });
-  //     // console.log(
-  //   component.instance().state.category);
-  //     // expect(component.instance().state.text).toEqual('title');
-  //     expect(component.state().category.value).toBe(['title']);
-  //   });
 
   it('should call saveOrPublish prop', () => {
     const article = {
