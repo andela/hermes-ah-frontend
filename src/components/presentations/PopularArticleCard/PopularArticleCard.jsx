@@ -1,16 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Item } from 'semantic-ui-react';
 import './popular-article-card.scss';
 
-const PopularArticleCard = ({ title, author, date, num }) => (
+const PopularArticleCard = ({ title, author, date, num, articleId }) => (
   <Item.Group>
     <Item>
       <Item.Header className="header-num" as="h1">
         {num}
       </Item.Header>
       <Item.Content>
-        <Item.Header as="a">{title}</Item.Header>
+        <Link to={`/article/${articleId}`} className="link">
+          <Item.Header as="h3">{title}</Item.Header>
+        </Link>
         <Item.Extra>
           <p className="author-name">{author}</p>
         </Item.Extra>
@@ -30,9 +33,11 @@ const PopularArticleCard = ({ title, author, date, num }) => (
 
 PopularArticleCard.defaultProps = {
   date: '10/05/2019, 08:49:38',
+  articleId: '',
 };
 
 PopularArticleCard.propTypes = {
+  articleId: PropTypes.string,
   num: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,

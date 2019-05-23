@@ -18,7 +18,7 @@ class Rate extends Component {
   };
 
   render() {
-    const { likes } = this.props;
+    const { comment } = this.props;
 
     return (
       <div className="rate-article">
@@ -29,7 +29,7 @@ class Rate extends Component {
           <p>
             <i className="far fa-comment" />
           </p>
-          <p>{likes}</p>
+          <p>{Object.keys(comment).length}</p>
         </div>
         <Popup
           content="Report This Article"
@@ -51,13 +51,13 @@ class Rate extends Component {
 }
 
 Rate.defaultProps = {
-  likes: 0,
+  comment: [{}],
 };
 
 Rate.propTypes = {
   articleId: PropTypes.string.isRequired,
   rateArticle: PropTypes.func.isRequired,
-  likes: PropTypes.number,
+  comment: PropTypes.arrayOf(PropTypes.shape()),
 };
 
 export default Rate;

@@ -11,9 +11,21 @@
         color: #0E71EB;
     } 
 
-    .description:hover {
-        color: #4183c4 !important;
+    .art-header {
+        color: #0E71EB;
+    }
+
+    .art-header:hover {
+        opacity: 0.8;
+    }
+
+    .description {
+        color: #000;
         cursor: pointer;
+    }
+
+    .description:hover {
+        color: #004190 !important;
     }
 
     a.header {

@@ -66,6 +66,7 @@ class Userprofile extends Component {
       .map(item => (
         <SuggestedArticleCard
           key={item.id}
+          articleId={item.id}
           title={item.title}
           body={item.abstract}
           readingTime={item.reading_time}

@@ -44,9 +44,11 @@
     .comment-text-wrap {
       display: flex;
       flex-direction: row;
-      border: 1px solid #c4c4c4;
+      border: 1px solid #f1e9e9;
       padding: 10px;
       align-items: flex-end;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px #00000038;
       .wrap-img-text {
         flex-grow: 2;
         display: flex;
@@ -101,8 +103,10 @@
     .comments-cont-text-content {
       margin-top: 40px;
       width: 100%;
-      border: 1px solid #c4c4c4;
+      border: 1px solid #0000000d;
       padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #0000008c;
       .wrap-image-author {
         display: flex;
         align-items: center;

@@ -58,8 +58,8 @@ class ArticlePage extends Component {
 
     return (
       <React.Fragment>
-        <NavBar />
         {isLoading && <Loader />}
+        <NavBar />
         <div className="article-page">
           <Grid>
             <Grid.Row columns={3}>
@@ -92,7 +92,7 @@ class ArticlePage extends Component {
                           <Rate
                             articleId={articleId}
                             rateArticle={rateArticle}
-                            likes={article.likes_count}
+                            comment={comments}
                           />
                         </div>
                       ) : (
@@ -101,13 +101,13 @@ class ArticlePage extends Component {
                     </div>
                   </Grid.Column>
                   <h3>Comments</h3>
-                  {Object.keys(article).length && (
+                  {Object.keys(article).length ? (
                     <InputComment
                       imageUrl={profile && profile.image_url}
                       articleId={article.id}
                       postComment={postComment}
                     />
-                  )}
+                  ) : null}
                   <div>
                     {this.sortComment(comments).map(comment => (
                       <ViewComment

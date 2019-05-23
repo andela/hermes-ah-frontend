@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { Button } from 'semantic-ui-react';
 import './userprofile.scss';
 
@@ -9,6 +10,7 @@ const SuggestedArticleCard = ({
   lastname,
   readingTime,
   body,
+  articleId,
 }) => {
   return (
     <div className="sgg-profile-card">
@@ -16,7 +18,9 @@ const SuggestedArticleCard = ({
       <span>{`${body.substring(0, 200)}...`}</span>
 
       <div className="sgg-footer">
-        <Button>Read More...</Button>
+        <Link to={`/article/${articleId}`}>
+          <Button>Read More...</Button>
+        </Link>
         <div className="sgg-footer-item-container">
           <span className="sgg-footer-item">
             <b>{firstname}</b>
@@ -34,12 +38,17 @@ const SuggestedArticleCard = ({
   );
 };
 
+SuggestedArticleCard.defaultProps = {
+  articleId: PropTypes.string,
+};
+
 SuggestedArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   firstname: PropTypes.string.isRequired,
   lastname: PropTypes.string.isRequired,
   readingTime: PropTypes.number.isRequired,
   body: PropTypes.string.isRequired,
+  articleId: PropTypes.string,
 };
 
 export default SuggestedArticleCard;
