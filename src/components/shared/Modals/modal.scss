@@ -61,10 +61,10 @@
   
   .close {
     color: white;
-    float: right;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     outline: none;
+    align-self: center;
   }
   
   .close:hover,
@@ -81,6 +81,14 @@
     color: #fff;
     text-align: center;
     background: $primary-color;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .modal-header h2{
+    margin: 0;
   }
   
   .modal-body {
@@ -162,4 +170,63 @@
   .vote i:hover {
     font-size: 1.2rem;
   }
+
+.edit-profile-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  padding: 10px;
+
+  label{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  label p{
+    grid-column: 1/2;
+    justify-self: right;
+    align-self: center;
+    margin: 10px;
+  }
+
+  label input, label textarea{
+    grid-column: 2/-1;
+    justify-self: left;
+    margin: 10px;
+    border: 1px solid grey;
+    padding: 10px;
+    width: 80%;
+    
+  }
+
+  label input:focus, label textarea:focus{
+    border: 1px solid $primary-color;
+  }
+  .edt-btn{
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .edt-btn:hover{
+    color: #fff;
+    background: $primary-color;
+  }
+
+  .cancel-btn{
+    color: red;
+    border: 1px solid red;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .cancel-btn:hover{
+    color: #fff;
+    background: red;
+  }
+
+}
 

@@ -17,6 +17,11 @@ class ProfileModal extends Component {
       profile.map(user => (
         <div className="modal-content" key={user.profile.id}>
           <div className="modal-header">
+            <h2>
+              {user.profile.first_name}
+              &nbsp;
+              {user.profile.last_name}
+            </h2>
             <span
               className="close"
               onClick={() => modal.closeModal()}
@@ -26,11 +31,6 @@ class ProfileModal extends Component {
             >
               &times;
             </span>
-            <h2>
-              {user.profile.first_name}
-              &nbsp;
-              {user.profile.last_name}
-            </h2>
           </div>
           <div className="modal-body">
             <div className="profile-modal-grid">

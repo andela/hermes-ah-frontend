@@ -10,6 +10,24 @@
     border-radius: 4px;
     box-shadow: 0px 5px 6px #c1bfbfbd;
     font-size: 1.2rem;
+
+    .edit-icon{
+        display: flex;
+        flex-direction: row-reverse;
+    }
+
+    .edit-icon button{
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .edit-icon button:hover{
+        color: #fff;
+        border: 1px solid $primary-color;
+        background: $primary-color;
+    }
 }
 
 .profile-card-item{

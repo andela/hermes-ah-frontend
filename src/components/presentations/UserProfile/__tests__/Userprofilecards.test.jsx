@@ -8,7 +8,6 @@ import SuggestedResearchers from '../SuggestedResearchers';
 describe('ProfilePage component', () => {
   it('should render profile page', () => {
     const props = {
-      profile: {},
       updateProfile: jest.fn(),
     };
     const wrapper = shallow(<ProfileCard {...props} />);
@@ -17,34 +16,32 @@ describe('ProfilePage component', () => {
 
   it('should change state on store detail', () => {
     const props = {
-      profile: {},
       updateProfile: jest.fn(),
     };
-
-    const event = { target: { id: 'title', textContent: 'prof' } };
-    const event2 = { target: { id: 'title', textContent: 'profX' } };
+    const event = { preventDefault: jest.fn() };
+    const data = { research_field: 'chemistry' };
+    const inputEvent = { target: { id: 'title', value: 'Prof' } };
     const wrapper = shallow(<ProfileCard {...props} />);
-    expect(wrapper.state('profile')).toEqual({});
-    expect(wrapper.instance().storeDetail(event));
-    expect(wrapper.state('profile')).toEqual({ title: 'prof' });
-    expect(wrapper.instance().updateUserProfile(event2));
+    expect(wrapper.state('modalOpen')).toEqual(false);
+    expect(wrapper.instance().openModal());
+    expect(wrapper.state('modalOpen')).toEqual(true);
+    expect(wrapper.instance().closeModal());
+    expect(wrapper.state('modalOpen')).toEqual(false);
+    expect(wrapper.instance().updateUserProfile(event, data));
+    expect(wrapper.state('profileDetails')).toEqual({
+      title: '',
+      research_field: '',
+      bio: '',
+    });
+    expect(wrapper.instance().changeProfile(inputEvent));
   });
 
-  it('should change state on store detail', () => {
+  it('should render profile page', () => {
     const props = {
-      profile: {},
       updateProfile: jest.fn(),
     };
-
     const wrapper = mount(<ProfileCard {...props} />);
-    wrapper.find('#title').simulate('focus');
-    wrapper.find('#title').simulate('blur');
-    wrapper.find('#research_field').simulate('focus');
-    wrapper.find('#research_field').simulate('blur');
-    wrapper.find('#phone_number').simulate('focus');
-    wrapper.find('#phone_number').simulate('blur');
-    wrapper.find('#bio').simulate('focus');
-    wrapper.find('#bio').simulate('blur');
+    expect(wrapper.find('div'));
   });
 
   it('should render profile page', () => {
