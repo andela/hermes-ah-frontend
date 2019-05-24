@@ -61,6 +61,7 @@ class Userprofile extends Component {
             topic={item.reporter_reason}
             reason={item.reporter_comment}
             status={item.status}
+            articleId={item.id}
           />
         ))
         .slice(0, 3);

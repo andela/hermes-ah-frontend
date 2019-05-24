@@ -2,8 +2,6 @@
 
 .main-title {
   width: 100%;
-  display: flex;
-  flex-direction: column;
   text-align: center;
   margin: 20px auto;
   padding: 10px 20px;
@@ -11,6 +9,9 @@
   overflow: auto;
   border: solid 1px #e4e4e4;
   border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   p .title-bio {
     font-family: $font-stack;
