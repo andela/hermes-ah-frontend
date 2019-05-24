@@ -18,7 +18,7 @@ const FolloweeList = ({ userFollowee, follow, modal }) => {
             .toUpperCase()}${user.follower.last_name.charAt(0).toUpperCase()}`}
           name={`${user.follower.first_name} ${user.follower.last_name}`}
           bio={`${user.follower.bio.substring(0, 100)}...`}
-          Id={user.follower_id}
+          id={user.follower_id}
           button="follow"
           btnClass="btn-follower"
           buttonEvent={follow}

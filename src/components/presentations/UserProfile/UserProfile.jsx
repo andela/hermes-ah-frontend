@@ -48,10 +48,13 @@ class Userprofile extends Component {
       return item.user_id !== profile.id;
     });
 
+    const allReportedArticles = profileReports.filter(
+      item => item.status === 'pending'
+    );
+
     const reportList =
       profileReports.length &&
-      profileReports
-        .slice(0, 3)
+      allReportedArticles
         .map(item => (
           <Reportcard
             key={item.id}
@@ -59,7 +62,8 @@ class Userprofile extends Component {
             reason={item.reporter_comment}
             status={item.status}
           />
-        ));
+        ))
+        .slice(0, 3);
 
     const suggestedArticleList = suggestionList
       .slice(0, 3)
