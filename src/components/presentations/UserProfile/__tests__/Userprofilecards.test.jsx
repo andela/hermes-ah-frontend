@@ -61,6 +61,7 @@ describe('ProfilePage component', () => {
       lastname: 'firstname',
       readingTime: 1,
       body: 'firstname',
+      articleId: 'id',
     };
     const wrapper = shallow(<SuggestesArticleCard {...props} />);
     expect(wrapper.find('div'));
