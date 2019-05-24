@@ -34,6 +34,16 @@ const singleArticle = (state = initialState, action) => {
         ...state,
         error: false,
       };
+    case actionTypes.LIKE_SUCCESS:
+      return {
+        ...state,
+        article: action.article,
+      };
+    case actionTypes.LIKE_FAILURE:
+      return {
+        ...state,
+        article: action.article,
+      };
     default:
       return state;
   }

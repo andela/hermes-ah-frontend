@@ -1,11 +1,9 @@
-import { toast } from 'react-toastify';
 import exceptionHandler from '../utils/exceptionHandler';
 import actionTypes from '../constants/article.constants';
 import http from '../utils/httpService';
 
-export const likeSuccess = (articleId, article) => ({
+export const likeSuccess = article => ({
   type: actionTypes.LIKE_SUCCESS,
-  articleId,
   article,
 });
 
@@ -14,17 +12,17 @@ export const likeFailure = article => ({
   article,
 });
 
-export const likeArticle = (articleId, article) => {
+export const likeArticle = article => {
   return async dispatch => {
     try {
-      dispatch(likeSuccess(articleId, article));
-      const { data: result } = await http.post(`/likes/${articleId}`);
+      const { data: result } = await http.post(`/likes/${article.id}`);
       const { data } = result;
-      if (!data.like) {
-        dispatch(likeFailure(article));
-        toast.error('You have already like this article');
-      }
+      const newArticle = article;
+      const likeCount = parseInt(data.likes_count, 10);
+      newArticle.likes_count = likeCount;
+      dispatch(likeSuccess(article));
     } catch (ex) {
+      dispatch(likeFailure(article));
       exceptionHandler(ex);
     }
   };
