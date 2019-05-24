@@ -26,7 +26,7 @@ class EditArticle extends Component {
       editorState: EditorState.createWithContent(
         // eslint-disable-next-line react/destructuring-assignment
         // eslint-disable-next-line react/prop-types
-        ContentState.createFromText('sampleEditorContent')
+        ContentState.createFromText('sampleEditorContenthghhghgh')
       ),
       body: '',
       updatedAbstract: false,
@@ -66,13 +66,20 @@ class EditArticle extends Component {
     });
   };
 
-  handleAddition = (e, { value }) => {
+  handleAddition = (_e, { value }) => {
     this.setState(prevState => ({
       options: [{ text: value, value }, ...prevState.options],
     }));
   };
 
-  handleChange = (e, { value }) => this.setState({ keywords: value });
+  // rawKeywords = _e => {
+  //   this.setState(_article => ({
+  //     // eslint-disable-next-line no-undef
+  //     options: [{ text: value, value }, ...prevState.options],
+  //   }));
+  // };
+
+  handleChange = (_e, { value }) => this.setState({ keywords: value });
 
   saveToCloudinary = async e => {
     const form = new FormData();
@@ -160,6 +167,7 @@ class EditArticle extends Component {
           bodyRaw={article.editorState}
           // abstractRaw={article.abstract}
           abstractRaw={this.state.abstract}
+          multiDropdownRaw={this.rawKeywords}
           categoryRaw={article.category}
           saveKeywords={this.saveKeywords}
           onEditorStateChange={this.onEditorStateChange}

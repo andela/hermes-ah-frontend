@@ -24,6 +24,7 @@ const NewArticleForm = ({
   sampleEditorContent,
   // bodyRaw,
   categoryRaw,
+  // multiDropdownRaw,
 }) => (
   <div>
     <main className="main-content">
@@ -76,6 +77,7 @@ const NewArticleForm = ({
                       allowAdditions
                       onAddItem={handleAddition}
                       onChange={handleChange}
+                      defaultValue={['hbhb', 'jkjkj']}
                     />
                     <p className="keyword-instruction">
                       Enter a comma-separated list. For example: Anatomy,
@@ -169,6 +171,7 @@ NewArticleForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
   handleAddition: PropTypes.func.isRequired,
   abstractRaw: PropTypes.string.isRequired,
+  // multiDropdownRaw: PropTypes.string.isRequired,
 };
 
 export default NewArticleForm;
