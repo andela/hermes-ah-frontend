@@ -68,6 +68,7 @@ class UserHomepage extends Component {
                 {popularArticlesLimit.map(elem => (
                   <PopularArticleCard
                     key={elem.id}
+                    articleId={elem.id}
                     num={`0${popularArticlesLimit.indexOf(elem) + 1}`}
                     title={elem.title}
                     author={`${elem.author.first_name} ${
@@ -86,9 +87,13 @@ class UserHomepage extends Component {
         <Item.Group className="section-2">
           <Container className="wrap-A-B">
             <div className="a-cont-wrap">
-              <Link to="/" className="sectA-lnk">
-                {sectionBdivA.map(article => (
-                  <Item className="a-sectn" key={article.id}>
+              {sectionBdivA.map(article => (
+                <Link
+                  to={`/article/${article.id}`}
+                  className="sectA-lnk"
+                  key={article.id}
+                >
+                  <Item className="a-sectn">
                     {article.image_url ? (
                       <Item.Image
                         className="a-image"
@@ -117,31 +122,81 @@ class UserHomepage extends Component {
                       </Item.Description>
                     </Item.Content>
                   </Item>
-                ))}
-              </Link>
+                </Link>
+              ))}
             </div>
 
             <div className="b-cont-wrap">
               {sectionBdivB.map(article => (
-                <Item className="b-sectn" key={article.id}>
-                  <Item.Content className="b-content">
-                    <Item.Header className="b-art-title">
+                <Link
+                  to={`/article/${article.id}`}
+                  className="sectA-lnk"
+                  key={article.id}
+                >
+                  <Item className="b-sectn" key={article.id}>
+                    <Item.Content className="b-content">
+                      <Item.Header className="b-art-title">
+                        {article.title}
+                      </Item.Header>
+                      <Item.Description>
+                        <div className="description">
+                          {article.image_url ? (
+                            <Item.Image
+                              className="b-image"
+                              size="small"
+                              src={article.image_url}
+                            />
+                          ) : null}
+                          <p className="desc-txt">
+                            {`${article.abstract.charAt(0).toUpperCase() +
+                              article.abstract.slice(1).substring(0, 100)}...`}
+                          </p>
+                        </div>
+                        <p className="author">
+                          {`${article.author.first_name} ${
+                            article.author.last_name
+                          }`}
+                        </p>
+                        <div className="date-start">
+                          <p className="date">
+                            {new Date(article.createdAt).toDateString()}
+                          </p>
+                          <p className="stats">
+                            {`${article.reading_time} min read`}
+                          </p>
+                        </div>
+                      </Item.Description>
+                    </Item.Content>
+                  </Item>
+                </Link>
+              ))}
+            </div>
+          </Container>
+          <div className="c-cont-wrap">
+            {sectionBdivC.map(article => (
+              <Link
+                to={`/article/${article.id}`}
+                className="sectA-lnk"
+                key={article.id}
+              >
+                <Item className="c-sectn" key={article.id}>
+                  {article.image_url ? (
+                    <Item.Image
+                      className="c-image"
+                      size="small"
+                      src={article.image_url}
+                    />
+                  ) : null}
+
+                  <Item.Content className="a-content">
+                    <Item.Header className="art-title">
                       {article.title}
                     </Item.Header>
                     <Item.Description>
-                      <div className="description">
-                        {article.image_url ? (
-                          <Item.Image
-                            className="b-image"
-                            size="small"
-                            src={article.image_url}
-                          />
-                        ) : null}
-                        <p className="desc-txt">
-                          {`${article.abstract.charAt(0).toUpperCase() +
-                            article.abstract.slice(1).substring(0, 100)}...`}
-                        </p>
-                      </div>
+                      <p className="description">
+                        {`${article.abstract.charAt(0).toUpperCase() +
+                          article.abstract.slice(1).substring(0, 200)}...`}
+                      </p>
                       <p className="author">
                         {`${article.author.first_name} ${
                           article.author.last_name
@@ -158,45 +213,7 @@ class UserHomepage extends Component {
                     </Item.Description>
                   </Item.Content>
                 </Item>
-              ))}
-            </div>
-          </Container>
-          <div className="c-cont-wrap">
-            {sectionBdivC.map(article => (
-              <Item className="c-sectn" key={article.id}>
-                {article.image_url ? (
-                  <Item.Image
-                    className="c-image"
-                    size="small"
-                    src={article.image_url}
-                  />
-                ) : null}
-
-                <Item.Content className="a-content">
-                  <Item.Header className="art-title">
-                    {article.title}
-                  </Item.Header>
-                  <Item.Description>
-                    <p className="description">
-                      {`${article.abstract.charAt(0).toUpperCase() +
-                        article.abstract.slice(1).substring(0, 200)}...`}
-                    </p>
-                    <p className="author">
-                      {`${article.author.first_name} ${
-                        article.author.last_name
-                      }`}
-                    </p>
-                    <div className="date-start">
-                      <p className="date">
-                        {new Date(article.createdAt).toDateString()}
-                      </p>
-                      <p className="stats">
-                        {`${article.reading_time} min read`}
-                      </p>
-                    </div>
-                  </Item.Description>
-                </Item.Content>
-              </Item>
+              </Link>
             ))}
           </div>
         </Item.Group>

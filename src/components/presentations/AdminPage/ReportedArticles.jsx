@@ -12,6 +12,7 @@ const ReportedArticles = props => {
           topic={article.reporter_reason}
           reason={article.reporter_comment}
           status={article.status}
+          articleId={article.reported_article_id}
         />
       ))}
     </div>
