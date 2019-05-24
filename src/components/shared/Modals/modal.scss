@@ -30,7 +30,11 @@
     animation-name: animatetop;
     animation-duration: 0.4s;
   }
-  
+
+  .mod{
+    padding: 32px;
+}
+
   @-webkit-keyframes animatetop {
     from {
       top: -300px;
@@ -55,10 +59,10 @@
   
   .close {
     color: white;
-    float: right;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: bold;
     outline: none;
+    align-self: center;
   }
   
   .close:hover,
@@ -75,6 +79,14 @@
     color: #fff;
     text-align: center;
     background: $primary-color;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .modal-header h2{
+    margin: 0;
   }
   
   .modal-body {
@@ -90,10 +102,15 @@
   display: grid;
   grid-template-columns: 1fr 2fr;
   grid-template-rows: 300px;
+  
+  p span {
+    font-weight: bold;
+  }
 }
 
 .profile-modal-grid p{
-  font-size: 1rem;
+  font-size: 17px;
+    display: flex;
 }
 
 
@@ -107,6 +124,7 @@
     height: 100%;
     margin: 0 auto;
     object-fit: contain;
+    padding: 12px;
 
 }
   
@@ -154,4 +172,63 @@
   .vote i:hover {
     font-size: 1.2rem;
   }
+
+.edit-profile-form{
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  padding: 10px;
+
+  label{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  label p{
+    grid-column: 1/2;
+    justify-self: right;
+    align-self: center;
+    margin: 10px;
+  }
+
+  label input, label textarea{
+    grid-column: 2/-1;
+    justify-self: left;
+    margin: 10px;
+    border: 1px solid grey;
+    padding: 10px;
+    width: 80%;
+    
+  }
+
+  label input:focus, label textarea:focus{
+    border: 1px solid $primary-color;
+  }
+  .edt-btn{
+    color: $primary-color;
+    border: 1px solid $primary-color;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .edt-btn:hover{
+    color: #fff;
+    background: $primary-color;
+  }
+
+  .cancel-btn{
+    color: red;
+    border: 1px solid red;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .cancel-btn:hover{
+    color: #fff;
+    background: red;
+  }
+
+}
 

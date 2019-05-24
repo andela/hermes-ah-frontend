@@ -17,6 +17,11 @@ class ProfileModal extends Component {
       profile.map(user => (
         <div className="modal-content" key={user.profile.id}>
           <div className="modal-header">
+            <h2>
+              {user.profile.first_name}
+              &nbsp;
+              {user.profile.last_name}
+            </h2>
             <span
               className="close"
               onClick={() => modal.closeModal()}
@@ -26,23 +31,38 @@ class ProfileModal extends Component {
             >
               &times;
             </span>
-            <h2>
-              {user.profile.first_name}
-              &nbsp;
-              {user.profile.last_name}
-            </h2>
           </div>
           <div className="modal-body">
             <div className="profile-modal-grid">
               <div className="image-container">
                 <img alt="user" src={user.profile.image_url} />
               </div>
-              <div>
-                <p>{user.profile.title}</p>
-                <p>{user.profile.research_field}</p>
-                <p>{user.profile.email}</p>
-                <p>{user.profile.phone_number}</p>
-                <p>{user.profile.bio}</p>
+              <div className="mod">
+                <p>
+                  <span>Title:</span>
+                  &nbsp;
+                  {user.profile.title}
+                </p>
+                <p>
+                  <span>Research Field:</span>
+                  &nbsp;
+                  {user.profile.research_field}
+                </p>
+                <p>
+                  <span>Email:</span>
+                  &nbsp;
+                  {user.profile.email}
+                </p>
+                <p>
+                  <span>Phone:</span>
+                  &nbsp;
+                  {user.profile.phone_number}
+                </p>
+                <p>
+                  <span>Bio:</span>
+                  &nbsp;
+                  {user.profile.bio}
+                </p>
               </div>
             </div>
           </div>

@@ -5,67 +5,97 @@
   margin: 10px;
 }
 
+.social-sharing { 
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin-top: 220px;
+
+  .twitter-share, .facebook-share, .bookmark, .like {
+    width: 90%;
+    margin: 10px auto;
+    text-align: center;
+    color: #0e71eb;
+    font-size: 25px;
+  }
+
+  .like {
+    display: flex;
+    justify-content: center;
+
+    p {
+      padding: 8px 3px;
+      font-size: 13px;
+      color: #000;
+    }
+
+    i {
+      padding: 3px;
+    }
+  }
+}
+
 .article-page {
   margin: 20px;
 
+  .write-comment {
+    -webkit-animation: fadeIn ease 0.2s;
+    animation: fadeIn ease 0.2s;
+    .comment-text-wrap {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid #c4c4c4;
+      padding: 10px;
+      align-items: flex-end;
+      .wrap-img-text {
+        flex-grow: 2;
+        display: flex;
+        .image {
+          img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: cover;
+            background-origin: border-box;
+          }
+        }
+        textarea {
+          flex-grow: 2;
+          border: none;
+          height: 100px;
+          outline: none;
+          margin: 10px;
+          font-size: 16px;
+          color: #3f3d56;
+          word-wrap: break-word;
+          word-break: break-all;
+          resize: none;
+        }
+      }
+      .submit-comment {
+        color: #fff;
+        background: #0e71eb;
+        margin: 0;
+        padding: 10px 25px;
+        border: none;
+        height: 35px;
+        border-radius: 5px;
+        cursor: pointer;
+        opacity: 0.85;
+      }
+      .submit-comment:hover {
+        background: #0072ff;
+        transition: 0.3s;
+        opacity: 1;
+      }
+    }
+  }
   // comment card
   .comment-cont {
     h3 {
       text-align: left;
       margin-bottom: 30px;
-    }
-    .write-comment {
-      -webkit-animation: fadeIn ease 0.2s;
-      animation: fadeIn ease 0.2s;
-      .comment-text-wrap {
-        display: flex;
-        flex-direction: row;
-        border: 1px solid #c4c4c4;
-        padding: 10px;
-        align-items: flex-end;
-        .wrap-img-text {
-          flex-grow: 2;
-          display: flex;
-          .image {
-            img {
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-              background-position: center;
-              background-size: cover;
-              background-origin: border-box;
-            }
-          }
-          textarea {
-            flex-grow: 2;
-            border: none;
-            height: 100px;
-            outline: none;
-            margin: 10px;
-            font-size: 16px;
-            color: #3f3d56;
-            word-wrap: break-word;
-            word-break: break-all;
-            resize: none;
-          }
-        }
-        .submit-comment {
-          color: #fff;
-          background: #0e71eb;
-          margin: 0;
-          padding: 10px 25px;
-          border: none;
-          height: 35px;
-          border-radius: 5px;
-          cursor: pointer;
-          opacity: 0.85;
-        }
-        .submit-comment:hover {
-          background: #0072ff;
-          transition: 0.3s;
-          opacity: 1;
-        }
-      }
     }
 
     .comments-cont-text-content {
@@ -300,4 +330,98 @@
     .article-body-container{
         margin: 20px auto;
     }
+}
+
+.rate-article {
+  margin: 15px 0;
+  padding: 5px 0;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 17px;
+
+  .rate {
+    margin: 0;
+    padding: 5px 10px;
+    border-right: solid 1px #eee;
+  }
+
+  .comment {
+    display: flex;
+    margin: 0;
+    padding: 3px 10px;
+    color: $primary-color;
+    border-right: solid 1px #eee;
+
+    p {
+      margin: 0 3px;
+    }
+  }
+
+  .popout {
+    margin: 0 10px;
+    padding: 9px 0;
+    color: #868686;
+
+    .ui.button {
+      margin: 0;
+      padding: 8px;
+      background: #fff;
+    }
+  }
+
+
+  .popout-control {
+    display: none;
+  }
+
+  .popout-control:checked ~ .report-article {
+    display: block;
+  }
+
+  .report-article {
+    display: none;
+    position: relative;
+    left: 0;
+    border: solid 1px $primary-color;
+
+    .ui.button {
+      background: #fff;
+    }
+  }
+}
+
+.ui.rating .active.icon {
+  color: #0e71eb;
+}
+
+.ui.rating .icon.selected {
+  color: #fbd400;
+}
+
+@media screen and (max-width: 768px) {
+  .social-sharing {
+    position: inherit;
+    flex-direction: inherit;
+    margin-top: 0;
+
+    .twitter-share, .facebook-share, .bookmark, .like {
+      width: 50px;
+      margin: 10px 0;
+      text-align: left;
+      color: #0e71eb;
+      font-size: 25px;
+    }
+
+    .like {
+      width: 100px;
+      justify-content: flex-start;
+      i {
+        padding: 0;
+      }
+
+      p {
+        padding: 5px;
+      }
+    }
+  }
 }

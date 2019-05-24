@@ -57,10 +57,11 @@ ArticleCard.defaultProps = {
 
 ArticleCard.defaultProps = {
   date: '10/05/2019, 08:49:38',
+  articleId: '',
 };
 
 ArticleCard.propTypes = {
-  articleId: PropTypes.string.isRequired,
+  articleId: PropTypes.string,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string,

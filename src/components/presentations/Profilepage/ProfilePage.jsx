@@ -22,6 +22,7 @@ class Profilepage extends Component {
       currentTab: 'profile-section',
       modalOpen: false,
       modalProfile: {},
+      open: false,
     };
   }
 
@@ -55,6 +56,12 @@ class Profilepage extends Component {
     const { followingCount } = userFollowing;
     const newcount = parseInt(followingCount, 10) + 1;
     followUser(e.target.id, newcount);
+  };
+
+  deleteArticleClick = async e => {
+    const { deleteArticle } = this.props;
+    await deleteArticle(e.target.id);
+    this.closeConfirmationModal();
   };
 
   changeTab = tab => {
@@ -91,8 +98,12 @@ class Profilepage extends Component {
     }
   };
 
+  showConfirmationModal = size => () => this.setState({ size, open: true });
+
+  closeConfirmationModal = () => this.setState({ open: false });
+
   render() {
-    const { currentTab, modalOpen, modalProfile } = this.state;
+    const { currentTab, modalOpen, modalProfile, open, size } = this.state;
 
     const {
       articlesUpdate,
@@ -166,6 +177,11 @@ class Profilepage extends Component {
               <Articles
                 articlesUpdate={articlesUpdate}
                 editAnArticle={getAnArticle}
+                deleteArticle={this.deleteArticleClick}
+                size={size}
+                open={open}
+                showConfirmationModal={this.showConfirmationModal('tiny')}
+                closeConfirmationModal={this.closeConfirmationModal}
               />
             </div>
           ) : null}
@@ -206,6 +222,7 @@ Profilepage.propTypes = {
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
   getAnArticle: PropTypes.func.isRequired,
+  deleteArticle: PropTypes.func.isRequired,
 };
 
 export default Profilepage;

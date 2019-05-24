@@ -1,0 +1,6 @@
+const actionType = {
+  DELETE_ARTICLES_SUCCESS: 'DELETE_ARTICLES_SUCCESS',
+  DELETE_ARTICLES_FAILURE: 'DELETE_ARTICLES_FAILURE',
+};
+
+export default actionType;

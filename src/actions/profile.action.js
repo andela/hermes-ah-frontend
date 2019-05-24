@@ -88,7 +88,6 @@ const getSuggestions = () => {
       dispatch(fetchSuggestedResearchersSuccess(data));
     } catch (error) {
       dispatch(fetchSuggestedResearchersFailure());
-      exceptionHandler(error);
     }
   };
 };

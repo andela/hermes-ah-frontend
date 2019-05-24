@@ -1,4 +1,3 @@
-import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import contentLoading from './loading.action';
 import actionTypes from '../constants/article.constants';
@@ -20,9 +19,7 @@ export const getSingleArticle = articleId => {
       dispatch(getSingleArticlesSuccess(article.data.article));
       return article;
     } catch (ex) {
-      return exceptionHandler(ex);
-    } finally {
-      dispatch(getSingleArticlesError());
+      return dispatch(getSingleArticlesError());
     }
   };
 };

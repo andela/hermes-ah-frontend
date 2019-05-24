@@ -15,6 +15,7 @@ describe('<ArticleCard />', () => {
     read: article.read,
     paragraph: article.paragraph,
     image: article.image,
+    articleId: article.articleId,
   };
   it('renders article', () => {
     const wrapper = shallow(<ArticleCard {...props} />);
