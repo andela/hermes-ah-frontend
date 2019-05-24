@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-// import { Link } from 'react-router-dom';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
 import ReadingCard from './ReadingArticleCard';
