@@ -58,7 +58,7 @@ const reportArticle = (articleid, body) => {
       const { data } = await http.post(`/article/report/${articleid}`, body);
       toast.info(data.message, {
         type: toast.TYPE.INFO,
-        closeButton: false,
+        closeButton: true,
         position: toast.POSITION.TOP_CENTER,
       });
       dispatch(stopLoading());
