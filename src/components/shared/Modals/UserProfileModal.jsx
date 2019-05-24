@@ -70,7 +70,7 @@ class ProfileModal extends Component {
         </div>
       ));
     return (
-      <div className={modal.modalOpen ? 'modal' : 'none'}>
+      <div className={modal.modalOpen ? 'custom-modal' : 'none'}>
         {Object.keys(modal.modalProfile).length ? userDet : null}
       </div>
     );

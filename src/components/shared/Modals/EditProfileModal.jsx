@@ -11,7 +11,7 @@ class EditProfileModal extends Component {
   render() {
     const { modal, children } = this.props;
     return (
-      <div className={modal.modalOpen ? 'modal' : 'none'}>
+      <div className={modal.modalOpen ? 'custom-modal' : 'none'}>
         <div className="modal-content">
           <div className="modal-header">
             <h2>{modal.title}</h2>
