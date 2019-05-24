@@ -53,7 +53,7 @@ class Userprofile extends Component {
     );
 
     const reportList =
-      profileReports.length &&
+      Object.keys(profileReports).length &&
       allReportedArticles
         .map(item => (
           <Reportcard
@@ -61,7 +61,7 @@ class Userprofile extends Component {
             topic={item.reporter_reason}
             reason={item.reporter_comment}
             status={item.status}
-            articleId={item.id}
+            articleId={item.reported_article_id}
           />
         ))
         .slice(0, 3);

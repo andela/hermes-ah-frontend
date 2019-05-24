@@ -11,7 +11,7 @@ class InputComment extends Component {
 
   handleCommentInput = e => {
     const { value } = e.target;
-    this.setState({ commentVal: value.toLowerCase() });
+    this.setState({ commentVal: value });
   };
 
   sendComment = e => {

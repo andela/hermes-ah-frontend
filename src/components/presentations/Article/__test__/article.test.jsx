@@ -34,6 +34,7 @@ const store = mockStore({});
 const articleProps = {
   getSingleArticle: jest.fn(),
   postComment: jest.fn(),
+  reset: jest.fn(),
   comment: { id: 'id', replies: [{ replier: { createdAt: 'time' } }] },
   match: { params: 'id', articleId: 'articleId' },
   singleArticle: props,
@@ -52,6 +53,7 @@ const ArticlePageContainer = (
       postComment={articleProps.postComment}
       isLoadingReducer={articleProps.isLoadingReducer}
       user={articleProps.user}
+      reset={articleProps.reset}
     />
   </Provider>
 );
@@ -62,7 +64,7 @@ describe('Article Page', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('reading card', () => {
+  it('reading card', async () => {
     const wrapper = shallow(
       <ArticlePage
         match={articleProps.match}
@@ -71,9 +73,10 @@ describe('Article Page', () => {
         postComment={articleProps.postComment}
         isLoadingReducer={articleProps.isLoadingReducer}
         user={articleProps.user}
+        reset={articleProps.reset}
       />
     );
-    expect(wrapper.find('div'));
+    expect(await wrapper.find('div'));
   });
 
   const commentInputProps = {
@@ -92,6 +95,24 @@ describe('Article Page', () => {
     comment: { id: 'id', replies: [{ replier: { createdAt: 'time' } }] },
     match: { params: 'id', articleId: 'articleId' },
   };
+
+  it('test handle sortComment function', async () => {
+    const wrapper = shallow(
+      <ArticlePage
+        match={articleProps.match}
+        getSingleArticle={articleProps.getSingleArticle}
+        singleArticle={articleProps.singleArticle}
+        postComment={articleProps.postComment}
+        isLoadingReducer={articleProps.isLoadingReducer}
+        user={articleProps.user}
+        reset={articleProps.reset}
+      />
+    );
+    const comment = [
+      { id: 'id', replies: [{ replier: { createdAt: 'time' } }] },
+    ];
+    expect(await wrapper.instance().sortComment(comment));
+  });
 
   it('test handle handleCommentInput function', () => {
     const wrapper = shallow(<InputComment {...commentInputProps} />);

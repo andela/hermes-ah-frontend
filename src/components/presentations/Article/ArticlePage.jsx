@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
 import ReadingCard from './ReadingArticleCard';
@@ -52,8 +52,7 @@ class ArticlePage extends Component {
     const { profile } = userProfile;
 
     if (error) {
-      const { history } = this.props;
-      history.push('/notfound');
+      return <Redirect to="/notfound" />;
     }
     const { loader: isLoading } = isLoadingReducer;
 
@@ -149,4 +148,4 @@ ArticlePage.propTypes = {
   user: PropTypes.shape().isRequired,
 };
 
-export default withRouter(ArticlePage);
+export default ArticlePage;

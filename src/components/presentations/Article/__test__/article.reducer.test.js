@@ -22,6 +22,26 @@ describe('single article reducers', () => {
     });
   });
 
+  it('should handle FETCH_SINGLE_ARTICLE_FAILURE', () => {
+    expect(
+      singleArticle([], {
+        type: types.FETCH_SINGLE_ARTICLE_FAILURE,
+      })
+    ).toEqual({
+      error: true,
+    });
+  });
+
+  it('should handle RESET', () => {
+    expect(
+      singleArticle([], {
+        type: types.RESET,
+      })
+    ).toEqual({
+      error: false,
+    });
+  });
+
   it('should handle POST_COMMENT_SUCCESS', () => {
     expect(
       singleArticle([], {
