@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './modal.scss';
 
-const Modal = ({ modalOpen, closeModal, children }) => {
+const Modal = ({ modalOpen, closeModal, title, children }) => {
   return (
-    <div className={modalOpen ? 'modal' : 'none'}>
+    <div className={modalOpen ? 'custom-modal' : 'none'}>
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Edit Profile</h2>
+          <h2>{title}</h2>
           <span
             className="close"
             onClick={closeModal}
@@ -29,6 +29,7 @@ Modal.propTypes = {
   children: PropTypes.shape().isRequired,
   closeModal: PropTypes.func.isRequired,
   modalOpen: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Modal;

@@ -50,6 +50,7 @@ class ProfileCard extends Component {
               modalOpen={modalOpen}
               closeModal={this.closeModal}
               openModal={this.openModal}
+              title="Edit Your Profile"
             >
               <form
                 className="edit-profile-form"
