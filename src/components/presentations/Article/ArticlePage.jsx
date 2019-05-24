@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
@@ -11,16 +12,24 @@ import './Article.scss';
 import Rate from './Rate';
 
 class ArticlePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   async componentDidMount() {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
     await getSingleArticle(articleId);
   }
+
+  componentWillUnmount() {
+    const { reset } = this.props;
+    reset();
+  }
+
+  sortComment = comment => {
+    const sortedComment = comment.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+    return sortedComment;
+  };
 
   render() {
     const {
@@ -33,17 +42,16 @@ class ArticlePage extends Component {
       user,
     } = this.props;
     const { articleId } = match.params;
-    const { article, comments } = singleArticle;
+    const { article, comments, error } = singleArticle;
     const { userProfile } = user;
     const { profile } = userProfile;
 
+    if (error) {
+      return <Redirect to="/notfound" />;
+    }
+
     const { loader: isLoading } = isLoadingReducer;
 
-    // sort comment based on the greater time in descending order
-    const sortComment = comments.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
     const url = window.location.href;
     return (
       <React.Fragment>
@@ -120,7 +128,7 @@ class ArticlePage extends Component {
                     />
                   )}
                   <div>
-                    {sortComment.map(comment => (
+                    {this.sortComment(comments).map(comment => (
                       <ViewComment
                         key={comment.id}
                         comment={comment}
@@ -153,6 +161,7 @@ ArticlePage.propTypes = {
   }).isRequired,
   reportArticle: PropTypes.func.isRequired,
   user: PropTypes.shape().isRequired,
+  reset: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;
