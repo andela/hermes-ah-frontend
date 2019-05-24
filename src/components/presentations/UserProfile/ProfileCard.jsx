@@ -51,6 +51,7 @@ class ProfileCard extends Component {
                 modalOpen,
                 closeModal: this.closeModal,
                 openModal: this.openModal,
+                title: 'Edit Profile',
                 updateProfile: this.updateUserProfile,
               }}
             >
