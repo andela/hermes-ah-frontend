@@ -47,6 +47,8 @@
       border: 1px solid #c4c4c4;
       padding: 10px;
       align-items: flex-end;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px #00000038;
       .wrap-img-text {
         flex-grow: 2;
         display: flex;
@@ -103,6 +105,8 @@
       width: 100%;
       border: 1px solid #c4c4c4;
       padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px #0000008c;
       .wrap-image-author {
         display: flex;
         align-items: center;
