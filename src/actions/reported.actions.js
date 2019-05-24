@@ -69,10 +69,29 @@ const reportArticle = (articleid, body) => {
   };
 };
 
+const reviewArticle = (articleid, body) => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data } = await http.patch(`/article/status/${articleid}`, body);
+      toast.info(data.message, {
+        type: toast.TYPE.INFO,
+        closeButton: true,
+        position: toast.POSITION.TOP_CENTER,
+      });
+      dispatch(stopLoading());
+    } catch (error) {
+      dispatch(stopLoading());
+      exceptionHandler(error);
+    }
+  };
+};
+
 const reportedArticleAction = {
   getReportedArticle,
   requestReview,
   reportArticle,
+  reviewArticle,
 };
 
 export default reportedArticleAction;

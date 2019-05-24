@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Button } from 'semantic-ui-react';
 import './userprofile.scss';
 
-const ReportedCard = ({ topic, reason, status }) => {
+const ReportedCard = ({ topic, reason, status, openReview }) => {
   return (
     <div className="report-profile-card">
       <p className="report-profile-card-item">
@@ -18,7 +18,7 @@ const ReportedCard = ({ topic, reason, status }) => {
         <b>Status:</b>
         <span>{status}</span>
       </p>
-      <Button>Review</Button>
+      <Button onClick={openReview}>Review</Button>
     </div>
   );
 };
@@ -27,6 +27,7 @@ ReportedCard.propTypes = {
   topic: PropTypes.string.isRequired,
   reason: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
+  openReview: PropTypes.func.isRequired,
 };
 
 export default ReportedCard;

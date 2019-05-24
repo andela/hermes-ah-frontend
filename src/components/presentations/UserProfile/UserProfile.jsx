@@ -6,14 +6,33 @@ import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import SuggestedResearchers from './SuggestedResearchers';
+import Modal from '../../shared/Modals/EditProfileModal';
 
 class Userprofile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showResearchers: false,
+      modalOpen: false,
+      reviewerComment: {
+        comment: '',
+      },
     };
   }
+
+  handleComment = ({ target }) => {
+    const { reviewerComment } = this.state;
+    reviewerComment[target.id] = target.value;
+    this.setState({ reviewerComment });
+  };
+
+  submitComment = async (e, data) => {
+    console.log(data);
+    const { reviewArticle } = this.props;
+    e.preventDefault();
+    await reviewArticle(data);
+    this.closeModal();
+  };
 
   componentDidMount = () => {
     const { getReportedArticle } = this.props;
@@ -25,13 +44,21 @@ class Userprofile extends Component {
     requestReview();
   };
 
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = () => {
+    this.setState({ modalOpen: true });
+  };
+
   showResearchers = () =>
     this.setState(prevState => ({
       showResearchers: !prevState.showResearchers,
     }));
 
   render() {
-    const { showResearchers } = this.state;
+    const { showResearchers, modalOpen, reviewerComment } = this.state;
     const {
       user,
       isReviewer,
@@ -61,6 +88,7 @@ class Userprofile extends Component {
             topic={item.reporter_reason}
             reason={item.reporter_comment}
             status={item.status}
+            openReview={this.openModal}
           />
         ))
         .slice(0, 3);
@@ -94,6 +122,40 @@ class Userprofile extends Component {
               {isReviewer ? (
                 <div>
                   <Headercard icon="far fa-flag" value="Reported Articles" />
+                  <Modal
+                    modal={{
+                      modalOpen,
+                      closeModal: this.closeModal,
+                      openModal: this.openModal,
+                      title: 'Review this article',
+                    }}
+                  >
+                    <form
+                      className="edit-profile-form"
+                      onSubmit={e => this.submitComment(e, reviewerComment)}
+                    >
+                      <label htmlFor="comment">
+                        <p>Comment</p>
+                        <textarea
+                          type="text"
+                          id="comment"
+                          onChange={e => this.handleComment(e)}
+                        />
+                      </label>
+                      <div>
+                        <button type="submit" className="edt-btn">
+                          Review
+                        </button>
+                        <button
+                          type="button"
+                          className="cancel-btn"
+                          onClick={() => this.closeModal()}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </Modal>
                   <div>{reportList}</div>
                   <div>
                     <p className="small-text">
@@ -156,6 +218,7 @@ Userprofile.propTypes = {
   reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
   requestReview: PropTypes.func.isRequired,
+  reviewArticle: PropTypes.func.isRequired,
 };
 
 export default Userprofile;
