@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-target-blank */
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
 import ReadingCard from './ReadingArticleCard';
@@ -43,7 +45,7 @@ class ArticlePage extends Component {
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     );
-
+    const url = window.location.href;
     return (
       <React.Fragment>
         <NavBar />
@@ -53,21 +55,42 @@ class ArticlePage extends Component {
             <Grid.Row columns={3}>
               <Grid.Column computer={2} mobile={16}>
                 <div className="section">
-                  <div className="social-sharing">
-                    <div className="facebook-share">
-                      <i className="fab fa-facebook-f" />
+                  {article.author && (
+                    <div className="social-sharing">
+                      <div className="facebook-share">
+                        <a
+                          href={`https://www.facebook.com/dialog/feed?app_id=370972486842144
+                          &redirect_uri=https://develop--hermes-ah.netlify.com
+                          &link=${url}
+                          &picture=${article.image_url}
+                          &caption=${article.abstract}`}
+                          target="_blank"
+                        >
+                          <i className="fab fa-facebook-f" />
+                        </a>
+                      </div>
+                      <div className="twitter-share">
+                        <a
+                          href={`https://twitter.com/intent/tweet?text=${
+                            article.title
+                          } by ${article.author.first_name}${
+                            article.author.last_name
+                          } ${url}`}
+                          target="_blank"
+                          data-size="large"
+                        >
+                          <i className="fab fa-twitter" />
+                        </a>
+                      </div>
+                      <div className="bookmark">
+                        <i className="far fa-bookmark" />
+                      </div>
+                      <div className="like">
+                        <i className="far fa-thumbs-up" />
+                        <p>{article.likes_count}</p>
+                      </div>
                     </div>
-                    <div className="twitter-share">
-                      <i className="fab fa-twitter" />
-                    </div>
-                    <div className="bookmark">
-                      <i className="far fa-bookmark" />
-                    </div>
-                    <div className="like">
-                      <i className="far fa-thumbs-up" />
-                      <p>{article.likes_count}</p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </Grid.Column>
               <Grid.Column computer={10} mobile={16}>
