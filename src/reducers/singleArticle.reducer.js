@@ -1,7 +1,7 @@
 import actionType from '../constants/article.constants';
 
 const initialState = {
-  article: [],
+  article: {},
 };
 
 const singleArticle = (state = initialState, action) => {

@@ -48,7 +48,6 @@ class ArticleList extends Component {
               date={`Updated ${updateDay} ${updateMonth} ${updateYear}`}
               isDraft={article.is_draft}
               articleId={article.id}
-              onClick={this.show}
             />
           );
         })}

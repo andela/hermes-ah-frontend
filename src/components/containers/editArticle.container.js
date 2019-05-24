@@ -1,15 +1,16 @@
 import { connect } from 'react-redux';
 import EditAnArticle from '../presentations/EditArticle/EditArticle';
 import { editAnArticle } from '../../actions/article.actions';
+import { getSingleArticle } from '../../actions/singleArticle.actions';
 
-const mapStateToProps = ({ articles }) => ({
-  success: articles.success,
-  articles,
+const mapStateToProps = ({ singleArticle }) => ({
+  singleArticle,
+  abstract: singleArticle.article.abstract,
 });
 
-const Article = connect(
+const EditArticle = connect(
   mapStateToProps,
-  { editAnArticle }
+  { editAnArticle, getSingleArticle }
 )(EditAnArticle);
 
-export default Article;
+export default EditArticle;

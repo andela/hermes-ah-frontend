@@ -1,9 +1,10 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../author-articles.scss';
 
-const Article = ({ title, date, isDraft, articleId, onClick }) => {
+const Article = ({ title, date, isDraft, articleId }) => {
   let draftStatus;
   if (!isDraft) {
     draftStatus = 'unpublish';
@@ -17,14 +18,11 @@ const Article = ({ title, date, isDraft, articleId, onClick }) => {
         <p>{date}</p>
       </div>
       <div className="update-buttons">
-        <Button
-          className="success"
-          id={articleId}
-          type="submit"
-          onClick={onClick}
-        >
-          Edit
-        </Button>
+        <Link to={`/edit-article/${articleId}`}>
+          <Button className="success" id={articleId} type="submit">
+            Edit
+          </Button>
+        </Link>
         <Button className={draftStatus}>{draftStatus}</Button>
         <Button className="failure">Delete</Button>
       </div>
@@ -36,7 +34,6 @@ Article.propTypes = {
   date: PropTypes.string.isRequired,
   isDraft: PropTypes.bool.isRequired,
   articleId: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
   // editArticle: PropTypes.func.isRequired,
 };
 

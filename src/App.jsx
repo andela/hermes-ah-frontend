@@ -42,7 +42,11 @@ const App = () => {
               component={SingleArticlePage}
             />
             <Route path="/create-article/" exact component={NewArticle} />
-            <Route path="/edit-article/" exact component={EditArticle} />
+            <Route
+              path="/edit-article/:articleId"
+              exact
+              component={EditArticle}
+            />
             <Route path="/forgot-password/" exact component={ForgotPassword} />
             <Route path="/admin/" exact component={AdminPage} />
             <Route path="/reset-password/" exact component={ResetPassword} />

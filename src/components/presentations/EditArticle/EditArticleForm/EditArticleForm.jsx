@@ -18,6 +18,12 @@ const NewArticleForm = ({
   options,
   handleChange,
   handleAddition,
+  titleRaw,
+  abstractRaw,
+  // valueRaw,
+  sampleEditorContent,
+  // bodyRaw,
+  categoryRaw,
 }) => (
   <div>
     <main className="main-content">
@@ -32,6 +38,7 @@ const NewArticleForm = ({
                     <Input
                       className="input-holders"
                       name="title"
+                      defaultValue={titleRaw}
                       onChange={onChange}
                     />
                   </div>
@@ -40,8 +47,9 @@ const NewArticleForm = ({
                     <h3 className="input-heading">Abstract</h3>
                     <TextArea
                       className="input-holders"
-                      name="abstract"
+                      value={abstractRaw}
                       onChange={onChange}
+                      name="abstract"
                     />
                   </div>
                 </div>
@@ -51,6 +59,7 @@ const NewArticleForm = ({
                   <Editor
                     onEditorStateChange={onEditorStateChange}
                     editorState={editorState}
+                    defaultEditorState={sampleEditorContent}
                   />
                 </div>
                 <br />
@@ -84,6 +93,7 @@ const NewArticleForm = ({
                       options={categoryOptions}
                       onChange={saveCategory}
                       className="input-holders"
+                      defaultValue={categoryRaw}
                     />
                   </div>
                 </div>
@@ -150,9 +160,15 @@ NewArticleForm.propTypes = {
   saveToCloudinary: PropTypes.func.isRequired,
   saveCategory: PropTypes.func.isRequired,
   headerImage: PropTypes.string.isRequired,
+  titleRaw: PropTypes.string.isRequired,
+  // valueRaw: PropTypes.string.isRequired,
+  sampleEditorContent: PropTypes.string.isRequired,
+  // bodyRaw: PropTypes.string.isRequired,
+  categoryRaw: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleAddition: PropTypes.func.isRequired,
+  abstractRaw: PropTypes.string.isRequired,
 };
 
 export default NewArticleForm;

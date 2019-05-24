@@ -22,13 +22,22 @@ export const postArticleError = () => ({
   type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
-export const getAnArticleSuccess = article => ({
-  type: actionTypes.FETCH_ARTICLE_SUCCESS,
+// export const getAnArticleSuccess = article => ({
+//   type: actionTypes.GET_ARTICLE_SUCCESS,
+//   article,
+// });
+
+// export const getAnArticleError = () => ({
+//   type: actionTypes.GET_ARTICLE_FAILURE,
+// });
+
+export const editAnArticleSuccess = article => ({
+  type: actionTypes.PATCH_ARTICLE_SUCCESS,
   article,
 });
 
-export const getAnArticleError = () => ({
-  type: actionTypes.FETCH_ARTICLE_FAILURE,
+export const editAnArticleError = () => ({
+  type: actionTypes.PATCH_ARTICLE_FAILURE,
 });
 
 export const getAllArticles = () => {
@@ -62,28 +71,27 @@ export const postArticle = data => {
   };
 };
 
-export const getAnArticle = id => {
-  return async dispatch => {
-    dispatch(contentLoading());
-    try {
-      console.log('dddddd');
-      const article = await http.get(`/article/${id}`);
-      dispatch(getAnArticleSuccess());
-      // window.location = '/edit-article';
-      return article;
-    } catch (err) {
-      dispatch(getAnArticleError());
-      return exceptionHandler(err);
-    }
-  };
-};
+// export const getAnArticle = id => {
+//   return async dispatch => {
+//     dispatch(contentLoading());
+//     try {
+//       const article = await http.get(`/article/${id}`);
+//       console.log(article.data.article);
+//       dispatch(getAnArticleSuccess(article.data.article));
+//       return article;
+//     } catch (err) {
+//       dispatch(getAnArticleError());
+//       return exceptionHandler(err);
+//     }
+//   };
+// };
 
 export const editAnArticle = (id, data) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
       const editedArticle = await http.patch(`/article/${id}`, data);
-      dispatch(postArticleSuccess());
+      dispatch(postArticleSuccess(editedArticle.data.article));
       toast.success(editedArticle.message);
       window.location = '/';
       return editedArticle;
@@ -97,6 +105,5 @@ export const editAnArticle = (id, data) => {
 export default {
   getAllArticles,
   postArticle,
-  getAnArticle,
   editAnArticle,
 };

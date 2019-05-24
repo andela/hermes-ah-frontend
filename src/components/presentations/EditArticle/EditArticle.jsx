@@ -1,6 +1,12 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState, convertToRaw } from 'draft-js';
+import {
+  EditorState,
+  convertToRaw,
+  ContentState,
+  convertFromHTML,
+} from 'draft-js';
 import { toast } from 'react-toastify';
 import draftToHtml from 'draftjs-to-html';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
@@ -10,14 +16,20 @@ import NavBar from '../../shared/NavBar/NavBar';
 import keywordOptions from '../NewArticle/NewArticleForm/keywords';
 
 class EditArticle extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       category: '',
       keywords: [],
       imageUrl: '',
-      editorState: EditorState.createEmpty(),
+      // editorState: EditorState.createEmpty(),
+      editorState: EditorState.createWithContent(
+        // eslint-disable-next-line react/destructuring-assignment
+        // eslint-disable-next-line react/prop-types
+        ContentState.createFromText('sampleEditorContent')
+      ),
       body: '',
+      updatedAbstract: false,
       title: '',
       abstract: '',
       options: keywordOptions,
@@ -26,8 +38,24 @@ class EditArticle extends Component {
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
   }
 
+  // currentState = () => {
+  //   const { singleArticle } = this.props;
+  // };
+  componentDidMount = () => {
+    const { getSingleArticle, match } = this.props;
+    const { articleId } = match.params;
+    return getSingleArticle(articleId);
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.abstract && !state.updatedAbstract) {
+      return { abstract: props.abstract, updatedAbstract: true };
+    }
+    return state;
+  }
+
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value.toLowerCase() });
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   onEditorStateChange = editorState => {
@@ -79,9 +107,11 @@ class EditArticle extends Component {
     this.setState({ category: categoryData });
   };
 
-  saveOrPublish = async (e, isDraft, id) => {
+  saveOrPublish = async (e, isDraft) => {
     e.preventDefault();
-    const { editAnArticle } = this.props;
+    // const { singleArticle } = this.props;
+    // const { article } = singleArticle;
+    // console.log('hiiiiiiii', article);
     const { title, abstract, imageUrl, body, keywords, category } = this.state;
     const data = {
       title,
@@ -92,26 +122,56 @@ class EditArticle extends Component {
       keywords,
       category,
     };
-    await editAnArticle(id, data);
+    const { editAnArticle, match } = this.props;
+    const { articleId } = match.params;
+    await editAnArticle(articleId, data);
   };
 
   render() {
-    const { editorState, imageUrl, options } = this.state;
+    const { editorState, options } = this.state;
+    const { singleArticle } = this.props;
+    const { article } = singleArticle;
+    const contentBlocks = convertFromHTML(
+      '<p>Lorem ipsum ' +
+        'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
+        'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
+        'commodo quis dolor in, sagittis scelerisque nibh. ' +
+        'Suspendisse consequat, sapien sit amet pulvinar  ' +
+        'tristique, augue ante dapibus nulla, eget gravida ' +
+        'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
+        'accumsan. Vivamus porta cursus libero vitae mattis. ' +
+        'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
+        'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>'
+    );
+
+    const sampleEditorContent = ContentState.createFromBlockArray(
+      contentBlocks
+    );
+
+    console.log(sampleEditorContent);
+    console.log('hiiiiiiii', article);
     return (
       <React.Fragment>
         <NavBar />
         <NewArticleForm
-          saveCategory={this.saveCategory}
+          saveCategory={article.category}
+          titleRaw={article.title}
+          valueRaw={article.abstract}
+          bodyRaw={article.editorState}
+          // abstractRaw={article.abstract}
+          abstractRaw={this.state.abstract}
+          categoryRaw={article.category}
           saveKeywords={this.saveKeywords}
           onEditorStateChange={this.onEditorStateChange}
           editorState={editorState}
           onChange={this.onChange}
           saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
-          headerImage={imageUrl}
+          headerImage={article.image_url}
           options={options}
           handleChange={this.handleChange}
           handleAddition={this.handleAddition}
+          sampleEditorContent={sampleEditorContent}
         />
       </React.Fragment>
     );
@@ -119,7 +179,10 @@ class EditArticle extends Component {
 }
 
 EditArticle.propTypes = {
+  getSingleArticle: PropTypes.func.isRequired,
   editAnArticle: PropTypes.func.isRequired,
+  match: PropTypes.shape(PropTypes.objectOf).isRequired,
+  singleArticle: PropTypes.shape({}).isRequired,
 };
 
 export default EditArticle;
