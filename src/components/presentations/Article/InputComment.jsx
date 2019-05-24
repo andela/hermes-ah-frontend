@@ -85,11 +85,12 @@ InputComment.defaultProps = {
   imageUrl:
     'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
   articleId: '',
+  postComment: PropTypes.func,
 };
 
 InputComment.propTypes = {
   imageUrl: PropTypes.string,
   articleId: PropTypes.string,
-  postComment: PropTypes.func.isRequired,
+  postComment: PropTypes.func,
 };
 export default InputComment;

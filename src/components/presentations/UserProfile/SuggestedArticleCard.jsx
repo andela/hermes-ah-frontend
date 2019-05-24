@@ -39,7 +39,7 @@ const SuggestedArticleCard = ({
 };
 
 SuggestedArticleCard.defaultProps = {
-  articleId: PropTypes.string,
+  articleId: '',
 };
 
 SuggestedArticleCard.propTypes = {

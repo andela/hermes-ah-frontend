@@ -7,6 +7,7 @@ describe('single article reducers', () => {
     expect(singleArticle(undefined, {})).toEqual({
       article: [],
       comments: [],
+      error: false,
     });
   });
 

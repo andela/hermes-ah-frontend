@@ -14,7 +14,6 @@ const singleArticle = (state = initialState, action) => {
         ...state,
         article: action.article,
         comments: action.article.Comments,
-        error: false,
       };
     case actionTypes.FETCH_SINGLE_ARTICLE_FAILURE:
       return {
