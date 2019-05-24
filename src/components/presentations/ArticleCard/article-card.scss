@@ -1,46 +1,54 @@
 @import '../../../assets/stylesheets/index.scss';
-.article-card-item{
-    .author-name {
-        color: black;
-        font-weight: 600
-    }
-    
-    .category {
-        text-transform: uppercase;
-        margin: 0;
-        color: #0E71EB;
-    } 
+.article-card-item {
+  .author-name {
+    color: black;
+    font-weight: 600;
+  }
 
-    .description:hover {
-        color: #4183c4 !important;
-        cursor: pointer;
-    }
+  .category {
+    text-transform: uppercase;
+    margin: 0;
+    color: #0e71eb;
+  }
 
-    a.header {
-        text-transform: capitalize;
-    }
+  .art-header {
+    color: #0e71eb;
+  }
 
+  .art-header:hover {
+    opacity: 0.8;
+  }
+
+  .description {
+    color: #000;
+    cursor: pointer;
+  }
+
+  .description:hover {
+    color: #004190 !important;
+  }
+
+  a.header {
+    text-transform: capitalize;
+  }
 }
-.ui.items>.item>.image>img {
-    height: 169px;
+.ui.items > .item > .image > img {
+  height: 169px;
 }
-.twelve.wide.computer.sixteen.wide.mobile.column{
-    height: 69vh;
-    overflow-y:auto;
+.twelve.wide.computer.sixteen.wide.mobile.column {
+  height: 69vh;
+  overflow-y: auto;
 }
 
-.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-track
-{
-	background-color: #ffffff;
+.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-track {
+  background-color: #ffffff;
 }
 
-.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-thumb
-{
-	background-color: #ffffff;
+.twelve.wide.computer.sixteen.wide.mobile.column::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
 }
-.twelve.wide.computer.sixteen.wide.mobile.column:hover::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	-webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
-	background-color: #8f8f8f;
+.twelve.wide.computer.sixteen.wide.mobile.column:hover::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+  background-color: #8f8f8f;
 }
