@@ -9,7 +9,7 @@ const Follow = ({
   bio,
   button,
   btnClass,
-  Id,
+  id,
   buttonEvent,
   openModal,
 }) => {
@@ -37,7 +37,7 @@ const Follow = ({
       <div className="button-div">
         <button
           type="submit"
-          id={Id}
+          id={id}
           onClick={buttonEvent}
           className={btnClass}
         >
@@ -55,7 +55,7 @@ Follow.propTypes = {
   button: PropTypes.string.isRequired,
   btnClass: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  Id: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   buttonEvent: PropTypes.func.isRequired,
   openModal: PropTypes.func.isRequired,
 };
