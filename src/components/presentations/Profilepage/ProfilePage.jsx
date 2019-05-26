@@ -194,7 +194,7 @@ class Profilepage extends Component {
             <Userprofile isReviewer={profile && profile.is_reviewer} />
           ) : null}
         </div>
-        {userModalProfile ? (
+        {userProfile ? (
           <Modal
             modalOpen={modalOpen}
             closeModal={this.closeModal}
