@@ -15,8 +15,9 @@ class Userprofile extends Component {
       showResearchers: false,
       modalOpen: false,
       reviewerComment: {
-        comment: '',
+        reviewer_comment: '',
       },
+      reportedArticleId: null,
     };
   }
 
@@ -26,11 +27,10 @@ class Userprofile extends Component {
     this.setState({ reviewerComment });
   };
 
-  submitComment = async (e, data) => {
-    console.log(data);
+  submitComment = async (e, id, data) => {
     const { reviewArticle } = this.props;
     e.preventDefault();
-    await reviewArticle(data);
+    await reviewArticle(id, data);
     this.closeModal();
   };
 
@@ -48,8 +48,8 @@ class Userprofile extends Component {
     this.setState({ modalOpen: false });
   };
 
-  openModal = () => {
-    this.setState({ modalOpen: true });
+  openModal = id => {
+    this.setState({ modalOpen: true, reportedArticleId: id });
   };
 
   showResearchers = () =>
@@ -58,7 +58,12 @@ class Userprofile extends Component {
     }));
 
   render() {
-    const { showResearchers, modalOpen, reviewerComment } = this.state;
+    const {
+      showResearchers,
+      modalOpen,
+      reviewerComment,
+      reportedArticleId,
+    } = this.state;
     const {
       user,
       isReviewer,
@@ -87,8 +92,9 @@ class Userprofile extends Component {
             key={item.id}
             topic={item.reporter_reason}
             reason={item.reporter_comment}
+            title={item.article.title}
             status={item.status}
-            openReview={this.openModal}
+            openReview={() => this.openModal(item.reported_article_id)}
           />
         ))
         .slice(0, 3);
@@ -132,13 +138,19 @@ class Userprofile extends Component {
                   >
                     <form
                       className="edit-profile-form"
-                      onSubmit={e => this.submitComment(e, reviewerComment)}
+                      onSubmit={e =>
+                        this.submitComment(
+                          e,
+                          reportedArticleId,
+                          reviewerComment
+                        )
+                      }
                     >
                       <label htmlFor="comment">
                         <p>Comment</p>
                         <textarea
                           type="text"
-                          id="comment"
+                          id="reviewer_comment"
                           onChange={e => this.handleComment(e)}
                         />
                       </label>

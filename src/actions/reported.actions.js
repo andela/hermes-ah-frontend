@@ -73,7 +73,7 @@ const reviewArticle = (articleid, body) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const { data } = await http.patch(`/article/status/${articleid}`, body);
+      const { data } = await http.patch(`/article/review/${articleid}`, body);
       toast.info(data.message, {
         type: toast.TYPE.INFO,
         closeButton: true,
