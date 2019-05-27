@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { Rating, Button, Popup } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
-import Modal from '../../shared/Modals/EditProfileModal';
+import Modal from '../../shared/Modals/Modal';
 import removeEmptyString from '../../../utils/removeEmptyString';
 
 class Rate extends Component {
@@ -59,12 +59,10 @@ class Rate extends Component {
     return (
       <div className="rate-article">
         <Modal
-          modal={{
-            modalOpen,
-            title: 'Report This Article',
-            closeModal: this.closeModal,
-            openModal: this.openModal,
-          }}
+          modalOpen={modalOpen}
+          title="Report This Article"
+          closeModal={this.closeModal}
+          openModal={this.openModal}
         >
           <form
             className="edit-profile-form"
