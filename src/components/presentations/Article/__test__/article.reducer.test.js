@@ -7,6 +7,7 @@ describe('single article reducers', () => {
     expect(singleArticle(undefined, {})).toEqual({
       article: [],
       comments: [],
+      error: false,
     });
   });
 
@@ -18,6 +19,26 @@ describe('single article reducers', () => {
       })
     ).toEqual({
       article: [{ article: [], comments: [] }],
+    });
+  });
+
+  it('should handle FETCH_SINGLE_ARTICLE_FAILURE', () => {
+    expect(
+      singleArticle([], {
+        type: types.FETCH_SINGLE_ARTICLE_FAILURE,
+      })
+    ).toEqual({
+      error: true,
+    });
+  });
+
+  it('should handle RESET_FAILING_ARTICLE', () => {
+    expect(
+      singleArticle([], {
+        type: types.RESET_FAILING_ARTICLE,
+      })
+    ).toEqual({
+      error: false,
     });
   });
 

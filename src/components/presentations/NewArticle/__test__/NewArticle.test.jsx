@@ -40,6 +40,22 @@ describe('newArticle component', () => {
     expect(component.state().options[0].value).toBe('title');
   });
 
+  it('should call saveCategory function', () => {
+    const props = {
+      postArticle: jest.fn(),
+      success: true,
+      history: {
+        push: '/',
+      },
+    };
+    const event = {
+      preventDefault: jest.fn(),
+      target: { files: ['test'] },
+    };
+    const component = shallow(<NewArticle {...props} />);
+    component.instance().saveToCloudinary(event);
+  });
+
   it('should call handleChange prop', () => {
     const props = {
       postArticle: jest.fn(),
