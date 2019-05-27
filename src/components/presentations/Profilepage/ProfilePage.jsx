@@ -131,7 +131,7 @@ class Profilepage extends Component {
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
-    const { profile: userModalProfile } = modalProfile;
+    const { profile: profileData } = modalProfile;
     return (
       <React.Fragment>
         <NavBar />
@@ -194,12 +194,12 @@ class Profilepage extends Component {
             <Userprofile isReviewer={profile && profile.is_reviewer} />
           ) : null}
         </div>
-        {userProfile ? (
+        {profileData ? (
           <Modal
             modalOpen={modalOpen}
             closeModal={this.closeModal}
-            title={`${userModalProfile.first_name} 
-            ${userModalProfile.last_name}`}
+            title={`${modalProfile.profile.first_name} 
+            ${modalProfile.profile.last_name}`}
           >
             <div className="profile-modal-grid">
               <div className="image-container">
