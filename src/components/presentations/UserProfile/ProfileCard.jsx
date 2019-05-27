@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import EditProfileModal from '../../shared/Modals/EditProfileModal';
+import Modal from '../../shared/Modals/Modal';
 import removeEmptyString from '../../../utils/removeEmptyString';
 import './userprofile.scss';
 
@@ -44,16 +44,13 @@ class ProfileCard extends Component {
     const { modalOpen, profileDetails } = this.state;
     return (
       <div className="profile-card">
-        {profile ? (
+        {Object.keys(profile).length ? (
           <div>
-            <EditProfileModal
-              modal={{
-                modalOpen,
-                closeModal: this.closeModal,
-                openModal: this.openModal,
-                title: 'Edit Profile',
-                updateProfile: this.updateUserProfile,
-              }}
+            <Modal
+              modalOpen={modalOpen}
+              closeModal={this.closeModal}
+              openModal={this.openModal}
+              title="Edit Your Profile"
             >
               <form
                 className="edit-profile-form"
@@ -65,7 +62,7 @@ class ProfileCard extends Component {
                     type="text"
                     id="title"
                     defaultValue={profile.title}
-                    onChange={e => this.changeProfile(e)}
+                    onChange={this.changeProfile}
                   />
                 </label>
                 <label htmlFor="research_field">
@@ -74,7 +71,7 @@ class ProfileCard extends Component {
                     type="text"
                     id="research_field"
                     defaultValue={profile.research_field}
-                    onChange={e => this.changeProfile(e)}
+                    onChange={this.changeProfile}
                   />
                 </label>
                 <label htmlFor="bio">
@@ -83,7 +80,7 @@ class ProfileCard extends Component {
                     type="text"
                     id="bio"
                     defaultValue={profile.bio}
-                    onChange={e => this.changeProfile(e)}
+                    onChange={this.changeProfile}
                   />
                 </label>
                 <div>
@@ -93,13 +90,13 @@ class ProfileCard extends Component {
                   <button
                     type="button"
                     className="cancel-btn"
-                    onClick={() => this.closeModal()}
+                    onClick={this.closeModal}
                   >
                     Cancel
                   </button>
                 </div>
               </form>
-            </EditProfileModal>
+            </Modal>
             <div className="edit-icon">
               <button type="button" onClick={this.openModal}>
                 <i className="far fa-edit" />
@@ -135,7 +132,7 @@ class ProfileCard extends Component {
 }
 
 ProfileCard.defaultProps = {
-  profile: undefined,
+  profile: {},
 };
 
 ProfileCard.propTypes = {

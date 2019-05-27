@@ -14,6 +14,7 @@ import Followee from '../UserFollowing/Followee/Followee';
 import Bookmarked from '../Bookmarked/Bookmaked';
 import NavBar from '../../shared/NavBar/NavBar';
 import http from '../../../utils/httpService';
+import Modal from '../../shared/Modals/Modal';
 
 class Profilepage extends Component {
   constructor(props) {
@@ -77,7 +78,6 @@ class Profilepage extends Component {
   openModal = async userid => {
     const { data } = await http.get(`/profile/${userid}`);
     this.setState({ modalOpen: true, modalProfile: data });
-    return data;
   };
 
   handleChange = async e => {
@@ -131,6 +131,7 @@ class Profilepage extends Component {
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
+    const { profile: profileData } = modalProfile;
     return (
       <React.Fragment>
         <NavBar />
@@ -161,24 +162,14 @@ class Profilepage extends Component {
               userFollowing={userFollowing}
               getFollowing={getFollowing}
               unFollow={this.unFollowClick}
-              modal={{
-                modalOpen,
-                openModal: this.openModal,
-                closeModal: this.closeModal,
-                modalProfile,
-              }}
+              openModal={this.openModal}
             />
           ) : null}
           {currentTab === 'followers-section' ? (
             <Followee
               userFollowee={userFollowee}
-              modal={{
-                modalOpen,
-                openModal: this.openModal,
-                closeModal: this.closeModal,
-                modalProfile,
-              }}
               follow={this.followClick}
+              openModal={this.openModal}
             />
           ) : null}
           {currentTab === 'article-section' ? (
@@ -203,6 +194,47 @@ class Profilepage extends Component {
             <Userprofile isReviewer={profile && profile.is_reviewer} />
           ) : null}
         </div>
+        {profileData ? (
+          <Modal
+            modalOpen={modalOpen}
+            closeModal={this.closeModal}
+            title={`${modalProfile.profile.first_name} 
+            ${modalProfile.profile.last_name}`}
+          >
+            <div className="profile-modal-grid">
+              <div className="image-container">
+                <img alt="user" src={modalProfile.profile.image_url} />
+              </div>
+              <div className="mod">
+                <p>
+                  <span>Title:</span>
+                  &nbsp;
+                  {modalProfile.profile.title}
+                </p>
+                <p>
+                  <span>Research Field:</span>
+                  &nbsp;
+                  {modalProfile.profile.research_field}
+                </p>
+                <p>
+                  <span>Email:</span>
+                  &nbsp;
+                  {modalProfile.profile.email}
+                </p>
+                <p>
+                  <span>Phone:</span>
+                  &nbsp;
+                  {modalProfile.profile.phone_number}
+                </p>
+                <p>
+                  <span>Bio:</span>
+                  &nbsp;
+                  {modalProfile.profile.bio}
+                </p>
+              </div>
+            </div>
+          </Modal>
+        ) : null}
       </React.Fragment>
     );
   }
