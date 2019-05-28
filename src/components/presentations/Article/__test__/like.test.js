@@ -1,7 +1,6 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import ngFaker from 'ng-faker';
 import {
   likeArticle,
   likeSuccess,
@@ -12,14 +11,8 @@ import types from '../../../../constants/article.constants';
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 const id = 'fb3def47-153c-40bd-8161-a1c787e083d6';
-const names = ngFaker.name.firstName();
 
-const article = {
-  Keywords: [{ keywords: 'chemistry' }, { keywords: 'chemistry' }],
-  author: { image_url: 'url', first_name: names, last_name: names },
-  body: '<p>html</p>',
-  image_url: 'url',
-};
+const likeCount = 30;
 describe('single article actions', () => {
   afterEach(() => {
     fetchMock.restore();
@@ -30,12 +23,12 @@ describe('single article actions', () => {
     const expectedAction = [
       {
         type: types.LIKE_SUCCESS,
-        article,
+        likeCount,
       },
     ];
     const store = mockStore({});
 
-    store.dispatch(likeSuccess(article));
+    store.dispatch(likeSuccess(likeCount));
     expect(store.getActions()).toEqual(expectedAction);
   });
 
@@ -43,12 +36,11 @@ describe('single article actions', () => {
     const expectedAction = [
       {
         type: types.LIKE_FAILURE,
-        article,
       },
     ];
     const store = mockStore({});
 
-    store.dispatch(likeFailure(article));
+    store.dispatch(likeFailure());
     expect(store.getActions()).toEqual(expectedAction);
   });
 
@@ -79,7 +71,7 @@ describe('single article actions', () => {
 
     const store = mockStore({});
 
-    store.dispatch(likeArticle(article));
+    store.dispatch(likeArticle(likeCount));
     expect(store.getActions()).toEqual(expectedAction);
   });
 });
