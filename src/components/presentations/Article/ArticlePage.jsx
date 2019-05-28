@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-no-target-blank */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
 import { Grid } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
-import ReadingCard from './ReadingArticleCard';
+import ReadingArticleCard from './ReadingArticleCard';
 import InputComment from './InputComment';
 import Loader from '../../shared/Loader/Loader';
 import './Article.scss';
@@ -40,6 +41,7 @@ class ArticlePage extends Component {
       isLoadingReducer,
       reportArticle,
       user,
+      likeArticle,
     } = this.props;
     const { articleId } = match.params;
     const { article, comments, error } = singleArticle;
@@ -93,7 +95,14 @@ class ArticlePage extends Component {
                         <i className="far fa-bookmark" />
                       </div>
                       <div className="like">
-                        <i className="far fa-thumbs-up" />
+                        <a
+                          href="#"
+                          onClick={() => {
+                            likeArticle(article.id);
+                          }}
+                        >
+                          <i className="far fa-thumbs-up" />
+                        </a>
                         <p>{article.likes_count}</p>
                       </div>
                     </div>
@@ -106,7 +115,7 @@ class ArticlePage extends Component {
                     <div className="section">
                       {Object.keys(article).length ? (
                         <div>
-                          <ReadingCard article={article} />
+                          <ReadingArticleCard article={article} />
                           <Rate
                             articleId={articleId}
                             rateArticle={rateArticle}
@@ -152,6 +161,7 @@ class ArticlePage extends Component {
 
 ArticlePage.propTypes = {
   getSingleArticle: PropTypes.func.isRequired,
+  likeArticle: PropTypes.func.isRequired,
   postComment: PropTypes.func.isRequired,
   match: PropTypes.shape(PropTypes.objectOf).isRequired,
   singleArticle: PropTypes.shape({}).isRequired,

@@ -60,4 +60,12 @@ describe('single article reducers', () => {
       })
     ).toEqual([]);
   });
+
+  it('should handle LIKE_FAILURE', () => {
+    expect(
+      singleArticle([], {
+        type: types.LIKE_FAILURE,
+      })
+    ).toEqual({});
+  });
 });
