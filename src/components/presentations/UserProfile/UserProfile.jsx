@@ -6,7 +6,7 @@ import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import SuggestedResearchers from './SuggestedResearchers';
-import Modal from '../../shared/Modals/EditProfileModal';
+import Modal from '../../shared/Modals/Modal';
 
 class Userprofile extends Component {
   constructor(props) {
@@ -18,6 +18,7 @@ class Userprofile extends Component {
         reviewer_comment: '',
       },
       reportedArticleId: null,
+      reportid: null,
     };
   }
 
@@ -27,10 +28,10 @@ class Userprofile extends Component {
     this.setState({ reviewerComment });
   };
 
-  submitComment = async (e, id, data) => {
+  submitComment = async (e, id, data, reportid) => {
     const { reviewArticle } = this.props;
     e.preventDefault();
-    await reviewArticle(id, data);
+    await reviewArticle(id, data, reportid);
     this.closeModal();
   };
 
@@ -48,8 +49,8 @@ class Userprofile extends Component {
     this.setState({ modalOpen: false });
   };
 
-  openModal = id => {
-    this.setState({ modalOpen: true, reportedArticleId: id });
+  openModal = (id, reportid) => {
+    this.setState({ modalOpen: true, reportedArticleId: id, reportid });
   };
 
   showResearchers = () =>
@@ -63,6 +64,7 @@ class Userprofile extends Component {
       modalOpen,
       reviewerComment,
       reportedArticleId,
+      reportid,
     } = this.state;
     const {
       user,
@@ -94,7 +96,7 @@ class Userprofile extends Component {
             reason={item.reporter_comment}
             title={item.article.title}
             status={item.status}
-            openReview={() => this.openModal(item.reported_article_id)}
+            openReview={() => this.openModal(item.reported_article_id, item.id)}
           />
         ))
         .slice(0, 3);
@@ -129,12 +131,10 @@ class Userprofile extends Component {
                 <div>
                   <Headercard icon="far fa-flag" value="Reported Articles" />
                   <Modal
-                    modal={{
-                      modalOpen,
-                      closeModal: this.closeModal,
-                      openModal: this.openModal,
-                      title: 'Review this article',
-                    }}
+                    modalOpen={modalOpen}
+                    title="Review This Article"
+                    closeModal={this.closeModal}
+                    openModal={this.openModal}
                   >
                     <form
                       className="edit-profile-form"
@@ -142,7 +142,8 @@ class Userprofile extends Component {
                         this.submitComment(
                           e,
                           reportedArticleId,
-                          reviewerComment
+                          reviewerComment,
+                          reportid
                         )
                       }
                     >
@@ -161,7 +162,7 @@ class Userprofile extends Component {
                         <button
                           type="button"
                           className="cancel-btn"
-                          onClick={() => this.closeModal()}
+                          onClick={this.closeModal}
                         >
                           Cancel
                         </button>
