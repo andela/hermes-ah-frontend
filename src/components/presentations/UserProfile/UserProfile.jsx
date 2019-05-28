@@ -152,7 +152,7 @@ class Userprofile extends Component {
                         <textarea
                           type="text"
                           id="reviewer_comment"
-                          onChange={e => this.handleComment(e)}
+                          onChange={this.handleComment}
                         />
                       </label>
                       <div>
