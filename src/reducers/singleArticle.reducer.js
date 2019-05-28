@@ -48,7 +48,6 @@ const singleArticle = (state = initialState, action) => {
     case actionTypes.LIKE_FAILURE:
       return {
         ...state,
-        article: state.article,
       };
     default:
       return state;
