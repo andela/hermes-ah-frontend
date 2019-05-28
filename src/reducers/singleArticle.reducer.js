@@ -7,6 +7,12 @@ const initialState = {
   error: false,
 };
 
+const updateArticleLike = (article, likeCount) => {
+  const newArticle = article;
+  newArticle.likes_count = likeCount;
+  return newArticle;
+};
+
 const singleArticle = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_SINGLE_ARTICLE_SUCCESS:
@@ -37,12 +43,12 @@ const singleArticle = (state = initialState, action) => {
     case actionTypes.LIKE_SUCCESS:
       return {
         ...state,
-        article: action.article,
+        article: updateArticleLike(state.article, action.likeCount),
       };
     case actionTypes.LIKE_FAILURE:
       return {
         ...state,
-        article: action.article,
+        article: state.article,
       };
     default:
       return state;
