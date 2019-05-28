@@ -7,8 +7,8 @@ const initialState = {
   error: false,
 };
 
-const updateArticleLike = (article, likeCount) => {
-  const newArticle = article;
+const updateArticleLikes = (article, likeCount) => {
+  const newArticle = { ...article };
   newArticle.likes_count = likeCount;
   return newArticle;
 };
@@ -43,7 +43,7 @@ const singleArticle = (state = initialState, action) => {
     case actionTypes.LIKE_SUCCESS:
       return {
         ...state,
-        article: updateArticleLike(state.article, action.likeCount),
+        article: updateArticleLikes(state.article, action.likeCount),
       };
     case actionTypes.LIKE_FAILURE:
       return {
