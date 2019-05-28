@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
 import ViewComment from './ViewComment';
-import ReadingCard from './ReadingArticleCard';
+import ReadingArticleCard from './ReadingArticleCard';
 import InputComment from './InputComment';
 import Loader from '../../shared/Loader/Loader';
 import './Article.scss';
@@ -115,7 +115,7 @@ class ArticlePage extends Component {
                     <div className="section">
                       {Object.keys(article).length ? (
                         <div>
-                          <ReadingCard article={article} />
+                          <ReadingArticleCard article={article} />
                           <Rate
                             articleId={articleId}
                             rateArticle={rateArticle}
