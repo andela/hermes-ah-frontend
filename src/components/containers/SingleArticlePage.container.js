@@ -4,6 +4,7 @@ import { getSingleArticle, reset } from '../../actions/singleArticle.actions';
 import { rateArticle } from '../../actions/article.actions';
 import { postComment } from '../../actions/comment.actions';
 import reportedArticleAction from '../../actions/reported.actions';
+import { likeArticle } from '../../actions/like.actions';
 
 const { reportArticle } = reportedArticleAction;
 
@@ -21,6 +22,7 @@ const SingleArticlePageContainer = connect(
     postComment,
     reportArticle,
     reset,
+    likeArticle,
   }
 )(ArticlePage);
 
