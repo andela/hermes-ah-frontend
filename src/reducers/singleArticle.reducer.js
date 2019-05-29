@@ -12,6 +12,7 @@ const updateArticleLikes = (article, likeCount) => {
   const newArticle = { ...article };
   newArticle.likes_count = likeCount;
   return newArticle;
+};
 const updateComment = (state, updatedComment) => {
   state.map(item => {
     if (item.id === updatedComment.id) {
