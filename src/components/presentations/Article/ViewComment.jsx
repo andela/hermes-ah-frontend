@@ -193,9 +193,7 @@ class ViewComment extends Component {
               </div>
             )}
           </div>
-        ) : (
-          <p>Loading</p>
-        )}
+        ) : null}
       </React.Fragment>
     );
   }
