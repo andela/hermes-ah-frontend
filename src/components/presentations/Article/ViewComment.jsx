@@ -176,7 +176,7 @@ class ViewComment extends Component {
                               <p>
                                 <TimeAgo
                                   date={new Date(
-                                    history.updatedAt
+                                    history.createdAt
                                   ).toUTCString()}
                                 />
                               </p>
