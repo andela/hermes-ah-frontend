@@ -20,6 +20,15 @@ export const editCommentFailure = () => ({
   type: actionTypes.EDIT_COMMENT_FAILURE,
 });
 
+export const commentHistorySuccess = histories => ({
+  type: actionTypes.FETCH_COMMENT_HISTORY_SUCCESS,
+  histories,
+});
+
+export const commentHistoryFailure = () => ({
+  type: actionTypes.FETCH_COMMENT_HISTORY_FAILURE,
+});
+
 export const postComment = data => {
   return async dispatch => {
     try {
@@ -47,6 +56,21 @@ export const updateComment = (data, commentId) => {
   };
 };
 
+export const getCommentHistory = commentId => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const history = await http.get(`comments/${commentId}/histories`);
+      dispatch(commentHistorySuccess(history.data.comment));
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(commentHistoryFailure());
+    }
+  };
+};
+
 export default {
   postComment,
+  getCommentHistory,
 };

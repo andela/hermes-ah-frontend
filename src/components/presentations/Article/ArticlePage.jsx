@@ -83,9 +83,10 @@ class ArticlePage extends Component {
       likeArticle,
       user,
       updateComment,
+      getCommentHistory,
     } = this.props;
     const { articleId } = match.params;
-    const { article, comments, error } = singleArticle;
+    const { article, comments, error, commentHistory } = singleArticle;
     const { userProfile } = user;
     const { profile } = userProfile;
     const { commentVal } = this.state;
@@ -193,6 +194,9 @@ class ArticlePage extends Component {
                           handleChange={this.handleCommentInput}
                           commentVal={commentVal}
                           updateComment={updateComment}
+                          getCommentHistory={getCommentHistory}
+                          commentHistory={commentHistory}
+                          profile={profile}
                         />
                       ))}
                   </div>
@@ -223,6 +227,7 @@ ArticlePage.propTypes = {
   reportArticle: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   updateComment: PropTypes.func.isRequired,
+  getCommentHistory: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;

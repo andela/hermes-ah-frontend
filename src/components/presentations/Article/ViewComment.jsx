@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 import InputComment from './InputComment';
+import ViewEditHistoryModal from '../../shared/Modals/Modal';
 
 class ViewComment extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class ViewComment extends Component {
       menu: false,
       showEdit: false,
       replyVal: '',
+      showEditHistory: false,
     };
   }
 
@@ -38,6 +40,17 @@ class ViewComment extends Component {
   handleReplyInput = e => {
     const { value } = e.target;
     this.setState({ replyVal: value });
+  };
+
+  showEditHistoryModal = async e => {
+    const { getCommentHistory } = this.props;
+    const commentId = e.target.id;
+    await getCommentHistory(commentId);
+    this.setState({ showEditHistory: true, menu: false });
+  };
+
+  closeEditHistoryModal = () => {
+    this.setState({ showEditHistory: false });
   };
 
   editComment = e => {
@@ -69,8 +82,15 @@ class ViewComment extends Component {
   };
 
   render() {
-    const { toggle, input, menu, showEdit, replyVal } = this.state;
-    const { comment } = this.props;
+    const {
+      toggle,
+      input,
+      menu,
+      showEdit,
+      replyVal,
+      showEditHistory,
+    } = this.state;
+    const { comment, commentHistory, profile } = this.props;
     return (
       <React.Fragment>
         {comment ? (
@@ -117,20 +137,81 @@ class ViewComment extends Component {
                       </div>
                     )}
                     <div className="toggle-comment-menu">
-                      <button type="button" onClick={this.toggleCommentMenu}>
-                        <i className="fas fa-ellipsis-v" />
-                      </button>
+                      {profile && profile.id === comment.user_id ? (
+                        <button type="button" onClick={this.toggleCommentMenu}>
+                          <i className="fas fa-ellipsis-v" />
+                        </button>
+                      ) : null}
                       {menu && (
                         <div className="comment-menu">
                           <button type="button" onClick={this.showEditComment}>
                             Edit comment
                           </button>
                           <button type="button">Delete Comment</button>
-                          <button type="button">View Edit History</button>
                         </div>
                       )}
                     </div>
                   </div>
+                  {commentHistory &&
+                    commentHistory.map(history => (
+                      <ViewEditHistoryModal
+                        key={history.id}
+                        modalOpen={showEditHistory}
+                        closeModal={this.closeEditHistoryModal}
+                        title="Edit History"
+                      >
+                        <div className="history-body">
+                          <img
+                            alt="comment-owner"
+                            src={profile && profile.image_url}
+                          />
+                          <div className="author-details-wrap">
+                            <div className="author">
+                              <p className="auth-name">
+                                {`${profile.first_name} ${profile.last_name}`}
+                              </p>
+                              <p className="comment">{history.body}</p>
+                            </div>
+                            <div className="time">
+                              <p>
+                                <TimeAgo
+                                  date={new Date(
+                                    history.updatedAt
+                                  ).toUTCString()}
+                                />
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                        {/* histories */}
+                        {history.histories.map(histories => (
+                          <div className="history-body" key={histories.id}>
+                            <img
+                              alt="comment-owner"
+                              src={profile && profile.image_url}
+                            />
+                            <div className="author-details-wrap">
+                              <div className="author">
+                                <p className="auth-name">
+                                  {`${profile.first_name} ${profile.last_name}`}
+                                </p>
+                                <p className="comment">{histories.body}</p>
+                              </div>
+                              <div className="time">
+                                <p>
+                                  <TimeAgo
+                                    date={new Date(
+                                      histories.updatedAt
+                                    ).toUTCString()}
+                                  />
+                                </p>
+                              </div>
+                            </div>
+                            {/* histories */}
+                          </div>
+                        ))}
+                      </ViewEditHistoryModal>
+                    ))}
                   <div className="commenter-text">
                     <p>{comment.body}</p>
                   </div>
@@ -152,7 +233,15 @@ class ViewComment extends Component {
                     new Date(comment.createdAt).toUTCString() ? (
                       <div>
                         <span>.</span>
-                        <span className="edited-comm">Edited</span>
+                        <span
+                          className="edited-comm"
+                          id={comment && comment.id}
+                          onClick={this.showEditHistoryModal}
+                          onKeyDown={this.showEditHistoryModal}
+                          role="presentation"
+                        >
+                          Edited
+                        </span>
                       </div>
                     ) : null}
                   </div>
@@ -218,7 +307,10 @@ class ViewComment extends Component {
 
 ViewComment.propTypes = {
   comment: PropTypes.shape().isRequired,
+  profile: PropTypes.shape().isRequired,
+  commentHistory: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   updateComment: PropTypes.func.isRequired,
+  getCommentHistory: PropTypes.func.isRequired,
 };
 
 export default ViewComment;

@@ -8,6 +8,7 @@ describe('single article reducers', () => {
       article: [],
       comments: [],
       error: false,
+      commentHistory: [],
     });
   });
 

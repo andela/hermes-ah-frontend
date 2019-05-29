@@ -6,6 +6,10 @@ const actionType = {
   // edit comment action types
   EDIT_COMMENT_SUCCESS: 'EDIT_COMMENT_SUCCESS',
   EDIT_COMMENT_FAILURE: 'EDIT_COMMENT_FAILURE',
+
+  // edit comment action types
+  FETCH_COMMENT_HISTORY_SUCCESS: 'FETCH_COMMENT_HISTORY_SUCCESS',
+  FETCH_COMMENT_HISTORY_FAILURE: 'FETCH_COMMENT_HISTORY_FAILURE',
 };
 
 export default actionType;

@@ -6,6 +6,7 @@ const initialState = {
   article: [],
   comments: [],
   error: false,
+  commentHistory: [],
 };
 
 const updateArticleLikes = (article, likeCount) => {
@@ -51,6 +52,11 @@ const singleArticle = (state = initialState, action) => {
         ...state,
       };
     }
+    case commentTypes.FETCH_COMMENT_HISTORY_SUCCESS:
+      return {
+        ...state,
+        commentHistory: action.histories,
+      };
     case actionTypes.RESET_FAILING_ARTICLE:
       return {
         ...state,
