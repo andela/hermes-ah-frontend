@@ -1,6 +1,5 @@
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
-import contentLoading from './loading.action';
 import actionTypes from '../constants/comment.constants';
 
 export const postCommentSuccess = comment => ({
@@ -23,7 +22,6 @@ export const editCommentFailure = () => ({
 
 export const postComment = data => {
   return async dispatch => {
-    dispatch(contentLoading());
     try {
       const comment = await http.post('/comments', data);
       dispatch(postCommentSuccess(comment.data.comment));
@@ -38,7 +36,6 @@ export const postComment = data => {
 
 export const updateComment = (data, commentId) => {
   return async dispatch => {
-    dispatch(contentLoading());
     try {
       const comment = await http.patch(`comments/${commentId}`, data);
       dispatch(editCommentSuccess(comment.data.editedComment[0]));

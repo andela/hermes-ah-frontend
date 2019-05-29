@@ -48,7 +48,7 @@ const articleProps = {
 const inputCommentProps = {
   imageUrl: 'string',
   closeVal: 'string',
-  articleId: 'string',
+  id: 'string',
   btnValue: 'string',
   submitForm: jest.fn(),
   commentVal: 'string',
@@ -148,7 +148,12 @@ describe('Article Page', () => {
   it('should handle onEnterSubmit function', () => {
     const wrapper = shallow(<ArticlePage {...articleProps} />);
     wrapper.setState({ commentVal: 'input' });
-    const event = { preventDefault: jest.fn(), keyCode: 13, shiftKey: false };
+    const event = {
+      preventDefault: jest.fn(),
+      keyCode: 13,
+      shiftKey: false,
+      target: { id: 'id' },
+    };
     expect(wrapper.instance().onEnterSubmit(event));
   });
 
