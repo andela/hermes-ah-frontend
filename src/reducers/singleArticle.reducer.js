@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import actionTypes from '../constants/article.constants';
 import commentTypes from '../constants/comment.constants';
 
@@ -11,6 +12,14 @@ const updateArticleLikes = (article, likeCount) => {
   const newArticle = { ...article };
   newArticle.likes_count = likeCount;
   return newArticle;
+const updateComment = (state, updatedComment) => {
+  state.map(item => {
+    if (item.id === updatedComment.id) {
+      item.body = updatedComment.body;
+      item.updatedAt = updatedComment.updatedAt;
+    }
+    return item;
+  });
 };
 
 const singleArticle = (state = initialState, action) => {
@@ -35,6 +44,12 @@ const singleArticle = (state = initialState, action) => {
       return {
         ...state,
       };
+    case commentTypes.EDIT_COMMENT_SUCCESS: {
+      updateComment(state.comments, action.editResponse);
+      return {
+        ...state,
+      };
+    }
     case actionTypes.RESET_FAILING_ARTICLE:
       return {
         ...state,

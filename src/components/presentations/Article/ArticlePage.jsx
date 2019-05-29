@@ -13,9 +13,18 @@ import './Article.scss';
 import Rate from './Rate';
 
 class ArticlePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      commentVal: '',
+      articleId: null,
+    };
+  }
+
   async componentDidMount() {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
+    this.setState({ articleId });
     await getSingleArticle(articleId);
   }
 
@@ -24,11 +33,44 @@ class ArticlePage extends Component {
     reset();
   }
 
+  handleCommentInput = e => {
+    const { value } = e.target;
+    this.setState({ commentVal: value });
+  };
+
+  sendComment = e => {
+    e.preventDefault();
+    const { commentVal } = this.state;
+    const data = {
+      article_id: e.target.id,
+      body: commentVal,
+    };
+    const { postComment } = this.props;
+    postComment(data);
+    this.setState({ commentVal: '' });
+  };
+
+  onEnterSubmit = e => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      const { commentVal, articleId } = this.state;
+      const data = {
+        article_id: articleId,
+        body: commentVal,
+      };
+      const { postComment } = this.props;
+      postComment(data);
+      this.setState({ commentVal: '' });
+    }
+  };
+
   sortComment = comment => {
-    const sortedComment = comment.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
+    const sortedComment =
+      comment &&
+      comment.sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
     return sortedComment;
   };
 
@@ -40,13 +82,12 @@ class ArticlePage extends Component {
       rateArticle,
       isLoadingReducer,
       reportArticle,
-      user,
       likeArticle,
+      updateComment,
     } = this.props;
     const { articleId } = match.params;
     const { article, comments, error } = singleArticle;
-    const { userProfile } = user;
-    const { profile } = userProfile;
+    const { commentVal } = this.state;
 
     if (error) {
       return <Redirect to="/notfound" />;
@@ -123,28 +164,35 @@ class ArticlePage extends Component {
                             reportArticle={reportArticle}
                           />
                         </div>
-                      ) : (
-                        <p>Loading...</p>
-                      )}
+                      ) : null}
                     </div>
                   </Grid.Column>
                   <h3>Comments</h3>
-                  {Object.keys(article).length && (
+                  {Object.keys(article).length ? (
                     <InputComment
-                      imageUrl={profile && profile.image_url}
+                      imageUrl={article && article.author.image_url}
                       articleId={article.id}
                       postComment={postComment}
+                      btnValue="Comment"
+                      commentVal={commentVal}
+                      handleChange={this.handleCommentInput}
+                      enterKeyFormSubmit={this.onEnterSubmit}
+                      submitForm={this.sendComment}
                     />
-                  )}
+                  ) : null}
                   <div>
-                    {this.sortComment(comments).map(comment => (
-                      <ViewComment
-                        key={comment.id}
-                        comment={comment}
-                        imageUrl={article.author && article.author.image_url}
-                        articleId={articleId}
-                      />
-                    ))}
+                    {comments &&
+                      this.sortComment(comments).map(comment => (
+                        <ViewComment
+                          key={comment.id}
+                          comment={comment}
+                          imageUrl={article.author && article.author.image_url}
+                          articleId={articleId}
+                          handleChange={this.handleCommentInput}
+                          commentVal={commentVal}
+                          updateComment={updateComment}
+                        />
+                      ))}
                   </div>
                 </Grid.Row>
               </Grid.Column>
@@ -170,8 +218,8 @@ ArticlePage.propTypes = {
     loader: PropTypes.bool,
   }).isRequired,
   reportArticle: PropTypes.func.isRequired,
-  user: PropTypes.shape().isRequired,
   reset: PropTypes.func.isRequired,
+  updateComment: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;
