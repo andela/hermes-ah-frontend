@@ -174,6 +174,7 @@ class ArticlePage extends Component {
                       articleId={article.id}
                       postComment={postComment}
                       btnValue="Comment"
+                      placeholderValue="Write a comment..."
                       commentVal={commentVal}
                       handleChange={this.handleCommentInput}
                       enterKeyFormSubmit={this.onEnterSubmit}

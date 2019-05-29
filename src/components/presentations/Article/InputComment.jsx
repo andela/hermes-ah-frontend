@@ -11,6 +11,7 @@ const InputComment = ({
   enterKeyFormSubmit,
   handleClose,
   closeVal,
+  placeholderValue,
 }) => {
   return (
     <div className="write-comment edit-comment-margin" key={articleId}>
@@ -29,7 +30,7 @@ const InputComment = ({
           <textarea
             type="text"
             name="comment-text"
-            placeholder="Write a comment..."
+            placeholder={placeholderValue}
             className="text-area-comm"
             onKeyDown={enterKeyFormSubmit}
             onChange={handleChange}
@@ -53,9 +54,10 @@ InputComment.defaultProps = {
   imageUrl:
     'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
   articleId: '',
+  commentVal: '',
   closeVal: '',
-  handleClose: PropTypes.func,
-  enterKeyFormSubmit: PropTypes.func,
+  handleClose: () => {},
+  enterKeyFormSubmit: () => {},
 };
 
 InputComment.propTypes = {
@@ -63,8 +65,9 @@ InputComment.propTypes = {
   closeVal: PropTypes.string,
   articleId: PropTypes.string,
   btnValue: PropTypes.string.isRequired,
+  placeholderValue: PropTypes.string.isRequired,
   submitForm: PropTypes.func.isRequired,
-  commentVal: PropTypes.string.isRequired,
+  commentVal: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
   enterKeyFormSubmit: PropTypes.func,
   handleClose: PropTypes.func,

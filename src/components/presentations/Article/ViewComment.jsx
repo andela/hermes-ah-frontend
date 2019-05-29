@@ -67,6 +67,7 @@ class ViewComment extends Component {
                 btnValue="Update Comment"
                 closeVal="Cancel"
                 commentVal={replyVal}
+                placeholderValue={comment && comment.body}
                 handleClose={this.showEditComment}
                 handleChange={this.handleReplyInput}
                 submitForm={this.editComment}
