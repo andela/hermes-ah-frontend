@@ -35,9 +35,8 @@ export const postComment = data => {
     try {
       const comment = await http.post('/comments', data);
       dispatch(postCommentSuccess(comment.data.comment));
-      return comment;
     } catch (ex) {
-      return exceptionHandler(ex);
+      exceptionHandler(ex);
     } finally {
       dispatch(postCommentFailure());
     }

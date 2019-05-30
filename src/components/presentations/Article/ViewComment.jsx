@@ -305,10 +305,15 @@ class ViewComment extends Component {
   }
 }
 
+ViewComment.defaultProps = {
+  profile: {},
+  commentHistory: [{}],
+};
+
 ViewComment.propTypes = {
   comment: PropTypes.shape().isRequired,
-  profile: PropTypes.shape().isRequired,
-  commentHistory: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  profile: PropTypes.shape(),
+  commentHistory: PropTypes.arrayOf(PropTypes.shape()),
   updateComment: PropTypes.func.isRequired,
   getCommentHistory: PropTypes.func.isRequired,
 };

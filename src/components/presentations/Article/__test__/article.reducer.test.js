@@ -62,6 +62,17 @@ describe('single article reducers', () => {
     ).toEqual([]);
   });
 
+  it('should handle FETCH_COMMENT_HISTORY_SUCCESS', () => {
+    expect(
+      singleArticle([], {
+        type: commentTypes.FETCH_COMMENT_HISTORY_SUCCESS,
+        commentHistory: undefined,
+      })
+    ).toEqual({
+      commentHistory: undefined,
+    });
+  });
+
   it('should handle LIKE_FAILURE', () => {
     expect(
       singleArticle([], {
