@@ -17,14 +17,12 @@ class ArticlePage extends Component {
     super(props);
     this.state = {
       commentVal: '',
-      articleId: null,
     };
   }
 
   async componentDidMount() {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
-    this.setState({ articleId });
     await getSingleArticle(articleId);
   }
 
@@ -53,9 +51,9 @@ class ArticlePage extends Component {
   onEnterSubmit = e => {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
-      const { commentVal, articleId } = this.state;
+      const { commentVal } = this.state;
       const data = {
-        article_id: articleId,
+        article_id: e.target.id,
         body: commentVal,
       };
       const { postComment } = this.props;

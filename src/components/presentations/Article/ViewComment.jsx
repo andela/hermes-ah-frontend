@@ -15,11 +15,6 @@ class ViewComment extends Component {
     };
   }
 
-  handleReplyInput = e => {
-    const { value } = e.target;
-    this.setState({ replyVal: value });
-  };
-
   toggleReplies = () => {
     const { toggle } = this.state;
     this.setState({ toggle: !toggle });
@@ -40,6 +35,11 @@ class ViewComment extends Component {
     this.setState({ showEdit: !showEdit, menu: false });
   };
 
+  handleReplyInput = e => {
+    const { value } = e.target;
+    this.setState({ replyVal: value });
+  };
+
   editComment = e => {
     e.preventDefault();
     const { replyVal } = this.state;
@@ -53,6 +53,21 @@ class ViewComment extends Component {
     this.showEditComment();
   };
 
+  onEnterSubmitEdit = e => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      const { replyVal } = this.state;
+      const data = {
+        body: replyVal,
+      };
+      const commentId = e.target.id;
+      this.setState({ replyVal: '' });
+      const { updateComment } = this.props;
+      updateComment(data, commentId);
+      this.showEditComment();
+    }
+  };
+
   render() {
     const { toggle, input, menu, showEdit, replyVal } = this.state;
     const { comment } = this.props;
@@ -63,7 +78,7 @@ class ViewComment extends Component {
             {showEdit ? (
               <InputComment
                 imageUrl={comment && comment.commentOwner.image_url}
-                articleId={comment && comment.id}
+                id={comment && comment.id}
                 btnValue="Update Comment"
                 closeVal="Cancel"
                 commentVal={replyVal}
@@ -71,6 +86,7 @@ class ViewComment extends Component {
                 handleClose={this.showEditComment}
                 handleChange={this.handleReplyInput}
                 submitForm={this.editComment}
+                enterKeyFormSubmit={this.onEnterSubmitEdit}
               />
             ) : (
               <div>
