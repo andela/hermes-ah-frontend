@@ -61,7 +61,7 @@ ArticleCard.defaultProps = {
 };
 
 ArticleCard.propTypes = {
-  articleId: PropTypes.string,
+  articleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string,

@@ -41,7 +41,7 @@ PopularArticleCard.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string,
-  articleId: PropTypes.string,
+  articleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default PopularArticleCard;
