@@ -22,8 +22,9 @@
     margin: auto;
     padding: 0;
     border: 1px solid #888;
+    border-radius: 5px;
     width: 50%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
@@ -74,7 +75,7 @@
   }
   
   .modal-header {
-    padding: 2px 16px;
+    padding: 5px 2px;
     color: #fff;
     text-align: center;
     background: $primary-color;
@@ -204,29 +205,29 @@
     border: 1px solid $primary-color;
   }
   .edt-btn{
-    color: $primary-color;
+    color: #fff;
     border: 1px solid $primary-color;
-    background: transparent;
+    background: $primary-color;
     cursor: pointer;
     padding: 10px;
   }
 
   .edt-btn:hover{
-    color: #fff;
-    background: $primary-color;
+    color: $primary-color;
+    background: #fff;
   }
 
   .cancel-btn{
-    color: red;
+    color: #fff;
     border: 1px solid red;
-    background: transparent;
+    background: red;
     cursor: pointer;
     padding: 10px;
   }
 
   .cancel-btn:hover{
-    color: #fff;
-    background: red;
+    color: red;
+    background: #fff;
   }
 
 }
