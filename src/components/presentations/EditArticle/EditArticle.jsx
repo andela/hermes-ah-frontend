@@ -1,46 +1,33 @@
-/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-  EditorState,
-  convertToRaw,
-  ContentState,
-  convertFromHTML,
-} from 'draft-js';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
 import { toast } from 'react-toastify';
 import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
 import NewArticleForm from './EditArticleForm/EditArticleForm';
 import validateImage from '../../../utils/validateImage';
 import NavBar from '../../shared/NavBar/NavBar';
-import keywordOptions from '../NewArticle/NewArticleForm/keywords';
 
 class EditArticle extends Component {
   constructor(props) {
     super(props);
     this.state = {
       category: '',
-      keywords: [],
+      options: [],
       imageUrl: '',
-      // editorState: EditorState.createEmpty(),
-      editorState: EditorState.createWithContent(
-        // eslint-disable-next-line react/destructuring-assignment
-        // eslint-disable-next-line react/prop-types
-        ContentState.createFromText('sampleEditorContenthghhghgh')
-      ),
+      editorState: EditorState.createEmpty(),
+      defaultEditorState: '',
       body: '',
       updatedAbstract: false,
       title: '',
       abstract: '',
-      options: keywordOptions,
+      currentValues: [''],
     };
     this.onChange = this.onChange.bind(this);
     this.onEditorStateChange = this.onEditorStateChange.bind(this);
   }
 
-  // currentState = () => {
-  //   const { singleArticle } = this.props;
-  // };
   componentDidMount = () => {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
@@ -48,8 +35,41 @@ class EditArticle extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.abstract && !state.updatedAbstract) {
-      return { abstract: props.abstract, updatedAbstract: true };
+    if (
+      props.abstract &&
+      props.singleArticle.article.Keywords &&
+      state.updatedAbstract === false
+    ) {
+      const blocksFromHtml = htmlToDraft(props.singleArticle.article.body);
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(
+        contentBlocks,
+        entityMap
+      );
+      const { singleArticle } = props;
+      const { article } = singleArticle;
+      const { category } = article;
+
+      return {
+        abstract: props.abstract,
+        updatedAbstract: true,
+        keywords: props.singleArticle.article.Keywords,
+        options: props.singleArticle.article.Keywords.map(option => {
+          return {
+            key: option.keyword,
+            text: option.keyword,
+            value: option.keyword,
+          };
+        }),
+        category: [{ key: category, text: category, value: category }],
+        currentValues: props.singleArticle.article.Keywords.map(
+          option => option.keyword
+        ),
+        title: props.singleArticle.article.title,
+        imageUrl: props.singleArticle.article.image_url,
+        editorState: EditorState.createWithContent(contentState),
+        body: props.singleArticle.article.body,
+      };
     }
     return state;
   }
@@ -72,14 +92,7 @@ class EditArticle extends Component {
     }));
   };
 
-  // rawKeywords = _e => {
-  //   this.setState(_article => ({
-  //     // eslint-disable-next-line no-undef
-  //     options: [{ text: value, value }, ...prevState.options],
-  //   }));
-  // };
-
-  handleChange = (_e, { value }) => this.setState({ keywords: value });
+  handleChange = (e, { value }) => this.setState({ currentValues: value });
 
   saveToCloudinary = async e => {
     const form = new FormData();
@@ -101,13 +114,6 @@ class EditArticle extends Component {
     }
   };
 
-  saveKeywords = e => {
-    e.preventDefault();
-    const keywordData = e.target.attributes.getNamedItem('name').value;
-    const { keywords } = this.state;
-    this.setState({ keywords: [...keywords, keywordData] });
-  };
-
   saveCategory = e => {
     e.preventDefault();
     const categoryData = e.target.attributes.getNamedItem('name').value;
@@ -116,9 +122,6 @@ class EditArticle extends Component {
 
   saveOrPublish = async (e, isDraft) => {
     e.preventDefault();
-    // const { singleArticle } = this.props;
-    // const { article } = singleArticle;
-    // console.log('hiiiiiiii', article);
     const { title, abstract, imageUrl, body, keywords, category } = this.state;
     const data = {
       title,
@@ -126,7 +129,7 @@ class EditArticle extends Component {
       is_draft: isDraft,
       image_url: imageUrl,
       body,
-      keywords,
+      keywords: keywords.map(keyword => keyword.keyword),
       category,
     };
     const { editAnArticle, match } = this.props;
@@ -135,51 +138,43 @@ class EditArticle extends Component {
   };
 
   render() {
-    const { editorState, options } = this.state;
+    const {
+      editorState,
+      options,
+      title,
+      abstract,
+      category,
+      currentValues,
+      imageUrl,
+      defaultEditorState,
+    } = this.state;
+    console.log(this.props);
     const { singleArticle } = this.props;
     const { article } = singleArticle;
-    const contentBlocks = convertFromHTML(
-      '<p>Lorem ipsum ' +
-        'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
-        'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
-        'commodo quis dolor in, sagittis scelerisque nibh. ' +
-        'Suspendisse consequat, sapien sit amet pulvinar  ' +
-        'tristique, augue ante dapibus nulla, eget gravida ' +
-        'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
-        'accumsan. Vivamus porta cursus libero vitae mattis. ' +
-        'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
-        'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>'
-    );
-
-    const sampleEditorContent = ContentState.createFromBlockArray(
-      contentBlocks
-    );
-
-    console.log(sampleEditorContent);
-    console.log('hiiiiiiii', article);
     return (
       <React.Fragment>
         <NavBar />
         <NewArticleForm
-          saveCategory={article.category}
-          titleRaw={article.title}
+          saveCategory={this.saveCategory}
+          titleRaw={title}
           valueRaw={article.abstract}
           bodyRaw={article.editorState}
-          // abstractRaw={article.abstract}
-          abstractRaw={this.state.abstract}
-          multiDropdownRaw={this.rawKeywords}
-          categoryRaw={article.category}
+          abstractRaw={abstract}
+          categoryRaw={category}
           saveKeywords={this.saveKeywords}
           onEditorStateChange={this.onEditorStateChange}
           editorState={editorState}
+          defaultEditorState={defaultEditorState}
+          currentValues={currentValues}
           onChange={this.onChange}
           saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
-          headerImage={article.image_url}
+          headerImage={imageUrl}
           options={options}
           handleChange={this.handleChange}
           handleAddition={this.handleAddition}
-          sampleEditorContent={sampleEditorContent}
+          keywords={options}
+          sampleEditorContent={editorState}
         />
       </React.Fragment>
     );

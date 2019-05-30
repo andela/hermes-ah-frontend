@@ -4,27 +4,25 @@ import { Link } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Input, TextArea, Dropdown, Button } from 'semantic-ui-react';
-import categoryOptions from '../../NewArticle/NewArticleForm/category';
+import categoryoptions from '../../NewArticle/NewArticleForm/category';
 import './edit-article.scss';
 
 const NewArticleForm = ({
   saveCategory,
   saveToCloudinary,
   editorState,
+  defaultEditorState,
   onEditorStateChange,
   saveOrPublish,
   onChange,
   headerImage,
-  options,
+  currentValues,
   handleChange,
   handleAddition,
+  keywords,
   titleRaw,
   abstractRaw,
-  // valueRaw,
-  sampleEditorContent,
-  // bodyRaw,
   categoryRaw,
-  // multiDropdownRaw,
 }) => (
   <div>
     <main className="main-content">
@@ -60,7 +58,7 @@ const NewArticleForm = ({
                   <Editor
                     onEditorStateChange={onEditorStateChange}
                     editorState={editorState}
-                    defaultEditorState={sampleEditorContent}
+                    defaultEditorState={defaultEditorState}
                   />
                 </div>
                 <br />
@@ -68,7 +66,7 @@ const NewArticleForm = ({
                   <div>
                     <h3 className="input-heading">Keywords</h3>
                     <Dropdown
-                      options={options}
+                      options={keywords}
                       placeholder="Type in your keywords"
                       search
                       selection
@@ -77,7 +75,7 @@ const NewArticleForm = ({
                       allowAdditions
                       onAddItem={handleAddition}
                       onChange={handleChange}
-                      defaultValue={['hbhb', 'jkjkj']}
+                      value={currentValues}
                     />
                     <p className="keyword-instruction">
                       Enter a comma-separated list. For example: Anatomy,
@@ -92,7 +90,7 @@ const NewArticleForm = ({
                       fluid
                       search
                       selection
-                      options={categoryOptions}
+                      options={categoryoptions}
                       onChange={saveCategory}
                       className="input-holders"
                       defaultValue={categoryRaw}
@@ -159,19 +157,17 @@ NewArticleForm.propTypes = {
   saveOrPublish: PropTypes.func.isRequired,
   onEditorStateChange: PropTypes.func.isRequired,
   editorState: PropTypes.shape().isRequired,
+  defaultEditorState: PropTypes.shape().isRequired,
   saveToCloudinary: PropTypes.func.isRequired,
   saveCategory: PropTypes.func.isRequired,
   headerImage: PropTypes.string.isRequired,
   titleRaw: PropTypes.string.isRequired,
-  // valueRaw: PropTypes.string.isRequired,
-  sampleEditorContent: PropTypes.string.isRequired,
-  // bodyRaw: PropTypes.string.isRequired,
   categoryRaw: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object).isRequired,
+  keywords: PropTypes.arrayOf(PropTypes.string).isRequired,
+  currentValues: PropTypes.arrayOf(PropTypes.string).isRequired,
   handleChange: PropTypes.func.isRequired,
   handleAddition: PropTypes.func.isRequired,
   abstractRaw: PropTypes.string.isRequired,
-  // multiDropdownRaw: PropTypes.string.isRequired,
 };
 
 export default NewArticleForm;

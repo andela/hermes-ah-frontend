@@ -22,15 +22,6 @@ export const postArticleError = () => ({
   type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
-// export const getAnArticleSuccess = article => ({
-//   type: actionTypes.GET_ARTICLE_SUCCESS,
-//   article,
-// });
-
-// export const getAnArticleError = () => ({
-//   type: actionTypes.GET_ARTICLE_FAILURE,
-// });
-
 export const editAnArticleSuccess = article => ({
   type: actionTypes.PATCH_ARTICLE_SUCCESS,
   article,
@@ -78,21 +69,6 @@ export const postArticle = data => {
     }
   };
 };
-
-// export const getAnArticle = id => {
-//   return async dispatch => {
-//     dispatch(contentLoading());
-//     try {
-//       const article = await http.get(`/article/${id}`);
-//       console.log(article.data.article);
-//       dispatch(getAnArticleSuccess(article.data.article));
-//       return article;
-//     } catch (err) {
-//       dispatch(getAnArticleError());
-//       return exceptionHandler(err);
-//     }
-//   };
-// };
 
 export const editAnArticle = (id, data) => {
   return async dispatch => {
