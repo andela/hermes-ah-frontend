@@ -40,10 +40,18 @@ describe('AdminPage component', () => {
 
   it('should render Admin page without crashing', () => {
     const wrapper = shallow(<AdminPage {...props} />);
+    const event = {
+      preventDefault: jest.fn(),
+      target: { id: 'reviewer_comment', value: 'comment' },
+    };
     expect(wrapper.find('NavBar'));
     wrapper.instance().changeTab('request-section');
     wrapper.instance().adminAcceptRequest(1);
     wrapper.instance().adminRejectRequest(2);
+    expect(wrapper.instance().openModal(1));
+    expect(wrapper.instance().closeModal());
+    expect(wrapper.instance().handleComment(event));
+    expect(wrapper.instance().submitComment(event, 1, {}, 1));
   });
 
   it('should render ReviewerRequest without crashing', () => {
