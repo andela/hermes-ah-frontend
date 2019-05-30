@@ -16,17 +16,15 @@
         flex-direction: row-reverse;
     }
 
-    .edit-icon button{
+    .edit-icon .edit-btn12{
         color: $primary-color;
-        border: 1px solid $primary-color;
+        border: 1px solid transparent;
         background: transparent;
         cursor: pointer;
     }
 
-    .edit-icon button:hover{
-        color: #fff;
-        border: 1px solid $primary-color;
-        background: $primary-color;
+    .edit-icon i{
+        border: 1px solid transparent;
     }
 }
 
