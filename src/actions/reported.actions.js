@@ -87,15 +87,18 @@ const reviewArticle = (articleid, commentBody, reportid) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
-      const res = await http.patch(`/article/review/${articleid}`, commentBody);
-      if (res.status === 200) {
-        toast.info(res.data.message, {
-          type: toast.TYPE.INFO,
-          closeButton: true,
-          position: toast.POSITION.TOP_CENTER,
-        });
-        dispatch(reviewArticleSuccess(reportid, commentBody));
-      }
+      const { data } = await http.patch(
+        `/article/review/${articleid}`,
+        commentBody
+      );
+
+      toast.info(data.message, {
+        type: toast.TYPE.INFO,
+        closeButton: true,
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      dispatch(reviewArticleSuccess(reportid, commentBody));
     } catch (error) {
       dispatch(reviewArticleFailure());
       exceptionHandler(error);
