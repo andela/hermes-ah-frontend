@@ -28,7 +28,7 @@ const Modal = ({ modalOpen, closeModal, title, children }) => {
 Modal.propTypes = {
   children: PropTypes.shape().isRequired,
   closeModal: PropTypes.func.isRequired,
-  modalOpen: PropTypes.func.isRequired,
+  modalOpen: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
 };
 

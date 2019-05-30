@@ -44,11 +44,11 @@ class Rate extends Component {
     this.setState({ reportDetails });
   };
 
-  reportAnArticle = (e, articleId, reportDetails) => {
+  reportAnArticle = async (e, articleId, reportDetails) => {
     const { reportArticle } = this.props;
     e.preventDefault();
     const data = removeEmptyString(reportDetails);
-    reportArticle(articleId, data);
+    await reportArticle(articleId, data);
     this.closeModal();
   };
 

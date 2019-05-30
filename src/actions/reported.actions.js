@@ -18,6 +18,20 @@ export const getReportedArticleFailure = () => {
   };
 };
 
+export const reviewArticleSuccess = (reportid, commentBody) => {
+  return {
+    type: actions.REVIEW_ARTICLE_SUCCESS,
+    reportid,
+    commentBody,
+  };
+};
+
+export const reviewArticleFailure = () => {
+  return {
+    type: actions.REVIEW_ARTICLE_FAILURE,
+  };
+};
+
 const getReportedArticle = () => {
   return async dispatch => {
     if (!navigator.onLine) {
@@ -69,10 +83,34 @@ const reportArticle = (articleid, body) => {
   };
 };
 
+const reviewArticle = (articleid, commentBody, reportid) => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const { data } = await http.patch(
+        `/article/review/${articleid}`,
+        commentBody
+      );
+
+      toast.info(data.message, {
+        type: toast.TYPE.INFO,
+        closeButton: true,
+        position: toast.POSITION.TOP_CENTER,
+      });
+
+      dispatch(reviewArticleSuccess(reportid, commentBody));
+    } catch (error) {
+      dispatch(reviewArticleFailure());
+      exceptionHandler(error);
+    }
+  };
+};
+
 const reportedArticleAction = {
   getReportedArticle,
   requestReview,
   reportArticle,
+  reviewArticle,
 };
 
 export default reportedArticleAction;
