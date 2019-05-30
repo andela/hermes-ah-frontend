@@ -18,3 +18,14 @@ describe('<Bookmarked />', () => {
     expect(wrapper.find('div'));
   });
 });
+
+describe('<Bookmarked />', () => {
+  it('should render bookmark component', () => {
+    const props = {
+      bookmarkedArticles,
+    };
+
+    const wrapper = shallow(<Bookmarked {...props} />);
+    expect(wrapper.find('div'));
+  });
+});

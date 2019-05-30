@@ -10,11 +10,7 @@ import RequestList from '../../ReviewerRequests/Requests/Requests';
 import ReviewerRequestCard from '../../ReviewerRequests/ReviewersCard/Reviewers-card';
 import mock from '../../../../utils/testMocks';
 
-const {
-  reportedArticleProps,
-  reviewedArticleProps,
-  reviewerRequestProps,
-} = mock;
+const { reportedArticleProps, reviewerRequestProps } = mock;
 
 const props = {
   getUserRequests: jest.fn(),
@@ -23,6 +19,7 @@ const props = {
   adminRejectRequest: jest.fn(),
   reviewerRequestProps,
   reportedArticleProps,
+  reportedArticle: [],
 };
 
 const middleware = [thunk];
@@ -55,7 +52,7 @@ describe('AdminPage component', () => {
   });
 
   it('should render ReviewedArticles without crashing', () => {
-    const wrapper = shallow(<ReviewedArticles {...reviewedArticleProps} />);
+    const wrapper = shallow(<ReviewedArticles {...props} />);
     expect(wrapper.find('div'));
   });
 

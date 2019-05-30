@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewedArticleCard from './ReviewedArticlesCard';
 
-const ReviewedArticles = ({ reportedArticle }) => {
+const ReviewedArticles = ({ reportedArticle, openModal }) => {
   const allReviewedArticle = reportedArticle.filter(
-    item => item.status === 'reviewed'
+    item => item.status !== 'pending' || item.status === 'reviewed'
   );
   return (
     <div className="reviewed-main-grid">
@@ -18,8 +18,10 @@ const ReviewedArticles = ({ reportedArticle }) => {
           comment={`${item.reviewer_comment.charAt(0).toUpperCase() +
             item.reviewer_comment.slice(1)}`}
           dateReviewed={`${new Date(item.updatedAt).toDateString()}`}
-          AcceptBtnValue="Accept"
-          RejectBtnValue="Reject"
+          AcceptBtnValue={item.admin_comment ? 'Reviewed by Admin' : 'Review'}
+          openModal={() => openModal(item.article.id)}
+          adminComment={item.admin_comment}
+          status={item.status}
         />
       ))}
     </div>
@@ -28,6 +30,7 @@ const ReviewedArticles = ({ reportedArticle }) => {
 
 ReviewedArticles.propTypes = {
   reportedArticle: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default ReviewedArticles;

@@ -4,7 +4,11 @@ import AdminPage from '../presentations/AdminPage/AdminPage';
 import reportedArticleAction from '../../actions/reported.actions';
 import adminAction from '../../actions/admin.actions';
 
-const { getReportedArticle, reviewArticle } = reportedArticleAction;
+const {
+  getReportedArticle,
+  reviewArticle,
+  changeReportStatus,
+} = reportedArticleAction;
 const { getUserRequests } = RequestAction;
 const { acceptRequest, rejectRequest } = adminAction;
 const mapStateToProps = ({ userRequests, reportedArticles }) => ({
@@ -20,6 +24,7 @@ const AdminpageContainer = connect(
     acceptRequest,
     rejectRequest,
     reviewArticle,
+    changeReportStatus,
   }
 )(AdminPage);
 
