@@ -43,6 +43,7 @@
   .write-comment {
     -webkit-animation: fadeIn ease 0.2s;
     animation: fadeIn ease 0.2s;
+    position: relative;
     .comment-text-wrap {
       display: flex;
       flex-direction: row;
@@ -100,6 +101,30 @@
         background: #0072ff;
         transition: 0.3s;
         opacity: 1;
+      }
+      .wrap-guide {
+        position: absolute;
+        bottom: 0;
+        font-size: 8px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: #6d6d6d;
+        justify-content: center;
+        width: 100%;
+        .input-guide, .input-guide-enter {
+          display: flex;
+          align-items: center;
+        }
+        .space {
+          margin: 0 10px;
+          color: #b7b1b1;
+        }
+        img {
+          width: 12px;
+          height: 12px;
+          margin: 0 2px;
+        }
       }
     }
   }

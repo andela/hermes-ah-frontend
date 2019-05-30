@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const InputComment = ({
-  articleId,
+  id,
   commentVal,
   imageUrl,
   btnValue,
@@ -14,8 +14,8 @@ const InputComment = ({
   placeholderValue,
 }) => {
   return (
-    <div className="write-comment edit-comment-margin" key={articleId}>
-      <form className="comment-text-wrap" id={articleId} onSubmit={submitForm}>
+    <div className="write-comment edit-comment-margin" key={id}>
+      <form className="comment-text-wrap" id={id} onSubmit={submitForm}>
         <div className="wrap-img-text">
           <div className="image">
             <img
@@ -29,6 +29,7 @@ const InputComment = ({
           </div>
           <textarea
             type="text"
+            id={id}
             name="comment-text"
             placeholder={placeholderValue}
             className="text-area-comm"
@@ -45,6 +46,30 @@ const InputComment = ({
             {btnValue}
           </button>
         </div>
+        <div className="wrap-guide">
+          <div className="input-guide">
+            <span>Press </span>
+            <img
+              src="https://res.cloudinary.com/mchardex/image/upload/v1559145799/keyboard-key-shift-512.png"
+              alt="shift"
+            />
+            <span> + </span>
+            <img
+              src="https://res.cloudinary.com/mchardex/image/upload/v1559145991/keyboard-key-enter-512.png"
+              alt="enter"
+            />
+            <span>to move to next line</span>
+          </div>
+          <span className="space">|</span>
+          <div className="input-guide-enter">
+            <span>Press </span>
+            <img
+              src="https://res.cloudinary.com/mchardex/image/upload/v1559145991/keyboard-key-enter-512.png"
+              alt="enter"
+            />
+            <span>to submit</span>
+          </div>
+        </div>
       </form>
     </div>
   );
@@ -53,7 +78,7 @@ const InputComment = ({
 InputComment.defaultProps = {
   imageUrl:
     'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
-  articleId: '',
+  id: '',
   commentVal: '',
   closeVal: '',
   handleClose: () => {},
@@ -63,7 +88,7 @@ InputComment.defaultProps = {
 InputComment.propTypes = {
   imageUrl: PropTypes.string,
   closeVal: PropTypes.string,
-  articleId: PropTypes.string,
+  id: PropTypes.string,
   btnValue: PropTypes.string.isRequired,
   placeholderValue: PropTypes.string.isRequired,
   submitForm: PropTypes.func.isRequired,
