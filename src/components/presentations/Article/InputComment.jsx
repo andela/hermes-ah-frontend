@@ -29,6 +29,7 @@ const InputComment = ({
           </div>
           <textarea
             type="text"
+            required
             id={id}
             name="comment-text"
             placeholder={placeholderValue}
@@ -39,11 +40,11 @@ const InputComment = ({
           />
         </div>
         <div className="sub-form-cont">
-          <button type="button" className="close" onClick={handleClose}>
-            {closeVal}
-          </button>
           <button type="submit" className="submit-comment">
             {btnValue}
+          </button>
+          <button type="button" className="close" onClick={handleClose}>
+            {closeVal}
           </button>
         </div>
         <div className="wrap-guide">

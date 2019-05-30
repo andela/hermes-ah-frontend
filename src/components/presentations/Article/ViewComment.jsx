@@ -160,29 +160,6 @@ class ViewComment extends Component {
                         closeModal={this.closeEditHistoryModal}
                         title="Edit History"
                       >
-                        <div className="history-body">
-                          <img
-                            alt="comment-owner"
-                            src={profile && profile.image_url}
-                          />
-                          <div className="author-details-wrap">
-                            <div className="author">
-                              <p className="auth-name">
-                                {`${profile.first_name} ${profile.last_name}`}
-                              </p>
-                              <p className="comment">{history.body}</p>
-                            </div>
-                            <div className="time">
-                              <p>
-                                <TimeAgo
-                                  date={new Date(
-                                    history.createdAt
-                                  ).toUTCString()}
-                                />
-                              </p>
-                            </div>
-                          </div>
-                        </div>
                         {/* histories */}
                         {history.histories.map(histories => (
                           <div className="history-body" key={histories.id}>
@@ -201,7 +178,7 @@ class ViewComment extends Component {
                                 <p>
                                   <TimeAgo
                                     date={new Date(
-                                      histories.updatedAt
+                                      histories.createdAt
                                     ).toUTCString()}
                                   />
                                 </p>
@@ -210,6 +187,29 @@ class ViewComment extends Component {
                             {/* histories */}
                           </div>
                         ))}
+                        <div className="history-body">
+                          <img
+                            alt="comment-owner"
+                            src={profile && profile.image_url}
+                          />
+                          <div className="author-details-wrap">
+                            <div className="author">
+                              <p className="auth-name">
+                                {`${profile.first_name} ${profile.last_name}`}
+                              </p>
+                              <p className="comment">{history.body}</p>
+                            </div>
+                            <div className="time">
+                              <p>
+                                <TimeAgo
+                                  date={new Date(
+                                    history.updatedAt
+                                  ).toUTCString()}
+                                />
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </ViewEditHistoryModal>
                     ))}
                   <div className="commenter-text">

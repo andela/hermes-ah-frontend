@@ -1,6 +1,7 @@
 import exceptionHandler from '../utils/exceptionHandler';
 import http from '../utils/httpService';
 import actionTypes from '../constants/comment.constants';
+import contentLoading from './loading.action';
 
 export const postCommentSuccess = comment => ({
   type: actionTypes.POST_COMMENT_SUCCESS,

@@ -17,12 +17,14 @@ class ArticlePage extends Component {
     super(props);
     this.state = {
       commentVal: '',
+      articleId: '',
     };
   }
 
   async componentDidMount() {
     const { getSingleArticle, match } = this.props;
     const { articleId } = match.params;
+    this.setState({ articleId });
     await getSingleArticle(articleId);
   }
 
@@ -75,7 +77,6 @@ class ArticlePage extends Component {
   render() {
     const {
       singleArticle,
-      match,
       postComment,
       rateArticle,
       isLoadingReducer,
@@ -85,11 +86,10 @@ class ArticlePage extends Component {
       updateComment,
       getCommentHistory,
     } = this.props;
-    const { articleId } = match.params;
     const { article, comments, error, commentHistory } = singleArticle;
     const { userProfile } = user;
     const { profile } = userProfile;
-    const { commentVal } = this.state;
+    const { commentVal, articleId } = this.state;
 
     if (error) {
       return <Redirect to="/notfound" />;
@@ -173,7 +173,7 @@ class ArticlePage extends Component {
                   {Object.keys(article).length ? (
                     <InputComment
                       imageUrl={profile && profile.image_url}
-                      articleId={article.id}
+                      id={article.id}
                       postComment={postComment}
                       btnValue="Comment"
                       placeholderValue="Write a comment..."
