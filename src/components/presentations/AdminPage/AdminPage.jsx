@@ -56,7 +56,9 @@ class AdminPage extends Component {
               adminRejectRequest={this.adminRejectRequest}
             />
           ) : null}
-          {currentTab === 'article-section' ? <ReviewedArticles /> : null}
+          {currentTab === 'article-section' ? (
+            <ReviewedArticles reportedArticle={reportedArticle} />
+          ) : null}
           {currentTab === 'reported-section' ? (
             <ReportedArticles
               reportedArticle={reportedArticle}

@@ -1,27 +1,33 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReviewedArticleCard from './ReviewedArticlesCard';
-import data from '../../../utils/dummyData';
 
-const ReviewedArticles = () => {
-  const { reviewedArticles } = data;
+const ReviewedArticles = ({ reportedArticle }) => {
+  const allReviewedArticle = reportedArticle.filter(
+    item => item.status === 'reviewed'
+  );
   return (
     <div className="reviewed-main-grid">
-      {reviewedArticles.map(article => (
+      {allReviewedArticle.map(item => (
         <ReviewedArticleCard
-          key={article.id}
-          topic={article.topic}
-          abstract={`${article.abstract.charAt(0).toUpperCase() +
-            article.abstract.slice(1)}`}
-          reviewedBy={article.reviewer}
-          comment={`${article.comment.charAt(0).toUpperCase() +
-            article.comment.slice(1)}`}
-          dateReviewed={article.dateReviewed}
+          key={item.id}
+          topic={item.article.title}
+          abstract={`${item.article.abstract.charAt(0).toUpperCase() +
+            item.article.abstract.slice(1)}`}
+          reviewedBy={`${item.reviewer.first_name} ${item.reviewer.last_name}`}
+          comment={`${item.reviewer_comment.charAt(0).toUpperCase() +
+            item.reviewer_comment.slice(1)}`}
+          dateReviewed={`${new Date(item.updatedAt).toDateString()}`}
           AcceptBtnValue="Accept"
           RejectBtnValue="Reject"
         />
       ))}
     </div>
   );
+};
+
+ReviewedArticles.propTypes = {
+  reportedArticle: PropTypes.arrayOf(PropTypes.shape).isRequired,
 };
 
 export default ReviewedArticles;
