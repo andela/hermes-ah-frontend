@@ -74,6 +74,7 @@ class Rate extends Component {
                 type="text"
                 id="reason"
                 onChange={e => this.handleReportState(e)}
+                placeholder="Title of report"
               />
             </label>
             <label htmlFor="comment">
@@ -82,6 +83,7 @@ class Rate extends Component {
                 type="text"
                 id="comment"
                 onChange={e => this.handleReportState(e)}
+                placeholder="Detailed comment of report"
               />
             </label>
             <div>
