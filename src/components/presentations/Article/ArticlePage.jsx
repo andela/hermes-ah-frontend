@@ -83,10 +83,13 @@ class ArticlePage extends Component {
       isLoadingReducer,
       reportArticle,
       likeArticle,
+      user,
       updateComment,
     } = this.props;
     const { articleId } = match.params;
     const { article, comments, error } = singleArticle;
+    const { userProfile } = user;
+    const { profile } = userProfile;
     const { commentVal } = this.state;
 
     if (error) {
@@ -170,7 +173,7 @@ class ArticlePage extends Component {
                   <h3>Comments</h3>
                   {Object.keys(article).length ? (
                     <InputComment
-                      imageUrl={article && article.author.image_url}
+                      imageUrl={profile && profile.image_url}
                       articleId={article.id}
                       postComment={postComment}
                       btnValue="Comment"
@@ -214,6 +217,7 @@ ArticlePage.propTypes = {
   postComment: PropTypes.func.isRequired,
   match: PropTypes.shape(PropTypes.objectOf).isRequired,
   singleArticle: PropTypes.shape({}).isRequired,
+  user: PropTypes.shape({}).isRequired,
   rateArticle: PropTypes.func.isRequired,
   isLoadingReducer: PropTypes.shape({
     loader: PropTypes.bool,
