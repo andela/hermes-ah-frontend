@@ -6,14 +6,34 @@ import Profilecard from './ProfileCard';
 import Reportcard from './ReportedCard';
 import SuggestedArticleCard from './SuggestedArticleCard';
 import SuggestedResearchers from './SuggestedResearchers';
+import Modal from '../../shared/Modals/Modal';
 
 class Userprofile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       showResearchers: false,
+      modalOpen: false,
+      reviewerComment: {
+        reviewer_comment: '',
+      },
+      reportedArticleId: null,
+      reportid: null,
     };
   }
+
+  handleComment = ({ target }) => {
+    const { reviewerComment } = this.state;
+    reviewerComment[target.id] = target.value;
+    this.setState({ reviewerComment });
+  };
+
+  submitComment = async (e, id, data, reportid) => {
+    const { reviewArticle } = this.props;
+    e.preventDefault();
+    await reviewArticle(id, data, reportid);
+    this.closeModal();
+  };
 
   componentDidMount = () => {
     const { getReportedArticle } = this.props;
@@ -25,13 +45,27 @@ class Userprofile extends Component {
     requestReview();
   };
 
+  closeModal = () => {
+    this.setState({ modalOpen: false });
+  };
+
+  openModal = (id, reportid) => {
+    this.setState({ modalOpen: true, reportedArticleId: id, reportid });
+  };
+
   showResearchers = () =>
     this.setState(prevState => ({
       showResearchers: !prevState.showResearchers,
     }));
 
   render() {
-    const { showResearchers } = this.state;
+    const {
+      showResearchers,
+      modalOpen,
+      reviewerComment,
+      reportedArticleId,
+      reportid,
+    } = this.state;
     const {
       user,
       isReviewer,
@@ -60,7 +94,9 @@ class Userprofile extends Component {
             key={item.id}
             topic={item.reporter_reason}
             reason={item.reporter_comment}
+            title={item.article.title}
             status={item.status}
+            openReview={() => this.openModal(item.reported_article_id, item.id)}
           />
         ))
         .slice(0, 3);
@@ -94,6 +130,45 @@ class Userprofile extends Component {
               {isReviewer ? (
                 <div>
                   <Headercard icon="far fa-flag" value="Reported Articles" />
+                  <Modal
+                    modalOpen={modalOpen}
+                    title="Review This Article"
+                    closeModal={this.closeModal}
+                    openModal={this.openModal}
+                  >
+                    <form
+                      className="edit-profile-form"
+                      onSubmit={e =>
+                        this.submitComment(
+                          e,
+                          reportedArticleId,
+                          reviewerComment,
+                          reportid
+                        )
+                      }
+                    >
+                      <label htmlFor="comment">
+                        <p>Comment</p>
+                        <textarea
+                          type="text"
+                          id="reviewer_comment"
+                          onChange={this.handleComment}
+                        />
+                      </label>
+                      <div>
+                        <button type="submit" className="edt-btn">
+                          Review
+                        </button>
+                        <button
+                          type="button"
+                          className="cancel-btn"
+                          onClick={this.closeModal}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </Modal>
                   <div>{reportList}</div>
                   <div>
                     <p className="small-text">
@@ -156,6 +231,7 @@ Userprofile.propTypes = {
   reportedArticles: PropTypes.objectOf(PropTypes.array).isRequired,
   updateProfile: PropTypes.func.isRequired,
   requestReview: PropTypes.func.isRequired,
+  reviewArticle: PropTypes.func.isRequired,
 };
 
 export default Userprofile;

@@ -1,95 +1,76 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-class InputComment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      commentVal: '',
-    };
-  }
-
-  handleCommentInput = e => {
-    const { value } = e.target;
-    this.setState({ commentVal: value.toLowerCase() });
-  };
-
-  sendComment = e => {
-    e.preventDefault();
-    const { commentVal } = this.state;
-    const data = {
-      article_id: e.target.id,
-      body: commentVal,
-    };
-    const { postComment } = this.props;
-    postComment(data);
-    this.setState({ commentVal: '' });
-  };
-
-  onEnterSubmit = e => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
-      e.preventDefault();
-      const { commentVal } = this.state;
-      const { articleId } = this.props;
-      const data = {
-        article_id: articleId,
-        body: commentVal,
-      };
-      const { postComment } = this.props;
-      postComment(data);
-      this.setState({ commentVal: '' });
-    }
-  };
-
-  render() {
-    const { articleId, imageUrl } = this.props;
-    const { commentVal } = this.state;
-    return (
-      <div className="write-comment" key={articleId}>
-        <form
-          className="comment-text-wrap"
-          id={articleId}
-          onSubmit={this.sendComment}
-        >
-          <div className="wrap-img-text">
-            <div className="image">
-              <img
-                src={
-                  !imageUrl
-                    ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
-                    : imageUrl
-                }
-                alt="author"
-              />
-            </div>
-            <textarea
-              type="text"
-              value={commentVal}
-              name="comment-text"
-              placeholder="Write a comment..."
-              className="text-area-comm"
-              onKeyDown={this.onEnterSubmit}
-              onChange={this.handleCommentInput}
+const InputComment = ({
+  articleId,
+  commentVal,
+  imageUrl,
+  btnValue,
+  submitForm,
+  handleChange,
+  enterKeyFormSubmit,
+  handleClose,
+  closeVal,
+  placeholderValue,
+}) => {
+  return (
+    <div className="write-comment edit-comment-margin" key={articleId}>
+      <form className="comment-text-wrap" id={articleId} onSubmit={submitForm}>
+        <div className="wrap-img-text">
+          <div className="image">
+            <img
+              src={
+                !imageUrl
+                  ? 'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png'
+                  : imageUrl
+              }
+              alt="author"
             />
           </div>
-          <button type="submit" className="submit-comment">
-            Comment
+          <textarea
+            type="text"
+            name="comment-text"
+            placeholder={placeholderValue}
+            className="text-area-comm"
+            onKeyDown={enterKeyFormSubmit}
+            onChange={handleChange}
+            value={commentVal}
+          />
+        </div>
+        <div className="sub-form-cont">
+          <button type="button" className="close" onClick={handleClose}>
+            {closeVal}
           </button>
-        </form>
-      </div>
-    );
-  }
-}
+          <button type="submit" className="submit-comment">
+            {btnValue}
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 InputComment.defaultProps = {
   imageUrl:
     'https://res.cloudinary.com/sojidan/image/upload/v1557149927/avatar.png',
   articleId: '',
+  commentVal: '',
+  closeVal: '',
+  handleClose: () => {},
+  enterKeyFormSubmit: () => {},
 };
 
 InputComment.propTypes = {
   imageUrl: PropTypes.string,
+  closeVal: PropTypes.string,
   articleId: PropTypes.string,
-  postComment: PropTypes.func.isRequired,
+  btnValue: PropTypes.string.isRequired,
+  placeholderValue: PropTypes.string.isRequired,
+  submitForm: PropTypes.func.isRequired,
+  commentVal: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
+  enterKeyFormSubmit: PropTypes.func,
+  handleClose: PropTypes.func,
 };
+
 export default InputComment;
