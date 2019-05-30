@@ -148,7 +148,6 @@ class EditArticle extends Component {
       imageUrl,
       defaultEditorState,
     } = this.state;
-    console.log(this.props);
     const { singleArticle } = this.props;
     const { article } = singleArticle;
     return (

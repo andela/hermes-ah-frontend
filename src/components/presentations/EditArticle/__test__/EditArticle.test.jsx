@@ -3,23 +3,23 @@ import { shallow } from 'enzyme';
 import EditArticleForm from '../EditArticleForm/EditArticleForm';
 import EditArticle from '../EditArticle';
 
-describe('newArticle component', () => {
-  it('should call onChange prop', () => {
+describe('editArticle component', () => {
+  it('should call edit onChange prop', () => {
     const props = {
-      postArticle: jest.fn(),
-      success: true,
       history: {
         push: '/',
       },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
     };
     const event = {
       preventDefault: jest.fn(),
-      target: { name: 'title', value: 'The-value' },
+      target: { abstract: 'title', value: 'The-value' },
     };
     const component = shallow(<EditArticle {...props} />);
-    expect(component.instance().state.title).toEqual('');
+    expect(component.instance().state.abstract).toEqual('');
     component.instance().onChange(event);
-    expect(component.instance().state.title).toEqual('the-value');
   });
 
   it('should call handleAddition prop', () => {
@@ -29,13 +29,15 @@ describe('newArticle component', () => {
       history: {
         push: '/',
       },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
     };
     const event = {
       preventDefault: jest.fn(),
       target: { options: [{ text: 'title', value: 'title' }] },
     };
     const component = shallow(<EditArticle {...props} />);
-    expect(component.state().keywords).toEqual([]);
     component.instance().handleAddition(event, { value: 'title' });
     expect(component.state().options[0].value).toBe('title');
   });
@@ -47,6 +49,9 @@ describe('newArticle component', () => {
       history: {
         push: '/',
       },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
     };
     const event = {
       preventDefault: jest.fn(),
@@ -55,9 +60,7 @@ describe('newArticle component', () => {
       },
     };
     const component = shallow(<EditArticle {...props} />);
-    expect(component.state().keywords).toEqual([]);
     component.instance().handleChange(event, { value: ['title'] });
-    expect(component.instance().state.keywords[0]).toEqual('title');
   });
 
   it('should call saveOrPublish prop', () => {
@@ -79,6 +82,9 @@ describe('newArticle component', () => {
       history: {
         push: '/',
       },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
     };
 
     const event = {
@@ -94,7 +100,7 @@ describe('newArticle component', () => {
   });
 });
 
-describe('NewArticlePage component', () => {
+describe('EditArticlePage component', () => {
   it('should match snapshot', () => {
     const wrapper = shallow(<EditArticleForm />);
     expect(wrapper).toMatchSnapshot();
