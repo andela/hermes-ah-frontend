@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Modal from '../modal';
 import '../author-articles.scss';
 
 const Article = ({
@@ -10,11 +9,7 @@ const Article = ({
   date,
   isDraft,
   articleId,
-  buttonEvent,
-  open,
-  size,
   showConfirmationModal,
-  closeConfirmationModal,
 }) => {
   let draftStatus;
   if (!isDraft) {
@@ -24,15 +19,6 @@ const Article = ({
   }
   return (
     <React.Fragment>
-      {open && (
-        <Modal
-          size={size}
-          open={open}
-          closeConfirmationModal={closeConfirmationModal}
-          buttonEvent={buttonEvent}
-          articleId={articleId}
-        />
-      )}
       <div className="profile-article-list">
         <div className="article-list">
           <h3>{title}</h3>
@@ -48,7 +34,7 @@ const Article = ({
           <Button
             type="submit"
             className="failure"
-            onClick={showConfirmationModal}
+            onClick={() => showConfirmationModal('tiny', articleId)}
           >
             Delete
           </Button>
@@ -62,12 +48,8 @@ Article.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   isDraft: PropTypes.bool.isRequired,
-  buttonEvent: PropTypes.func.isRequired,
   articleId: PropTypes.string.isRequired,
   showConfirmationModal: PropTypes.func.isRequired,
-  closeConfirmationModal: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  size: PropTypes.string.isRequired,
 };
 
 export default Article;

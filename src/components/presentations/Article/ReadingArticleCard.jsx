@@ -4,7 +4,7 @@ import Parser from 'html-react-parser';
 import handleKeywords from '../../../utils/handleKeywords';
 import './Article.scss';
 
-const ReadingArticlePage = ({ article }) => {
+const ReadingArticleCard = ({ article }) => {
   const keywords = handleKeywords(article.Keywords);
   return (
     <React.Fragment>
@@ -74,8 +74,8 @@ const ReadingArticlePage = ({ article }) => {
   );
 };
 
-ReadingArticlePage.propTypes = {
+ReadingArticleCard.propTypes = {
   article: PropTypes.shape().isRequired,
 };
 
-export default ReadingArticlePage;
+export default ReadingArticleCard;

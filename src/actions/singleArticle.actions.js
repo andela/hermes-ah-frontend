@@ -17,12 +17,15 @@ export const getSingleArticle = articleId => {
     try {
       const article = await http.get(`/article/${articleId}`);
       dispatch(getSingleArticlesSuccess(article.data.article));
-      return article;
     } catch (ex) {
-      return dispatch(getSingleArticlesError());
+      dispatch(getSingleArticlesError());
     }
   };
 };
+
+export const reset = () => ({
+  type: actionTypes.RESET_FAILING_ARTICLE,
+});
 
 export default {
   getSingleArticle,

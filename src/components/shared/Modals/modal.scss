@@ -1,15 +1,14 @@
 @import "../../../assets/stylesheets/index.scss";
 
-.modal {
+.custom-modal {
     position: fixed;
-    z-index: 1;
     padding-top: 15%;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
+    z-index: 1;
     background-color: rgba(0, 0, 0, 0.4);
   }
   
@@ -189,6 +188,7 @@
     justify-self: right;
     align-self: center;
     margin: 10px;
+    font-size: 1rem;
   }
 
   label input, label textarea{
@@ -198,7 +198,7 @@
     border: 1px solid grey;
     padding: 10px;
     width: 80%;
-    
+    font-size: 1rem;
   }
 
   label input:focus, label textarea:focus{
@@ -210,6 +210,7 @@
     background: transparent;
     cursor: pointer;
     padding: 10px;
+    font-size: 1rem;
   }
 
   .edt-btn:hover{
@@ -223,6 +224,7 @@
     background: transparent;
     cursor: pointer;
     padding: 10px;
+    font-size: 1rem;
   }
 
   .cancel-btn:hover{

@@ -22,12 +22,12 @@ const ArticleCard = ({
       <Item.Content>
         <br />
         <Link to={`/article/${articleId}`} className="link">
-          <Item.Header>{title}</Item.Header>
+          <h3 className="art-header">{title}</h3>
+          <Item.Description>
+            {`${paragraph.charAt(0).toUpperCase() +
+              paragraph.slice(1).substring(0, 200)}...`}
+          </Item.Description>
         </Link>
-        <Item.Description>
-          {`${paragraph.charAt(0).toUpperCase() +
-            paragraph.slice(1).substring(0, 200)}...`}
-        </Item.Description>
         <Item.Extra>
           <p className="author-name">{author}</p>
         </Item.Extra>
@@ -61,7 +61,7 @@ ArticleCard.defaultProps = {
 };
 
 ArticleCard.propTypes = {
-  articleId: PropTypes.string,
+  articleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.string,

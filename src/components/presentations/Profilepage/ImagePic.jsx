@@ -24,9 +24,7 @@ const Imagepic = ({ handleChange, profilePic }) => (
           type="file"
           id="file-upload"
           name="file"
-          onChange={e => {
-            handleChange(e);
-          }}
+          onChange={handleChange}
           accept="image/*"
         />
       </label>

@@ -65,5 +65,9 @@ describe('ProfilePage component', () => {
     expect(wrapper.state('currentTab')).toBe('article-section');
     wrapper.instance().changeTab('bookmark-section');
     expect(wrapper.state('currentTab')).toBe('bookmark-section');
+    wrapper.instance().openModal('7142e4ff-366d-46cc-9384-40eadb3b2626');
+    wrapper.instance().closeModal();
+    wrapper.instance().showConfirmationModal('tiny', 'id');
+    wrapper.instance().closeConfirmationModal();
   });
 });
