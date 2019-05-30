@@ -98,9 +98,16 @@ class ProfileCard extends Component {
               </form>
             </Modal>
             <div className="edit-icon">
-              <button type="button" onClick={this.openModal}>
+              <div
+                type="button"
+                onClick={this.openModal}
+                onKeyDown={this.openModal}
+                role="button"
+                tabIndex={0}
+                className="edit-btn12"
+              >
                 <i className="far fa-edit" />
-              </button>
+              </div>
             </div>
             <p className="profile-card-item">
               <b>Title:</b>
