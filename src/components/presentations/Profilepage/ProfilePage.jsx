@@ -8,6 +8,7 @@ import Userprofile from '../../containers/userprofile.container';
 import Loader from '../../shared/Loader/Loader';
 import Imagepic from './ImagePic';
 import './profilepage.scss';
+import ReadingStats from '../ReadingStats/ReadingStats';
 import Articles from '../UserArticles/Articles';
 import Following from '../UserFollowing/Following/Following';
 import Followee from '../UserFollowing/Followee/Followee';
@@ -37,6 +38,7 @@ class Profilepage extends Component {
       fetchBookmarks,
       getSuggestions,
       getProfile,
+      getDailyStats,
     } = this.props;
 
     getProfile();
@@ -45,6 +47,7 @@ class Profilepage extends Component {
     getFollowee();
     getFollowing();
     fetchBookmarks();
+    getDailyStats();
   };
 
   unFollowClick = async e => {
@@ -124,6 +127,7 @@ class Profilepage extends Component {
       updateProfile,
       user,
       getFollowing,
+      dailyStats,
     } = this.props;
     const { followingCount } = userFollowing;
     const { userProfile } = user;
@@ -131,6 +135,7 @@ class Profilepage extends Component {
     const { loader } = isLoadingReducer;
     const { articles } = articlesUpdate;
     const bookmarkList = bookmarkedArticles.articles;
+    const { dailyStats: dailyData } = dailyStats;
     const { profile: profileData } = modalProfile;
     return (
       <React.Fragment>
@@ -171,6 +176,9 @@ class Profilepage extends Component {
               follow={this.followClick}
               openModal={this.openModal}
             />
+          ) : null}
+          {currentTab === 'reading-stats-section' ? (
+            <ReadingStats dailyStats={dailyData} />
           ) : null}
           {currentTab === 'article-section' ? (
             <div>
@@ -257,6 +265,8 @@ Profilepage.propTypes = {
   userFollowing: PropTypes.shape().isRequired,
   fetchArticles: PropTypes.func.isRequired,
   getFollowee: PropTypes.func.isRequired,
+  getDailyStats: PropTypes.func.isRequired,
+  dailyStats: PropTypes.shape().isRequired,
   getFollowing: PropTypes.func.isRequired,
   bookmarkedArticles: PropTypes.shape().isRequired,
   fetchBookmarks: PropTypes.func.isRequired,

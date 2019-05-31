@@ -1,0 +1,6 @@
+const actionTypes = {
+  FETCH_DAILY_STATS_SUCCESS: 'FETCH_DAILY_STATS_SUCCESS',
+  FETCH_DAILY_STATS__FAILURE: 'FETCH_DAILY_STATS_FAILURE',
+};
+
+export default actionTypes;
