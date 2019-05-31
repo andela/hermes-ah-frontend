@@ -153,6 +153,7 @@ class Userprofile extends Component {
                           type="text"
                           id="reviewer_comment"
                           onChange={this.handleComment}
+                          placeholder="what is your review?"
                         />
                       </label>
                       <div>

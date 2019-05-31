@@ -60,7 +60,7 @@ const ReviewedArticleCard = ({
               {AcceptBtnValue}
             </button>
           ) : (
-            <button type="submit" className="accept-rev-art">
+            <button type="submit" className="accept-reviewed-art">
               {AcceptBtnValue}
             </button>
           )}

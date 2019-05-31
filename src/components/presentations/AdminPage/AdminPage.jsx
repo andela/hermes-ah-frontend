@@ -116,6 +116,7 @@ class AdminPage extends Component {
                   type="text"
                   id="admin_comment"
                   onChange={this.handleComment}
+                  placeholder="What do you think of the review?"
                 />
               </label>
               <label htmlFor="status">
