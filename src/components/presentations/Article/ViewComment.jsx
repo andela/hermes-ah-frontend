@@ -263,8 +263,10 @@ class ViewComment extends Component {
                       </button>
                       <span>{comment.likes_count}</span>
                     </div>
-                    {new Date(comment.updatedAt).toUTCString() >
-                    new Date(comment.createdAt).toUTCString() ? (
+                    {profile.id === comment.user_id &&
+                    new Date(comment.updatedAt).toUTCString() >
+                      new Date(comment.createdAt).toUTCString() ? (
+                      // eslint-disable-next-line react/jsx-indent
                       <div>
                         <span>.</span>
                         <span

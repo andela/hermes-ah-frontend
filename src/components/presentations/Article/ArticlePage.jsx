@@ -154,7 +154,7 @@ class ArticlePage extends Component {
                   )}
                 </div>
               </Grid.Column>
-              <Grid.Column computer={12} mobile={16}>
+              <Grid.Column computer={12} mobile={16} className="article-main">
                 <Grid.Row>
                   <Grid.Column>
                     <div className="section">
