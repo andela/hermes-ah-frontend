@@ -70,7 +70,7 @@ export const postArticle = data => {
   };
 };
 
-const editAnArticle = (id, data) => {
+export const editAnArticle = (id, data) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
