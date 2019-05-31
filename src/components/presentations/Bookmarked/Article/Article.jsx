@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Popup } from 'semantic-ui-react';
+import { Popup } from 'semantic-ui-react';
+import Bookmark from '../../../containers/bookmark.container';
 import './article.scss';
 
-const Article = ({ title, author, abstract, image, readTime }) => (
+const Article = ({ articleId, title, author, abstract, image, readTime }) => (
   <div className="bookmark-articles-list">
     <div className="article-details">
       <h3>{title}</h3>
@@ -17,9 +18,7 @@ const Article = ({ title, author, abstract, image, readTime }) => (
             content="Remove Bookmark"
             trigger={
               // eslint-disable-next-line react/jsx-wrap-multilines
-              <Button>
-                <div className="button-image" />
-              </Button>
+              <Bookmark articleId={articleId} />
             }
           />
         </div>
@@ -32,6 +31,7 @@ const Article = ({ title, author, abstract, image, readTime }) => (
 );
 
 Article.propTypes = {
+  articleId: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   abstract: PropTypes.string.isRequired,

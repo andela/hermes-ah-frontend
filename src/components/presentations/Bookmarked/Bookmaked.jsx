@@ -19,6 +19,7 @@ const Bookmarked = ({ bookmarkedArticles }) => {
       {articles.map(item => (
         <Article
           key={item.article_id}
+          articleId={item.article_id}
           title={item.Article.title}
           author={`${item.Article.author.first_name} ${
             item.Article.author.last_name

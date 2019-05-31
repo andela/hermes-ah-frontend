@@ -12,6 +12,7 @@ import bookmarkedArticles from './bookmarked.reducer';
 import reportedArticles from './reported.reducers';
 import userRequests from './reviewerRequests.reducer';
 import singleArticle from './singleArticle.reducer';
+import bookmark from './bookmark.reducer';
 
 const reducers = combineReducers({
   auth,
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   bookmarkedArticles,
   reportedArticles,
   userRequests,
+  bookmark,
 });
 
 export default reducers;

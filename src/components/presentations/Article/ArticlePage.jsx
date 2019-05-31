@@ -11,6 +11,7 @@ import InputComment from './InputComment';
 import Loader from '../../shared/Loader/Loader';
 import './Article.scss';
 import Rate from './Rate';
+import Bookmark from '../../containers/bookmark.container';
 
 class ArticlePage extends Component {
   constructor(props) {
@@ -135,8 +136,8 @@ class ArticlePage extends Component {
                           <i className="fab fa-twitter" />
                         </a>
                       </div>
-                      <div className="bookmark">
-                        <i className="far fa-bookmark" />
+                      <div>
+                        <Bookmark articleId={articleId} />
                       </div>
                       <div className="like">
                         <button
