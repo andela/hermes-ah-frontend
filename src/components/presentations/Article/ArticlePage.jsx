@@ -135,7 +135,7 @@ class ArticlePage extends Component {
                           <i className="fab fa-twitter" />
                         </a>
                       </div>
-                      <div className="bookmark">
+                      <div>
                         <Bookmark articleId={articleId} />
                       </div>
                       <div className="like">

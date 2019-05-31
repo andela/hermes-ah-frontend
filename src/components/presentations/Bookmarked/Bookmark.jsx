@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './bookmark.scss';
 
 class Bookmark extends Component {
   handleBookmark = event => {
@@ -12,9 +13,11 @@ class Bookmark extends Component {
 
   render() {
     return (
-      <button type="button" onClick={this.handleBookmark}>
-        <i className="far fa-bookmark" />
-      </button>
+      <div className="bookmark">
+        <button type="button" onClick={this.handleBookmark}>
+          <i className="far fa-bookmark" />
+        </button>
+      </div>
     );
   }
 }
