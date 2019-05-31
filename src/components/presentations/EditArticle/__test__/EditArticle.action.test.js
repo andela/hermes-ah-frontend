@@ -57,12 +57,12 @@ describe('editArticle actions', () => {
 
   it('should create an action for post article', async () => {
     fetchMock.mock(
-      '/api/v1/article',
+      '/api/v1/article/3443',
       {
         status: 200,
       },
       {
-        method: 'POST',
+        method: 'PATCH',
         headers: {
           Authorization: 'faketoken',
           'Content-Type': 'application/json',
@@ -70,8 +70,8 @@ describe('editArticle actions', () => {
       }
     );
 
-    await fetch('/api/v1/article', {
-      method: 'POST',
+    await fetch('/api/v1/article/3443', {
+      method: 'PATCH',
       headers: {
         Authorization: 'faketoken',
         'Content-Type': 'application/json',
