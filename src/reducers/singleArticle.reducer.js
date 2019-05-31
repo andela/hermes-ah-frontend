@@ -9,12 +9,12 @@ const initialState = {
   commentHistory: [],
 };
 
-const updateArticleLikes = (article, likeCount) => {
+export const updateArticleLikes = (article, likeCount) => {
   const newArticle = { ...article };
   newArticle.likes_count = likeCount;
   return newArticle;
 };
-const updateComment = (state, updatedComment) => {
+export const updateComment = (state, updatedComment) => {
   state.map(item => {
     if (item.id === updatedComment.id) {
       item.body = updatedComment.body;
@@ -22,6 +22,17 @@ const updateComment = (state, updatedComment) => {
     }
     return item;
   });
+  return state;
+};
+
+export const updateCommentLikes = (comments, commentId, likeCount) => {
+  comments.map(comment => {
+    if (comment.id === commentId) {
+      comment.likes_count = likeCount;
+    }
+    return comment;
+  });
+  return comments;
 };
 
 const singleArticle = (state = initialState, action) => {
@@ -47,9 +58,9 @@ const singleArticle = (state = initialState, action) => {
         ...state,
       };
     case commentTypes.EDIT_COMMENT_SUCCESS: {
-      updateComment(state.comments, action.editResponse);
       return {
         ...state,
+        comments: updateComment(state.comments, action.editResponse),
       };
     }
     case commentTypes.FETCH_COMMENT_HISTORY_SUCCESS:
@@ -68,6 +79,19 @@ const singleArticle = (state = initialState, action) => {
         article: updateArticleLikes(state.article, action.likeCount),
       };
     case actionTypes.LIKE_FAILURE:
+      return {
+        ...state,
+      };
+    case commentTypes.LIKE_COMMENT_SUCCESS:
+      return {
+        ...state,
+        comments: updateCommentLikes(
+          state.comments,
+          action.commentId,
+          action.likeCount
+        ),
+      };
+    case commentTypes.LIKE_COMMENT_FAILURE:
       return {
         ...state,
       };

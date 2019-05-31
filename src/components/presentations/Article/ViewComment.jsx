@@ -90,7 +90,7 @@ class ViewComment extends Component {
       replyVal,
       showEditHistory,
     } = this.state;
-    const { comment, commentHistory, profile } = this.props;
+    const { comment, commentHistory, profile, likeComment } = this.props;
     return (
       <React.Fragment>
         {comment ? (
@@ -229,6 +229,15 @@ class ViewComment extends Component {
                     >
                       Reply
                     </button>
+                    <div className="like-comment">
+                      <button
+                        type="button"
+                        onClick={() => likeComment(comment.id)}
+                      >
+                        <i className="far fa-thumbs-up" />
+                      </button>
+                      <span>{comment.likes_count}</span>
+                    </div>
                     {new Date(comment.updatedAt).toUTCString() >
                     new Date(comment.createdAt).toUTCString() ? (
                       <div>
@@ -316,6 +325,7 @@ ViewComment.propTypes = {
   commentHistory: PropTypes.arrayOf(PropTypes.shape()),
   updateComment: PropTypes.func.isRequired,
   getCommentHistory: PropTypes.func.isRequired,
+  likeComment: PropTypes.func.isRequired,
 };
 
 export default ViewComment;

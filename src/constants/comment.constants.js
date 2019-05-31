@@ -10,6 +10,10 @@ const actionType = {
   // edit comment action types
   FETCH_COMMENT_HISTORY_SUCCESS: 'FETCH_COMMENT_HISTORY_SUCCESS',
   FETCH_COMMENT_HISTORY_FAILURE: 'FETCH_COMMENT_HISTORY_FAILURE',
+
+  // like comment action types
+  LIKE_COMMENT_SUCCESS: 'LIKE_COMMENT_SUCCESS',
+  LIKE_COMMENT_FAILURE: ' LIKE_COMMENT_FAILURE',
 };
 
 export default actionType;

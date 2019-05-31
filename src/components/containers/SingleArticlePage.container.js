@@ -8,7 +8,7 @@ import {
   getCommentHistory,
 } from '../../actions/comment.actions';
 import reportedArticleAction from '../../actions/reported.actions';
-import { likeArticle } from '../../actions/like.actions';
+import { likeArticle, likeComment } from '../../actions/like.actions';
 
 const { reportArticle } = reportedArticleAction;
 
@@ -29,6 +29,7 @@ const SingleArticlePageContainer = connect(
     likeArticle,
     updateComment,
     getCommentHistory,
+    likeComment,
   }
 )(ArticlePage);
 

@@ -53,7 +53,7 @@ class Rate extends Component {
   };
 
   render() {
-    const { likes, articleId } = this.props;
+    const { articleId, commentLength } = this.props;
     const { modalOpen, reportDetails } = this.state;
 
     return (
@@ -107,7 +107,7 @@ class Rate extends Component {
           <p>
             <i className="far fa-comment" />
           </p>
-          <p>{likes}</p>
+          <p>{commentLength}</p>
         </div>
         <Popup
           content="Report This Article"
@@ -129,13 +129,13 @@ class Rate extends Component {
 }
 
 Rate.defaultProps = {
-  likes: 0,
+  commentLength: 0,
 };
 
 Rate.propTypes = {
   articleId: PropTypes.string.isRequired,
   rateArticle: PropTypes.func.isRequired,
-  likes: PropTypes.number,
+  commentLength: PropTypes.number,
   reportArticle: PropTypes.func.isRequired,
 };
 
