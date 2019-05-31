@@ -24,6 +24,15 @@ const updateComment = (state, updatedComment) => {
   });
 };
 
+const updateCommentLikes = (comments, commentId, likeCount) => {
+  comments.map(comment => {
+    if (comment.id === commentId) {
+      comment.likes_count = likeCount;
+    }
+    return comment;
+  });
+};
+
 const singleArticle = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_SINGLE_ARTICLE_SUCCESS:
@@ -68,6 +77,15 @@ const singleArticle = (state = initialState, action) => {
         article: updateArticleLikes(state.article, action.likeCount),
       };
     case actionTypes.LIKE_FAILURE:
+      return {
+        ...state,
+      };
+    case commentTypes.LIKE_COMMENT_SUCCESS:
+      updateCommentLikes(state.comments, action.commentId, action.likeCount);
+      return {
+        ...state,
+      };
+    case commentTypes.LIKE_COMMENT_FAILURE:
       return {
         ...state,
       };

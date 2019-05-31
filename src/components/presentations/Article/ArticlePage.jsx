@@ -85,6 +85,7 @@ class ArticlePage extends Component {
       user,
       updateComment,
       getCommentHistory,
+      likeComment,
     } = this.props;
     const { article, comments, error, commentHistory } = singleArticle;
     const { userProfile } = user;
@@ -138,14 +139,14 @@ class ArticlePage extends Component {
                         <i className="far fa-bookmark" />
                       </div>
                       <div className="like">
-                        <a
-                          href="#"
+                        <button
+                          type="button"
                           onClick={() => {
                             likeArticle(article.id);
                           }}
                         >
                           <i className="far fa-thumbs-up" />
-                        </a>
+                        </button>
                         <p>{article.likes_count}</p>
                       </div>
                     </div>
@@ -160,9 +161,9 @@ class ArticlePage extends Component {
                         <div>
                           <ReadingArticleCard article={article} />
                           <Rate
+                            commentLength={comments.length}
                             articleId={articleId}
                             rateArticle={rateArticle}
-                            likes={article.likes_count}
                             reportArticle={reportArticle}
                           />
                         </div>
@@ -197,6 +198,7 @@ class ArticlePage extends Component {
                           getCommentHistory={getCommentHistory}
                           commentHistory={commentHistory}
                           profile={profile}
+                          likeComment={likeComment}
                         />
                       ))}
                   </div>
@@ -225,6 +227,7 @@ ArticlePage.propTypes = {
   reset: PropTypes.func.isRequired,
   updateComment: PropTypes.func.isRequired,
   getCommentHistory: PropTypes.func.isRequired,
+  likeComment: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;

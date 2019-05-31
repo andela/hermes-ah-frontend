@@ -80,4 +80,12 @@ describe('single article reducers', () => {
       })
     ).toEqual({});
   });
+
+  it('should handle LIKE_COMMENT_FAILURE', () => {
+    expect(
+      singleArticle([], {
+        type: types.LIKE_COMMENT_FAILURE,
+      })
+    ).toEqual({});
+  });
 });

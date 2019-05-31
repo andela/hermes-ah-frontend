@@ -21,12 +21,20 @@
 
   .like {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
     p {
       padding: 8px 3px;
       font-size: 13px;
       color: #000;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      color: #0e71eb;
     }
 
     i {
@@ -257,6 +265,17 @@
         .reply:hover {
           color: #0e71eb;
           transition: 0.2s
+        }
+        .like-comment {
+          padding-left: 10px;
+          span {
+            margin: 0;
+          }
+          button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+          }
         }
       }
       .hide-replies {
