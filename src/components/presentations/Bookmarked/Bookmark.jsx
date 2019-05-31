@@ -15,7 +15,7 @@ class Bookmark extends Component {
     return (
       <div className="bookmark">
         <button type="button" onClick={this.handleBookmark}>
-          <i className="fas fa-bookmark" />
+          <i className="far fa-bookmark" />
         </button>
       </div>
     );
