@@ -24,16 +24,6 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
       };
-    case actionType.LIKE_SUCCESS:
-      return {
-        ...state,
-        articleData: updateArticle(action.articleId, action.article),
-      };
-    case actionType.LIKE_FAILURE:
-      return {
-        ...state,
-        articleData: action.article,
-      };
     case actionType.GET_ARTICLE_SUCCESS:
       return {
         ...state,

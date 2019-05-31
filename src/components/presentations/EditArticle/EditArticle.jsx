@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import uploadToCloudnary from '../../../utils/uploadToCloudnary';
-import NewArticleForm from './EditArticleForm/EditArticleForm';
+import EditArticleForm from './EditArticleForm/EditArticleForm';
 import validateImage from '../../../utils/validateImage';
 import NavBar from '../../shared/NavBar/NavBar';
 
@@ -153,14 +153,13 @@ class EditArticle extends Component {
     return (
       <React.Fragment>
         <NavBar />
-        <NewArticleForm
+        <EditArticleForm
           saveCategory={this.saveCategory}
           titleRaw={title}
           valueRaw={article.abstract}
           bodyRaw={article.editorState}
           abstractRaw={abstract}
           categoryRaw={category}
-          saveKeywords={this.saveKeywords}
           onEditorStateChange={this.onEditorStateChange}
           editorState={editorState}
           defaultEditorState={defaultEditorState}
@@ -169,7 +168,6 @@ class EditArticle extends Component {
           saveOrPublish={this.saveOrPublish}
           saveToCloudinary={this.saveToCloudinary}
           headerImage={imageUrl}
-          options={options}
           handleChange={this.handleChange}
           handleAddition={this.handleAddition}
           keywords={options}

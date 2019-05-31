@@ -7,7 +7,7 @@ import { Input, TextArea, Dropdown, Button } from 'semantic-ui-react';
 import categoryoptions from '../../NewArticle/NewArticleForm/category';
 import './edit-article.scss';
 
-const NewArticleForm = ({
+const EditArticleForm = ({
   saveCategory,
   saveToCloudinary,
   editorState,
@@ -152,7 +152,7 @@ const NewArticleForm = ({
     </main>
   </div>
 );
-NewArticleForm.propTypes = {
+EditArticleForm.propTypes = {
   onChange: PropTypes.func.isRequired,
   saveOrPublish: PropTypes.func.isRequired,
   onEditorStateChange: PropTypes.func.isRequired,
@@ -170,4 +170,4 @@ NewArticleForm.propTypes = {
   abstractRaw: PropTypes.string.isRequired,
 };
 
-export default NewArticleForm;
+export default EditArticleForm;
