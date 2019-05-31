@@ -1,9 +1,9 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import fetchMock from 'fetch-mock';
-import {
-  editAnArticleSuccess,
+import actions, {
   editAnArticleError,
+  editAnArticle,
 } from '../../../../actions/article.actions';
 import types from '../../../../constants/article.constants';
 
@@ -17,16 +17,31 @@ describe('editArticle actions', () => {
   });
 
   it('should create an action to fetch article success', async () => {
+    fetchMock.mock(
+      '/api/v1/article/3443',
+      {
+        status: 200,
+      },
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: 'faketoken',
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    await fetch('/api/v1/article/3443', {
+      method: 'PATCH',
+      headers: {
+        Authorization: 'faketoken',
+        'Content-Type': 'application/json',
+      },
+    });
+
     const expectedAction = [
       {
-        type: types.PATCH_ARTICLE_SUCCESS,
-        article: {
-          title: 'Science',
-          abstract: 'Science all through',
-          body: 'Science all through, with the beak and chemicals',
-          keywords: ['science', 'chemical'],
-          category: 'science',
-        },
+        type: 'CONTENT_LOADING',
       },
     ];
     const store = mockStore({});
@@ -39,7 +54,9 @@ describe('editArticle actions', () => {
       category: 'science',
     };
 
-    store.dispatch(editAnArticleSuccess(dummyArticle));
+    store.dispatch(actions.editAnArticle(1, dummyArticle));
+    console.log(store.getActions());
+
     expect(store.getActions()).toEqual(expectedAction);
   });
 

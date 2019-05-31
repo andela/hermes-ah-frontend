@@ -70,7 +70,7 @@ export const postArticle = data => {
   };
 };
 
-export const editAnArticle = (id, data) => {
+const editAnArticle = (id, data) => {
   return async dispatch => {
     dispatch(contentLoading());
     try {
@@ -80,6 +80,7 @@ export const editAnArticle = (id, data) => {
       window.location = '/';
       return editedArticle;
     } catch (err) {
+      console.log(err);
       dispatch(postArticleError());
       return exceptionHandler(err);
     }
