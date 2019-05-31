@@ -96,4 +96,5 @@ export const deleteComment = commentId => {
 export default {
   postComment,
   getCommentHistory,
+  deleteComment,
 };

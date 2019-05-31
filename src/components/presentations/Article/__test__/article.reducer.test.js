@@ -4,6 +4,7 @@ import singleArticle, {
   updateCommentLikes,
   updateComment,
   updateArticleLikes,
+  deleteComment,
 } from '../../../../reducers/singleArticle.reducer';
 
 describe('single article reducers', () => {
@@ -66,6 +67,14 @@ describe('single article reducers', () => {
     ).toEqual([]);
   });
 
+  it('should handle DELETE_COMMENT_FAILURE', () => {
+    expect(
+      singleArticle([], {
+        type: commentTypes.DELETE_COMMENT_FAILURE,
+      })
+    ).toEqual({});
+  });
+
   it('should handle FETCH_COMMENT_HISTORY_SUCCESS', () => {
     expect(
       singleArticle([], {
@@ -120,5 +129,9 @@ describe('single article reducers', () => {
       '0': {},
       likes_count: 5,
     });
+  });
+
+  it('should handle delete comment', () => {
+    expect(deleteComment([{}], 1)).toEqual([{}], 1);
   });
 });

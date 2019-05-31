@@ -6,6 +6,7 @@ import {
   postComment,
   updateComment,
   getCommentHistory,
+  deleteComment,
 } from '../../../../actions/comment.actions';
 import types from '../../../../constants/article.constants';
 import commentTypes from '../../../../constants/comment.constants';
@@ -154,6 +155,42 @@ describe('single article actions', () => {
     const store = mockStore({});
 
     await store.dispatch(getCommentHistory());
+    expect(store.getActions()).toEqual(expectedAction);
+  });
+
+  it('should create an action for deleting a comment', async () => {
+    await fetchMock.mock(
+      '/api/v1/comments/1',
+      {
+        status: 200,
+      },
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
+    await fetch('/api/v1/comments/1', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const expectedAction = [
+      {
+        type: 'CONTENT_LOADING',
+      },
+      {
+        type: commentTypes.DELETE_COMMENT_FAILURE,
+      },
+    ];
+
+    const store = mockStore({});
+
+    await store.dispatch(deleteComment());
     expect(store.getActions()).toEqual(expectedAction);
   });
 });

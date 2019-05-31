@@ -35,7 +35,7 @@ export const updateCommentLikes = (comments, commentId, likeCount) => {
   return comments;
 };
 
-const deleteComment = (state, commentid) => {
+export const deleteComment = (state, commentid) => {
   const newComment = state.filter(comment => comment.id !== commentid);
   return newComment;
 };

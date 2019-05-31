@@ -40,12 +40,10 @@ class ViewComment extends Component {
   };
 
   showDeleteModal = () => {
-    const { showDelete } = this.state;
     this.setState({ showDelete: true });
   };
 
   closeDeleteModal = () => {
-    const { showDelete } = this.state;
     this.setState({ showDelete: false, menu: false });
   };
 
