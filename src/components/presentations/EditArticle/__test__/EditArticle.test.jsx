@@ -1,4 +1,5 @@
 import React from 'react';
+// import { MemoryRouter as Router } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import EditArticleForm from '../EditArticleForm/EditArticleForm';
 import EditArticle from '../EditArticle';
@@ -20,6 +21,66 @@ describe('editArticle component', () => {
     const component = shallow(<EditArticle {...props} />);
     expect(component.instance().state.abstract).toEqual('');
     component.instance().onChange(event);
+  });
+
+  it('should call edit onChange prop', () => {
+    const props = {
+      history: {
+        push: '/',
+      },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
+      saveToCloudinary: jest.fn(),
+      uploadToCloudnary: jest.fn(() => Promise.resolve()),
+    };
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        files: [
+          {
+            lastModified: 1556711757797,
+            lastModifiedDate: '',
+            name: 'books-bookshelves-bookstore-1184589.jpg',
+            size: 1979381,
+            type: 'image/jpeg',
+            webkitRelativePath: '',
+          },
+        ],
+      },
+    };
+    const component = shallow(<EditArticle {...props} />);
+
+    // console.log(component.debug());
+    expect(component.instance().saveToCloudinary(event));
+
+    // expect(component.instance().state.abstract).toEqual('');
+    // component.instance().onChange(event);
+  });
+
+  it('should call edit onChange prop', () => {
+    const props = {
+      history: {
+        push: '/',
+      },
+      singleArticle: { article: [] },
+      match: { params: { articleId: '2' } },
+      getSingleArticle: jest.fn(),
+      saveToCloudinary: jest.fn(),
+    };
+    const event = {
+      preventDefault: jest.fn(),
+      target: {
+        files: 'gdgdg',
+      },
+    };
+    const component = shallow(<EditArticle {...props} />);
+
+    // console.log(component.debug());
+    expect(component.instance().saveToCloudinary(event));
+
+    // expect(component.instance().state.abstract).toEqual('');
+    // component.instance().onChange(event);
   });
 
   it('should call handleAddition prop', () => {

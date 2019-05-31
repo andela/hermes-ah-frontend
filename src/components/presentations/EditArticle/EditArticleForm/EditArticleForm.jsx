@@ -105,7 +105,7 @@ const EditArticleForm = ({
                       <input
                         type="file"
                         name="image"
-                        className="form-control"
+                        className="form-control ft"
                         onChange={saveToCloudinary}
                         accept=".png, .jpg, .jpeg"
                       />
