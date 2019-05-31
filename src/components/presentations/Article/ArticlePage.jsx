@@ -86,6 +86,7 @@ class ArticlePage extends Component {
       updateComment,
       getCommentHistory,
       likeComment,
+      deleteComment,
     } = this.props;
     const { article, comments, error, commentHistory } = singleArticle;
     const { userProfile } = user;
@@ -199,6 +200,7 @@ class ArticlePage extends Component {
                           commentHistory={commentHistory}
                           profile={profile}
                           likeComment={likeComment}
+                          deleteComment={deleteComment}
                         />
                       ))}
                   </div>
@@ -228,6 +230,7 @@ ArticlePage.propTypes = {
   updateComment: PropTypes.func.isRequired,
   getCommentHistory: PropTypes.func.isRequired,
   likeComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 
 export default ArticlePage;

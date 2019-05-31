@@ -35,6 +35,11 @@ export const updateCommentLikes = (comments, commentId, likeCount) => {
   return comments;
 };
 
+const deleteComment = (state, commentid) => {
+  const newComment = state.filter(comment => comment.id !== commentid);
+  return newComment;
+};
+
 const singleArticle = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_SINGLE_ARTICLE_SUCCESS:
@@ -67,6 +72,16 @@ const singleArticle = (state = initialState, action) => {
       return {
         ...state,
         commentHistory: action.histories,
+      };
+    case commentTypes.DELETE_COMMENT_SUCCESS: {
+      return {
+        ...state,
+        comments: deleteComment(state.article.Comments, action.commentId),
+      };
+    }
+    case commentTypes.DELETE_COMMENT_FAILURE:
+      return {
+        ...state,
       };
     case actionTypes.RESET_FAILING_ARTICLE:
       return {
