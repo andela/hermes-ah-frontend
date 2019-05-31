@@ -104,7 +104,7 @@ class ArticlePage extends Component {
         {isLoading && <Loader />}
         <div className="article-page">
           <Grid>
-            <Grid.Row columns={3}>
+            <Grid.Row columns={2}>
               <Grid.Column computer={2} mobile={16}>
                 <div className="section">
                   {article.author && (
@@ -152,7 +152,7 @@ class ArticlePage extends Component {
                   )}
                 </div>
               </Grid.Column>
-              <Grid.Column computer={10} mobile={16}>
+              <Grid.Column computer={12} mobile={16}>
                 <Grid.Row>
                   <Grid.Column>
                     <div className="section">
