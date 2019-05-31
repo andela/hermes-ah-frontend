@@ -198,9 +198,6 @@ class ArticlePage extends Component {
                   </div>
                 </Grid.Row>
               </Grid.Column>
-              <Grid.Column computer={4} mobile={16}>
-                <div className="section">Related article section</div>
-              </Grid.Column>
             </Grid.Row>
           </Grid>
         </div>
