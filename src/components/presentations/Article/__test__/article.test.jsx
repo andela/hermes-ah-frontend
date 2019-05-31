@@ -43,6 +43,7 @@ const articleProps = {
   image_url: 'image',
   articleId: 'id',
   user: { userProfile: {} },
+  getCommentHistory: jest.fn(),
 };
 
 const inputCommentProps = {
@@ -52,6 +53,7 @@ const inputCommentProps = {
   btnValue: 'string',
   submitForm: jest.fn(),
   commentVal: 'string',
+  placeholderValue: '',
   handleChange: jest.fn(),
   enterKeyFormSubmit: jest.fn(),
   handleClose: jest.fn(),
@@ -68,6 +70,7 @@ const ArticlePageContainer = (
       user={articleProps.user}
       reset={articleProps.reset}
       updateComment={articleProps.updateComment}
+      getCommentHistory={articleProps.getCommentHistory}
     />
   </Provider>
 );
@@ -89,6 +92,7 @@ describe('Article Page', () => {
         user={articleProps.user}
         reset={articleProps.reset}
         updateComment={articleProps.updateComment}
+        getCommentHistory={articleProps.getCommentHistory}
       />
     );
     expect(wrapper.find('div'));
@@ -110,6 +114,7 @@ describe('Article Page', () => {
         user={articleProps.user}
         reset={articleProps.reset}
         updateComment={articleProps.updateComment}
+        getCommentHistory={articleProps.getCommentHistory}
       />
     );
     const comment = [
@@ -128,8 +133,16 @@ describe('Article Page', () => {
       replies: [{ replier: { createdAt: 'time' } }],
       commentOwner: { image_url: 'image' },
     },
+    commentHistory: [
+      {
+        id: 'id',
+        histories: [{}],
+      },
+    ],
+    profile: { id: 'id' },
     match: { params: 'id', articleId: 'articleId' },
     updateComment: jest.fn(),
+    getCommentHistory: jest.fn(),
   };
 
   it('shoud handle handleCommentInput function', () => {
@@ -194,5 +207,30 @@ describe('Article Page', () => {
     wrapper.setState({ replyVal: '' });
     const event = { preventDefault: jest.fn(), target: { id: 'id' } };
     expect(wrapper.instance().editComment(event));
+  });
+
+  it('should handle onEnterSubmitEdit function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ replyVal: 'input' });
+    const event = {
+      preventDefault: jest.fn(),
+      keyCode: 13,
+      shiftKey: false,
+      target: { id: 'id' },
+    };
+    expect(wrapper.instance().onEnterSubmitEdit(event));
+  });
+
+  it('should handle showEditHistoryModal function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    const event = { target: { id: 'id' } };
+    wrapper.setState({ showEditHistory: true });
+    expect(wrapper.instance().showEditHistoryModal(event));
+  });
+
+  it('should handle closeEditHistoryModal function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ showEditHistory: false });
+    expect(wrapper.instance().closeEditHistoryModal());
   });
 });

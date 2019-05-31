@@ -8,6 +8,7 @@ describe('single article reducers', () => {
       article: [],
       comments: [],
       error: false,
+      commentHistory: [],
     });
   });
 
@@ -59,6 +60,17 @@ describe('single article reducers', () => {
         type: commentTypes.POST_COMMENT_FAILURE,
       })
     ).toEqual([]);
+  });
+
+  it('should handle FETCH_COMMENT_HISTORY_SUCCESS', () => {
+    expect(
+      singleArticle([], {
+        type: commentTypes.FETCH_COMMENT_HISTORY_SUCCESS,
+        commentHistory: undefined,
+      })
+    ).toEqual({
+      commentHistory: undefined,
+    });
   });
 
   it('should handle LIKE_FAILURE', () => {

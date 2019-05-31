@@ -10,11 +10,7 @@ import RequestList from '../../ReviewerRequests/Requests/Requests';
 import ReviewerRequestCard from '../../ReviewerRequests/ReviewersCard/Reviewers-card';
 import mock from '../../../../utils/testMocks';
 
-const {
-  reportedArticleProps,
-  reviewedArticleProps,
-  reviewerRequestProps,
-} = mock;
+const { reportedArticleProps, reviewerRequestProps } = mock;
 
 const props = {
   getUserRequests: jest.fn(),
@@ -23,6 +19,7 @@ const props = {
   adminRejectRequest: jest.fn(),
   reviewerRequestProps,
   reportedArticleProps,
+  reportedArticle: [],
 };
 
 const middleware = [thunk];
@@ -43,10 +40,18 @@ describe('AdminPage component', () => {
 
   it('should render Admin page without crashing', () => {
     const wrapper = shallow(<AdminPage {...props} />);
+    const event = {
+      preventDefault: jest.fn(),
+      target: { id: 'reviewer_comment', value: 'comment' },
+    };
     expect(wrapper.find('NavBar'));
     wrapper.instance().changeTab('request-section');
     wrapper.instance().adminAcceptRequest(1);
     wrapper.instance().adminRejectRequest(2);
+    expect(wrapper.instance().openModal(1));
+    expect(wrapper.instance().closeModal());
+    expect(wrapper.instance().handleComment(event));
+    expect(wrapper.instance().submitComment(event, 1, {}, 1));
   });
 
   it('should render ReviewerRequest without crashing', () => {
@@ -55,7 +60,7 @@ describe('AdminPage component', () => {
   });
 
   it('should render ReviewedArticles without crashing', () => {
-    const wrapper = shallow(<ReviewedArticles {...reviewedArticleProps} />);
+    const wrapper = shallow(<ReviewedArticles {...props} />);
     expect(wrapper.find('div'));
   });
 

@@ -9,7 +9,9 @@ const ReviewedArticleCard = ({
   dateReviewed,
   comment,
   AcceptBtnValue,
-  RejectBtnValue,
+  openModal,
+  adminComment,
+  status,
 }) => {
   return (
     <div className="reviewd-art-card-cont">
@@ -29,26 +31,47 @@ const ReviewedArticleCard = ({
               <span>{` ${dateReviewed}`}</span>
             </p>
           </div>
+          <div>
+            <p className="date-revwd">
+              Status:
+              <span>{` ${status}`}</span>
+            </p>
+          </div>
         </div>
         <div className="reviewr-commt">
           <span>Comment:</span>
           <p>{comment}</p>
         </div>
+        {adminComment ? (
+          <div className="reviewr-commt">
+            <span>Admin Comment:</span>
+            <p>{adminComment}</p>
+          </div>
+        ) : null}
       </div>
       <div className="admin-art-decision">
         <div className="main_button">
-          <button type="submit" className="accept-rev-art">
-            {AcceptBtnValue}
-          </button>
-        </div>
-        <div className="main_button">
-          <button type="submit" className="reject-rev-art">
-            {RejectBtnValue}
-          </button>
+          {AcceptBtnValue === 'Review' ? (
+            <button
+              type="submit"
+              className="accept-rev-art"
+              onClick={openModal}
+            >
+              {AcceptBtnValue}
+            </button>
+          ) : (
+            <button type="submit" className="accept-rev-art">
+              {AcceptBtnValue}
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
+};
+
+ReviewedArticleCard.defaultProps = {
+  adminComment: null,
 };
 
 ReviewedArticleCard.propTypes = {
@@ -57,8 +80,10 @@ ReviewedArticleCard.propTypes = {
   reviewedBy: PropTypes.string.isRequired,
   dateReviewed: PropTypes.string.isRequired,
   comment: PropTypes.string.isRequired,
+  adminComment: PropTypes.string,
   AcceptBtnValue: PropTypes.string.isRequired,
-  RejectBtnValue: PropTypes.string.isRequired,
+  openModal: PropTypes.func.isRequired,
+  status: PropTypes.string.isRequired,
 };
 
 export default ReviewedArticleCard;
