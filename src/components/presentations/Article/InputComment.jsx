@@ -28,6 +28,7 @@ const InputComment = ({
             />
           </div>
           <textarea
+            required
             type="text"
             id={id}
             name="comment-text"
@@ -39,11 +40,11 @@ const InputComment = ({
           />
         </div>
         <div className="sub-form-cont">
-          <button type="button" className="close" onClick={handleClose}>
-            {closeVal}
-          </button>
           <button type="submit" className="submit-comment">
             {btnValue}
+          </button>
+          <button type="button" className="close" onClick={handleClose}>
+            {closeVal}
           </button>
         </div>
         <div className="wrap-guide">
@@ -81,19 +82,23 @@ InputComment.defaultProps = {
   id: '',
   commentVal: '',
   closeVal: '',
+  placeholderValue: '',
+  btnValue: '',
   handleClose: () => {},
+  submitForm: () => {},
   enterKeyFormSubmit: () => {},
+  handleChange: () => {},
 };
 
 InputComment.propTypes = {
   imageUrl: PropTypes.string,
   closeVal: PropTypes.string,
   id: PropTypes.string,
-  btnValue: PropTypes.string.isRequired,
-  placeholderValue: PropTypes.string.isRequired,
-  submitForm: PropTypes.func.isRequired,
+  btnValue: PropTypes.string,
+  placeholderValue: PropTypes.string,
+  submitForm: PropTypes.func,
   commentVal: PropTypes.string,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   enterKeyFormSubmit: PropTypes.func,
   handleClose: PropTypes.func,
 };
