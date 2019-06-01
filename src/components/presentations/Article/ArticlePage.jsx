@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-import { Grid } from 'semantic-ui-react';
+// import { Grid } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
@@ -104,110 +104,105 @@ class ArticlePage extends Component {
       <React.Fragment>
         <NavBar />
         {isLoading && <Loader />}
-        <div className="article-page">
-          <Grid>
-            <Grid.Row columns={2}>
-              <Grid.Column computer={2} mobile={16}>
-                <div className="section">
-                  {article.author && (
-                    <div className="social-sharing">
-                      <div className="facebook-share">
-                        <a
-                          href={`https://www.facebook.com/dialog/feed?app_id=370972486842144
+
+        <div className="article-page-cont">
+          <div className="article-page">
+            <div className="section-left">
+              {article.author && (
+                <div className="social-sharing">
+                  <div className="facebook-share">
+                    <a
+                      href={`https://www.facebook.com/dialog/feed?app_id=370972486842144
                           &redirect_uri=https://develop--hermes-ah.netlify.com
                           &link=${url}
                           &picture=${article.image_url}
                           &caption=${article.abstract}`}
-                          target="_blank"
-                        >
-                          <i className="fab fa-facebook-f" />
-                        </a>
-                      </div>
-                      <div className="twitter-share">
-                        <a
-                          href={`https://twitter.com/intent/tweet?text=${
-                            article.title
-                          } by ${article.author.first_name}${
-                            article.author.last_name
-                          } ${url}`}
-                          target="_blank"
-                          data-size="large"
-                        >
-                          <i className="fab fa-twitter" />
-                        </a>
-                      </div>
-                      <div className="bookmark">
-                        <i className="far fa-bookmark" />
-                      </div>
-                      <div className="like">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            likeArticle(article.id);
-                          }}
-                        >
-                          <i className="far fa-thumbs-up" />
-                        </button>
-                        <p>{article.likes_count}</p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </Grid.Column>
-              <Grid.Column computer={12} mobile={16} className="article-main">
-                <Grid.Row>
-                  <Grid.Column>
-                    <div className="section">
-                      {Object.keys(article).length ? (
-                        <div>
-                          <ReadingArticleCard article={article} />
-                          <Rate
-                            commentLength={comments.length}
-                            articleId={articleId}
-                            rateArticle={rateArticle}
-                            reportArticle={reportArticle}
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </Grid.Column>
-                  <h3>Comments</h3>
-                  {Object.keys(article).length ? (
-                    <InputComment
-                      imageUrl={profile && profile.image_url}
-                      id={article.id}
-                      postComment={postComment}
-                      btnValue="Comment"
-                      placeholderValue="Write a comment..."
-                      commentVal={commentVal}
-                      handleChange={this.handleCommentInput}
-                      enterKeyFormSubmit={this.onEnterSubmit}
-                      submitForm={this.sendComment}
-                    />
-                  ) : null}
-                  <div>
-                    {comments &&
-                      this.sortComment(comments).map(comment => (
-                        <ViewComment
-                          key={comment.id}
-                          comment={comment}
-                          imageUrl={article.author && article.author.image_url}
-                          articleId={articleId}
-                          handleChange={this.handleCommentInput}
-                          commentVal={commentVal}
-                          updateComment={updateComment}
-                          getCommentHistory={getCommentHistory}
-                          commentHistory={commentHistory}
-                          profile={profile}
-                          likeComment={likeComment}
-                          deleteComment={deleteComment}
-                        />
-                      ))}
+                      target="_blank"
+                    >
+                      <i className="fab fa-facebook-f" />
+                    </a>
                   </div>
-                </Grid.Row>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
+                  <div className="twitter-share">
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${
+                        article.title
+                      } by ${article.author.first_name}${
+                        article.author.last_name
+                      } ${url}`}
+                      target="_blank"
+                      data-size="large"
+                    >
+                      <i className="fab fa-twitter" />
+                    </a>
+                  </div>
+                  <div className="bookmark">
+                    <i className="far fa-bookmark" />
+                  </div>
+                  <div className="like">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        likeArticle(article.id);
+                      }}
+                    >
+                      <i className="far fa-thumbs-up" />
+                    </button>
+                    <p>{article.likes_count}</p>
+                  </div>
+                </div>
+              )}
+            </div>
+            <div className="section-article">
+              <div>
+                <div className="section">
+                  {Object.keys(article).length ? (
+                    <div>
+                      <ReadingArticleCard article={article} />
+                      <Rate
+                        commentLength={comments.length}
+                        articleId={articleId}
+                        rateArticle={rateArticle}
+                        reportArticle={reportArticle}
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              <h3>Comments</h3>
+              {Object.keys(article).length ? (
+                <InputComment
+                  imageUrl={profile && profile.image_url}
+                  id={article.id}
+                  postComment={postComment}
+                  btnValue="Comment"
+                  placeholderValue="Write a comment..."
+                  commentVal={commentVal}
+                  handleChange={this.handleCommentInput}
+                  enterKeyFormSubmit={this.onEnterSubmit}
+                  submitForm={this.sendComment}
+                />
+              ) : null}
+              <div>
+                {comments &&
+                  this.sortComment(comments).map(comment => (
+                    <ViewComment
+                      key={comment.id}
+                      comment={comment}
+                      imageUrl={article.author && article.author.image_url}
+                      articleId={articleId}
+                      handleChange={this.handleCommentInput}
+                      commentVal={commentVal}
+                      updateComment={updateComment}
+                      getCommentHistory={getCommentHistory}
+                      commentHistory={commentHistory}
+                      profile={profile}
+                      likeComment={likeComment}
+                      deleteComment={deleteComment}
+                    />
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
       </React.Fragment>
     );

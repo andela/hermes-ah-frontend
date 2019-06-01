@@ -1,49 +1,51 @@
-@import '../../../assets/stylesheets/index.scss'; 
+@import '../../../assets/stylesheets/index.scss';
 
 footer {
-    border-top: solid 1px #D7D7D7;
-    height: 100px;
-    width: 100%;
-    background: #FFFFFF;
-    .list-items {
+  border-top: solid 1px #ffffff;
+  height: 100px;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 0 8px #cecdcd80;
+  margin-top: 5%;
+  .list-items {
     width: 80%;
     margin: 20px auto;
     text-align: center;
-        ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background: #FFFFFF;
-            li {
-                position: relative;
-                margin: 5px;
-                display: inline;
-                justify-content: center;
-              }
-            
-              li a {
-                font-size: 16px;
-                color: $secondary-color;
-                display: inline;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-              }
-
-              li a:hover {
-                color: $primary-color;
-              }
-          }
-    }    
-      .copyright {
-        width: 80%;
-        margin: 20px auto;
-        text-align: center;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 14px;
-        line-height: 23px;
-        color: $secondary-color;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #ffffff;
+      li {
+        position: relative;
+        margin: 5px;
+        display: inline;
+        justify-content: center;
       }
+
+      li a {
+        font-size: 16px;
+        color: $secondary-color;
+        display: inline;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        color: $primary-color;
+      }
+    }
+  }
+  .copyright {
+    width: 80%;
+    margin: 20px auto;
+    text-align: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 23px;
+    color: $secondary-color;
+  }
 }

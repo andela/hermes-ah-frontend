@@ -2,13 +2,21 @@ import React from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
-const DeleteModal = ({ open, buttonEvent, closeConfirmationModal, id }) => {
+const ConfirmationModal = ({
+  open,
+  size,
+  buttonEvent,
+  closeConfirmationModal,
+  id,
+  modalHeader,
+  modalQuestion,
+}) => {
   return (
     <div>
-      <Modal size="tiny" open={open} onClose={closeConfirmationModal}>
-        <Modal.Header>Delete Your Comment</Modal.Header>
+      <Modal size={size} open={open} onClose={closeConfirmationModal}>
+        <Modal.Header>{modalHeader}</Modal.Header>
         <Modal.Content>
-          <p>Are you sure you want to delete this comment?</p>
+          <p>{modalQuestion}</p>
         </Modal.Content>
         <Modal.Actions>
           <Button positive onClick={closeConfirmationModal}>
@@ -29,11 +37,14 @@ const DeleteModal = ({ open, buttonEvent, closeConfirmationModal, id }) => {
   );
 };
 
-DeleteModal.propTypes = {
+ConfirmationModal.propTypes = {
   open: PropTypes.bool.isRequired,
+  size: PropTypes.string.isRequired,
   closeConfirmationModal: PropTypes.func.isRequired,
   buttonEvent: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
+  modalHeader: PropTypes.string.isRequired,
+  modalQuestion: PropTypes.string.isRequired,
 };
 
-export default DeleteModal;
+export default ConfirmationModal;

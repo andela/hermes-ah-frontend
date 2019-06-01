@@ -104,10 +104,10 @@ class Rate extends Component {
           <Rating maxRating={5} onRate={this.rateHandler} size="large" />
         </div>
         <div className="comment">
-          <p>
+          <span>
             <i className="far fa-comment" />
-          </p>
-          <p>{commentLength}</p>
+          </span>
+          <span>{commentLength}</span>
         </div>
         <Popup
           content="Report This Article"

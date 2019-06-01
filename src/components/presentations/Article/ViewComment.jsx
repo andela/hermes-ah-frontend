@@ -171,6 +171,9 @@ class ViewComment extends Component {
                       )}
                       <DeleteModal
                         open={showDelete}
+                        size="tiny"
+                        modalHeader="Delete Your Comment"
+                        modalQuestion="Are you sure you want to delete this comment?"
                         closeConfirmationModal={this.closeDeleteModal}
                         id={comment.id}
                         buttonEvent={this.deleteUserComment}
