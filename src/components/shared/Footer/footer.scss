@@ -29,7 +29,6 @@ footer {
         color: $secondary-color;
         display: inline;
         text-align: center;
-        padding: 14px 16px;
         text-decoration: none;
       }
 
@@ -47,5 +46,8 @@ footer {
     font-size: 14px;
     line-height: 23px;
     color: $secondary-color;
+    p {
+      padding: 0;
+    }
   }
 }

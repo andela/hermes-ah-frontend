@@ -141,7 +141,15 @@
   }
 }
 
+
 @media only screen and (max-width: 480px) {
+  .article-section-hmp.cont {
+    .twelve.wide.computer.sixteen.wide.mobile.column {
+      height: fit-content !important;
+      overflow: none;
+    }
+  }
+  
   .article-section-hmp {
     width: 95% !important;
     flex-direction: column;
