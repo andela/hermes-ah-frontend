@@ -1,7 +1,6 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from 'react';
-// import { Grid } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NavBar from '../../shared/NavBar/NavBar';
