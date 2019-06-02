@@ -32,7 +32,6 @@ const ReadingArticleCard = ({ article }) => {
               </p>
               <div className="article-datail-footer">
                 <span>{`${new Date(article.createdAt).toDateString()}`}</span>
-                &nbsp;
                 <span className="min-read">
                   {`${article.reading_time} min read`}
                 </span>

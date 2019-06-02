@@ -633,10 +633,15 @@
   .article-page {
     width: 100%;
     flex-direction: column;
+    .article-title {
+      text-align: center;
+    }
     .article-author-detail-container {
       width: 100%;
+      margin: 0;
       .article-author-details {
-        grid-template-columns: 1.5fr 4fr 1fr 2fr;
+        grid-template-columns: 1.5fr 3fr 2fr 2fr;
+        margin-top: 5%;
       }
     }
     .social-sharing {
@@ -681,5 +686,11 @@
       bottom: 68px !important;
       right: 3px !important;
     }
+    .article-datail-footer {
+      flex-direction: column;
+    }
+  }
+  p:first-child {
+    padding-top: 0 !important;
   }
 }
