@@ -6,6 +6,7 @@ import {
   postComment,
   updateComment,
   getCommentHistory,
+  deleteComment,
 } from '../../actions/comment.actions';
 import reportedArticleAction from '../../actions/reported.actions';
 import { likeArticle, likeComment } from '../../actions/like.actions';
@@ -30,6 +31,7 @@ const SingleArticlePageContainer = connect(
     updateComment,
     getCommentHistory,
     likeComment,
+    deleteComment,
   }
 )(ArticlePage);
 

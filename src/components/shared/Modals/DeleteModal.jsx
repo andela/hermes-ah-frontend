@@ -7,14 +7,16 @@ const ConfirmationModal = ({
   size,
   buttonEvent,
   closeConfirmationModal,
-  articleid,
+  id,
+  modalHeader,
+  modalQuestion,
 }) => {
   return (
     <div>
       <Modal size={size} open={open} onClose={closeConfirmationModal}>
-        <Modal.Header>Delete Your Article</Modal.Header>
+        <Modal.Header>{modalHeader}</Modal.Header>
         <Modal.Content>
-          <p>Are you sure you want to delete this article?</p>
+          <p>{modalQuestion}</p>
         </Modal.Content>
         <Modal.Actions>
           <Button positive onClick={closeConfirmationModal}>
@@ -26,7 +28,7 @@ const ConfirmationModal = ({
             icon="checkmark"
             labelPosition="right"
             content="Yes"
-            id={articleid}
+            id={id}
             onClick={buttonEvent}
           />
         </Modal.Actions>
@@ -40,7 +42,9 @@ ConfirmationModal.propTypes = {
   size: PropTypes.string.isRequired,
   closeConfirmationModal: PropTypes.func.isRequired,
   buttonEvent: PropTypes.func.isRequired,
-  articleid: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  modalHeader: PropTypes.string.isRequired,
+  modalQuestion: PropTypes.string.isRequired,
 };
 
 export default ConfirmationModal;

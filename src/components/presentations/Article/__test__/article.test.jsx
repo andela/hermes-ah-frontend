@@ -233,4 +233,16 @@ describe('Article Page', () => {
     wrapper.setState({ showEditHistory: false });
     expect(wrapper.instance().closeEditHistoryModal());
   });
+
+  it('should handle showDeleteModal function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ showDelete: true });
+    expect(wrapper.instance().showDeleteModal());
+  });
+
+  it('should handle closeDeleteModal function', () => {
+    const wrapper = shallow(<ViewComment {...commentViewProps} />);
+    wrapper.setState({ showDelete: false, menu: false });
+    expect(wrapper.instance().closeDeleteModal());
+  });
 });

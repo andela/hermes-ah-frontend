@@ -30,6 +30,15 @@ export const commentHistoryFailure = () => ({
   type: actionTypes.FETCH_COMMENT_HISTORY_FAILURE,
 });
 
+export const deleteCommentSuccess = commentId => ({
+  type: actionTypes.DELETE_COMMENT_SUCCESS,
+  commentId,
+});
+
+export const deleteCommentFailure = () => ({
+  type: actionTypes.DELETE_COMMENT_FAILURE,
+});
+
 export const postComment = data => {
   return async dispatch => {
     try {
@@ -70,7 +79,22 @@ export const getCommentHistory = commentId => {
   };
 };
 
+export const deleteComment = commentId => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      await http.delete(`comments/${commentId}`);
+      dispatch(deleteCommentSuccess(commentId));
+    } catch (ex) {
+      exceptionHandler(ex);
+    } finally {
+      dispatch(deleteCommentFailure());
+    }
+  };
+};
+
 export default {
   postComment,
   getCommentHistory,
+  deleteComment,
 };

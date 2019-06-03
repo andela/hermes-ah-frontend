@@ -3,6 +3,7 @@ import TimeAgo from 'react-timeago';
 import PropTypes from 'prop-types';
 import InputComment from './InputComment';
 import ViewEditHistoryModal from '../../shared/Modals/Modal';
+import DeleteModal from '../../shared/Modals/DeleteModal';
 
 class ViewComment extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ViewComment extends Component {
       showEdit: false,
       replyVal: '',
       showEditHistory: false,
+      showDelete: false,
     };
   }
 
@@ -35,6 +37,14 @@ class ViewComment extends Component {
   showEditComment = () => {
     const { showEdit } = this.state;
     this.setState({ showEdit: !showEdit, menu: false });
+  };
+
+  showDeleteModal = () => {
+    this.setState({ showDelete: true });
+  };
+
+  closeDeleteModal = () => {
+    this.setState({ showDelete: false, menu: false });
   };
 
   handleReplyInput = e => {
@@ -81,6 +91,12 @@ class ViewComment extends Component {
     }
   };
 
+  deleteUserComment = e => {
+    const commentId = e.target.id;
+    const { deleteComment } = this.props;
+    deleteComment(commentId);
+  };
+
   render() {
     const {
       toggle,
@@ -89,6 +105,7 @@ class ViewComment extends Component {
       showEdit,
       replyVal,
       showEditHistory,
+      showDelete,
     } = this.state;
     const { comment, commentHistory, profile, likeComment } = this.props;
     return (
@@ -147,9 +164,20 @@ class ViewComment extends Component {
                           <button type="button" onClick={this.showEditComment}>
                             Edit comment
                           </button>
-                          <button type="button">Delete Comment</button>
+                          <button type="button" onClick={this.showDeleteModal}>
+                            Delete Comment
+                          </button>
                         </div>
                       )}
+                      <DeleteModal
+                        open={showDelete}
+                        size="tiny"
+                        modalHeader="Delete Your Comment"
+                        modalQuestion="Are you sure you want to delete this comment?"
+                        closeConfirmationModal={this.closeDeleteModal}
+                        id={comment.id}
+                        buttonEvent={this.deleteUserComment}
+                      />
                     </div>
                   </div>
                   {commentHistory &&
@@ -238,8 +266,10 @@ class ViewComment extends Component {
                       </button>
                       <span>{comment.likes_count}</span>
                     </div>
-                    {new Date(comment.updatedAt).toUTCString() >
-                    new Date(comment.createdAt).toUTCString() ? (
+                    {profile.id === comment.user_id &&
+                    new Date(comment.updatedAt).toUTCString() >
+                      new Date(comment.createdAt).toUTCString() ? (
+                      // eslint-disable-next-line react/jsx-indent
                       <div>
                         <span>.</span>
                         <span
@@ -326,6 +356,7 @@ ViewComment.propTypes = {
   updateComment: PropTypes.func.isRequired,
   getCommentHistory: PropTypes.func.isRequired,
   likeComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
 };
 
 export default ViewComment;

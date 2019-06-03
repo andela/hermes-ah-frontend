@@ -14,6 +14,9 @@ const actionType = {
   // like comment action types
   LIKE_COMMENT_SUCCESS: 'LIKE_COMMENT_SUCCESS',
   LIKE_COMMENT_FAILURE: ' LIKE_COMMENT_FAILURE',
+  // delete comment action types
+  DELETE_COMMENT_SUCCESS: 'DELETE_COMMENT_SUCCESS',
+  DELETE_COMMENT_FAILURE: 'DELETE_COMMENT_FAILURE',
 };
 
 export default actionType;

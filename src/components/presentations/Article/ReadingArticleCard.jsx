@@ -31,9 +31,10 @@ const ReadingArticleCard = ({ article }) => {
                 {article.author.last_name}
               </p>
               <div className="article-datail-footer">
-                <p>{`${new Date(article.createdAt).toDateString()}`}</p>
-                &nbsp;
-                <p>{`${article.reading_time} min read`}</p>
+                <span>{`${new Date(article.createdAt).toDateString()}`}</span>
+                <span className="min-read">
+                  {`${article.reading_time} min read`}
+                </span>
               </div>
             </div>
             <div className="article-btn-follow">
@@ -41,13 +42,13 @@ const ReadingArticleCard = ({ article }) => {
                 Follow
               </button>
             </div>
-          </div>
-          <div className="article-rating-star">
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star checked" />
-            <span className="fa fa-star" />
-            <span className="fa fa-star" />
+            <div className="article-rating-star">
+              <span className="fa fa-star checked" />
+              <span className="fa fa-star checked" />
+              <span className="fa fa-star checked" />
+              <span className="fa fa-star" />
+              <span className="fa fa-star" />
+            </div>
           </div>
         </div>
         {article.image_url ? (
@@ -55,7 +56,7 @@ const ReadingArticleCard = ({ article }) => {
             <img src={article.image_url} alt="header" />
           </div>
         ) : null}
-        <div>
+        <div className="article-abstract">
           <p>{article.abstract}</p>
         </div>
         <div className="article-body-container">{Parser(article.body)}</div>

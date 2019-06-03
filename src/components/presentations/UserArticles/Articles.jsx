@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Article from './Article/Article';
-import Modal from './modal';
+import DeleteModal from '../../shared/Modals/DeleteModal';
 import './author-articles.scss';
 
 const ArticleList = ({
@@ -32,12 +32,14 @@ const ArticleList = ({
     <div className="article-container">
       <div>
         {open && (
-          <Modal
+          <DeleteModal
             size={size}
             open={open}
+            modalHeader="Delete Your Article"
+            modalQuestion="Are you sure you want to delete this article?"
             closeConfirmationModal={closeConfirmationModal}
             buttonEvent={deleteArticle}
-            articleid={articleid}
+            id={articleid}
           />
         )}
 
