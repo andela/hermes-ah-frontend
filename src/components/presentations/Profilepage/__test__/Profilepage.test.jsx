@@ -24,6 +24,7 @@ const props = {
   isLoadingReducer: { loader: true },
   articlesUpdate: articleObj,
   fetchArticles: jest.fn(),
+  getDailyStats: jest.fn(),
   getFollowee: jest.fn(),
   getFollowing: jest.fn(),
   userFollowee: userFolloweeObj,
@@ -32,6 +33,7 @@ const props = {
   bookmarkedArticles: bookmarkObj,
   updateProfile: jest.fn(),
   getSuggestions: jest.fn(),
+  dailyStats: jest.fn(),
 };
 
 const ProfilepageComponent = (

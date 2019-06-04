@@ -6,11 +6,13 @@ import followingAction from '../../actions/following.actions';
 import fetchBookmarks from '../../actions/bookmarked.action';
 import RequestAction from '../../actions/reviewers-request.action';
 import userArticleActions from '../../actions/articles-update.actions';
+import statisticAction from '../../actions/statsDaily.actions';
 
 const { getProfile, updateProfile, getSuggestions } = profileAction;
 const { getFollowee, followUser } = followeeAction;
 const { getFollowing, unFollowUser } = followingAction;
 const { getUserRequests } = RequestAction;
+const { getDailyStats } = statisticAction;
 const { fetchArticles, deleteArticle } = userArticleActions;
 
 const mapStateToProps = ({
@@ -19,6 +21,7 @@ const mapStateToProps = ({
   userFollowee,
   userFollowing,
   userRequests,
+  dailyStats,
   isLoadingReducer,
   bookmarkedArticles,
 }) => ({
@@ -27,6 +30,7 @@ const mapStateToProps = ({
   userFollowee,
   userFollowing,
   userRequests,
+  dailyStats,
   isLoadingReducer,
   bookmarkedArticles,
 });
@@ -45,6 +49,7 @@ const ProfilepageContainer = connect(
     unFollowUser,
     deleteArticle,
     followUser,
+    getDailyStats,
   }
 )(Profilepage);
 

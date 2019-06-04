@@ -1,117 +1,136 @@
 @import '../../../../assets/stylesheets/index.scss';
-h3, p {
-    font-family: $font-stack;
+h3,
+p {
+  font-family: $font-stack;
+}
+i.fas.fa-book-reader.book-icon {
+    color: rgb(14, 113, 235);
 }
 .bookmark-articles-list {
-    display: flex;
-    flex-direction: row;
-    text-align: left;
-    width: 97%;
-    margin: 20px 10px;
-    padding: 0;
-    border-bottom: solid 1px $article-border-color;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  width: 97%;
+  margin: 20px 10px;
+  padding: 0;
+  border-bottom: solid 1px $article-border-color;
 
-    .article-details {
-        width: 88%;
-        float: left;
+  .article-details {
+    width: 88%;
+    float: left;
 
-        .author-details {
-            display: flex;
-        }
-
-        .meta {
-            color: $secondary-color;
-        }
-
-        p, h3 {
-            padding: 0 10px;
-        }
+    .author-details {
+      display: flex;
     }
 
-    .unbookmark {
-        margin: 0;
-
-        .ui.button, .ui.button:hover, .ui.button:active {
-            background: #fff;
-            padding: 0 10px;
-            font-size: 20px;
-            color: $primary-color;
-        }
-
-        .ui.button:hover {
-            color: #828282;
-        }
-
-        .button-image {
-            width: 19px;
-            height: 25px;
-            background: url("https://res.cloudinary.com/walsam/image/upload/v1558439121/ah-bookmark.png") no-repeat;
-        }
-
-        .button-image:hover {
-            background: url("https://res.cloudinary.com/walsam/image/upload/v1558439384/ah-bookmark-regular.png");
-        }
+    .meta {
+      color: $secondary-color;
     }
 
-    .article-img {
-        width: 12%;
-        float: left;
-        text-align: right;
+    p,
+    h3 {
+      padding: 0 10px;
+    }
+  }
 
-        img {
-            width: 100%;
-        }
+  .article-details-card {
+    width: 88%;
+    float: left;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-gap: 10px;
+
+    a{
+color: black;
+    }
+  }
+  .unbookmark {
+    margin: 0;
+
+    .ui.button,
+    .ui.button:hover,
+    .ui.button:active {
+      background: #fff;
+      padding: 0 10px;
+      font-size: 20px;
+      color: $primary-color;
     }
 
-    p {
-        font-size: 14px;
+    .ui.button:hover {
+      color: #828282;
     }
+
+    .button-image {
+      width: 19px;
+      height: 25px;
+      background: url('https://res.cloudinary.com/walsam/image/upload/v1558439121/ah-bookmark.png')
+        no-repeat;
+    }
+
+    .button-image:hover {
+      background: url('https://res.cloudinary.com/walsam/image/upload/v1558439384/ah-bookmark-regular.png');
+    }
+  }
+
+  .article-img {
+    width: 12%;
+    float: left;
+    text-align: right;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  p {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .bookmark-articles-list {
-        .article-details {
-            width: 83%;
-        }
-
-        .article-img {
-            width: 17%;
-        }
+  .bookmark-articles-list {
+    .article-details {
+      width: 83%;
     }
+
+    .article-img {
+      width: 17%;
+    }
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .bookmark-articles-list {
-        .article-details {
-            width: 80%;
-        }
-
-        .article-img {
-            width: 20%;
-        }
+  .bookmark-articles-list {
+    .article-details {
+      width: 80%;
     }
+
+    .article-img {
+      width: 20%;
+    }
+  }
 }
 
 @media screen and (max-width: 480px) {
-    .bookmark-articles-list {
-        width: 100%;
-        flex-direction: column;
-        margin: 20px 0;
+  .bookmark-articles-list {
+    width: 100%;
+    flex-direction: column;
+    margin: 20px 0;
 
-        .article-details {
-            width: 100%;
-            h3 {
-                text-align: center
-            }
+    .article-details {
+      width: 100%;
+      h3 {
+        text-align: center;
+      }
 
-            p {
-                text-align: justify;
-            }
-        }
-
-        .article-img {
-            width: 100%;
-            margin: 10px auto;
-        }
+      p {
+        text-align: justify;
+      }
     }
+
+    .article-img {
+      width: 100%;
+      margin: 10px auto;
+    }
+  }
 }

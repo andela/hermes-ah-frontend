@@ -11,6 +11,7 @@ import isLoadingReducer from './loading.reducer';
 import bookmarkedArticles from './bookmarked.reducer';
 import reportedArticles from './reported.reducers';
 import userRequests from './reviewerRequests.reducer';
+import dailyStats from './statsDaily.reducer';
 import singleArticle from './singleArticle.reducer';
 
 const reducers = combineReducers({
@@ -27,6 +28,7 @@ const reducers = combineReducers({
   bookmarkedArticles,
   reportedArticles,
   userRequests,
+  dailyStats,
 });
 
 export default reducers;
