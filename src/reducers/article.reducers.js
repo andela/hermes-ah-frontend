@@ -24,6 +24,25 @@ const articles = (state = initialState, action) => {
       return {
         ...state,
       };
+    case actionType.GET_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        articleData: action.article,
+      };
+    case actionType.GET_ARTICLE_FAILURE:
+      return {
+        ...state,
+      };
+    case actionType.PATCH_ARTICLE_SUCCESS:
+      return {
+        ...state,
+        success: true,
+        articleData: action.article,
+      };
+    case actionType.PATCH_ARTICLE_FAILURE:
+      return {
+        ...state,
+      };
     default:
       return state;
   }

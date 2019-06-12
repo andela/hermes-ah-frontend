@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import '../author-articles.scss';
 
@@ -24,7 +25,11 @@ const Article = ({
           <p>{date}</p>
         </div>
         <div className="update-buttons">
-          <Button className="success">Edit</Button>
+          <Link to={`/edit-article/${articleId}`}>
+            <Button className="success" id={articleId} type="submit">
+              Edit
+            </Button>
+          </Link>
           <Button className={draftStatus}>{draftStatus}</Button>
           <Button
             type="submit"

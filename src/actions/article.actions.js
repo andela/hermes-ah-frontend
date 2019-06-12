@@ -22,6 +22,15 @@ export const postArticleError = () => ({
   type: actionTypes.POST_ARTICLES_FAILURE,
 });
 
+export const editAnArticleSuccess = article => ({
+  type: actionTypes.PATCH_ARTICLE_SUCCESS,
+  article,
+});
+
+export const editAnArticleError = () => ({
+  type: actionTypes.PATCH_ARTICLE_FAILURE,
+});
+
 export const postRatingSuccess = () => ({
   type: actionTypes.RATE_SUCCESS,
 });
@@ -61,6 +70,22 @@ export const postArticle = data => {
   };
 };
 
+export const editAnArticle = (id, data) => {
+  return async dispatch => {
+    dispatch(contentLoading());
+    try {
+      const editedArticle = await http.patch(`/article/${id}`, data);
+      dispatch(postArticleSuccess(editedArticle.data.article));
+      toast.success(editedArticle.message);
+      window.location = '/';
+      return editedArticle;
+    } catch (err) {
+      console.log(err);
+      dispatch(postArticleError());
+      return exceptionHandler(err);
+    }
+  };
+};
 export const rateArticle = data => {
   return async dispatch => {
     try {
@@ -77,4 +102,5 @@ export const rateArticle = data => {
 export default {
   getAllArticles,
   postArticle,
+  editAnArticle,
 };

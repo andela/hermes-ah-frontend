@@ -123,6 +123,7 @@ class Profilepage extends Component {
       bookmarkedArticles,
       updateProfile,
       user,
+      getAnArticle,
       getFollowing,
     } = this.props;
     const { followingCount } = userFollowing;
@@ -176,6 +177,7 @@ class Profilepage extends Component {
             <div>
               <Articles
                 articlesUpdate={articlesUpdate}
+                editAnArticle={getAnArticle}
                 deleteArticle={this.deleteArticleClick}
                 size={size}
                 articleid={articleid}
@@ -262,6 +264,7 @@ Profilepage.propTypes = {
   fetchBookmarks: PropTypes.func.isRequired,
   updateProfile: PropTypes.func.isRequired,
   getSuggestions: PropTypes.func.isRequired,
+  getAnArticle: PropTypes.func.isRequired,
   deleteArticle: PropTypes.func.isRequired,
 };
 
