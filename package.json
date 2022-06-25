@@ -85,7 +85,7 @@
     "lint-staged": "^8.1.5",
     "ng-faker": "^1.1.0",
     "nightwatch": "^1.0.19",
-    "node-fetch": "^2.5.0",
+    "node-fetch": "^2.6.7",
     "node-sass": "^4.12.0",
     "prettier": "^1.17.0",
     "redux-mock-store": "^1.5.3",
